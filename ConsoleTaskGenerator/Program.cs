@@ -1,6 +1,6 @@
-﻿namespace TaskGenerator
+﻿namespace ConsoleTaskGenerator
 {
-    internal class Program
+    internal static class Program
     {
         public static void Main(string[] args)
         {

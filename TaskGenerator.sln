@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskGenerator", "TaskGenerator\TaskGenerator.csproj", "{1D96C12C-858D-45CD-8DDB-B2DD28E71376}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTaskGenerator", "ConsoleTaskGenerator\ConsoleTaskGenerator.csproj", "{1D96C12C-858D-45CD-8DDB-B2DD28E71376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskEngine", "TaskEngine\TaskEngine.csproj", "{38A25EC2-4808-4780-BA1A-10282F9FF230}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
