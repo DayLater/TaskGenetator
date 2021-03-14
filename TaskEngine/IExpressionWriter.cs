@@ -6,5 +6,6 @@ namespace TaskEngine
     public interface IExpressionWriter
     {
         string Write<T>(Expression<Func<int, T>> expression);
+        
     }
 }

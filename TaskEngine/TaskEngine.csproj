@@ -49,8 +49,10 @@
         <Compile Include="Sets\ExpressionSet.cs" />
         <Compile Include="Sets\IExpressionSet.cs" />
         <Compile Include="Sets\ISet.cs" />
+        <Compile Include="Sets\ISetBorder.cs" />
         <Compile Include="Sets\Set.cs" />
         <Compile Include="ExpressionWriter.cs" />
+        <Compile Include="Sets\SetBorder.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

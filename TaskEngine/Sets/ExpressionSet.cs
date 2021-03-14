@@ -7,8 +7,8 @@ namespace TaskEngine.Sets
     public class ExpressionSet<T> : IExpressionSet<T>
     {
         private readonly Func<int, T> _creatingFunc;
-        private readonly int _count; 
-        
+        private readonly int _count;
+
         public ExpressionSet(Expression<Func<int, T>> expression, int count = -1)
         {
             Expression = expression;
@@ -26,5 +26,8 @@ namespace TaskEngine.Sets
         }
 
         public Expression<Func<int, T>> Expression { get; }
+
+        public ISetBorder<T> Min { get; } = new SetBorder<T>();
+        public ISetBorder<T> Max { get; } = new SetBorder<T>();
     }
 }
