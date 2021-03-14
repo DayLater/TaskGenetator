@@ -2,23 +2,21 @@
 {
     public class SetBorder<T>: ISetBorder<T>
     {
+        public BorderType BorderType { get; private set; }
         public bool IsChanged { get; private set; }
-
-        private T _value;
         
-        public T Value
+        public T Value { get; private set; }
+
+        public void SetValue(T value, BorderType type)
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                IsChanged = true;
-            }
+            Value = value;
+            BorderType = type;
+            IsChanged = true;
         }
 
         public void Reset()
         {
-            _value = default(T);
+            Value = default(T);
             IsChanged = false;
         }
     }

@@ -46,6 +46,7 @@
         <Compile Include="RandomSetGenerator.cs" />
         <Compile Include="SetOperation.cs" />
         <Compile Include="SetSolver.cs" />
+        <Compile Include="Sets\BorderType.cs" />
         <Compile Include="Sets\ExpressionSet.cs" />
         <Compile Include="Sets\IExpressionSet.cs" />
         <Compile Include="Sets\ISet.cs" />

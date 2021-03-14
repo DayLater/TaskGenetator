@@ -2,8 +2,10 @@
 {
     public interface ISetBorder<T>
     {
+        BorderType BorderType { get; }
         bool IsChanged { get; }
-        T Value { get; set; }
+        T Value { get; }
+        void SetValue(T value, BorderType type);
         void Reset();
     }
 }
