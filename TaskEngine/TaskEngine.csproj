@@ -40,7 +40,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="ISetSolver.cs" />
-        <Compile Include="IExpressionWriter.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="ISetGenerator.cs" />
         <Compile Include="RandomSetGenerator.cs" />
@@ -56,8 +55,11 @@
         <Compile Include="Sets\ISet.cs" />
         <Compile Include="Sets\ISetBorder.cs" />
         <Compile Include="Sets\Set.cs" />
-        <Compile Include="ExpressionWriter.cs" />
         <Compile Include="Sets\SetBorder.cs" />
+        <Compile Include="Writers\ExpressionWriter.cs" />
+        <Compile Include="Writers\IExpressionWriter.cs" />
+        <Compile Include="Writers\ISetWriter.cs" />
+        <Compile Include="Writers\SetWriter.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

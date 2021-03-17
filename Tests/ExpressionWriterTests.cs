@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using TaskEngine;
 using TaskEngine.Sets;
+using TaskEngine.Writers;
 
 namespace Tests
 {

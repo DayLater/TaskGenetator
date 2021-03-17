@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace TaskEngine
+namespace TaskEngine.Writers
 {
     public class ExpressionWriter: IExpressionWriter
     {
