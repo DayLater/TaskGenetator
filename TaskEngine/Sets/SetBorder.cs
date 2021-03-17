@@ -7,6 +7,11 @@
         
         public T Value { get; private set; }
 
+        public SetBorder(T value, BorderType type)
+        {
+            SetValue(value, type);
+        }
+
         public void SetValue(T value, BorderType type)
         {
             Value = value;

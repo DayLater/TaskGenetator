@@ -16,18 +16,12 @@ namespace TaskEngine.Sets
             _count = count == -1 ? int.MaxValue : count;;
         }
 
-        public IEnumerable<T> Elements
+        public IEnumerable<T> GetElements()
         {
-            get
-            {
-                for (var i = 1; i <= _count; i++)
-                    yield return _creatingFunc.Invoke(i);
-            }
+            for (var i = 1; i <= _count; i++)
+                yield return _creatingFunc.Invoke(i);
         }
 
         public Expression<Func<int, T>> Expression { get; }
-
-        public ISetBorder<T> Min { get; } = new SetBorder<T>();
-        public ISetBorder<T> Max { get; } = new SetBorder<T>();
     }
 }

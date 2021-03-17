@@ -12,6 +12,6 @@ namespace TaskEngine.Sets
             _elements = elements.Distinct().ToList();
         }
 
-        public IEnumerable<T> Elements => _elements;
+        public IEnumerable<T> GetElements() => _elements;
     }
 }
