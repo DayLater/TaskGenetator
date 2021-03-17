@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void Write()
         {
-            var set = new ExpressionSet<int>(i => 2 * i, 10);
+            var set = new ExpressionSet<int>("A",i => 2 * i, 10);
 
             var result = _expressionWriter.Write(set.Expression); 
             

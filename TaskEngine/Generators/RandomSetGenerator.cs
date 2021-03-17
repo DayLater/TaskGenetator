@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TaskEngine
+namespace TaskEngine.Generators
 {
     public class RandomSetGenerator: ISetGenerator<int>
     {

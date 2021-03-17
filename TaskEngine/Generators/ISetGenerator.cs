@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TaskEngine
+namespace TaskEngine.Generators
 {
     public interface ISetGenerator<out T>
     {
