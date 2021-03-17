@@ -2,8 +2,8 @@
 {
     public class IntBorderedSet: BorderedSet<int>
     {
-        public IntBorderedSet(int start, BorderType startType, int end, BorderType endType)
-            : base(start, startType, end, endType) { }
+        public IntBorderedSet(string name, int start, BorderType startType, int end, BorderType endType)
+            : base(name, start, startType, end, endType) { }
 
         protected override void FillElements()
         {

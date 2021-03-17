@@ -9,12 +9,15 @@ namespace TaskEngine.Sets
         private readonly Func<int, T> _creatingFunc;
         private readonly int _count;
 
-        public ExpressionSet(Expression<Func<int, T>> expression, int count = -1)
+        public ExpressionSet(string name, Expression<Func<int, T>> expression, int count = -1)
         {
+            Name = name;
             Expression = expression;
             _creatingFunc = Expression.Compile();
             _count = count == -1 ? int.MaxValue : count;;
         }
+
+        public string Name { get; }
 
         public IEnumerable<T> GetElements()
         {

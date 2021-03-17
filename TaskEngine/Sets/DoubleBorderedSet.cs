@@ -2,8 +2,8 @@
 {
     public class DoubleBorderedSet: BorderedSet<double>
     {
-        public DoubleBorderedSet(double start, BorderType startType, double end, BorderType endType)
-            : base(start, startType, end, endType) { }
+        public DoubleBorderedSet(string name, double start, BorderType startType, double end, BorderType endType)
+            : base(name, start, startType, end, endType) { }
 
         protected override void FillElements()
         {

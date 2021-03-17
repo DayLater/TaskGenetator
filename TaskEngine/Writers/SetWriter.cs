@@ -14,13 +14,15 @@ namespace TaskEngine.Writers
 
         public string Write<T>(ISet<T> set)
         {
-            return set switch
+            var result =  set switch
             {
                 IBorderedSet<T> borderedSet => WriteBorderedSet(borderedSet),
                 IExpressionSet<T> expressionSet => WriteExpressionSet(expressionSet),
                 Set<T> defaultSet => WriteDefaultSet(defaultSet),
                 _ => throw new ArgumentOutOfRangeException(nameof(set))
             };
+
+            return $"{set.Name} = {result}";
         }
 
         private string WriteExpressionSet<T>(IExpressionSet<T> set)
@@ -42,7 +44,7 @@ namespace TaskEngine.Writers
                 result += "]";
             else
                 result += ")";
-            return result;
+            return $"{result}";
         }
 
         private string WriteDefaultSet<T>(ISet<T> set)
