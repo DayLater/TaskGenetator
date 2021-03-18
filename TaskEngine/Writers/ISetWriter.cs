@@ -4,6 +4,7 @@ namespace TaskEngine.Writers
 {
     public interface ISetWriter
     {
-        public string Write<T>(ISet<T> set);
+        string Write<T>(ISet<T> set);
+        string WriteCharacteristicProperty<T>(ISet<T> set);
     }
 }

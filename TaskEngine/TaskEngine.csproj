@@ -56,6 +56,8 @@
         <Compile Include="Sets\ISetBorder.cs" />
         <Compile Include="Sets\Set.cs" />
         <Compile Include="Sets\SetBorder.cs" />
+        <Compile Include="Types.cs" />
+        <Compile Include="Writers\BorderSetWriter.cs" />
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />
         <Compile Include="Writers\ISetWriter.cs" />
