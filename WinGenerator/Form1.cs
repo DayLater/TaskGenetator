@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using TaskEngine.Generators;
+using TaskEngine.Generators.Tasks;
 using TaskEngine.Tasks;
 using TaskEngine.Writers;
+using TaskEngine.Writers.Tasks;
 
 namespace WinGenerator
 {

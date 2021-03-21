@@ -3,7 +3,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public class CharacteristicPropertyTask
+    public class CharacteristicPropertyTask: ITask
     {
         private readonly Dictionary<int, IMathSet<int>> _mathSets = new Dictionary<int, IMathSet<int>>();
         public int RightAnswerIndex { get; }

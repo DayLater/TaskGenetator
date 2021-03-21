@@ -1,7 +1,8 @@
 ﻿using System;
-using TaskEngine.Generators;
+using TaskEngine.Generators.SetGenerators;
+using TaskEngine.Tasks;
 
-namespace TaskEngine.Tasks
+namespace TaskEngine.Generators.Tasks
 {
     public class CharacteristicPropertyTaskGenerator
     {
@@ -24,7 +25,7 @@ namespace TaskEngine.Tasks
         
         public CharacteristicPropertyTask Generate()
         {
-            var sets = _expressionSetGenerator.Generate<int>(CountToGenerate);
+            var sets = _expressionSetGenerator.Generate(CountToGenerate);
             var rightAnswerIndex = _random.Next(0, sets.Count);
 
             return new CharacteristicPropertyTask(sets, rightAnswerIndex); 

@@ -1,8 +1,8 @@
 ﻿using TaskEngine.Tasks;
 
-namespace TaskEngine.Writers
+namespace TaskEngine.Writers.Tasks
 {
-    public class CharacteristicPropertyTaskWriter
+    public class CharacteristicPropertyTaskWriter: ITaskWriter<CharacteristicPropertyTask>
     {
         private readonly ISetWriter _setWriter = new SetWriter(new ExpressionWriter(), 6);
         
@@ -20,6 +20,11 @@ namespace TaskEngine.Writers
             }
 
             return result;
+        }
+
+        public string WriteAnswer(CharacteristicPropertyTask task)
+        {
+            return task.RightAnswerIndex.ToString();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TaskEngine.Sets;
 
-namespace TaskEngine.Generators
+namespace TaskEngine.Generators.SetGenerators
 {
     public class ExpressionSetGenerator
     {
@@ -11,7 +11,7 @@ namespace TaskEngine.Generators
         public int Min { get; set; } = -10;
         public int Max { get; set; } = 10;
 
-        public List<IMathSet<int>> Generate<T>(int count)
+        public List<IMathSet<int>> Generate(int count)
         {
             var result = new List<IMathSet<int>>();
             var containedItems = new HashSet<int>();
