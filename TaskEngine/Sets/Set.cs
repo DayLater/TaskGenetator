@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TaskEngine.Sets
 {
-    public class Set<T>: ISet<T>
+    public class Set<T>: IMathSet<T>
     {
         private readonly List<T> _elements; 
         

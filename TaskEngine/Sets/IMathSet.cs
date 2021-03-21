@@ -2,7 +2,7 @@
 
 namespace TaskEngine.Sets
 {
-    public interface ISet<out T>
+    public interface IMathSet<out T>
     {
         string Name { get; }
         IEnumerable<T> GetElements();

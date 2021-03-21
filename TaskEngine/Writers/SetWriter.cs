@@ -15,20 +15,18 @@ namespace TaskEngine.Writers
             _maxCount = maxCount;
         }
 
-        public string Write<T>(ISet<T> set)
+        public string Write<T>(IMathSet<T> set)
         {
             var result =  set switch
             {
                 IBorderedSet<T> borderedSet => _borderSetWriter.Write(borderedSet),
-                IExpressionSet<T> expressionSet => WriteDefaultSet(expressionSet),
-                Set<T> defaultSet => WriteDefaultSet(defaultSet),
-                _ => throw new ArgumentOutOfRangeException(nameof(set))
+                _ => WriteDefaultSet(set)
             };
 
             return $"{set.Name} = {result}";
         }
 
-        public string WriteCharacteristicProperty<T>(ISet<T> set)
+        public string WriteCharacteristicProperty<T>(IMathSet<T> set)
         {
             return set switch
             {
@@ -39,7 +37,7 @@ namespace TaskEngine.Writers
             };
         }
 
-        private string WriteDefaultSet<T>(ISet<T> set)
+        private string WriteDefaultSet<T>(IMathSet<T> set)
         {
             var result = "{";
 

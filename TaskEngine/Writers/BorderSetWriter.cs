@@ -8,18 +8,18 @@ namespace TaskEngine.Writers
         {
             var borders = $"{borderedSet.Start.Value}";
             if (borderedSet.Start.BorderType == BorderType.Close)
-                borders += "⩽";
+                borders += Symbols.LessOrEquals;
             else
-                borders += "<";
+                borders += Symbols.Less;
             borders += "x";
             if (borderedSet.End.BorderType == BorderType.Close)
-                borders += "⩽";
+                borders += Symbols.LessOrEquals;
             else
-                borders += "<";
+                borders += Symbols.Less;
             borders += $"{borderedSet.End.Value}";
             
             var type = Types.GetTypeSymbol(typeof(T));
-            return "{ x | x ∈ " + type + ", " + borders + "}";
+            return "{x | x ∈ " + type + ", " + borders + "}";
         }
         
         public string Write<T>(IBorderedSet<T> set)

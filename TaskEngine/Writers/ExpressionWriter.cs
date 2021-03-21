@@ -7,7 +7,8 @@ namespace TaskEngine.Writers
     {
         public string Write<T>(Expression<Func<int, T>> expression)
         {
-            var result = GetFunctionBody(expression);
+            var simplifiedExpression = expression.Simplify();
+            var result = GetFunctionBody(simplifiedExpression);
             var type = Types.GetTypeSymbol(typeof(T));
             return "{" + result + ", x ∈ " + type + "}"; 
         }
