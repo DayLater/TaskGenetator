@@ -21,11 +21,11 @@ namespace TaskEngine.Generators.Tasks
             set => _expressionSetGenerator.Max = value;
         }
 
-        public int CountToGenerate { get; set; } = 4;
+        public int VariantsCount { get; set; } = 4;
         
         public CharacteristicPropertyTask Generate()
         {
-            var sets = _expressionSetGenerator.Generate(CountToGenerate);
+            var sets = _expressionSetGenerator.Generate(VariantsCount);
             var rightAnswerIndex = _random.Next(0, sets.Count);
 
             return new CharacteristicPropertyTask(sets, rightAnswerIndex); 

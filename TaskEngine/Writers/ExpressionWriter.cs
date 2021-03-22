@@ -9,7 +9,7 @@ namespace TaskEngine.Writers
         {
             var simplifiedExpression = expression.Simplify();
             var result = GetFunctionBody(simplifiedExpression);
-            var type = Types.GetTypeSymbol(typeof(T));
+            var type = Symbols.GetTypeSymbol(typeof(T));
             return "{" + result + ", x ∈ " + type + "}"; 
         }
 

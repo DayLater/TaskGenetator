@@ -6,7 +6,6 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public class ExpressionSetGenerator
     {
-        private readonly SetNames _setNames = new SetNames();
         private readonly Random _random = new Random();
         public int Min { get; set; } = -10;
         public int Max { get; set; } = 10;
@@ -15,7 +14,7 @@ namespace TaskEngine.Generators.SetGenerators
         {
             var result = new List<IMathSet<int>>();
             var containedItems = new HashSet<int>();
-            var names = _setNames.Names;
+            var names = Symbols.Names;
             for (var i = 0; i < count; i++)
             {
                 int coefficient;

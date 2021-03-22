@@ -15,7 +15,7 @@ namespace TaskEngine.Writers
             _maxCount = maxCount;
         }
 
-        public string Write<T>(IMathSet<T> set)
+        public string Write<T>(IMathSet<T> set, bool withName = true)
         {
             var result =  set switch
             {
@@ -23,7 +23,7 @@ namespace TaskEngine.Writers
                 _ => WriteDefaultSet(set)
             };
 
-            return $"{set.Name} = {result}";
+            return withName? $"{set.Name} = {result}": result;
         }
 
         public string WriteCharacteristicProperty<T>(IMathSet<T> set)
@@ -32,7 +32,7 @@ namespace TaskEngine.Writers
             {
                 IBorderedSet<T> borderedSet => _borderSetWriter.WriteCharacteristicProperty(borderedSet),
                 IExpressionSet<T> expressionSet =>  _expressionWriter.Write(expressionSet.Expression),
-                Set<T> _ => "Doesn't have characteristic property",
+                MathSet<T> _ => "Doesn't have characteristic property",
                 _ => throw new ArgumentOutOfRangeException(nameof(set))
             };
         }

@@ -1,4 +1,5 @@
-﻿using TaskEngine.Sets;
+﻿using TaskEngine.Generators.Tasks;
+using TaskEngine.Sets;
 
 namespace TaskEngine.Writers
 {
@@ -18,7 +19,7 @@ namespace TaskEngine.Writers
                 borders += Symbols.Less;
             borders += $"{borderedSet.End.Value}";
             
-            var type = Types.GetTypeSymbol(typeof(T));
+            var type = Symbols.GetTypeSymbol(typeof(T));
             return "{x | x ∈ " + type + ", " + borders + "}";
         }
         
