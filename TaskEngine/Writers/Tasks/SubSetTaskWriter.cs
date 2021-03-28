@@ -1,4 +1,5 @@
 ﻿using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
@@ -11,18 +12,20 @@ namespace TaskEngine.Writers.Tasks
             _setWriter = setWriter;
         }
 
-        public string WriteTask(SubSetTask task)
+        public ITextTask WriteTask(SubSetTask task)
         {
             var writeSet = _setWriter.Write(task.TaskSet);
             var writeType = SubSetTypeHelper.GetNumbersType(task.TypeTask);
-            var result = $"Дано множество {writeSet}." +
+            var textTask = $"Дано множество {writeSet}." +
                          $"\nВыделите его подмножество, элементами которого являются {writeType} числа";
-            return result;
+
+            var answer = WriteAnswer(task);
+            return new TextTask(textTask, answer);
         }
 
-        public string WriteAnswer(SubSetTask task)
+        private string WriteAnswer(SubSetTask task)
         {
-            return _setWriter.Write(task.AnswerSet, false);
+            return _setWriter.Write(task.TaskSet, false);
         }
     }
 }

@@ -78,8 +78,15 @@
         <Compile Include="Tasks\BorderSetOperationTask.cs" />
         <Compile Include="Tasks\CharacteristicPropertyTask.cs" />
         <Compile Include="Tasks\ITask.cs" />
+        <Compile Include="Tasks\IVariantsTask.cs" />
         <Compile Include="Tasks\SubSetTask.cs" />
+        <Compile Include="Tasks\Task.cs" />
         <Compile Include="Tasks\TestableSubSetTask.cs" />
+        <Compile Include="Tasks\Texts\ITextTask.cs" />
+        <Compile Include="Tasks\Texts\IVariantsTextTask.cs" />
+        <Compile Include="Tasks\Texts\TextTask.cs" />
+        <Compile Include="Tasks\Texts\VariantsTextTask.cs" />
+        <Compile Include="Tasks\VariantsTask.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />
@@ -90,6 +97,7 @@
         <Compile Include="Writers\Tasks\ITaskWriter.cs" />
         <Compile Include="Writers\Tasks\SubSetTaskWriter.cs" />
         <Compile Include="Writers\Tasks\TestableSubSetTaskWriter.cs" />
+        <Compile Include="Writers\Tasks\TaskWriter.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

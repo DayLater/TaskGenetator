@@ -3,6 +3,7 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
+using TaskEngine.Sets;
 using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
@@ -24,13 +25,12 @@ namespace TaskEngine.Generators.Tasks
         {
             var answerSet = _generator.Generate();
             var operation = SetOperationHelper.GetRandomSetOperation();
-
             var (firstSet, secondSet) = _setGenerators[operation].Generate(answerSet);
 
-            var variants = _variantsGenerator.Generate(answerSet, VariantCount).ToList();
+            var variants = _variantsGenerator.Generate(answerSet, VariantCount).Cast<IMathSet<int>>().ToList();
             variants.Add(answerSet);
             variants = variants.ShuffleToList();
-            return new BorderSetOperationTask(firstSet, secondSet, answerSet, variants, operation);
+            return new BorderSetOperationTask(answerSet, variants, firstSet, secondSet,  operation);
         }
         
         public void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) =>

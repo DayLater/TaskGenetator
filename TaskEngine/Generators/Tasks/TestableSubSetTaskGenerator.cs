@@ -32,13 +32,12 @@ namespace TaskEngine.Generators.Tasks
             }
             
             var setVariants = variants
-                .Select((elements, i) => new MathSet<int>(Symbols.Names[i], elements))
+                .Select((elements, i) => new MathSet<int>(Symbols.Names[i], elements)).Cast<IMathSet<int>>()
                 .ToList();
             
             var rightSet = setVariants[0];
             setVariants = setVariants.ShuffleToList();
-            var rightIndex = setVariants.IndexOf(rightSet);
-            var task = new TestableSubSetTask(set, type, setVariants, rightIndex);
+            var task = new TestableSubSetTask(rightSet, setVariants, type, set);
             return task;
         }
         

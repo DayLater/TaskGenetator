@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class TestableSubSetTaskWriter: ITaskWriter<TestableSubSetTask>
+    public class TestableSubSetTaskWriter: TaskWriter<TestableSubSetTask>
     {
         private readonly ISetWriter _setWriter;
 
@@ -13,25 +16,15 @@ namespace TaskEngine.Writers.Tasks
             _setWriter = setWriter;
         }
 
-        public string WriteTask(TestableSubSetTask task)
+        public override ITextTask WriteTask(TestableSubSetTask task)
         {
             var set = _setWriter.Write(task.Set);
             var type = SubSetTypeHelper.GetNumbersType(task.Type);
-            var result = $"Дано множество {set}." +
+            var textTask = $"Дано множество {set}." +
                          $"\nУкажите его подмножество, элементами которого являются все его {type} числа";
-
-            foreach (var variant in task.Variants)
-            {
-                var writtenVariant = _setWriter.Write(variant.Value, false);
-                result += $"\n{variant.Key}) {writtenVariant}";
-            }
-
-            return result;
-        }
-        
-        public string WriteAnswer(TestableSubSetTask task)
-        {
-            throw new System.NotImplementedException();
+            var variants = task.Variants.Select(variant => _setWriter.Write(variant, false)).ToList();
+            var answer = WriteAnswer(task);
+            return new VariantsTextTask(textTask, answer, variants);
         }
     }
 }

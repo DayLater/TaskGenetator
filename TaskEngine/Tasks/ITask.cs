@@ -1,7 +1,9 @@
-﻿namespace TaskEngine.Tasks
+﻿using TaskEngine.Sets;
+
+namespace TaskEngine.Tasks
 {
-    public interface ITask
+    public interface ITask<T>
     {
-        
+        IMathSet<T> RightAnswer { get; } 
     }
 }

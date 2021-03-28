@@ -1,30 +1,27 @@
-﻿using TaskEngine.Tasks;
+﻿using System.Linq;
+using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class CharacteristicPropertyTaskWriter: ITaskWriter<CharacteristicPropertyTask>
+    public class CharacteristicPropertyTaskWriter: TaskWriter<CharacteristicPropertyTask>
     {
         private readonly ISetWriter _setWriter = new SetWriter(new ExpressionWriter(), 6);
-        
-        public string WriteTask(CharacteristicPropertyTask task)
+
+        public override ITextTask WriteTask(CharacteristicPropertyTask task)
         {
-            var rightSet = task.Sets[task.RightAnswerIndex];
-            var writeSet = _setWriter.Write(rightSet);
-            var result = $"Дано множество {writeSet}." +
-                         $"\nУкажите его характеристическое свойство.";
+            var answer = task.RightAnswer;
+            var writeSet = _setWriter.Write(answer);
             
-            foreach (var set in task.Sets)
-            {
-                var variant = _setWriter.WriteCharacteristicProperty(set.Value);
-                result += $"\n {set.Key}) {variant}";
-            }
+            var textTask = $"Дано множество {writeSet}." +
+                           $"\nУкажите его характеристическое свойство.";
 
-            return result;
-        }
+            var variants = task.Variants
+                .Select(set => _setWriter.WriteCharacteristicProperty(set))
+                .ToList();
 
-        public string WriteAnswer(CharacteristicPropertyTask task)
-        {
-            return task.RightAnswerIndex.ToString();
+            var answerText = WriteAnswer(task);
+            return new VariantsTextTask(textTask, answerText, variants);
         }
     }
 }

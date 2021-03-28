@@ -2,12 +2,12 @@
 using System.Windows.Forms;
 using TaskEngine;
 using TaskEngine.Comparers;
-using TaskEngine.Generators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 using TaskEngine.Writers.Tasks;
+using WinGenerator.DocWriters;
 
 namespace WinGenerator
 {
@@ -21,6 +21,8 @@ namespace WinGenerator
 
         private readonly IntBorderSetOperationTaskGenerator _testableSubSetTaskGenerator;
         private readonly BorderSetOperationTaskWriter _testableSubSetTaskWriter;
+
+        private readonly DocWriter _docWriter = new DocWriter();
 
         public Form1()
         {
@@ -42,8 +44,6 @@ namespace WinGenerator
             _generator.VariantsCount = int.Parse(textBox3.Text);
             var task = _generator.Generate();
 
-            var taskText = _writer.WriteTask(task);
-            label1.Text = taskText;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -51,7 +51,17 @@ namespace WinGenerator
             var subSetTask = _testableSubSetTaskGenerator.Generate();
 
             var taskText = _testableSubSetTaskWriter.WriteTask(subSetTask);
-            label2.Text = taskText;
+            var answer = _testableSubSetTaskWriter.WriteAnswer(subSetTask);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var task1 = _generator.Generate();
+            var taskText1 = _writer.WriteTask(task1);
+
+            var subSetTask = _testableSubSetTaskGenerator.Generate();
+            var taskText = (IVariantsTextTask)_testableSubSetTaskWriter.WriteTask(subSetTask);
+            _docWriter.Write("test", new[] {taskText1, taskText});
         }
     }
 }

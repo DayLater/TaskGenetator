@@ -1,4 +1,6 @@
-﻿using TaskEngine.Tasks;
+﻿using System.Linq;
+using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
@@ -11,30 +13,29 @@ namespace TaskEngine.Writers.Tasks
             _setWriter = setWriter;
         }
 
-        public string WriteTask(BorderSetOperationTask task)
+        public ITextTask WriteTask(BorderSetOperationTask task)
         {
             var firstName = task.First.Name;
             var secondName = task.Second.Name;
             var firstSet = _setWriter.Write(task.First);
             var secondSet = _setWriter.Write(task.Second);
             var operation = SetOperationHelper.GetString(task.Operation);
-
-            var result = $"Найдите {operation} множеств {firstName} и {secondName}, если: " +
-                         $"\n{firstSet}, {secondSet}";
-
-            int index = 1;
-            foreach (var variant in task.Variants)
-            {
-                result += $"\n{index}) {_setWriter.Write(variant, false)}";
-                index++;
-            }
-
-            return result;
+            
+            var textTask = $"Найдите {operation} множеств {firstName} и {secondName}, если: {firstSet}, {secondSet}";
+            var variants = task.Variants
+                .Select(variant => $"{_setWriter.Write(variant, false)}")
+                .ToList();
+            
+            var rightAnswer = WriteAnswer(task);
+            return new VariantsTextTask(textTask, rightAnswer, variants);
         }
 
         public string WriteAnswer(BorderSetOperationTask task)
         {
-            throw new System.NotImplementedException();
+            var index = task.Variants.IndexOf(task.RightAnswer) + 1;
+            var set = _setWriter.Write(task.RightAnswer, false);
+
+            return $"{index}) {set}";
         }
     }
 }

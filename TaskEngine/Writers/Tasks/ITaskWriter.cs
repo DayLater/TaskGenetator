@@ -1,11 +1,11 @@
 ﻿using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
     public interface ITaskWriter<in TTask>
-        where TTask: ITask
+        where TTask: ITask<int>
     {
-        string WriteTask(TTask task);
-        string WriteAnswer(TTask task);
+        ITextTask WriteTask(TTask task);
     }
 }

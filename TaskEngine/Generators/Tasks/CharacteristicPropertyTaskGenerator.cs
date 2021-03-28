@@ -25,10 +25,10 @@ namespace TaskEngine.Generators.Tasks
         
         public CharacteristicPropertyTask Generate()
         {
-            var sets = _expressionSetGenerator.Generate(VariantsCount);
-            var rightAnswerIndex = _random.Next(0, sets.Count);
-
-            return new CharacteristicPropertyTask(sets, rightAnswerIndex); 
+            var variants = _expressionSetGenerator.Generate(VariantsCount);
+            var rightAnswerIndex = _random.Next(0, variants.Count);
+            var rightAnswer = variants[rightAnswerIndex];
+            return new CharacteristicPropertyTask(rightAnswer, variants); 
         }
     }
 }

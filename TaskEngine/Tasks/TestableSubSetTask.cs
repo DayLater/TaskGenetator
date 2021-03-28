@@ -3,24 +3,16 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public class TestableSubSetTask: ITask
+    public class TestableSubSetTask: VariantsTask<int>
     {
-        public TestableSubSetTask(IMathSet<int> set, SubSetType type, IReadOnlyList<IMathSet<int>> variants, int rightAnswerIndex)
+        public SubSetType Type { get; }
+        public IMathSet<int> Set { get; }
+
+        public TestableSubSetTask(IMathSet<int> rightAnswer, IList<IMathSet<int>> variants, SubSetType type, IMathSet<int> set) 
+            : base(rightAnswer, variants)
         {
             Type = type;
             Set = set;
-            RightAnswerIndex = rightAnswerIndex;
-
-            for (var i = 0; i < variants.Count; i++)
-            {
-                Variants.Add(i, variants[i]);
-            }
         }
-        
-        public SubSetType Type { get; }
-        public int RightAnswerIndex { get; }
-        public Dictionary<int, IMathSet<int>> Variants { get; } = new Dictionary<int, IMathSet<int>>();
-
-        public IMathSet<int> Set { get; }
     }
 }
