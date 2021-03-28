@@ -4,7 +4,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class CharacteristicPropertyTaskGenerator
+    public class CharacteristicPropertyTaskGenerator: ITaskGenerator<CharacteristicPropertyTask>
     {
         private readonly ExpressionSetGenerator _expressionSetGenerator = new ExpressionSetGenerator();
         private readonly Random _random = new Random();

@@ -6,11 +6,11 @@ namespace TaskEngine.Sets
     {
         protected readonly List<T> _elements = new List<T>();
 
-        protected BorderedSet(string name, T start, BorderType startType, T end, BorderType endType)
+        protected BorderedSet(string name, ISetBorder<T> start, ISetBorder<T> end)
         {
             Name = name;
-            Start = new SetBorder<T>(start, startType);
-            End = new SetBorder<T>(end, endType);
+            Start = start;
+            End = end;
             FillElements();
         }
 

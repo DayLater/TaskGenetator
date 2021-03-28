@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using TaskEngine.Extensions;
 using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class MathSetGenerator
+    public class MathSetGenerator: ISetGenerator<IMathSet<int>>
     {
         private readonly Random _random = new Random();
         public int MaxCount { get; set; } = 10;
@@ -36,6 +37,15 @@ namespace TaskEngine.Generators.SetGenerators
 
 
             return result;
+        }
+
+        public IMathSet<int> Generate()
+        {
+            var nameIndex = _random.Next(0, Symbols.Names.Count);
+            var name = Symbols.Names[nameIndex];
+            var elementCount = _random.Next(MinCount, MaxCount);
+            var set = CreateSet(elementCount, name);
+            return set;
         }
 
         private int GetNextElement()
@@ -78,7 +88,7 @@ namespace TaskEngine.Generators.SetGenerators
             _currentPositiveCount = 0;
             _isZeroTaken = false;
 
-            return new MathSet<int>(name, elements.Shuffle());
+            return new MathSet<int>(name, elements.ShuffleToList());
         }
     }
 }

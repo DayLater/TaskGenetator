@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace TaskEngine
+namespace TaskEngine.Extensions
 {
     public static class ExpressionExtensions
     {

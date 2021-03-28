@@ -11,7 +11,9 @@ namespace Tests
         [Test]
         public void WriteCharacteristicProperty()
         {
-            var set = new IntBorderedSet("A", 2, BorderType.Close, 6, BorderType.Open);
+            var startBorder = new SetBorder<int>(2, BorderType.Close);
+            var endBorder = new SetBorder<int>(6, BorderType.Open);
+            var set = new IntBorderedSet("A", startBorder, endBorder);
             var writer = new BorderSetWriter();
 
             var result = writer.WriteCharacteristicProperty(set);

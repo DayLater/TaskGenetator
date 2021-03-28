@@ -3,8 +3,6 @@
     public class SetBorder<T>: ISetBorder<T>
     {
         public BorderType BorderType { get; private set; }
-        public bool IsChanged { get; private set; }
-        
         public T Value { get; private set; }
 
         public SetBorder(T value, BorderType type)
@@ -12,17 +10,15 @@
             SetValue(value, type);
         }
 
-        public void SetValue(T value, BorderType type)
+        private void SetValue(T value, BorderType type)
         {
             Value = value;
             BorderType = type;
-            IsChanged = true;
         }
 
-        public void Reset()
+        public ISetBorder<T> Clone()
         {
-            Value = default(T);
-            IsChanged = false;
+            return new SetBorder<T>(Value, BorderType);
         }
     }
 }

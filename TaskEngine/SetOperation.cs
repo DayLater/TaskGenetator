@@ -2,9 +2,9 @@
 {
     public enum SetOperation
     {
-        Undefined, 
         Union, 
         Except, 
         Intersect,
+        MaxCount
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using TaskEngine.Sets;
 
 namespace TaskEngine
 {
     public static class Symbols
     {
+        private static readonly Random _random = new Random();
+        
         public const string Belongs = "∈";
         public const string MoreOrEquals = "≥";
         public const string More = ">";
@@ -28,6 +32,24 @@ namespace TaskEngine
             "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T",
             "U", "V", "W", "X", "Y", "Z"
         };
+
+        public static string GetRandomName(params string[] except)
+        {
+            if (except.Length > 0)
+            {
+                string name;
+                do
+                {
+                    var i = _random.Next(0, Names.Count);
+                    name = Names[i];
+                } while (except.Contains(name));
+
+                return name;
+            }
+            
+            var index = _random.Next(0, Names.Count);
+            return Names[index];
+        }
         
         public static IReadOnlyList<string> Elements { get; } = new List<string>()
         {
