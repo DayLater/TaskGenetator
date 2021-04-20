@@ -11,14 +11,15 @@ namespace TaskEngine.Generators.Tasks
     public class IntBorderSetOperationTaskGenerator: ITaskGenerator<BorderSetOperationTask>
     {
         public int VariantCount { get; set; } = 4;
-        
-        private readonly IntBorderSetGenerator _generator = new IntBorderSetGenerator();
+
+        private readonly IntBorderSetGenerator _generator;
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         private readonly Dictionary<SetOperation, IOperationSetGenerator> _setGenerators = new Dictionary<SetOperation, IOperationSetGenerator>();
         
-        public IntBorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator)
+        public IntBorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator generator)
         {
             _variantsGenerator = variantsGenerator;
+            _generator = generator;
         }
 
         public BorderSetOperationTask Generate()

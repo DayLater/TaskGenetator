@@ -6,7 +6,12 @@ namespace TaskEngine.Writers.Tasks
 {
     public class CharacteristicPropertyTaskWriter: TaskWriter<CharacteristicPropertyTask>
     {
-        private readonly ISetWriter _setWriter = new SetWriter(new ExpressionWriter(), 6);
+        private readonly ISetWriter _setWriter;
+
+        public CharacteristicPropertyTaskWriter(ISetWriter setWriter)
+        {
+            _setWriter = setWriter;
+        }
 
         public override ITextTask WriteTask(CharacteristicPropertyTask task)
         {

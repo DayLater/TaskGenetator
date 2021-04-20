@@ -7,8 +7,13 @@ namespace TaskEngine.Generators.Tasks
 {
     public class SubSetTaskGenerator: ITaskGenerator<SubSetTask>
     {
-        private readonly MathSetGenerator _generator = new MathSetGenerator();
-        
+        private readonly MathSetGenerator _generator;
+
+        public SubSetTaskGenerator(MathSetGenerator generator)
+        {
+            _generator = generator;
+        }
+
         public SubSetTask Generate()
         {
             var set = _generator.Generate();

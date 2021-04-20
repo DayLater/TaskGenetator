@@ -12,9 +12,16 @@ namespace TaskEngine.Generators.Tasks
     {
         public int VariantCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;
-        private readonly MathSetGenerator _generator = new MathSetGenerator();
-        private readonly Random _random = new Random();
         
+        private readonly MathSetGenerator _generator;
+        private readonly Random _random;
+
+        public TestableSubSetTaskGenerator(MathSetGenerator generator, Random random)
+        {
+            _generator = generator;
+            _random = random;
+        }
+
         public TestableSubSetTask Generate()
         {
             var set = _generator.Generate(1).First();

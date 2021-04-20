@@ -1,7 +1,7 @@
 ﻿using TaskEngine.Tasks.Texts;
 using Xceed.Words.NET;
 
-namespace WinGenerator.DocWriters
+namespace TaskEngine.DocWriters
 {
     public class TaskDocWriter
     {

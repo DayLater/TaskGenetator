@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTaskGenerator", "ConsoleTaskGenerator\ConsoleTaskGenerator.csproj", "{1D96C12C-858D-45CD-8DDB-B2DD28E71376}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskEngine", "TaskEngine\TaskEngine.csproj", "{38A25EC2-4808-4780-BA1A-10282F9FF230}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{1F9D5386-4801-4D00-816C-6382CC4B29C0}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D96C12C-858D-45CD-8DDB-B2DD28E71376}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38A25EC2-4808-4780-BA1A-10282F9FF230}.Release|Any CPU.ActiveCfg = Release|Any CPU

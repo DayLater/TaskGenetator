@@ -6,9 +6,15 @@ namespace TaskEngine.Generators.Tasks
 {
     public class CharacteristicPropertyTaskGenerator: ITaskGenerator<CharacteristicPropertyTask>
     {
-        private readonly ExpressionSetGenerator _expressionSetGenerator = new ExpressionSetGenerator();
-        private readonly Random _random = new Random();
-        
+        private readonly ExpressionSetGenerator _expressionSetGenerator;
+        private readonly Random _random;
+
+        public CharacteristicPropertyTaskGenerator(ExpressionSetGenerator expressionSetGenerator, Random random)
+        {
+            _expressionSetGenerator = expressionSetGenerator;
+            _random = random;
+        }
+
         public int Min
         {
             get => _expressionSetGenerator.Min;
