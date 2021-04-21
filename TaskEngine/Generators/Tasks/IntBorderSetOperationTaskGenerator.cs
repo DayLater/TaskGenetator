@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
@@ -16,10 +17,13 @@ namespace TaskEngine.Generators.Tasks
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         private readonly Dictionary<SetOperation, IOperationSetGenerator> _setGenerators = new Dictionary<SetOperation, IOperationSetGenerator>();
         
-        public IntBorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator generator)
+        public IntBorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator generator, Random random)
         {
             _variantsGenerator = variantsGenerator;
             _generator = generator;
+            AddSetGenerator(SetOperation.Union, new UnionSetGenerator(random));
+            AddSetGenerator(SetOperation.Intersect, new IntersectSetGenerator(random));
+            AddSetGenerator(SetOperation.Except, new ExceptSetGenerator(random));
         }
 
         public BorderSetOperationTask Generate()
@@ -33,8 +37,7 @@ namespace TaskEngine.Generators.Tasks
             variants = variants.ShuffleToList();
             return new BorderSetOperationTask(answerSet, variants, firstSet, secondSet,  operation);
         }
-        
-        public void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) =>
-            _setGenerators.Add(operation, generator);
+
+        private void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) => _setGenerators.Add(operation, generator);
     }
 }
