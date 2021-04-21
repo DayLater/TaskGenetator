@@ -15,7 +15,7 @@ namespace WinGenerator.Views
         private readonly Size _size;
         private readonly DocWriter _docWriter;
 
-        private TableLayoutPanel _tableLayoutPanel;
+        private PercentTableLayoutPanel _tableLayoutPanel;
         private CheckedListBox _checkedListBox;
         private Button _generateButton;
 
@@ -27,34 +27,34 @@ namespace WinGenerator.Views
             _docWriter = docWriter;
         }
 
+        public string Name => "Выбор и настройка заданий";
+
         public void Activate()
         {
             _generateButton = new Button {Dock = DockStyle.Fill, Text = @"Generate"};
             _generateButton.Click += OnClick;
 
-            _checkedListBox = new CheckedListBox {Dock = DockStyle.Left, Width = _size.Width / 2};
+            _checkedListBox = new CheckedListBox {Dock = DockStyle.Fill};
             var allTaskControllers = _mainContext.TaskControllersContext.GetControllers().ToList();
             _checkedListBox.DataSource = allTaskControllers;
             _checkedListBox.DisplayMember = "Id";
-            _checkedListBox.SelectedIndexChanged += OnSelectedIndexChanged;
-            
-            _tableLayoutPanel = new TableLayoutPanel() {Dock = DockStyle.Fill};
+
+            _tableLayoutPanel = new PercentTableLayoutPanel();
             _tableLayoutPanel.RowStyles.Clear();
-            _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40));
-            _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
-            _tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40));
-            _tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            _tableLayoutPanel.AddRow(50);
+            _tableLayoutPanel.AddRow(10);
+            _tableLayoutPanel.AddRow(40);
+            _tableLayoutPanel.AddColumn(100);
             
-            _tableLayoutPanel.Controls.Add(_checkedListBox, 0, 0);
-            _tableLayoutPanel.Controls.Add(_generateButton,0, 1);
-            _tableLayoutPanel.Controls.Add(new Panel(), 0, 2);
-            
+            _tableLayoutPanel.AddControl(_checkedListBox, 0, 0);
+            _tableLayoutPanel.AddControl(_generateButton,0, 1);
+            _tableLayoutPanel.AddEmptyControl(0, 2);
+
             _controlCollection.Add(_tableLayoutPanel);
         }
 
         public void Deactivate()
         {
-            _checkedListBox.SelectedIndexChanged -= OnSelectedIndexChanged;
             _generateButton.Click += OnClick;
             _controlCollection.Remove(_tableLayoutPanel);
 
@@ -68,11 +68,6 @@ namespace WinGenerator.Views
             var controllers =  _checkedListBox.CheckedItems.Cast<ITaskController>();
             var tasks = controllers.Select(c => c.Generate());
             _docWriter.Write("TestDoc", tasks);
-        }
-        
-        private void OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            var list = (CheckedListBox) sender;
         }
     }
 }
