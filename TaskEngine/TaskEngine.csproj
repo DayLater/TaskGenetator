@@ -50,12 +50,13 @@
         <Compile Include="BorderHelper.cs" />
         <Compile Include="Comparers\IntBorderedSetComparer.cs" />
         <Compile Include="Comparers\ISetComparer.cs" />
+        <Compile Include="Contexts\IViewContext.cs" />
         <Compile Include="Contexts\MainContext.cs" />
+        <Compile Include="Contexts\TaskControllersContext.cs" />
         <Compile Include="Contexts\TaskGeneratorContext.cs" />
         <Compile Include="Contexts\TaskWritersContext.cs" />
         <Compile Include="Controllers\ITaskController.cs" />
         <Compile Include="Controllers\SubSetTaskController.cs" />
-        <Compile Include="Controllers\TaskControllersContext.cs" />
         <Compile Include="Controllers\TestableCharacteristicPropertyTaskController.cs" />
         <Compile Include="Controllers\TestableSubSetTaskController.cs" />
         <Compile Include="DocWriters\DocWriter.cs" />
@@ -108,6 +109,9 @@
         <Compile Include="Tasks\Texts\TextTask.cs" />
         <Compile Include="Tasks\Texts\VariantsTextTask.cs" />
         <Compile Include="Tasks\VariantsTask.cs" />
+        <Compile Include="Views\IVariantsCharacteristicPropertyGeneratorView.cs" />
+        <Compile Include="Views\IVariantsView.cs" />
+        <Compile Include="Views\IView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />

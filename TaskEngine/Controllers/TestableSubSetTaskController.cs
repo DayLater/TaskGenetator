@@ -1,5 +1,6 @@
 ﻿using TaskEngine.Generators.Tasks;
 using TaskEngine.Tasks.Texts;
+using TaskEngine.Views;
 using TaskEngine.Writers.Tasks;
 
 namespace TaskEngine.Controllers
@@ -9,10 +10,11 @@ namespace TaskEngine.Controllers
         private readonly TestableSubSetTaskGenerator _generator;
         private readonly TestableSubSetTaskWriter _writer;
 
-        public TestableSubSetTaskController(TestableSubSetTaskGenerator generator, TestableSubSetTaskWriter writer)
+        public TestableSubSetTaskController(TestableSubSetTaskGenerator generator, TestableSubSetTaskWriter writer, IView generatorView)
         {
             _generator = generator;
             _writer = writer;
+            GeneratorView = generatorView;
         }
 
         public string Id => TaskIds.TestableSubSetTask;
@@ -22,5 +24,7 @@ namespace TaskEngine.Controllers
             var task = _generator.Generate();
             return _writer.WriteTask(task);
         }
+
+        public IView GeneratorView { get; }
     }
 }

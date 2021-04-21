@@ -15,13 +15,13 @@ namespace WinGenerator
 
         public MainForm()
         {
-            var size = new Size(800, 600);
+            var size = new Size(1024, 768);
             MinimumSize = size;
             Size = size;
            
-            _mainContext = new MainContext(new SetWriter(new ExpressionWriter(), 10), new Random());
+            _mainContext = new MainContext(new SetWriter(new ExpressionWriter(), 10), new Random(), new ViewContext());
             var isActive = false;
-            var button = new Button()
+            var nextButton = new Button()
             {
                 Dock = DockStyle.Fill,
                 Text = @"Next"
@@ -37,13 +37,15 @@ namespace WinGenerator
             var highTablePanel = new PercentTableLayoutPanel();
             highTablePanel.AddRow(90);
             highTablePanel.AddColumn(100);
-
+            
+            var taskChooseView = new TaskChooseView(_mainContext, _docWriter);
+            
             var bottomTablePanel = new PercentTableLayoutPanel();
             bottomTablePanel.AddColumn(25);
             bottomTablePanel.AddColumn(25);
             bottomTablePanel.AddColumn(25);
             bottomTablePanel.AddColumn(25);
-            bottomTablePanel.AddControl(button, 3, 0); 
+            bottomTablePanel.AddControl(nextButton, 3, 0); 
             
             var mainPanel = new PercentTableLayoutPanel() {CellBorderStyle = TableLayoutPanelCellBorderStyle.Single};
             mainPanel.AddRow(5);
@@ -56,18 +58,19 @@ namespace WinGenerator
             
             Controls.Add(mainPanel);
             
-            var taskChooseView = new TaskChooseView(_mainContext, Size, highTablePanel.Controls, _docWriter);
-            button.Click += (sender, args) =>
+            nextButton.Click += (sender, args) =>
             {
                 if (!isActive)
                 {
                     isActive = true;
+                    highTablePanel.AddControl((Control) taskChooseView.GetControl(), 0, 0);
                     taskChooseView.Activate();
                     label.Text = taskChooseView.Name;
                 }
                 else
                 {
                     isActive = false;
+                    highTablePanel.Controls.RemoveAt(0);
                     taskChooseView.Deactivate();
                 }
             };

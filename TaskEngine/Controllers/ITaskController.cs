@@ -1,4 +1,5 @@
 ﻿using TaskEngine.Tasks.Texts;
+using TaskEngine.Views;
 
 namespace TaskEngine.Controllers
 {
@@ -6,5 +7,6 @@ namespace TaskEngine.Controllers
     {
         string Id { get; }
         ITextTask Generate();
+        IView GeneratorView { get; }
     }
 }

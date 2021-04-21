@@ -10,12 +10,12 @@ namespace TaskEngine.Contexts
         public TaskWritersContext TaskWritersContext { get; }
         public TaskControllersContext TaskControllersContext { get; }
 
-        public MainContext(ISetWriter setWriter, Random random)
+        public MainContext(ISetWriter setWriter, Random random, IViewContext viewContext)
         {
             TaskWritersContext = new TaskWritersContext(setWriter);
             TaskGeneratorsContext = new TaskGeneratorContext(random);
 
-            TaskControllersContext = new TaskControllersContext(TaskGeneratorsContext, TaskWritersContext);
+            TaskControllersContext = new TaskControllersContext(TaskGeneratorsContext, TaskWritersContext, viewContext);
         }
     }
 }

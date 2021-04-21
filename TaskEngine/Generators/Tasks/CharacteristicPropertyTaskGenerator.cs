@@ -15,13 +15,13 @@ namespace TaskEngine.Generators.Tasks
             _random = random;
         }
 
-        public int Min
+        public int MinCoefficientValue
         {
             get => _expressionSetGenerator.Min;
             set => _expressionSetGenerator.Min = value;
         }
 
-        public int Max
+        public int MaxCoefficientValue
         {
             get => _expressionSetGenerator.Max;
             set => _expressionSetGenerator.Max = value;

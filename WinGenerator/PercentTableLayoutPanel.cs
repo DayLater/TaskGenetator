@@ -28,5 +28,19 @@ namespace WinGenerator
             AddControl(label, column, row);
             return label;
         }
+        
+        public Button AddButton(int column, int row, string text = null)
+        {
+            var button = new Button() {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
+            AddControl(button, column, row);
+            return button;
+        }
+        
+        public NumericUpDown AddNumeric(int column, int row, int startValue)
+        {
+            var numericUpDown = new NumericUpDown() {Dock = DockStyle.Fill, Value = startValue};
+            AddControl(numericUpDown, column, row);
+            return numericUpDown;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using TaskEngine.Generators.Tasks;
 using TaskEngine.Tasks.Texts;
+using TaskEngine.Views;
 using TaskEngine.Writers.Tasks;
 
 namespace TaskEngine.Controllers
@@ -11,10 +12,13 @@ namespace TaskEngine.Controllers
 
         public string Id => TaskIds.CharacteristicPropertyTask;
 
-        public TestableCharacteristicPropertyTaskController(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer)
+        public TestableCharacteristicPropertyTaskController(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
             _writer = writer;
+            GeneratorView = generatorView;
+
+            generatorView.VariantsCountChanged += variantsCount => _generator.VariantsCount = variantsCount;
         }
 
         public ITextTask Generate()
@@ -22,5 +26,7 @@ namespace TaskEngine.Controllers
             var task = _generator.Generate();
             return _writer.WriteTask(task);
         }
+
+        public IView GeneratorView { get; }
     }
 }
