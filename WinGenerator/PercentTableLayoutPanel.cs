@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace WinGenerator
 {
@@ -19,6 +20,13 @@ namespace WinGenerator
             var table = new PercentTableLayoutPanel();
             AddControl(table, column, row);
             return table;
+        }
+        
+        public Label AddLabel(int column, int row, string text = null)
+        {
+            var label = new Label() {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
+            AddControl(label, column, row);
+            return label;
         }
     }
 }
