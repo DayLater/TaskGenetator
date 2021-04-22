@@ -5,27 +5,25 @@ using TaskEngine.Views;
 
 namespace WinGenerator.Views.GeneratorsViews
 {
-    public class TestableCharacteristicPropertyGeneratorView: IVariantsCharacteristicPropertyGeneratorView
+    public class TestableCharacteristicPropertyGeneratorView: PercentTableLayoutPanel, IVariantsCharacteristicPropertyGeneratorView
     {
-        private readonly PercentTableLayoutPanel _mainTable;
         private readonly NumericUpDown _variantCountNumeric;
 
         public TestableCharacteristicPropertyGeneratorView(int startValue)
         {
-            _mainTable = new PercentTableLayoutPanel();
-            _mainTable.AddRow(50);
-            _mainTable.AddRow(50);
-            _mainTable.AddColumn(33);
-            _mainTable.AddColumn(33);
-            _mainTable.AddColumn(33);
+            AddRow(50);
+            AddRow(50);
+            AddColumn(33);
+            AddColumn(33);
+            AddColumn(33);
 
-            var variantsCountLabel = _mainTable.AddLabel(0, 0, "Количество вариантов");
-            _variantCountNumeric = _mainTable.AddNumeric(0, 1, startValue);
+            var variantsCountLabel = AddLabel(0, 0, "Количество вариантов");
+            _variantCountNumeric = AddNumeric(0, 1, startValue);
         }
 
         public event Action<int> VariantsCountChanged = i => { };
 
-        public string Name => TaskIds.CharacteristicPropertyTask;
+        public string Id => TaskIds.CharacteristicPropertyTask;
         
         public void Activate()
         {
@@ -41,11 +39,6 @@ namespace WinGenerator.Views.GeneratorsViews
         public void Deactivate()
         {
             _variantCountNumeric.ValueChanged -= OnVariantCountChanged;
-        }
-
-        public object GetControl()
-        {
-            return _mainTable;
         }
     }
 }

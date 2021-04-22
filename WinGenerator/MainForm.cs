@@ -63,9 +63,9 @@ namespace WinGenerator
                 if (!isActive)
                 {
                     isActive = true;
-                    highTablePanel.AddControl((Control) taskChooseView.GetControl(), 0, 0);
+                    highTablePanel.AddControl(taskChooseView, 0, 0);
                     taskChooseView.Activate();
-                    label.Text = taskChooseView.Name;
+                    label.Text = taskChooseView.Id;
                 }
                 else
                 {

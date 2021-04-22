@@ -5,7 +5,7 @@ namespace WinGenerator.Views
 {
     public class EmptyView: IView
     {
-        public string Name => string.Empty;
+        public string Id => string.Empty;
             
         public void Activate()
         {

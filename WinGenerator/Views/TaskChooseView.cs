@@ -9,11 +9,10 @@ using TaskEngine.Views;
 
 namespace WinGenerator.Views
 {
-    public class TaskChooseView: IView
+    public class TaskChooseView: PercentTableLayoutPanel, IView
     {
         private readonly DocWriter _docWriter;
-
-        private readonly PercentTableLayoutPanel _mainTable;
+        
         private readonly CheckedListBox _checkedListBox;
         private readonly Button _generateButton;
         private readonly Label _exampleText;
@@ -27,15 +26,14 @@ namespace WinGenerator.Views
             var allTaskControllers = mainContext.TaskControllersContext.GetControllers().ToList();
             _checkedListBox.DataSource = allTaskControllers;
             _checkedListBox.DisplayMember = "Id";
+            
+            RowStyles.Clear();
+            AddRow(60);
+            AddRow(35);
+            AddRow(5);
+            AddColumn(100);
 
-            _mainTable = new PercentTableLayoutPanel();
-            _mainTable.RowStyles.Clear();
-            _mainTable.AddRow(60);
-            _mainTable.AddRow(35);
-            _mainTable.AddRow(5);
-            _mainTable.AddColumn(100);
-
-            var topTable = _mainTable.AddTable(0, 0);
+            var topTable = AddTable(0, 0);
             topTable.AddColumn(40);
             topTable.AddColumn(60);
             topTable.AddRow(100);
@@ -52,7 +50,7 @@ namespace WinGenerator.Views
             _exampleText = exampleTable.AddLabel(0, 1);
             _exampleText.Font = new Font(FontFamily.GenericMonospace, 10);
             
-            _generatorSettingsTable = _mainTable.AddTable(0, 1);
+            _generatorSettingsTable = AddTable(0, 1);
             _generatorSettingsTable.AddRow(10);
             _generatorSettingsTable.AddRow(90);
             _generatorSettingsTable.AddColumn(100);
@@ -60,10 +58,10 @@ namespace WinGenerator.Views
             generatorSettingsTopText.Font = new Font(FontFamily.GenericMonospace, 10, FontStyle.Underline);
             generatorSettingsTopText.Text = @"Настройка генерации задания";
             
-            _generateButton = _mainTable.AddButton(0, 2, @"Generate");
+            _generateButton = AddButton(0, 2, @"Generate");
         }
 
-        public string Name => "Выбор и настройка заданий";
+        public string Id => "Выбор и настройка заданий";
 
         public void Activate()
         {
@@ -76,11 +74,6 @@ namespace WinGenerator.Views
         {
             _generateButton.Click -= OnClick;
             _checkedListBox.SelectedIndexChanged -= OnSelectedItem;
-        }
-
-        public object GetControl()
-        {
-            return _mainTable;
         }
 
         private void OnClick(object sender, EventArgs e)
@@ -99,8 +92,8 @@ namespace WinGenerator.Views
             {
                 _generatorSettingsTable.Controls.RemoveAt(0);
             }
-            var objControl = controller.GeneratorView.GetControl();
-            if (objControl is Control control)
+            
+            if (controller.GeneratorView is Control control)
             {
                 controller.GeneratorView.Activate();
                 _generatorSettingsTable.Controls.Add(control);

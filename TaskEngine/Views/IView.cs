@@ -2,9 +2,8 @@
 {
     public interface IView
     {
-        string Name { get; }
+        string Id { get; }
         void Activate();
         void Deactivate();
-        object GetControl();
     }
 }
