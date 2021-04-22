@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-using TaskEngine.Contexts;
+﻿using TaskEngine.Contexts;
 using TaskEngine.Views;
 using WinGenerator.Views.GeneratorsViews;
 
@@ -12,7 +11,7 @@ namespace WinGenerator.Views
 
         public ViewContext()
         {
-            VariantsCharacteristicPropertyGeneratorView = new TestableCharacteristicPropertyGeneratorView(4);
+            VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyGeneratorView();
             Default = new EmptyView();
         }
     }

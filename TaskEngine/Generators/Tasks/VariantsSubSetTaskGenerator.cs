@@ -8,7 +8,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class TestableSubSetTaskGenerator: ITaskGenerator<TestableSubSetTask>
+    public class VariantsSubSetTaskGenerator: ITaskGenerator<VariantsSubSetTask>
     {
         public int VariantCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;
@@ -16,13 +16,13 @@ namespace TaskEngine.Generators.Tasks
         private readonly MathSetGenerator _generator;
         private readonly Random _random;
 
-        public TestableSubSetTaskGenerator(MathSetGenerator generator, Random random)
+        public VariantsSubSetTaskGenerator(MathSetGenerator generator, Random random)
         {
             _generator = generator;
             _random = random;
         }
 
-        public TestableSubSetTask Generate()
+        public VariantsSubSetTask Generate()
         {
             var set = _generator.Generate(1).First();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -44,7 +44,7 @@ namespace TaskEngine.Generators.Tasks
             
             var rightSet = setVariants[0];
             setVariants = setVariants.ShuffleToList();
-            var task = new TestableSubSetTask(rightSet, setVariants, type, set);
+            var task = new VariantsSubSetTask(rightSet, setVariants, type, set);
             return task;
         }
         

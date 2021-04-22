@@ -5,12 +5,12 @@ using TaskEngine.Writers.Tasks;
 
 namespace TaskEngine.Controllers
 {
-    public class TestableSubSetTaskController: ITaskController
+    public class VariantsSubSetTaskController: ITaskController
     {
-        private readonly TestableSubSetTaskGenerator _generator;
+        private readonly VariantsSubSetTaskGenerator _generator;
         private readonly TestableSubSetTaskWriter _writer;
 
-        public TestableSubSetTaskController(TestableSubSetTaskGenerator generator, TestableSubSetTaskWriter writer, IView generatorView)
+        public VariantsSubSetTaskController(VariantsSubSetTaskGenerator generator, TestableSubSetTaskWriter writer, IView generatorView)
         {
             _generator = generator;
             _writer = writer;

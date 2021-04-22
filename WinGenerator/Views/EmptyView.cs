@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Windows.Forms;
 using TaskEngine.Views;
 
 namespace WinGenerator.Views
 {
-    public class EmptyView: IView
+    public class EmptyView: Control, IView
     {
         public string Id => string.Empty;
             

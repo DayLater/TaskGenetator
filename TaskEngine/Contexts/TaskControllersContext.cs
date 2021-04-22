@@ -5,22 +5,22 @@ namespace TaskEngine.Contexts
 {
     public class TaskControllersContext
     {
-        public TestableCharacteristicPropertyTaskController TestableCharacteristicPropertyTaskController { get; }
-        public TestableSubSetTaskController TestableSubSetTaskController { get; }
+        public VariantsCharacteristicPropertyTaskController VariantsCharacteristicPropertyTaskController { get; }
+        public VariantsSubSetTaskController VariantsSubSetTaskController { get; }
         public SubSetTaskController SubSetTaskController { get; }
         
         public TaskControllersContext(TaskGeneratorContext generatorContext, TaskWritersContext writersContext, IViewContext viewContext)
         {
-            TestableCharacteristicPropertyTaskController = new TestableCharacteristicPropertyTaskController(generatorContext.CharacteristicPropertyTaskGenerator, writersContext.CharacteristicPropertyTaskWriter, viewContext.VariantsCharacteristicPropertyGeneratorView);
-            TestableSubSetTaskController = new TestableSubSetTaskController(generatorContext.TestableSubSetTaskGenerator, writersContext.TestableSubSetTaskWriter, viewContext.Default);
+            VariantsCharacteristicPropertyTaskController = new VariantsCharacteristicPropertyTaskController(generatorContext.CharacteristicPropertyTaskGenerator, writersContext.CharacteristicPropertyTaskWriter, viewContext.VariantsCharacteristicPropertyGeneratorView);
+            VariantsSubSetTaskController = new VariantsSubSetTaskController(generatorContext.VariantsSubSetTaskGenerator, writersContext.TestableSubSetTaskWriter, viewContext.Default);
             SubSetTaskController = new SubSetTaskController(generatorContext.SubSetTaskGenerator, writersContext.SubSetTaskWriter, viewContext.Default);
         }
         
 
         public IEnumerable<ITaskController> GetControllers()
         {
-            yield return TestableCharacteristicPropertyTaskController;
-            yield return TestableSubSetTaskController;
+            yield return VariantsCharacteristicPropertyTaskController;
+            yield return VariantsSubSetTaskController;
             yield return SubSetTaskController;
         }
     }

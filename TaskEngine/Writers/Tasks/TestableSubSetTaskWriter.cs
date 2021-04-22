@@ -7,7 +7,7 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class TestableSubSetTaskWriter: TaskWriter<TestableSubSetTask>
+    public class TestableSubSetTaskWriter: TaskWriter<VariantsSubSetTask>
     {
         private readonly ISetWriter _setWriter;
 
@@ -16,7 +16,7 @@ namespace TaskEngine.Writers.Tasks
             _setWriter = setWriter;
         }
 
-        public override ITextTask WriteTask(TestableSubSetTask task)
+        public override ITextTask WriteTask(VariantsSubSetTask task)
         {
             var set = _setWriter.Write(task.Set);
             var type = SubSetTypeHelper.GetNumbersType(task.Type);

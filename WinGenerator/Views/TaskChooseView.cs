@@ -93,11 +93,7 @@ namespace WinGenerator.Views
                 _generatorSettingsTable.Controls.RemoveAt(0);
             }
             
-            if (controller.GeneratorView is Control control)
-            {
-                controller.GeneratorView.Activate();
-                _generatorSettingsTable.Controls.Add(control);
-            }
+            _generatorSettingsTable.AddView(controller.GeneratorView);
         }
     }
 }

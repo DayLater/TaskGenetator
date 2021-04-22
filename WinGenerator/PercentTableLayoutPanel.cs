@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using TaskEngine.Views;
 
 namespace WinGenerator
 {
@@ -38,9 +39,30 @@ namespace WinGenerator
         
         public NumericUpDown AddNumeric(int column, int row, int startValue)
         {
-            var numericUpDown = new NumericUpDown() {Dock = DockStyle.Fill, Value = startValue};
+            var numericUpDown = new NumericUpDown
+            {
+                Dock = DockStyle.Fill, Minimum = -100, Maximum = 100, Value = startValue
+            };
             AddControl(numericUpDown, column, row);
             return numericUpDown;
+        }
+
+        public void AddView(IView view)
+        {
+            view.Activate();
+            Controls.Add((Control) view);
+        }
+
+        public bool Remove(IView view)
+        {
+            view.Deactivate();
+            if (view is Control control && Controls.Contains(control))
+            {
+                Controls.Remove(control);
+                return true;
+            }
+            
+            return false;
         }
     }
 }

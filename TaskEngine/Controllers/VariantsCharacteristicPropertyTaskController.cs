@@ -5,20 +5,26 @@ using TaskEngine.Writers.Tasks;
 
 namespace TaskEngine.Controllers
 {
-    public class TestableCharacteristicPropertyTaskController: ITaskController
+    public class VariantsCharacteristicPropertyTaskController: ITaskController
     {
         private readonly CharacteristicPropertyTaskGenerator _generator;
         private readonly CharacteristicPropertyTaskWriter _writer;
 
         public string Id => TaskIds.CharacteristicPropertyTask;
 
-        public TestableCharacteristicPropertyTaskController(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
+        public VariantsCharacteristicPropertyTaskController(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
             _writer = writer;
             GeneratorView = generatorView;
 
+            generatorView.MaxCoefficientValue = generator.MaxCoefficientValue;
+            generatorView.MinCoefficientValue = generator.MinCoefficientValue;
+            generatorView.VariantsCount = generator.VariantsCount;
+
             generatorView.VariantsCountChanged += variantsCount => _generator.VariantsCount = variantsCount;
+            generatorView.MinCoefficientValueChanged += coefficient => _generator.MinCoefficientValue = coefficient;
+            generatorView.MaxCoefficientValueChanged += coefficient => _generator.MaxCoefficientValue = coefficient;
         }
 
         public ITextTask Generate()
