@@ -51,6 +51,7 @@ namespace WinGenerator.Views
             _exampleText.Font = new Font(FontFamily.GenericMonospace, 10);
             
             _generatorSettingsTable = AddTable(0, 1);
+            _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
             _generatorSettingsTable.AddRow(10);
             _generatorSettingsTable.AddRow(90);
             _generatorSettingsTable.AddColumn(100);
@@ -88,9 +89,9 @@ namespace WinGenerator.Views
             var controller = (ITaskController) _checkedListBox.SelectedItem;
             var task = controller.Generate();
             _exampleText.Text = task.Task;
-            if (_generatorSettingsTable.Controls.Count > 0)
+            if (_generatorSettingsTable.Controls.Count > 1)
             {
-                _generatorSettingsTable.Controls.RemoveAt(0);
+                _generatorSettingsTable.Controls.RemoveAt(1);
             }
             
             _generatorSettingsTable.AddView(controller.GeneratorView);
