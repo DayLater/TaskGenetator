@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskEngine
+namespace TaskEngine.Helpers
 {
     public static class SetOperationHelper
     {

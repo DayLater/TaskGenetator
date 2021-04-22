@@ -1,7 +1,7 @@
 ﻿using System;
 using TaskEngine.Sets;
 
-namespace TaskEngine
+namespace TaskEngine.Helpers
 {
     public static class SubSetTypeHelper
     {

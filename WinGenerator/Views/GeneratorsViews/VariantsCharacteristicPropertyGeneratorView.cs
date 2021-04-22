@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TaskEngine;
 using TaskEngine.Views;
+using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views.GeneratorsViews
 {

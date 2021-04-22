@@ -1,5 +1,6 @@
 ﻿using System;
 using TaskEngine.Extensions;
+using TaskEngine.Helpers;
 using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations

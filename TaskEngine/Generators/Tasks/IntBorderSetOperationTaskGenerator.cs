@@ -4,6 +4,7 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
+using TaskEngine.Helpers;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
 

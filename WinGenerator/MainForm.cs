@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using TaskEngine.Contexts;
 using TaskEngine.DocWriters;
 using TaskEngine.Writers;
+using WinGenerator.CustomControls;
 using WinGenerator.Views;
 
 namespace WinGenerator
@@ -55,7 +56,12 @@ namespace WinGenerator
             mainPanel.AddControl(label, 0,0);
             mainPanel.AddControl(highTablePanel, 0, 1);
             mainPanel.AddControl(bottomTablePanel, 0, 2);
-            
+
+            var treeView = new CustomTreeView() {Dock = DockStyle.Fill, CheckBoxes = true};
+            var firstNode = treeView.AddNode("Test");
+            firstNode.AddNode("under");
+            firstNode.AddNode("second");
+
             Controls.Add(mainPanel);
             
             nextButton.Click += (sender, args) =>
@@ -71,6 +77,7 @@ namespace WinGenerator
                 {
                     isActive = false;
                     highTablePanel.Controls.RemoveAt(0);
+                    highTablePanel.Controls.Add(treeView);
                     taskChooseView.Deactivate();
                 }
             };

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using TaskEngine.Views;
 
-namespace WinGenerator
+namespace WinGenerator.CustomControls
 {
     public class PercentTableLayoutPanel: TableLayoutPanel
     {

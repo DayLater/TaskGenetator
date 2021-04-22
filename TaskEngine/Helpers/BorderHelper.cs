@@ -2,7 +2,7 @@
 using TaskEngine.Extensions;
 using TaskEngine.Sets;
 
-namespace TaskEngine
+namespace TaskEngine.Helpers
 {
     public static class BorderHelper
     {

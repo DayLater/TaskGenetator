@@ -6,6 +6,7 @@ using TaskEngine.Contexts;
 using TaskEngine.Controllers;
 using TaskEngine.DocWriters;
 using TaskEngine.Views;
+using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views
 {
