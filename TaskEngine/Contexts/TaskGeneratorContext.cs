@@ -8,6 +8,7 @@ namespace TaskEngine.Contexts
 {
     public class TaskGeneratorContext
     {
+        public NumberBelongsSetTaskGenerator NumberBelongsSetTaskGenerator { get; }
         public CharacteristicPropertyTaskGenerator CharacteristicPropertyTaskGenerator { get; }
         public VariantsSubSetTaskGenerator VariantsSubSetTaskGenerator { get; }
         public SubSetTaskGenerator SubSetTaskGenerator { get; }
@@ -15,6 +16,8 @@ namespace TaskEngine.Contexts
 
         public TaskGeneratorContext(Random random)
         {
+            NumberBelongsSetTaskGenerator = new NumberBelongsSetTaskGenerator();
+            
             CharacteristicPropertyTaskGenerator = new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random);
             VariantsSubSetTaskGenerator = new VariantsSubSetTaskGenerator(new MathSetGenerator(), random);
             SubSetTaskGenerator = new SubSetTaskGenerator(new MathSetGenerator());

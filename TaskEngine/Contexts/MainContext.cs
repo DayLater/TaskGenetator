@@ -7,14 +7,14 @@ namespace TaskEngine.Contexts
     {
         public TaskGeneratorContext TaskGeneratorsContext { get; }
         public TaskWritersContext TaskWritersContext { get; }
-        public TaskControllersContext TaskControllersContext { get; }
+        public TaskPresentersContext TaskPresentersContext { get; }
 
         public MainContext(ISetWriter setWriter, Random random, IViewContext viewContext)
         {
             TaskWritersContext = new TaskWritersContext(setWriter);
             TaskGeneratorsContext = new TaskGeneratorContext(random);
 
-            TaskControllersContext = new TaskControllersContext(TaskGeneratorsContext, TaskWritersContext, viewContext);
+            TaskPresentersContext = new TaskPresentersContext(TaskGeneratorsContext, TaskWritersContext, viewContext);
         }
     }
 }

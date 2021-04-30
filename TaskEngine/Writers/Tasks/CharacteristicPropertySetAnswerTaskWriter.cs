@@ -4,11 +4,11 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class CharacteristicPropertyTaskWriter: TaskWriter<CharacteristicPropertySetAnswerTask>
+    public class CharacteristicPropertySetAnswerTaskWriter: SetAnswerTaskWriter<CharacteristicPropertySetAnswerTask>
     {
         private readonly ISetWriter _setWriter;
 
-        public CharacteristicPropertyTaskWriter(ISetWriter setWriter)
+        public CharacteristicPropertySetAnswerTaskWriter(ISetWriter setWriter)
         {
             _setWriter = setWriter;
         }

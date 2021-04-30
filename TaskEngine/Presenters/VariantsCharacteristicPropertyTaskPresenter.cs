@@ -8,11 +8,11 @@ namespace TaskEngine.Presenters
     public class VariantsCharacteristicPropertyTaskPresenter: ITaskPresenter
     {
         private readonly CharacteristicPropertyTaskGenerator _generator;
-        private readonly CharacteristicPropertyTaskWriter _writer;
+        private readonly CharacteristicPropertySetAnswerTaskWriter _writer;
 
         public string Id => TaskIds.CharacteristicPropertyTask;
 
-        public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
+        public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertySetAnswerTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
             _writer = writer;

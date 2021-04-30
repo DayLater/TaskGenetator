@@ -8,9 +8,9 @@ namespace TaskEngine.Presenters
     public class VariantsSubSetTaskPresenter: ITaskPresenter
     {
         private readonly VariantsSubSetTaskGenerator _generator;
-        private readonly TestableSubSetTaskWriter _writer;
+        private readonly TestableSubSetSetAnswerTaskWriter _writer;
 
-        public VariantsSubSetTaskPresenter(VariantsSubSetTaskGenerator generator, TestableSubSetTaskWriter writer, IView generatorView)
+        public VariantsSubSetTaskPresenter(VariantsSubSetTaskGenerator generator, TestableSubSetSetAnswerTaskWriter writer, IView generatorView)
         {
             _generator = generator;
             _writer = writer;

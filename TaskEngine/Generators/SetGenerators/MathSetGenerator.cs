@@ -41,8 +41,7 @@ namespace TaskEngine.Generators.SetGenerators
 
         public IMathSet<int> Generate()
         {
-            var nameIndex = _random.Next(0, Symbols.Names.Count);
-            var name = Symbols.Names[nameIndex];
+            var name = Symbols.GetRandomName();
             var elementCount = _random.Next(MinCount, MaxCount);
             var set = CreateSet(elementCount, name);
             return set;

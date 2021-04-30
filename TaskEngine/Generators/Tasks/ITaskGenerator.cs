@@ -3,7 +3,7 @@
 namespace TaskEngine.Generators.Tasks
 {
     public interface ITaskGenerator<out TTask>
-        where TTask: ISetAnswerTask<int>
+        where TTask: ITask
     {
         TTask Generate();
     }

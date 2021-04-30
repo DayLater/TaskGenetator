@@ -22,12 +22,14 @@ namespace WinGenerator.Views
         public TaskChooseView(MainContext mainContext, DocWriter docWriter)
         {
             _docWriter = docWriter;
-            
-            _checkedListBox = new CheckedListBox {Dock = DockStyle.Fill};
-            var allTaskControllers = mainContext.TaskControllersContext.GetControllers().ToList();
-            _checkedListBox.DataSource = allTaskControllers;
-            _checkedListBox.DisplayMember = "Id";
-            
+
+            _checkedListBox = new CheckedListBox
+            {
+                Dock = DockStyle.Fill,
+                DataSource = mainContext.TaskPresentersContext.Presenters,
+                DisplayMember = "Id"
+            };
+
             RowStyles.Clear();
             AddRow(60);
             AddRow(35);
@@ -87,15 +89,15 @@ namespace WinGenerator.Views
 
         private void OnSelectedItem(object sender, EventArgs e)
         {
-            var controller = (ITaskPresenter) _checkedListBox.SelectedItem;
-            var task = controller.Generate();
+            var presenter = (ITaskPresenter) _checkedListBox.SelectedItem;
+            var task = presenter.Generate();
             _exampleText.Text = task.Task;
             if (_generatorSettingsTable.Controls.Count > 1)
             {
                 _generatorSettingsTable.Controls.RemoveAt(1);
             }
             
-            _generatorSettingsTable.AddView(controller.GeneratorView);
+            _generatorSettingsTable.AddView(presenter.GeneratorView);
         }
     }
 }

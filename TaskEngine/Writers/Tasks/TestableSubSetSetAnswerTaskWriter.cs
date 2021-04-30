@@ -8,11 +8,11 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class TestableSubSetTaskWriter: TaskWriter<VariantsSetAnswerSubSetTask>
+    public class TestableSubSetSetAnswerTaskWriter: SetAnswerTaskWriter<VariantsSetAnswerSubSetTask>
     {
         private readonly ISetWriter _setWriter;
 
-        public TestableSubSetTaskWriter(ISetWriter setWriter)
+        public TestableSubSetSetAnswerTaskWriter(ISetWriter setWriter)
         {
             _setWriter = setWriter;
         }

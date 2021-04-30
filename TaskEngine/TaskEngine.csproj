@@ -51,9 +51,12 @@
         <Compile Include="Comparers\ISetComparer.cs" />
         <Compile Include="Contexts\IViewContext.cs" />
         <Compile Include="Contexts\MainContext.cs" />
-        <Compile Include="Contexts\TaskControllersContext.cs" />
+        <Compile Include="Contexts\TaskPresentersContext.cs" />
         <Compile Include="Contexts\TaskGeneratorContext.cs" />
         <Compile Include="Contexts\TaskWritersContext.cs" />
+        <Compile Include="Generators\Tasks\IVariantsTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\NumberBelongsSetTaskGenerator.cs" />
+        <Compile Include="Presenters\Elements\NumberBelongsSetTaskPresenter.cs" />
         <Compile Include="Presenters\ITaskPresenter.cs" />
         <Compile Include="Presenters\SubSetTaskPresenter.cs" />
         <Compile Include="Presenters\VariantsCharacteristicPropertyTaskPresenter.cs" />
@@ -120,11 +123,12 @@
         <Compile Include="Writers\ISetWriter.cs" />
         <Compile Include="Writers\SetWriter.cs" />
         <Compile Include="Writers\Tasks\BorderSetOperationTaskWriter.cs" />
-        <Compile Include="Writers\Tasks\CharacteristicPropertyTaskWriter.cs" />
+        <Compile Include="Writers\Tasks\CharacteristicPropertySetAnswerTaskWriter.cs" />
+        <Compile Include="Writers\Tasks\Elements\NumberBelongsSetTaskWriter.cs" />
         <Compile Include="Writers\Tasks\ITaskWriter.cs" />
         <Compile Include="Writers\Tasks\SubSetTaskWriter.cs" />
-        <Compile Include="Writers\Tasks\TestableSubSetTaskWriter.cs" />
-        <Compile Include="Writers\Tasks\TaskWriter.cs" />
+        <Compile Include="Writers\Tasks\TestableSubSetSetAnswerTaskWriter.cs" />
+        <Compile Include="Writers\Tasks\SetAnswerTaskWriter.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

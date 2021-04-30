@@ -3,7 +3,7 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public abstract class TaskWriter<TTask>: ITaskWriter<TTask>
+    public abstract class SetAnswerTaskWriter<TTask>: ITaskWriter<TTask>
         where TTask: ISetAnswerTask<int>
     {
         protected virtual string WriteAnswer(IVariantsSetAnswerTask<int> variantsSetAnswerTask)
