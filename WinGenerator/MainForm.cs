@@ -39,7 +39,7 @@ namespace WinGenerator
             highTablePanel.AddRow(90);
             highTablePanel.AddColumn(100);
             
-            var taskChooseView = new TaskChooseView(_mainContext, _docWriter);
+            var taskChooseView = new TaskChooseView(_mainContext);
             
             var bottomTablePanel = new PercentTableLayoutPanel();
             bottomTablePanel.AddColumn(25);

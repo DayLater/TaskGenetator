@@ -11,12 +11,14 @@ namespace TaskEngine.Presenters
         private readonly CharacteristicPropertySetAnswerTaskWriter _writer;
 
         public string Id => TaskIds.CharacteristicPropertyTask;
+        public string ExampleTask { get; }
 
         public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertySetAnswerTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
             _writer = writer;
             GeneratorView = generatorView;
+            ExampleTask = _writer.WriteTask(_generator.Generate()).Task;
 
             generatorView.MaxCoefficientValue = generator.MaxCoefficientValue;
             generatorView.MinCoefficientValue = generator.MinCoefficientValue;

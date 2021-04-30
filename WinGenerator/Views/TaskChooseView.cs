@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using TaskEngine.Contexts;
-using TaskEngine.DocWriters;
 using TaskEngine.Presenters;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
@@ -12,17 +10,12 @@ namespace WinGenerator.Views
 {
     public class TaskChooseView: PercentTableLayoutPanel, IView
     {
-        private readonly DocWriter _docWriter;
-        
         private readonly CheckedListBox _checkedListBox;
-        private readonly Button _generateButton;
         private readonly Label _exampleText;
         private readonly PercentTableLayoutPanel _generatorSettingsTable;
 
-        public TaskChooseView(MainContext mainContext, DocWriter docWriter)
+        public TaskChooseView(MainContext mainContext)
         {
-            _docWriter = docWriter;
-
             _checkedListBox = new CheckedListBox
             {
                 Dock = DockStyle.Fill,
@@ -32,8 +25,7 @@ namespace WinGenerator.Views
 
             RowStyles.Clear();
             AddRow(60);
-            AddRow(35);
-            AddRow(5);
+            AddRow(40);
             AddColumn(100);
 
             var topTable = AddTable(0, 0);
@@ -61,8 +53,6 @@ namespace WinGenerator.Views
             var generatorSettingsTopText = _generatorSettingsTable.AddLabel(0, 0);
             generatorSettingsTopText.Font = new Font(FontFamily.GenericMonospace, 10, FontStyle.Underline);
             generatorSettingsTopText.Text = @"Настройка генерации задания";
-            
-            _generateButton = AddButton(0, 2, @"Generate");
         }
 
         public string Id => "Выбор и настройка заданий";
@@ -70,28 +60,18 @@ namespace WinGenerator.Views
         public void Activate()
         {
             OnSelectedItem(_checkedListBox, EventArgs.Empty);
-            _generateButton.Click += OnClick;
             _checkedListBox.SelectedIndexChanged += OnSelectedItem;
         }
 
         public void Deactivate()
         {
-            _generateButton.Click -= OnClick;
             _checkedListBox.SelectedIndexChanged -= OnSelectedItem;
         }
-
-        private void OnClick(object sender, EventArgs e)
-        {
-            var controllers =  _checkedListBox.CheckedItems.Cast<ITaskPresenter>();
-            var tasks = controllers.Select(c => c.Generate());
-            _docWriter.Write("TestDoc", tasks);
-        }
-
+        
         private void OnSelectedItem(object sender, EventArgs e)
         {
             var presenter = (ITaskPresenter) _checkedListBox.SelectedItem;
-            var task = presenter.Generate();
-            _exampleText.Text = task.Task;
+            _exampleText.Text = presenter.ExampleTask;
             if (_generatorSettingsTable.Controls.Count > 1)
             {
                 _generatorSettingsTable.Controls.RemoveAt(1);

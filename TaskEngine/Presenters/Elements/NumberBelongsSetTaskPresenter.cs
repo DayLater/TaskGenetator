@@ -1,5 +1,4 @@
 ﻿using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks.Texts;
 using TaskEngine.Views;
 using TaskEngine.Writers.Tasks.Elements;
 
@@ -15,16 +14,12 @@ namespace TaskEngine.Presenters.Elements
             GeneratorView = generatorView;
             _generator = generator;
             _writer = writer;
+
+            ExampleTask = _writer.WriteTask(_generator.Generate()).Task;
         }
 
         public string Id => TaskIds.NumberBelongsSetTask;
-        
-        public ITextTask Generate()
-        {
-            var task = _generator.Generate();
-            return _writer.WriteTask(task);
-        }
-
+        public string ExampleTask { get; }
         public IView GeneratorView { get; }
     }
 }

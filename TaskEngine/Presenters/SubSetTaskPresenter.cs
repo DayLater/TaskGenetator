@@ -15,10 +15,13 @@ namespace TaskEngine.Presenters
             _generator = generator;
             _writer = writer;
             GeneratorView = generatorView;
+            
+            ExampleTask = _writer.WriteTask(_generator.Generate()).Task;
         }
 
         public string Id => TaskIds.SubSetTask;
-        
+        public string ExampleTask { get; }
+
         public ITextTask Generate()
         {
             var task = _generator.Generate();

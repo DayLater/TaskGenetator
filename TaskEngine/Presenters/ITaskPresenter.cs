@@ -6,7 +6,7 @@ namespace TaskEngine.Presenters
     public interface ITaskPresenter
     {
         string Id { get; }
-        ITextTask Generate();
+        string ExampleTask { get; }
         IView GeneratorView { get; }
     }
 }
