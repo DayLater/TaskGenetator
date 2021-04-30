@@ -14,7 +14,6 @@ namespace WinGenerator.Views
         
         public IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }
         
-
         public IView Empty { get; }
 
         private readonly Dictionary<string, IView> _views = new Dictionary<string, IView>();
@@ -31,9 +30,7 @@ namespace WinGenerator.Views
             AddTaskView(TaskIds.BorderSetOperationTask, Empty);
             AddTaskView(TaskIds.NumberBelongsSetTask, Empty);
             AddTaskView(TaskIds.VariantsSubSetTask, Empty);
-
             
-
             var taskChooseView = new TaskChooseView(_generatorViews);
             TaskChooseView = taskChooseView;
             MainView = new MainView(new List<View>() {new EmptyView(), taskChooseView});

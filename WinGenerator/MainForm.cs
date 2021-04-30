@@ -18,10 +18,13 @@ namespace WinGenerator
             var size = new Size(1024, 768);
             MinimumSize = size;
             Size = size;
-           
-            _contexts = new Contexts(new SetWriter(new ExpressionWriter(), 10), new Random(), new ViewContext());
+
+            var viewContext = new ViewContext();
+            var setWriter = new SetWriter(new ExpressionWriter(), 10);
+            var random = new Random();
+            _contexts = new Contexts(setWriter, random, viewContext);
             
-            Controls.Add((Control)_contexts.ViewContext.MainView);
+            Controls.Add((Control) viewContext.MainView);
         }
     }
 }

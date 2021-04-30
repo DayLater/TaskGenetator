@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TaskEngine;
@@ -18,7 +19,8 @@ namespace WinGenerator.Views
         public override string Id => "Выбор и настройка заданий";
 
         public event Action<string> SelectedItemChanged = s => { };
-        public event Action<string, bool> ItemFlagChanged = (s, b) => { }; 
+        public event Action<string, bool> ItemFlagChanged = (s, b) => { };
+        public event Action Activated = () => { };
 
 
         public TaskChooseView(GeneratorViews generatorViews)
@@ -78,11 +80,24 @@ namespace WinGenerator.Views
             _generatorSettingsTable.AddView(view);
         }
 
+        public void SetCheckToTasks(IEnumerable<string> taskIds)
+        {
+            foreach (var taskId in taskIds)
+            {
+                if (_checkedListBox.Items.Contains(taskId))
+                {
+                    var idIndex = _checkedListBox.FindStringExact(taskId);
+                    _checkedListBox.SetItemChecked(idIndex, true);
+                }
+            }
+        }
+
         public override void Activate()
         {
             OnSelectedItemChanged(_checkedListBox, EventArgs.Empty);
             _checkedListBox.SelectedIndexChanged += OnSelectedItemChanged;
             _checkedListBox.ItemCheck += OnItemCheck;
+            Activated();
         }
 
         public override void Deactivate()

@@ -17,11 +17,18 @@ namespace TaskEngine.Presenters
 
             _view.SelectedItemChanged += OnSelectedItemChanged;
             _view.ItemFlagChanged += ViewOnItemFlagChanged;
+            _view.Activated += OnActivated;
         }
 
+        private void OnActivated()
+        {
+            var taskIds = _tasksContext.Ids;
+            _view.SetCheckToTasks(taskIds);
+        }
+        
         private void ViewOnItemFlagChanged(string id, bool isChecked)
         {
-            if (isChecked)
+            if (!isChecked)
             {
                 if (!_tasksContext.Contains(id))
                     _tasksContext.Add(id);
