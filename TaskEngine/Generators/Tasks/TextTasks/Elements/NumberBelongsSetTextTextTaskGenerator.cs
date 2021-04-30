@@ -1,20 +1,23 @@
 ﻿using System.Linq;
-using TaskEngine.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
+using TaskEngine.Writers;
 
-namespace TaskEngine.Writers.Tasks.Elements
+namespace TaskEngine.Generators.Tasks.TextTasks.Elements
 {
-    public class NumberBelongsSetTaskWriter: ITaskWriter<NumberBelongsSetSetAnswerTask>
+    public class NumberBelongsSetTextTextTaskGenerator: ITextTaskGenerator
     {
         private readonly ISetWriter _setWriter;
+        private readonly NumberBelongsSetTaskGenerator _taskGenerator;
 
-        public NumberBelongsSetTaskWriter(ISetWriter setWriter)
+        public NumberBelongsSetTextTextTaskGenerator(ISetWriter setWriter, NumberBelongsSetTaskGenerator taskGenerator)
         {
             _setWriter = setWriter;
+            _taskGenerator = taskGenerator;
         }
-
-        public ITextTask WriteTask(NumberBelongsSetSetAnswerTask task)
+        
+        public ITextTask Generate()
         {
+            var task = _taskGenerator.Generate();
             var writtenSet = _setWriter.Write(task.TaskSet);
             var answerIndex = task.Variants.IndexOf(task.RightAnswer);
             var answer = (answerIndex + 1).ToString();

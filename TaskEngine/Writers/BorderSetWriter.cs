@@ -39,6 +39,5 @@ namespace TaskEngine.Writers
                 result += ")";
             return $"{result}";
         }
-
     }
 }

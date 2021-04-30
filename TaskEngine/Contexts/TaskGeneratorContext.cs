@@ -12,7 +12,7 @@ namespace TaskEngine.Contexts
         public CharacteristicPropertyTaskGenerator CharacteristicPropertyTaskGenerator { get; }
         public VariantsSubSetTaskGenerator VariantsSubSetTaskGenerator { get; }
         public SubSetTaskGenerator SubSetTaskGenerator { get; }
-        public IntBorderSetOperationTaskGenerator IntBorderSetOperationTaskGenerator { get; }
+        public BorderSetOperationTaskGenerator BorderSetOperationTaskGenerator { get; }
 
         public TaskGeneratorContext(Random random)
         {
@@ -22,8 +22,8 @@ namespace TaskEngine.Contexts
             VariantsSubSetTaskGenerator = new VariantsSubSetTaskGenerator(new MathSetGenerator(), random);
             SubSetTaskGenerator = new SubSetTaskGenerator(new MathSetGenerator());
 
-            var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new IntBorderedSetComparer());
-            IntBorderSetOperationTaskGenerator = new IntBorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random);
+            var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new BorderedSetComparer());
+            BorderSetOperationTaskGenerator = new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random);
         }
     }
 }

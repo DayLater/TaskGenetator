@@ -1,24 +1,24 @@
 ﻿using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks.Texts;
+using TaskEngine.Generators.Tasks.TextTasks;
 using TaskEngine.Views;
-using TaskEngine.Writers.Tasks;
+using TaskEngine.Views.TaskGenerators;
 
-namespace TaskEngine.Presenters
+namespace TaskEngine.Presenters.Tasks
 {
-    public class VariantsCharacteristicPropertyTaskPresenter: ITaskPresenter
+    public class VariantsCharacteristicPropertyTaskPresenter: IPresenter
     {
         private readonly CharacteristicPropertyTaskGenerator _generator;
-        private readonly CharacteristicPropertySetAnswerTaskWriter _writer;
+        private readonly CharacteristicPropertySetAnswerTextTaskGenerator _textTextTaskGenerator;
 
         public string Id => TaskIds.CharacteristicPropertyTask;
         public string ExampleTask { get; }
 
-        public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertySetAnswerTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
+        public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertySetAnswerTextTaskGenerator textTextTaskGenerator, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
-            _writer = writer;
+            _textTextTaskGenerator = textTextTaskGenerator;
             GeneratorView = generatorView;
-            ExampleTask = _writer.WriteTask(_generator.Generate()).Task;
+            ExampleTask = _textTextTaskGenerator.Generate().Task;
 
             generatorView.MaxCoefficientValue = generator.MaxCoefficientValue;
             generatorView.MinCoefficientValue = generator.MinCoefficientValue;
@@ -27,12 +27,6 @@ namespace TaskEngine.Presenters
             generatorView.VariantsCountChanged += variantsCount => _generator.VariantsCount = variantsCount;
             generatorView.MinCoefficientValueChanged += coefficient => _generator.MinCoefficientValue = coefficient;
             generatorView.MaxCoefficientValueChanged += coefficient => _generator.MaxCoefficientValue = coefficient;
-        }
-
-        public ITextTask Generate()
-        {
-            var task = _generator.Generate();
-            return _writer.WriteTask(task);
         }
 
         public IView GeneratorView { get; }

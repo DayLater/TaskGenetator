@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskEngine.Views
+namespace TaskEngine.Views.TaskGenerators
 {
     public interface IVariantsView
     {

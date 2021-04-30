@@ -49,16 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomControls\CustomTreeNode.cs" />
-    <Compile Include="CustomControls\CustomTreeView.cs" />
     <Compile Include="CustomControls\PercentTableLayoutPanel.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\CreateDocumentView.cs" />
     <Compile Include="Views\EmptyView.cs" />
-    <Compile Include="Views\GeneratorsViews\VariantsCharacteristicPropertyGeneratorView.cs" />
+    <Compile Include="Views\GeneratorsViews\GeneratorViews.cs" />
+    <Compile Include="Views\GeneratorsViews\VariantsCharacteristicPropertyView.cs" />
+    <Compile Include="Views\View.cs" />
+    <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\TaskChooseView.cs" />
     <Compile Include="Views\ViewContext.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

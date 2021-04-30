@@ -2,7 +2,7 @@
 
 namespace TaskEngine.Comparers
 {
-    public class IntBorderedSetComparer: ISetComparer<IntBorderedSet>
+    public class BorderedSetComparer: ISetComparer<IntBorderedSet>
     {
         public bool IsEquals(IntBorderedSet first, IntBorderedSet second)
         {

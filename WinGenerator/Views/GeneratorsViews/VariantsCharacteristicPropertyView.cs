@@ -2,11 +2,11 @@
 using System.Windows.Forms;
 using TaskEngine;
 using TaskEngine.Views;
-using WinGenerator.CustomControls;
+using TaskEngine.Views.TaskGenerators;
 
 namespace WinGenerator.Views.GeneratorsViews
 {
-    public class VariantsCharacteristicPropertyGeneratorView: PercentTableLayoutPanel, IVariantsCharacteristicPropertyGeneratorView
+    public class VariantsCharacteristicPropertyView: View, IVariantsCharacteristicPropertyGeneratorView
     {
         public event Action<int> VariantsCountChanged = i => { };
         public event Action<int> MinCoefficientValueChanged = i => { };
@@ -31,7 +31,7 @@ namespace WinGenerator.Views.GeneratorsViews
         private readonly NumericUpDown _minCoefficientNumeric;
         private readonly NumericUpDown _maxCoefficientNumeric;
 
-        public VariantsCharacteristicPropertyGeneratorView()
+        public VariantsCharacteristicPropertyView()
         {
             AddRow(50);
             AddRow(50);
@@ -49,16 +49,16 @@ namespace WinGenerator.Views.GeneratorsViews
             _maxCoefficientNumeric = AddNumeric(2, 1, 10);
         }
         
-        public string Id => TaskIds.CharacteristicPropertyTask;
+        public override string Id => TaskIds.CharacteristicPropertyTask;
         
-        public void Activate()
+        public override void Activate()
         {
             _variantCountNumeric.ValueChanged += OnVariantCountChanged;
             _minCoefficientNumeric.ValueChanged += OnMinCoefficientValueChanged;
             _maxCoefficientNumeric.ValueChanged += OnMaxCoefficientValueChanged;
         }
 
-        public void Deactivate()
+        public override void Deactivate()
         {
             _variantCountNumeric.ValueChanged -= OnVariantCountChanged;
             _minCoefficientNumeric.ValueChanged -= OnMinCoefficientValueChanged;

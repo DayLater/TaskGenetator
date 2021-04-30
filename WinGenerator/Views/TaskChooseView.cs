@@ -1,26 +1,33 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using TaskEngine.Contexts;
-using TaskEngine.Presenters;
+using TaskEngine;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
+using WinGenerator.Views.GeneratorsViews;
 
 namespace WinGenerator.Views
 {
-    public class TaskChooseView: PercentTableLayoutPanel, IView
+    public class TaskChooseView: View, ITaskChooseView
     {
         private readonly CheckedListBox _checkedListBox;
-        private readonly Label _exampleText;
+        private readonly Label _exampleTextLabel;
         private readonly PercentTableLayoutPanel _generatorSettingsTable;
+        private readonly GeneratorViews _generatorViews;
+        
+        public override string Id => "Выбор и настройка заданий";
 
-        public TaskChooseView(MainContext mainContext)
+        public event Action<string> SelectedItemChanged = s => { };
+        public event Action<string, bool> ItemFlagChanged = (s, b) => { }; 
+
+
+        public TaskChooseView(GeneratorViews generatorViews)
         {
+            _generatorViews = generatorViews;
             _checkedListBox = new CheckedListBox
             {
                 Dock = DockStyle.Fill,
-                DataSource = mainContext.TaskPresentersContext.Presenters,
-                DisplayMember = "Id"
+                DataSource = TaskIds.Ids,
             };
 
             RowStyles.Clear();
@@ -42,8 +49,8 @@ namespace WinGenerator.Views
             var exampleTopText = exampleTable.AddLabel(0, 0, @"Пример задания");
             exampleTopText.Font = new Font(FontFamily.GenericMonospace, 12, FontStyle.Underline);
 
-            _exampleText = exampleTable.AddLabel(0, 1);
-            _exampleText.Font = new Font(FontFamily.GenericMonospace, 10);
+            _exampleTextLabel = exampleTable.AddLabel(0, 1);
+            _exampleTextLabel.Font = new Font(FontFamily.GenericMonospace, 10);
             
             _generatorSettingsTable = AddTable(0, 1);
             _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
@@ -54,30 +61,46 @@ namespace WinGenerator.Views
             generatorSettingsTopText.Font = new Font(FontFamily.GenericMonospace, 10, FontStyle.Underline);
             generatorSettingsTopText.Text = @"Настройка генерации задания";
         }
-
-        public string Id => "Выбор и настройка заданий";
-
-        public void Activate()
-        {
-            OnSelectedItem(_checkedListBox, EventArgs.Empty);
-            _checkedListBox.SelectedIndexChanged += OnSelectedItem;
-        }
-
-        public void Deactivate()
-        {
-            _checkedListBox.SelectedIndexChanged -= OnSelectedItem;
-        }
         
-        private void OnSelectedItem(object sender, EventArgs e)
+        public void SetExampleText(string example)
         {
-            var presenter = (ITaskPresenter) _checkedListBox.SelectedItem;
-            _exampleText.Text = presenter.ExampleTask;
+            _exampleTextLabel.Text = example;
+        }
+
+        public void ReplaceGeneratorView(string viewId)
+        {
             if (_generatorSettingsTable.Controls.Count > 1)
             {
                 _generatorSettingsTable.Controls.RemoveAt(1);
             }
-            
-            _generatorSettingsTable.AddView(presenter.GeneratorView);
+
+            var view = _generatorViews.Get(viewId);
+            _generatorSettingsTable.AddView(view);
+        }
+
+        public override void Activate()
+        {
+            OnSelectedItemChanged(_checkedListBox, EventArgs.Empty);
+            _checkedListBox.SelectedIndexChanged += OnSelectedItemChanged;
+            _checkedListBox.ItemCheck += OnItemCheck;
+        }
+
+        public override void Deactivate()
+        {
+            _checkedListBox.SelectedIndexChanged -= OnSelectedItemChanged;
+        }
+        
+        private void OnSelectedItemChanged(object sender, EventArgs e)
+        {
+            var itemId = (string) _checkedListBox.SelectedItem;
+            SelectedItemChanged(itemId);
+        }
+
+        private void OnItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            var itemId = (string) _checkedListBox.Items[e.Index];
+            var isChecked = _checkedListBox.GetItemChecked(e.Index);
+            ItemFlagChanged(itemId, isChecked);
         }
     }
 }
