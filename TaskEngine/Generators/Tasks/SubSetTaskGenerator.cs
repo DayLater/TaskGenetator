@@ -6,7 +6,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class SubSetTaskGenerator: ITaskGenerator<SubSetTask>
+    public class SubSetTaskGenerator: ITaskGenerator<SubSetSetAnswerTask>
     {
         private readonly MathSetGenerator _generator;
 
@@ -15,7 +15,7 @@ namespace TaskEngine.Generators.Tasks
             _generator = generator;
         }
 
-        public SubSetTask Generate()
+        public SubSetSetAnswerTask Generate()
         {
             var set = _generator.Generate();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -25,7 +25,7 @@ namespace TaskEngine.Generators.Tasks
             var name = Symbols.GetRandomName();
             var answerSet = new MathSet<int>(name, elements);
 
-            var task = new SubSetTask(set, type, answerSet);
+            var task = new SubSetSetAnswerTask(set, type, answerSet);
             return task;
         }
     }

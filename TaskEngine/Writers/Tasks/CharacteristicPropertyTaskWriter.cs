@@ -4,7 +4,7 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Writers.Tasks
 {
-    public class CharacteristicPropertyTaskWriter: TaskWriter<CharacteristicPropertyTask>
+    public class CharacteristicPropertyTaskWriter: TaskWriter<CharacteristicPropertySetAnswerTask>
     {
         private readonly ISetWriter _setWriter;
 
@@ -13,19 +13,19 @@ namespace TaskEngine.Writers.Tasks
             _setWriter = setWriter;
         }
 
-        public override ITextTask WriteTask(CharacteristicPropertyTask task)
+        public override ITextTask WriteTask(CharacteristicPropertySetAnswerTask setAnswerTask)
         {
-            var answer = task.RightAnswer;
+            var answer = setAnswerTask.RightAnswer;
             var writeSet = _setWriter.Write(answer);
             
             var textTask = $"Дано множество {writeSet}." +
                            $"\nУкажите его характеристическое свойство.";
 
-            var variants = task.Variants
+            var variants = setAnswerTask.Variants
                 .Select(set => _setWriter.WriteCharacteristicProperty(set))
                 .ToList();
 
-            var answerText = WriteAnswer(task);
+            var answerText = WriteAnswer(setAnswerTask);
             return new VariantsTextTask(textTask, answerText, variants);
         }
     }

@@ -9,7 +9,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class VariantsSubSetTaskGenerator: ITaskGenerator<VariantsSubSetTask>
+    public class VariantsSubSetTaskGenerator: ITaskGenerator<VariantsSetAnswerSubSetTask>
     {
         public int VariantCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;
@@ -23,7 +23,7 @@ namespace TaskEngine.Generators.Tasks
             _random = random;
         }
 
-        public VariantsSubSetTask Generate()
+        public VariantsSetAnswerSubSetTask Generate()
         {
             var set = _generator.Generate(1).First();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -45,7 +45,7 @@ namespace TaskEngine.Generators.Tasks
             
             var rightSet = setVariants[0];
             setVariants = setVariants.ShuffleToList();
-            var task = new VariantsSubSetTask(rightSet, setVariants, type, set);
+            var task = new VariantsSetAnswerSubSetTask(rightSet, setVariants, type, set);
             return task;
         }
         

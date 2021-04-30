@@ -2,9 +2,9 @@
 
 namespace TaskEngine.Tasks
 {
-    public abstract class Task<T>: ITask<T>
+    public abstract class SetAnswerTask<T>: ISetAnswerTask<T>
     {
-        protected Task(IMathSet<T> rightAnswer)
+        protected SetAnswerTask(IMathSet<T> rightAnswer)
         {
             RightAnswer = rightAnswer;
         }

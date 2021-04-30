@@ -3,7 +3,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public interface IVariantsTask<T>: ITask<T>
+    public interface IVariantsSetAnswerTask<T>: ISetAnswerTask<T>
     {
         IList<IMathSet<T>> Variants { get; }
     }

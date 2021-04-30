@@ -4,11 +4,11 @@ using TaskEngine.Tasks.Texts;
 namespace TaskEngine.Writers.Tasks
 {
     public abstract class TaskWriter<TTask>: ITaskWriter<TTask>
-        where TTask: ITask<int>
+        where TTask: ISetAnswerTask<int>
     {
-        protected virtual string WriteAnswer(IVariantsTask<int> variantsTask)
+        protected virtual string WriteAnswer(IVariantsSetAnswerTask<int> variantsSetAnswerTask)
         {
-            var rightAnswerIndex = variantsTask.Variants.IndexOf(variantsTask.RightAnswer);
+            var rightAnswerIndex = variantsSetAnswerTask.Variants.IndexOf(variantsSetAnswerTask.RightAnswer);
             return $"{rightAnswerIndex + 1}";
         }
 
