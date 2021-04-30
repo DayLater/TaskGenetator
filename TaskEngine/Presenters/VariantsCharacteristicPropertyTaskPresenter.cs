@@ -3,16 +3,16 @@ using TaskEngine.Tasks.Texts;
 using TaskEngine.Views;
 using TaskEngine.Writers.Tasks;
 
-namespace TaskEngine.Controllers
+namespace TaskEngine.Presenters
 {
-    public class VariantsCharacteristicPropertyTaskController: ITaskController
+    public class VariantsCharacteristicPropertyTaskPresenter: ITaskPresenter
     {
         private readonly CharacteristicPropertyTaskGenerator _generator;
         private readonly CharacteristicPropertyTaskWriter _writer;
 
         public string Id => TaskIds.CharacteristicPropertyTask;
 
-        public VariantsCharacteristicPropertyTaskController(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
+        public VariantsCharacteristicPropertyTaskPresenter(CharacteristicPropertyTaskGenerator generator, CharacteristicPropertyTaskWriter writer, IVariantsCharacteristicPropertyGeneratorView generatorView)
         {
             _generator = generator;
             _writer = writer;

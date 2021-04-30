@@ -54,10 +54,10 @@
         <Compile Include="Contexts\TaskControllersContext.cs" />
         <Compile Include="Contexts\TaskGeneratorContext.cs" />
         <Compile Include="Contexts\TaskWritersContext.cs" />
-        <Compile Include="Controllers\ITaskController.cs" />
-        <Compile Include="Controllers\SubSetTaskController.cs" />
-        <Compile Include="Controllers\VariantsCharacteristicPropertyTaskController.cs" />
-        <Compile Include="Controllers\VariantsSubSetTaskController.cs" />
+        <Compile Include="Presenters\ITaskPresenter.cs" />
+        <Compile Include="Presenters\SubSetTaskPresenter.cs" />
+        <Compile Include="Presenters\VariantsCharacteristicPropertyTaskPresenter.cs" />
+        <Compile Include="Presenters\VariantsSubSetTaskPresenter.cs" />
         <Compile Include="DocWriters\DocWriter.cs" />
         <Compile Include="DocWriters\IDocWriter.cs" />
         <Compile Include="DocWriters\TaskDocWriter.cs" />

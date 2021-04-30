@@ -1,9 +1,9 @@
 ﻿using TaskEngine.Tasks.Texts;
 using TaskEngine.Views;
 
-namespace TaskEngine.Controllers
+namespace TaskEngine.Presenters
 {
-    public interface ITaskController
+    public interface ITaskPresenter
     {
         string Id { get; }
         ITextTask Generate();

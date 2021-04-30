@@ -3,21 +3,21 @@ using TaskEngine.Tasks.Texts;
 using TaskEngine.Views;
 using TaskEngine.Writers.Tasks;
 
-namespace TaskEngine.Controllers
+namespace TaskEngine.Presenters
 {
-    public class VariantsSubSetTaskController: ITaskController
+    public class SubSetTaskPresenter: ITaskPresenter
     {
-        private readonly VariantsSubSetTaskGenerator _generator;
-        private readonly TestableSubSetTaskWriter _writer;
+        private readonly SubSetTaskGenerator _generator;
+        private readonly SubSetTaskWriter _writer;
 
-        public VariantsSubSetTaskController(VariantsSubSetTaskGenerator generator, TestableSubSetTaskWriter writer, IView generatorView)
+        public SubSetTaskPresenter(SubSetTaskGenerator generator, SubSetTaskWriter writer, IView generatorView)
         {
             _generator = generator;
             _writer = writer;
             GeneratorView = generatorView;
         }
 
-        public string Id => TaskIds.TestableSubSetTask;
+        public string Id => TaskIds.SubSetTask;
         
         public ITextTask Generate()
         {

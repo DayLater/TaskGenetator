@@ -3,8 +3,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TaskEngine.Contexts;
-using TaskEngine.Controllers;
 using TaskEngine.DocWriters;
+using TaskEngine.Presenters;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
 
@@ -80,14 +80,14 @@ namespace WinGenerator.Views
 
         private void OnClick(object sender, EventArgs e)
         {
-            var controllers =  _checkedListBox.CheckedItems.Cast<ITaskController>();
+            var controllers =  _checkedListBox.CheckedItems.Cast<ITaskPresenter>();
             var tasks = controllers.Select(c => c.Generate());
             _docWriter.Write("TestDoc", tasks);
         }
 
         private void OnSelectedItem(object sender, EventArgs e)
         {
-            var controller = (ITaskController) _checkedListBox.SelectedItem;
+            var controller = (ITaskPresenter) _checkedListBox.SelectedItem;
             var task = controller.Generate();
             _exampleText.Text = task.Task;
             if (_generatorSettingsTable.Controls.Count > 1)

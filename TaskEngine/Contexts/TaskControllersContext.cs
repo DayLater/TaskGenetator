@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
-using TaskEngine.Controllers;
+using TaskEngine.Presenters;
 
 namespace TaskEngine.Contexts
 {
     public class TaskControllersContext
     {
-        public VariantsCharacteristicPropertyTaskController VariantsCharacteristicPropertyTaskController { get; }
-        public VariantsSubSetTaskController VariantsSubSetTaskController { get; }
-        public SubSetTaskController SubSetTaskController { get; }
+        public VariantsCharacteristicPropertyTaskPresenter VariantsCharacteristicPropertyTaskPresenter { get; }
+        public VariantsSubSetTaskPresenter VariantsSubSetTaskPresenter { get; }
+        public SubSetTaskPresenter SubSetTaskPresenter { get; }
         
         public TaskControllersContext(TaskGeneratorContext generatorContext, TaskWritersContext writersContext, IViewContext viewContext)
         {
-            VariantsCharacteristicPropertyTaskController = new VariantsCharacteristicPropertyTaskController(generatorContext.CharacteristicPropertyTaskGenerator, writersContext.CharacteristicPropertyTaskWriter, viewContext.VariantsCharacteristicPropertyGeneratorView);
-            VariantsSubSetTaskController = new VariantsSubSetTaskController(generatorContext.VariantsSubSetTaskGenerator, writersContext.TestableSubSetTaskWriter, viewContext.Default);
-            SubSetTaskController = new SubSetTaskController(generatorContext.SubSetTaskGenerator, writersContext.SubSetTaskWriter, viewContext.Default);
+            VariantsCharacteristicPropertyTaskPresenter = new VariantsCharacteristicPropertyTaskPresenter(generatorContext.CharacteristicPropertyTaskGenerator, writersContext.CharacteristicPropertyTaskWriter, viewContext.VariantsCharacteristicPropertyGeneratorView);
+            VariantsSubSetTaskPresenter = new VariantsSubSetTaskPresenter(generatorContext.VariantsSubSetTaskGenerator, writersContext.TestableSubSetTaskWriter, viewContext.Default);
+            SubSetTaskPresenter = new SubSetTaskPresenter(generatorContext.SubSetTaskGenerator, writersContext.SubSetTaskWriter, viewContext.Default);
         }
         
 
-        public IEnumerable<ITaskController> GetControllers()
+        public IEnumerable<ITaskPresenter> GetControllers()
         {
-            yield return VariantsCharacteristicPropertyTaskController;
-            yield return VariantsSubSetTaskController;
-            yield return SubSetTaskController;
+            yield return VariantsCharacteristicPropertyTaskPresenter;
+            yield return VariantsSubSetTaskPresenter;
+            yield return SubSetTaskPresenter;
         }
     }
 }
