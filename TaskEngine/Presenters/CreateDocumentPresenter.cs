@@ -24,11 +24,23 @@ namespace TaskEngine.Presenters
 
         private void OnGenerateButtonClicked()
         {
-            var tasks = _tasksContext.Ids
-                .Select(generatorId => _taskGeneratorsContext.Get(generatorId))
-                .Select(generator => generator.Generate())
-                .ToList();
-            _docWriter.Write("testFile", tasks);
+            var taskIds = _tasksContext.Ids.ToList();
+            if (taskIds.Count == 0)
+            {
+                _view.ShowMessage("Не выбрано ни одного задания. Создание отменено");
+            }
+            else
+            {
+                var count = _view.GetFileCount();
+                var name = _view.GetFileName();
+                var generators = taskIds.Select(generatorId => _taskGeneratorsContext.Get(generatorId)).ToList();
+
+                for (int i = 0; i < count; i++)
+                {
+                    var tasks = generators.Select(g => g.Generate());
+                    _docWriter.Write($"{name}_{i + 1}", tasks);
+                }
+            }
         }
     }
 }

@@ -29,6 +29,13 @@ namespace WinGenerator.CustomControls
             AddControl(label, column, row);
             return label;
         }
+
+        public TextBox AddTextBox(int column, int row, string text = "default")
+        {
+            var textBox = new TextBox() {Dock = DockStyle.Fill, TextAlign = HorizontalAlignment.Left, Text = text};
+            AddControl(textBox, column, row);
+            return textBox;
+        }
         
         public Button AddButton(int column, int row, string text = null)
         {
