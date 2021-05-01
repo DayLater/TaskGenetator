@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaskEngine;
 using TaskEngine.Contexts;
 using TaskEngine.Views;
@@ -14,24 +15,25 @@ namespace WinGenerator.Views
         public ICreateDocumentView CreateDocumentView { get; }
         
         public IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }
-        
+
         public IView Empty { get; }
 
-        private readonly Dictionary<string, IView> _views = new Dictionary<string, IView>();
+        private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
         public ViewContext()
         {
+            INumberBelongsSetGeneratorView numberBelongsSetGeneratorView = new NumberBelongsSetGeneratorView();
+            AddTaskView(numberBelongsSetGeneratorView);
+            
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
-            AddTaskView(TaskIds.CharacteristicPropertyTask, VariantsCharacteristicPropertyGeneratorView);
+            AddTaskView(VariantsCharacteristicPropertyGeneratorView);
             
             Empty = new EmptyView();
-            AddTaskView(TaskIds.Empty, Empty);
-            AddTaskView(TaskIds.SubSetTask, Empty);
-            AddTaskView(TaskIds.BorderSetOperationTask, Empty);
-            AddTaskView(TaskIds.NumberBelongsSetTask, Empty);
-            AddTaskView(TaskIds.VariantsSubSetTask, Empty);
-            
+            AddTaskView(Empty, TaskIds.SubSetTask);
+            AddTaskView(Empty, TaskIds.BorderSetOperationTask);
+            AddTaskView(Empty, TaskIds.VariantsSubSetTask);
+
             var taskChooseView = new TaskChooseView(_generatorViews);
             TaskChooseView = taskChooseView;
 
@@ -40,12 +42,17 @@ namespace WinGenerator.Views
             MainView = new MainView(new List<View> {new EmptyView(), taskChooseView, createViewDocument});
         }
 
-        private void AddTaskView(string id, IView view)
+        private void AddTaskView<TView>(TView view, string customId = null)
+            where TView : IView
         {
-            _views.Add(id, view);
-            _generatorViews.Add(id, view);
+            if (!_views.ContainsKey(typeof(TView)))
+                _views.Add(typeof(TView), view);
+            _generatorViews.Add(customId ?? view.Id, view);
         }
-
-        public IView GetView(string id) => _views[id];
+        
+        public TView GetView<TView>() where TView : IView
+        {
+            return (TView)_views[typeof(TView)];
+        }
     }
 }

@@ -3,6 +3,7 @@ using TaskEngine.DocWriters;
 using TaskEngine.Presenters;
 using TaskEngine.Presenters.Tasks;
 using TaskEngine.Presenters.Tasks.Elements;
+using TaskEngine.Views.TaskGenerators;
 
 namespace TaskEngine.Contexts
 {
@@ -14,16 +15,16 @@ namespace TaskEngine.Contexts
         public CreateDocumentPresenter CreateDocumentPresenter { get; }
 
 
-        public PresentersContext(TaskGeneratorContext generatorContext, TextTaskGeneratorsContext generatorsContext, IViewContext viewContext, UserContext userContext, ExamplesContext examplesContext)
+        public PresentersContext(TaskGeneratorContext generatorContext, TextTaskGeneratorsContext textTaskGeneratorsContext, IViewContext viewContext, UserContext userContext, ExamplesContext examplesContext)
         {
             MainPresenter = new MainPresenter(viewContext.MainView, userContext);
             TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
-            CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), generatorsContext);
+            CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), textTaskGeneratorsContext);
             
-            AddTaskPresenter(new NumberBelongsSetTaskPresenter(generatorsContext.NumberBelongsSetTextTextTaskGenerator, viewContext.Empty));
-            AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.CharacteristicPropertyTaskGenerator, generatorsContext.CharacteristicPropertySetAnswerTextTaskGenerator, viewContext.VariantsCharacteristicPropertyGeneratorView));
-            AddTaskPresenter(new VariantsSubSetTaskPresenter(generatorsContext.VariantsSubSetSetAnswerTextTaskGenerator, viewContext.Empty));
-            AddTaskPresenter(new SubSetTaskPresenter(generatorsContext.SubSetTextTaskGenerator, viewContext.Empty));
+            AddTaskPresenter(new NumberBelongsSetTaskPresenter(viewContext.GetView<INumberBelongsSetGeneratorView>(), generatorContext.NumberBelongsSetTaskGenerator));
+            AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.CharacteristicPropertyTaskGenerator, viewContext.VariantsCharacteristicPropertyGeneratorView));
+            AddTaskPresenter(new VariantsSubSetTaskPresenter());
+            AddTaskPresenter(new SubSetTaskPresenter(textTaskGeneratorsContext.SubSetTextTaskGenerator, viewContext.Empty));
         }
 
         private void AddTaskPresenter(IPresenter presenter) => _taskPresenters.Add(presenter);

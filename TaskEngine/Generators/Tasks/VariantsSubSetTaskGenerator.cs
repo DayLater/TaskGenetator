@@ -14,10 +14,10 @@ namespace TaskEngine.Generators.Tasks
         public int VariantCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;
         
-        private readonly MathSetGenerator _generator;
+        private readonly IntMathSetGenerator _generator;
         private readonly Random _random;
 
-        public VariantsSubSetTaskGenerator(MathSetGenerator generator, Random random)
+        public VariantsSubSetTaskGenerator(IntMathSetGenerator generator, Random random)
         {
             _generator = generator;
             _random = random;

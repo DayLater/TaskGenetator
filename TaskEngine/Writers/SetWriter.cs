@@ -7,12 +7,12 @@ namespace TaskEngine.Writers
     {
         private readonly IExpressionWriter _expressionWriter;
         private readonly BorderSetWriter _borderSetWriter = new BorderSetWriter();
-        private readonly int _maxCount;
+        private readonly int _maxCountElementOfExpressionSet;
 
-        public SetWriter(IExpressionWriter expressionWriter, int maxCount)
+        public SetWriter(IExpressionWriter expressionWriter, int maxCountElementOfExpressionSet)
         {
             _expressionWriter = expressionWriter;
-            _maxCount = maxCount;
+            _maxCountElementOfExpressionSet = maxCountElementOfExpressionSet;
         }
 
         public string Write<T>(IMathSet<T> set, bool withName = true)
@@ -44,7 +44,7 @@ namespace TaskEngine.Writers
             var index = 0;
             foreach (var element in set.GetElements())
             {
-                if (index >= _maxCount)
+                if (set is IExpressionSet<T> && index >= _maxCountElementOfExpressionSet)
                     break;
                 index++;
                 

@@ -5,7 +5,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class MathSetGenerator: ISetGenerator<IMathSet<int>>
+    public class IntMathSetGenerator: ISetGenerator<IMathSet<int>>
     {
         private readonly Random _random = new Random();
         public int MaxCount { get; set; } = 10;
@@ -34,8 +34,7 @@ namespace TaskEngine.Generators.SetGenerators
 
                 result.Add(set);
             }
-
-
+            
             return result;
         }
 

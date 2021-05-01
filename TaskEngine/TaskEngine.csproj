@@ -69,6 +69,7 @@
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
+        <Compile Include="Presenters\MathSetGeneratorPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
         <Compile Include="Presenters\Tasks\Elements\NumberBelongsSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\SubSetTaskPresenter.cs" />
@@ -83,7 +84,7 @@
         <Compile Include="Generators\SetGenerators\IntBorderSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\ExpressionSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\ISetGenerator.cs" />
-        <Compile Include="Generators\SetGenerators\MathSetGenerator.cs" />
+        <Compile Include="Generators\SetGenerators\IntMathSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\ExceptSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\IntersectSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\IOperationSetGenerator.cs" />
@@ -129,8 +130,10 @@
         <Compile Include="Tasks\VariantsSetAnswerTask.cs" />
         <Compile Include="Views\ICreateDocumentView.cs" />
         <Compile Include="Views\IMainView.cs" />
+        <Compile Include="Views\IMathSetGeneratorView.cs" />
         <Compile Include="Views\ITaskChooseView.cs" />
         <Compile Include="Views\IView.cs" />
+        <Compile Include="Views\TaskGenerators\INumberBelongsSetGeneratorView.cs" />
         <Compile Include="Views\TaskGenerators\IVariantsCharacteristicPropertyGeneratorView.cs" />
         <Compile Include="Views\TaskGenerators\IVariantsView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />

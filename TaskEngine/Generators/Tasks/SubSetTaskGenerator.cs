@@ -8,9 +8,9 @@ namespace TaskEngine.Generators.Tasks
 {
     public class SubSetTaskGenerator: ITaskGenerator<SubSetSetAnswerTask>
     {
-        private readonly MathSetGenerator _generator;
+        private readonly IntMathSetGenerator _generator;
 
-        public SubSetTaskGenerator(MathSetGenerator generator)
+        public SubSetTaskGenerator(IntMathSetGenerator generator)
         {
             _generator = generator;
         }

@@ -13,8 +13,6 @@ namespace TaskEngine.Contexts
         IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }
         IView Empty { get; }
 
-        IView GetView(string id);
-        
-
+        TView GetView<TView>() where TView: IView;
     }
 }

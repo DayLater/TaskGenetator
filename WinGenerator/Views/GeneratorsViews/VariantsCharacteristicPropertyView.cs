@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using TaskEngine;
-using TaskEngine.Views;
 using TaskEngine.Views.TaskGenerators;
 
 namespace WinGenerator.Views.GeneratorsViews
 {
-    public class VariantsCharacteristicPropertyView: View, IVariantsCharacteristicPropertyGeneratorView
+    public class VariantsCharacteristicPropertyView: VariantsGeneratorView, IVariantsCharacteristicPropertyGeneratorView
     {
-        public event Action<int> VariantsCountChanged = i => { };
         public event Action<int> MinCoefficientValueChanged = i => { };
         public event Action<int> MaxCoefficientValueChanged = i => { };
 
@@ -22,26 +20,15 @@ namespace WinGenerator.Views.GeneratorsViews
             set => _maxCoefficientNumeric.Value = value;
         }
         
-        public int VariantsCount
-        {
-            set => _variantCountNumeric.Value = value;
-        }
-
-        private readonly NumericUpDown _variantCountNumeric;
         private readonly NumericUpDown _minCoefficientNumeric;
         private readonly NumericUpDown _maxCoefficientNumeric;
 
-        public VariantsCharacteristicPropertyView()
+        public VariantsCharacteristicPropertyView(): base(50, 33)
         {
             AddRow(50);
-            AddRow(50);
             AddColumn(33);
             AddColumn(33);
-            AddColumn(33);
-
-            var variantsCountLabel = AddLabel(0, 0, "Количество вариантов");
-            _variantCountNumeric = AddNumeric(0, 1, 4);
-
+            
             var minCoefficientLabel = AddLabel(1, 0, "Минимальный коэффициент при n");
             _minCoefficientNumeric = AddNumeric(1, 1, -10);
             
@@ -53,24 +40,18 @@ namespace WinGenerator.Views.GeneratorsViews
         
         public override void Activate()
         {
-            _variantCountNumeric.ValueChanged += OnVariantCountChanged;
+            _variantsNumeric.Numeric.ValueChanged += OnVariantCountChanged;
             _minCoefficientNumeric.ValueChanged += OnMinCoefficientValueChanged;
             _maxCoefficientNumeric.ValueChanged += OnMaxCoefficientValueChanged;
         }
 
         public override void Deactivate()
         {
-            _variantCountNumeric.ValueChanged -= OnVariantCountChanged;
+            _variantsNumeric.Numeric.ValueChanged -= OnVariantCountChanged;
             _minCoefficientNumeric.ValueChanged -= OnMinCoefficientValueChanged;
             _maxCoefficientNumeric.ValueChanged -= OnMaxCoefficientValueChanged;
         }
-
-        private void OnVariantCountChanged(object sender, EventArgs e)
-        {
-            var numeric = (NumericUpDown) sender;
-            VariantsCountChanged((int) numeric.Value);
-        }
-
+        
         private void OnMinCoefficientValueChanged(object sender, EventArgs e)
         {
             var numeric = (NumericUpDown) sender;

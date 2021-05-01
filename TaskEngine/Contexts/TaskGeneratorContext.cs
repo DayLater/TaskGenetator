@@ -19,8 +19,8 @@ namespace TaskEngine.Contexts
             NumberBelongsSetTaskGenerator = new NumberBelongsSetTaskGenerator();
             
             CharacteristicPropertyTaskGenerator = new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random);
-            VariantsSubSetTaskGenerator = new VariantsSubSetTaskGenerator(new MathSetGenerator(), random);
-            SubSetTaskGenerator = new SubSetTaskGenerator(new MathSetGenerator());
+            VariantsSubSetTaskGenerator = new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random);
+            SubSetTaskGenerator = new SubSetTaskGenerator(new IntMathSetGenerator());
 
             var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new BorderedSetComparer());
             BorderSetOperationTaskGenerator = new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random);

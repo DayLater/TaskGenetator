@@ -53,6 +53,20 @@ namespace WinGenerator.CustomControls
             AddControl(numericUpDown, column, row);
             return numericUpDown;
         }
+        
+        public LabeledNumericControl AddLabeledNumeric(int column, int row, string text, int startValue)
+        {
+            var labeledNumericControl = new LabeledNumericControl(text, startValue) {Dock = DockStyle.Fill};
+            AddControl(labeledNumericControl, column, row);
+            return labeledNumericControl;
+        }
+
+        public CheckBox AddCheckBox(int column, int row, string text)
+        {
+            var checkBox = new CheckBox() {Dock = DockStyle.Fill, Text = text};
+            AddControl(checkBox, column, row);
+            return checkBox;
+        }
 
         public void AddView(IView view)
         {

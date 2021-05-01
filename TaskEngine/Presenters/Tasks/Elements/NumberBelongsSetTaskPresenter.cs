@@ -1,22 +1,21 @@
-﻿using TaskEngine.Generators.Tasks.TextTasks.Elements;
-using TaskEngine.Views;
+﻿using TaskEngine.Generators.Tasks;
+using TaskEngine.Views.TaskGenerators;
 
 namespace TaskEngine.Presenters.Tasks.Elements
 {
     public class NumberBelongsSetTaskPresenter: IPresenter
     {
-        private readonly NumberBelongsSetTextTextTaskGenerator _textTextTaskGenerator;
+        private readonly NumberBelongsSetTaskGenerator _taskGenerator;
+        private readonly INumberBelongsSetGeneratorView _view;
 
-        public NumberBelongsSetTaskPresenter(NumberBelongsSetTextTextTaskGenerator textTextTaskGenerator, IView generatorView)
+        public NumberBelongsSetTaskPresenter(INumberBelongsSetGeneratorView view, NumberBelongsSetTaskGenerator taskGenerator)
         {
-            GeneratorView = generatorView;
-            _textTextTaskGenerator = textTextTaskGenerator;
+            _view = view;
+            _taskGenerator = taskGenerator;
+            
+            var mathSetPresenter = new MathSetGeneratorPresenter(view.MathSetGeneratorView, taskGenerator.IntMathSetGenerator);
 
-            ExampleTask = _textTextTaskGenerator.Generate().Task;
+            view.VariantsCountChanged += (variants) => _taskGenerator.VariantCount = variants;
         }
-
-        public string Id => TaskIds.NumberBelongsSetTask;
-        public string ExampleTask { get; }
-        public IView GeneratorView { get; }
     }
 }
