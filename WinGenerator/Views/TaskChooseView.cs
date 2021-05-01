@@ -21,8 +21,7 @@ namespace WinGenerator.Views
         public event Action<string> SelectedItemChanged = s => { };
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
         public event Action Activated = () => { };
-
-
+        
         public TaskChooseView(GeneratorViews generatorViews)
         {
             _generatorViews = generatorViews;
@@ -103,6 +102,7 @@ namespace WinGenerator.Views
         public override void Deactivate()
         {
             _checkedListBox.SelectedIndexChanged -= OnSelectedItemChanged;
+            _checkedListBox.ItemCheck -= OnItemCheck;
         }
         
         private void OnSelectedItemChanged(object sender, EventArgs e)

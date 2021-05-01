@@ -22,8 +22,7 @@ namespace TaskEngine.Presenters
 
         private void OnActivated()
         {
-            var taskIds = _tasksContext.Ids;
-            _view.SetCheckToTasks(taskIds);
+            _view.SetCheckToTasks(_tasksContext.Ids);
         }
         
         private void ViewOnItemFlagChanged(string id, bool isChecked)

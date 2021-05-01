@@ -2,7 +2,7 @@
 
 namespace TaskEngine.Views
 {
-    public interface IMainView
+    public interface IMainView: IView
     {
         event Action NextButtonClicked;
         public bool NextButtonEnable { get; set; }

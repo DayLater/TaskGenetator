@@ -25,6 +25,7 @@ namespace WinGenerator
             _contexts = new Contexts(setWriter, random, viewContext);
             
             Controls.Add((Control) viewContext.MainView);
+            viewContext.MainView.Activate();
         }
     }
 }

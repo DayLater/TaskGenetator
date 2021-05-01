@@ -36,6 +36,8 @@ namespace TaskEngine.Contexts
         
         public IEnumerable<(string, ITextTaskGenerator)> Generators => _generators.Select(pair => (pair.Key, pair.Value));
 
+        public ITextTaskGenerator Get(string generatorId) => _generators[generatorId];
+
         private void Add(string id, ITextTaskGenerator generator) => _generators.Add(id, generator);
     }
 }

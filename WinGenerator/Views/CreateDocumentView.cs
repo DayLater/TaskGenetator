@@ -1,21 +1,37 @@
-﻿using TaskEngine.Views;
-using WinGenerator.CustomControls;
+﻿using System;
+using System.Windows.Forms;
+using TaskEngine.Views;
 
 namespace WinGenerator.Views
 {
-    public class CreateDocumentView: PercentTableLayoutPanel, IView
+    public class CreateDocumentView: View, ICreateDocumentView
     {
-        public string Id => "Создание текстового документа";
-        
-        
-        public void Activate()
+        private readonly Button _generateButton;
+     
+        public event Action GenerateButtonClicked = () => { };
+
+        public override string Id => "Создание текстового документа";
+
+        public CreateDocumentView()
         {
-            throw new System.NotImplementedException();
+            AddRow(100);
+            AddColumn(100);
+            _generateButton = AddButton(0, 0, "Создать");
         }
 
-        public void Deactivate()
+        public override void Activate()
         {
-            throw new System.NotImplementedException();
+            _generateButton.Click += OnGenerateButtonClicked;
+        }
+
+        public override void Deactivate()
+        {
+            _generateButton.Click -= OnGenerateButtonClicked;
+        }
+
+        private void OnGenerateButtonClicked(object sender, EventArgs eventArgs)
+        {
+            GenerateButtonClicked();
         }
     }
 }

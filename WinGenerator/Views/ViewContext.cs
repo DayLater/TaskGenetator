@@ -11,6 +11,7 @@ namespace WinGenerator.Views
     {
         public IMainView MainView { get; }
         public ITaskChooseView TaskChooseView { get; }
+        public ICreateDocumentView CreateDocumentView { get; }
         
         public IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }
         
@@ -33,7 +34,10 @@ namespace WinGenerator.Views
             
             var taskChooseView = new TaskChooseView(_generatorViews);
             TaskChooseView = taskChooseView;
-            MainView = new MainView(new List<View>() {new EmptyView(), taskChooseView});
+
+            var createViewDocument = new CreateDocumentView();
+            CreateDocumentView = createViewDocument;
+            MainView = new MainView(new List<View> {new EmptyView(), taskChooseView, createViewDocument});
         }
 
         private void AddTaskView(string id, IView view)

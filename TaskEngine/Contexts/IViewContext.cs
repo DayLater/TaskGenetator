@@ -7,6 +7,7 @@ namespace TaskEngine.Contexts
     {
         IMainView MainView { get; }
         ITaskChooseView TaskChooseView { get; }
+        ICreateDocumentView CreateDocumentView { get; }
 
         
         IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }

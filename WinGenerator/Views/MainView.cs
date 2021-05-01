@@ -7,7 +7,7 @@ using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views
 {
-    public class MainView: PercentTableLayoutPanel, IMainView
+    public sealed class MainView: View, IMainView
     {
         private readonly PercentTableLayoutPanel _highTablePanel;
         private readonly Button _nextButton;
@@ -26,7 +26,7 @@ namespace WinGenerator.Views
             AddRow(10);
             AddColumn(100);
 
-            _pageNameLabel = AddLabel(0, 0, @"Главное меню");
+            _pageNameLabel = AddLabel(0, 0, Id);
             _pageNameLabel.Font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Regular);
 
             _highTablePanel = AddTable(0, 1);
@@ -40,10 +40,7 @@ namespace WinGenerator.Views
             bottomTablePanel.AddColumn(25);
             
             _nextButton = bottomTablePanel.AddButton(3, 0, "Вперед");
-            _nextButton.Click += OnNextButtonClicked;
-
             _previousButton = bottomTablePanel.AddButton(0, 0, "Назад");
-            _previousButton.Click += OnPreviousButtonClicked;
         }
 
         public event Action NextButtonClicked = () => { };
@@ -91,6 +88,18 @@ namespace WinGenerator.Views
             _pageNameLabel.Text = _currentView.Id;
         }
 
+        public override string Id => "Главное меню";
+        
+        public override void Activate()
+        {
+            _nextButton.Click += OnNextButtonClicked;
+            _previousButton.Click += OnPreviousButtonClicked;
+        }
 
+        public override void Deactivate()
+        {
+            _nextButton.Click -= OnNextButtonClicked;
+            _previousButton.Click -= OnPreviousButtonClicked;
+        }
     }
 }

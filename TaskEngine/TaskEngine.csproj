@@ -66,6 +66,7 @@
         <Compile Include="Generators\Tasks\TextTasks\SetAnswerTextTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\TextTasks\SubSetTextTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\TextTasks\VariantsSubSetSetAnswerTextTaskGenerator.cs" />
+        <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
@@ -126,6 +127,7 @@
         <Compile Include="Tasks\Texts\TextTask.cs" />
         <Compile Include="Tasks\Texts\VariantsTextTask.cs" />
         <Compile Include="Tasks\VariantsSetAnswerTask.cs" />
+        <Compile Include="Views\ICreateDocumentView.cs" />
         <Compile Include="Views\IMainView.cs" />
         <Compile Include="Views\ITaskChooseView.cs" />
         <Compile Include="Views\IView.cs" />
