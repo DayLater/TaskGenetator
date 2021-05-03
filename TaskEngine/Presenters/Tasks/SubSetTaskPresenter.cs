@@ -1,4 +1,4 @@
-﻿using TaskEngine.Generators.Tasks.TextTasks;
+﻿using TaskEngine.Generators.TextTasks;
 using TaskEngine.Views;
 
 namespace TaskEngine.Presenters.Tasks

@@ -1,5 +1,4 @@
-﻿using System;
-using TaskEngine;
+﻿using TaskEngine;
 using TaskEngine.Views;
 using TaskEngine.Views.TaskGenerators;
 
@@ -10,12 +9,10 @@ namespace WinGenerator.Views.GeneratorsViews
         public IMathSetGeneratorView MathSetGeneratorView { get; }
         public override string Id => TaskIds.NumberBelongsSetTask;
 
-        public NumberBelongsSetGeneratorView() : base(100, 20)
+        public NumberBelongsSetGeneratorView(): base(20)
         {
-            AddColumn(80);
             var mathSetGeneratorView = new MathSetGeneratorSettingsView();
             MathSetGeneratorView = mathSetGeneratorView;
-            
             AddControl(mathSetGeneratorView, 1, 0);
         }
         

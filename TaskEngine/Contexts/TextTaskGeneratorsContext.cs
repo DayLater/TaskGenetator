@@ -1,43 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using TaskEngine.Generators.Tasks.TextTasks;
-using TaskEngine.Generators.Tasks.TextTasks.Elements;
+using TaskEngine.Generators.Tasks;
+using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Generators.TextTasks;
+using TaskEngine.Generators.TextTasks.Elements;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Contexts
 {
     public class TextTaskGeneratorsContext
     {
-        public NumberBelongsSetTextTextTaskGenerator NumberBelongsSetTextTextTaskGenerator { get; }
-        public CharacteristicPropertySetAnswerTextTaskGenerator CharacteristicPropertySetAnswerTextTaskGenerator { get; }
-        public VariantsSubSetSetAnswerTextTaskGenerator VariantsSubSetSetAnswerTextTaskGenerator { get; }
-        public SubSetTextTaskGenerator SubSetTextTaskGenerator { get; }
-        public BorderSetOperationTextTaskGenerator BorderSetOperationTextTaskGenerator { get; }
+        private readonly Dictionary<string, ITextTaskGenerator> _generators = new Dictionary<string, ITextTaskGenerator>();
+
+        private readonly Dictionary<Type, ITextTaskGenerator> _typeGenerators = new Dictionary<Type, ITextTaskGenerator>();
 
         public TextTaskGeneratorsContext(ISetWriter setWriter, TaskGeneratorContext taskGeneratorContext)
         {
-            NumberBelongsSetTextTextTaskGenerator = new NumberBelongsSetTextTextTaskGenerator(setWriter, taskGeneratorContext.NumberBelongsSetTaskGenerator);
-            Add(TaskIds.NumberBelongsSetTask, NumberBelongsSetTextTextTaskGenerator);
-            
-            CharacteristicPropertySetAnswerTextTaskGenerator = new CharacteristicPropertySetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.CharacteristicPropertyTaskGenerator);
-            Add(TaskIds.CharacteristicPropertyTask, CharacteristicPropertySetAnswerTextTaskGenerator);
-
-            VariantsSubSetSetAnswerTextTaskGenerator = new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.VariantsSubSetTaskGenerator);
-            Add(TaskIds.VariantsSubSetTask, VariantsSubSetSetAnswerTextTaskGenerator);
-            
-            SubSetTextTaskGenerator = new SubSetTextTaskGenerator(setWriter, taskGeneratorContext.SubSetTaskGenerator);
-            Add(TaskIds.SubSetTask, SubSetTextTaskGenerator);
-            
-            BorderSetOperationTextTaskGenerator = new BorderSetOperationTextTaskGenerator(setWriter, taskGeneratorContext.BorderSetOperationTaskGenerator);
-            Add(TaskIds.BorderSetOperationTask, BorderSetOperationTextTaskGenerator);
+            Add(TaskIds.NumberBelongsSetTask, new NumberBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTaskGenerator>()));
+            Add(TaskIds.NumbersBelongSetTask, new NumbersBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTaskGenerator>()));
+            Add(TaskIds.CharacteristicPropertyTask, new CharacteristicPropertySetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertyTaskGenerator>()));
+            Add(TaskIds.VariantsSubSetTask, new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTaskGenerator>()));
+            Add(TaskIds.SubSetTask, new SubSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetTaskGenerator>()));
+            Add(TaskIds.BorderSetOperationTask, new BorderSetOperationTextTaskGenerator(setWriter, taskGeneratorContext.Get<BorderSetOperationTaskGenerator>()));
         }
 
-        private readonly Dictionary<string, ITextTaskGenerator> _generators = new Dictionary<string, ITextTaskGenerator>();
-        
         public IEnumerable<(string, ITextTaskGenerator)> Generators => _generators.Select(pair => (pair.Key, pair.Value));
-
         public ITextTaskGenerator Get(string generatorId) => _generators[generatorId];
-
-        private void Add(string id, ITextTaskGenerator generator) => _generators.Add(id, generator);
+        public TGenerator Get<TGenerator>() where TGenerator: ITextTaskGenerator => (TGenerator) _typeGenerators[typeof(TGenerator)];
+        
+        private void Add<TGenerator>(string id, TGenerator generator)
+            where TGenerator: ITextTaskGenerator
+        {
+            _generators.Add(id, generator);
+            _typeGenerators.Add(generator.GetType(), generator);
+        }
     }
 }

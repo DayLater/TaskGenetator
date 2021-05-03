@@ -1,7 +1,7 @@
 ﻿using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 
-namespace TaskEngine.Generators.Tasks.TextTasks
+namespace TaskEngine.Generators.TextTasks
 {
     public abstract class SetAnswerTextTaskGenerator<TTask>: ITextTaskGenerator
         where TTask: ISetAnswerTask<int>

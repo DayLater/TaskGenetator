@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using TaskEngine.Generators.Tasks;
 using TaskEngine.Helpers;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
-namespace TaskEngine.Generators.Tasks.TextTasks
+namespace TaskEngine.Generators.TextTasks
 {
     public class VariantsSubSetSetAnswerTextTaskGenerator: SetAnswerTextTaskGenerator<VariantsSetAnswerSubSetTask>
     {

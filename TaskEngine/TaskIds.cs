@@ -6,6 +6,8 @@ namespace TaskEngine
     {
         public const string Empty = "Empty";
         public const string NumberBelongsSetTask = "Принадлежность элемента множеству (перечисление элементов)";
+        public const string NumbersBelongSetTask = "Принадлежность элементов множеству (перечисление элементов)";
+
         public const string CharacteristicPropertyTask = "Характеристическое свойство (тестовое)";
         public const string VariantsSubSetTask = "Подмножество (тестовое)";
         public const string SubSetTask = "Подмножество";
@@ -13,7 +15,7 @@ namespace TaskEngine
 
         public static IEnumerable<string> Ids => new[]
         {
-            NumberBelongsSetTask, CharacteristicPropertyTask, VariantsSubSetTask, SubSetTask, BorderSetOperationTask
+            NumberBelongsSetTask, CharacteristicPropertyTask, VariantsSubSetTask, SubSetTask, BorderSetOperationTask, NumbersBelongSetTask
         };
     }
 }

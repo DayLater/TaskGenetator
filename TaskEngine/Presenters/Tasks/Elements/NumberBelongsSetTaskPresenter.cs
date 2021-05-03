@@ -1,4 +1,4 @@
-﻿using TaskEngine.Generators.Tasks;
+﻿using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Views.TaskGenerators;
 
 namespace TaskEngine.Presenters.Tasks.Elements
@@ -15,7 +15,7 @@ namespace TaskEngine.Presenters.Tasks.Elements
             
             var mathSetPresenter = new MathSetGeneratorPresenter(view.MathSetGeneratorView, taskGenerator.IntMathSetGenerator);
 
-            view.VariantsCountChanged += (variants) => _taskGenerator.VariantCount = variants;
+            view.VariantsCountChanged += variants => _taskGenerator.VariantCount = variants;
         }
     }
 }

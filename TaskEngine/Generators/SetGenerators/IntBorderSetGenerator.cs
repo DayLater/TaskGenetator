@@ -5,7 +5,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class IntBorderSetGenerator: ISetGenerator<IntBorderedSet>
+    public class IntBorderSetGenerator
     {
         private readonly Random _random = new Random();
         

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WinGenerator.CustomControls
 {
@@ -8,7 +7,7 @@ namespace WinGenerator.CustomControls
         public NumericUpDown Numeric { get; }
         private readonly Label _label;
 
-        public LabeledNumericControl(string labelText, int startValue, int numericSizeInPercent = 50)
+        public LabeledNumericControl(string labelText, int startValue, int numericSizeInPercent = 40)
         {
             var labelSize = 100 - numericSizeInPercent;
             AddColumn(100);

@@ -5,7 +5,7 @@ using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks.Elements;
 
-namespace TaskEngine.Generators.Tasks
+namespace TaskEngine.Generators.Tasks.Elements
 {
     public class NumberBelongsSetTaskGenerator: IVariantsTaskGenerator<NumberBelongsSetSetAnswerTask>
     {

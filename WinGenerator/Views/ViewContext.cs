@@ -25,6 +25,9 @@ namespace WinGenerator.Views
         {
             INumberBelongsSetGeneratorView numberBelongsSetGeneratorView = new NumberBelongsSetGeneratorView();
             AddTaskView(numberBelongsSetGeneratorView);
+
+            INumbersBelongSetGeneratorView numbersBelongSetGeneratorView = new NumbersBelongSetGeneratorView();
+            AddTaskView(numbersBelongSetGeneratorView);
             
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
             AddTaskView(VariantsCharacteristicPropertyGeneratorView);

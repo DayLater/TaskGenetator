@@ -10,7 +10,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class BorderSetOperationTaskGenerator: ITaskGenerator<BorderSetOperationSetAnswerTask>
+    public class BorderSetOperationTaskGenerator: ITaskGenerator
     {
         public int VariantCount { get; set; } = 4;
 

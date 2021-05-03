@@ -1,9 +1,10 @@
 ﻿using System.Linq;
+using TaskEngine.Generators.Tasks;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
-namespace TaskEngine.Generators.Tasks.TextTasks
+namespace TaskEngine.Generators.TextTasks
 {
     public class CharacteristicPropertySetAnswerTextTaskGenerator: SetAnswerTextTaskGenerator<CharacteristicPropertySetAnswerTask>
     {

@@ -38,7 +38,7 @@ namespace WinGenerator.Views.GeneratorsViews
             _positiveElementsMinCountNumeric = AddLabeledNumeric(2, 0, "Минимальное количество положительных чисел", 2);
             _negativeElementsMinCountNumeric = AddLabeledNumeric(2, 1, "Минимальное количество отрицательных чисел", 2);
 
-            _isZeroNecessaryCheckBox = AddCheckBox(3, 0, "Добавить ноль в множество");
+            _isZeroNecessaryCheckBox = AddCheckBox(3, 0, "Ноль обязателен");
         }
 
         public override void Activate()

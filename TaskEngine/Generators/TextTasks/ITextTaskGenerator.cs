@@ -1,6 +1,6 @@
 ﻿using TaskEngine.Tasks.Texts;
 
-namespace TaskEngine.Generators.Tasks.TextTasks
+namespace TaskEngine.Generators.TextTasks
 {
     public interface ITextTaskGenerator
     {

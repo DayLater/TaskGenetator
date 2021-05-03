@@ -7,13 +7,16 @@ namespace WinGenerator.Views.GeneratorsViews
     public abstract class VariantsGeneratorView: View, IVariantsView
     {
         protected readonly LabeledNumericControl _variantsNumeric;
+        protected readonly PercentTableLayoutPanel _variantsView;
 
-        protected VariantsGeneratorView(int rowHeight, int columnWidth)
+        protected VariantsGeneratorView(int width, int height = 100)
         {
-            AddRow(rowHeight);
-            AddColumn(columnWidth);
-
-            _variantsNumeric = AddLabeledNumeric(0, 0, "Количество вариантов", 4);
+            AddColumn(width);
+            AddColumn(100 - width);
+            
+            _variantsView = AddTable(0, 0);
+            _variantsView.AddRow(height);
+            _variantsNumeric = _variantsView.AddLabeledNumeric(0, 0,"Количество вариантов", 4);
         }
 
         protected void OnVariantCountChanged(object sender, EventArgs e)
@@ -23,6 +26,7 @@ namespace WinGenerator.Views.GeneratorsViews
         }
 
         public event Action<int> VariantsCountChanged = i => { }; 
+        
         public int VariantsCount
         {
             get => _variantsNumeric.Value;

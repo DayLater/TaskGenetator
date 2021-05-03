@@ -1,15 +1,17 @@
 ﻿using System.Linq;
+using TaskEngine.Generators.Tasks;
+using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
-namespace TaskEngine.Generators.Tasks.TextTasks.Elements
+namespace TaskEngine.Generators.TextTasks.Elements
 {
-    public class NumberBelongsSetTextTextTaskGenerator: ITextTaskGenerator
+    public class NumberBelongsSetTextTaskGenerator: ITextTaskGenerator
     {
         private readonly ISetWriter _setWriter;
         private readonly NumberBelongsSetTaskGenerator _taskGenerator;
 
-        public NumberBelongsSetTextTextTaskGenerator(ISetWriter setWriter, NumberBelongsSetTaskGenerator taskGenerator)
+        public NumberBelongsSetTextTaskGenerator(ISetWriter setWriter, NumberBelongsSetTaskGenerator taskGenerator)
         {
             _setWriter = setWriter;
             _taskGenerator = taskGenerator;

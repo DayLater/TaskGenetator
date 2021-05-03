@@ -48,7 +48,8 @@ namespace WinGenerator.CustomControls
         {
             var numericUpDown = new NumericUpDown
             {
-                Dock = DockStyle.Fill, Minimum = -100, Maximum = 100, Value = startValue
+                TextAlign = HorizontalAlignment.Center, Minimum = -100, Maximum = 100, Value = startValue, UpDownAlign = LeftRightAlignment.Left,
+                Dock = DockStyle.Top
             };
             AddControl(numericUpDown, column, row);
             return numericUpDown;
@@ -56,14 +57,16 @@ namespace WinGenerator.CustomControls
         
         public LabeledNumericControl AddLabeledNumeric(int column, int row, string text, int startValue)
         {
-            var labeledNumericControl = new LabeledNumericControl(text, startValue) {Dock = DockStyle.Fill};
+            var labeledNumericControl = CreateLabeledNumericControl(text, startValue);
             AddControl(labeledNumericControl, column, row);
             return labeledNumericControl;
         }
+        
+        public LabeledNumericControl CreateLabeledNumericControl(string text, int startValue) => new LabeledNumericControl(text, startValue) {Dock = DockStyle.Fill};
 
         public CheckBox AddCheckBox(int column, int row, string text)
         {
-            var checkBox = new CheckBox() {Dock = DockStyle.Fill, Text = text};
+            var checkBox = new CheckBox {Dock = DockStyle.Fill, Text = text};
             AddControl(checkBox, column, row);
             return checkBox;
         }
