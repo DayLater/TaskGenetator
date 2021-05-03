@@ -11,7 +11,7 @@ namespace WinGenerator.Views.GeneratorsViews
         protected SeveralAnswersVariantGeneratorView(int width) : base(width, 50)
         {
             _variantsView.AddRow(50);
-            _answerCountNumeric = _variantsView.AddLabeledNumeric(0, 1, "Количество ответов", 2);
+            _answerCountNumeric = _variantsView.AddLabeledNumeric(0, 1, "Количество ответов");
         }
 
         public event Action<int> AnswerCountChanged = i => { }; 

@@ -6,9 +6,12 @@ namespace TaskEngine
     {
         public const string NumberBelongsSetTask = "Принадлежность элемента множеству (числа)";
         public const string NumbersBelongSetTask = "Принадлежность элементов множеству (числа)";
+        public const string NumberBelongsBorderedSetTask = "Принадлежность элемента ограниченному множеству";
+        public const string NumbersBelongBorderedSetTask = "Принадлежность элементов ограниченному множеству";
+        
         public const string SymbolBelongsSetTask = "Принадлежность элемента множеству (буквы)";
         public const string SymbolsBelongSetTask = "Принадлежность элементов множеству (буквы)";
-        
+
         public const string CharacteristicPropertyTask = "Характеристическое свойство (тестовое)";
         public const string VariantsSubSetTask = "Подмножество (тестовое)";
         public const string SubSetTask = "Подмножество";

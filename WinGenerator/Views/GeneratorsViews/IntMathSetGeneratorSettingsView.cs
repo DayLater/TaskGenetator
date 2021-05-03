@@ -29,14 +29,14 @@ namespace WinGenerator.Views.GeneratorsViews
             AddColumn(25);
             AddColumn(25);
 
-            _maxElementCountNumeric = AddLabeledNumeric(0, 0, "Максимальное число элементов", 10);
-            _minElementCountNumeric = AddLabeledNumeric(0, 1, "Минимальное число элементов", 6);
+            _maxElementCountNumeric = AddLabeledNumeric(0, 0, "Максимальное число элементов");
+            _minElementCountNumeric = AddLabeledNumeric(0, 1, "Минимальное число элементов");
 
-            _maxElementValueNumeric = AddLabeledNumeric(1, 0, "Максимальное значение элемента", 10);
-            _minElementValueNumeric = AddLabeledNumeric(1, 1, "Минимальное значение элемента", -10);
+            _maxElementValueNumeric = AddLabeledNumeric(1, 0, "Максимальное значение элемента");
+            _minElementValueNumeric = AddLabeledNumeric(1, 1, "Минимальное значение элемента");
 
-            _positiveElementsMinCountNumeric = AddLabeledNumeric(2, 0, "Минимальное количество положительных чисел", 2);
-            _negativeElementsMinCountNumeric = AddLabeledNumeric(2, 1, "Минимальное количество отрицательных чисел", 2);
+            _positiveElementsMinCountNumeric = AddLabeledNumeric(2, 0, "Минимальное количество положительных чисел");
+            _negativeElementsMinCountNumeric = AddLabeledNumeric(2, 1, "Минимальное количество отрицательных чисел");
 
             _isZeroNecessaryCheckBox = AddCheckBox(3, 0, "Ноль обязателен");
         }

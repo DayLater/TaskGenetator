@@ -7,12 +7,12 @@ namespace TaskEngine.Tasks.Elements
     {
         public IList<int> Variants { get; }
         public int RightAnswer { get; }
-        public IMathSet<int> TaskSet { get; }
+        public IMathSet<int> Set { get; }
 
-        public NumberBelongsSetTask(int rightAnswer, IList<int> variants, IMathSet<int> taskSet)
+        public NumberBelongsSetTask(int rightAnswer, IList<int> variants, IMathSet<int> set)
         {
             Variants = variants;
-            TaskSet = taskSet;
+            Set = set;
             RightAnswer = rightAnswer;
         }
     }

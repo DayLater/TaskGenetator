@@ -31,8 +31,8 @@ namespace WinGenerator.Views.GeneratorsViews
             var configTable = AddTable(1, 0);
             configTable.AddColumn(50);
             configTable.AddColumn(50);
-            _minCoefficientNumeric = configTable.AddLabeledNumeric(0, 0, "Минимальный коэффициент при n", -10);
-            _maxCoefficientNumeric = configTable.AddLabeledNumeric(1, 0, "Максимальный коэффициент при n", 10);
+            _minCoefficientNumeric = configTable.AddLabeledNumeric(0, 0, "Минимальный коэффициент при n");
+            _maxCoefficientNumeric = configTable.AddLabeledNumeric(1, 0, "Максимальный коэффициент при n");
         }
         
         public override string Id => TaskIds.CharacteristicPropertyTask;

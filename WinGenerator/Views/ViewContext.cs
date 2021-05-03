@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TaskEngine;
 using TaskEngine.Contexts;
+using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Views;
 using TaskEngine.Views.TaskGenerators;
 using WinGenerator.Views.GeneratorsViews;
@@ -21,8 +22,10 @@ namespace WinGenerator.Views
         private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
-        public ViewContext(List<string> taskIds)
+        public ViewContext(List<string> taskIds, TaskGeneratorContext taskGeneratorContext)
         {
+            var generatingViewFactory = new GeneratingViewFactory();
+            
             INumberBelongsSetGeneratorView numberBelongsSetGeneratorView = new NumberBelongsSetGeneratorView();
             AddTaskView(numberBelongsSetGeneratorView);
             INumbersBelongSetGeneratorView numbersBelongSetGeneratorView = new NumbersBelongSetGeneratorView();
@@ -31,7 +34,9 @@ namespace WinGenerator.Views
             AddTaskView(symbolBelongsSetView);
             ISymbolsBelongSetView symbolsBelongSetView = new SymbolsBelongSetGeneratorView();
             AddTaskView(symbolsBelongSetView);
-            
+            var numberBelongBorderSetGeneratorView = generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongBorderedSetTaskGenerator>(), TaskIds.NumberBelongsBorderedSetTask);
+            AddTaskView(numberBelongBorderSetGeneratorView);
+
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
             AddTaskView(VariantsCharacteristicPropertyGeneratorView);
             

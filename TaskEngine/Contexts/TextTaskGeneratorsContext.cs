@@ -20,6 +20,7 @@ namespace TaskEngine.Contexts
             Add(new NumbersBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTaskGenerator>()));
             Add(new SymbolBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator>()));
             Add(new SymbolsBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator>()));
+            Add(new NumberBelongBorderedSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongBorderedSetTaskGenerator>()));
             
             Add(new CharacteristicPropertyTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertyTaskGenerator>()));
             Add(new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTaskGenerator>()));

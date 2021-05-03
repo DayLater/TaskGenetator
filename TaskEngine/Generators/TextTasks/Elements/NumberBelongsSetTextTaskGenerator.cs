@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
@@ -22,7 +21,7 @@ namespace TaskEngine.Generators.TextTasks.Elements
         public ITextTask Generate()
         {
             var task = _taskGenerator.Generate();
-            var writtenSet = _setWriter.Write(task.TaskSet);
+            var writtenSet = _setWriter.Write(task.Set);
             var answerIndex = task.Variants.IndexOf(task.RightAnswer);
             var answer = (answerIndex + 1).ToString();
             var variants = task.Variants.Select(v => v.ToString());

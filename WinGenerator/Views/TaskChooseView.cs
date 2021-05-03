@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using TaskEngine;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
 using WinGenerator.Views.GeneratorsViews;
@@ -25,12 +24,7 @@ namespace WinGenerator.Views
         public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds)
         {
             _generatorViews = generatorViews;
-            _checkedListBox = new CheckedListBox
-            {
-                Dock = DockStyle.Fill,
-                DataSource = taskIds
-            };
-
+            
             RowStyles.Clear();
             AddRow(60);
             AddRow(40);
@@ -40,7 +34,7 @@ namespace WinGenerator.Views
             topTable.AddColumn(40);
             topTable.AddColumn(60);
             topTable.AddRow(100);
-            topTable.AddControl(_checkedListBox, 0, 0);
+            _checkedListBox = topTable.AddCheckedListBox(0, 0, taskIds);
             
             var exampleTable = topTable.AddTable(1, 0);
             exampleTable.AddRow(15);

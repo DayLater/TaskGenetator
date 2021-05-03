@@ -31,8 +31,8 @@ namespace WinGenerator.Views.GeneratorsViews
             AddColumn(50);
             AddColumn(50);
 
-            _maxCountNumeric = AddLabeledNumeric(0, 0, "Максимальное количество элеметнтов", 10);
-            _minCountNumeric = AddLabeledNumeric(1, 0, "Минимальное количество элементов", 6);
+            _maxCountNumeric = AddLabeledNumeric(0, 0, "Максимальное количество элеметнтов");
+            _minCountNumeric = AddLabeledNumeric(1, 0, "Минимальное количество элементов");
         }
 
         public override void Activate()

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
+using TaskEngine.Contexts;
 using TaskEngine.DocWriters;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.Elements;
-using TaskEngine.Generators.TextTasks;
 using TaskEngine.Presenters;
 using TaskEngine.Presenters.Tasks;
 using TaskEngine.Presenters.Tasks.Elements;
 using TaskEngine.Views.TaskGenerators;
 
-namespace TaskEngine.Contexts
+namespace WinGenerator
 {
     public class PresentersContext
     {
@@ -30,7 +30,7 @@ namespace TaskEngine.Contexts
             
             AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
             AddTaskPresenter(new VariantsSubSetTaskPresenter());
-            AddTaskPresenter(new SubSetTaskPresenter(textTaskGeneratorsContext.Get<SubSetTextTaskGenerator>(), viewContext.Empty));
+            AddTaskPresenter(new SubSetTaskPresenter());
         }
 
         private void AddTaskPresenter(IPresenter presenter) => _taskPresenters.Add(presenter);

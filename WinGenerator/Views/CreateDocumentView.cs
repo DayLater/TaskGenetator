@@ -35,7 +35,7 @@ namespace WinGenerator.Views
             AddRow(34);
             AddColumn(100);
             _fileNameTextBox = AddTextBox(0, 0);
-            _fileCountNumeric = AddNumeric(0, 1, 4);
+            _fileCountNumeric = AddNumeric(0, 1);
             _generateButton = AddButton(0, 2, "Создать");
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using TaskEngine.Views;
 
@@ -13,7 +14,18 @@ namespace WinGenerator.CustomControls
         
         public void AddRow(int height) => RowStyles.Add(new RowStyle(SizeType.Percent, height));
         public void AddColumn(int width) => ColumnStyles.Add(new ColumnStyle(SizeType.Percent, width));
-        public void AddControl(Control control, int column, int row) => Controls.Add(control, column, row);
+        
+        public void AddControl(Control control, int column, int row)
+        {
+            Controls.Add(control, column, row);
+        }
+
+        public CheckedListBox AddCheckedListBox(int column, int row, List<string> dataSource)
+        {
+            var list = new CheckedListBox() {Dock = DockStyle.Fill, DataSource = dataSource};
+            AddControl(list, column, row);
+            return list;
+        }
 
         public PercentTableLayoutPanel AddTable(int column, int row)
         {
@@ -43,29 +55,30 @@ namespace WinGenerator.CustomControls
             return button;
         }
         
-        public NumericUpDown AddNumeric(int column, int row, int startValue)
+        public NumericUpDown AddNumeric(int column, int row)
         {
             var numericUpDown = new NumericUpDown
             {
-                TextAlign = HorizontalAlignment.Center, Minimum = -100, Maximum = 100, Value = startValue, UpDownAlign = LeftRightAlignment.Left,
+                TextAlign = HorizontalAlignment.Center, Minimum = -100, Maximum = 100, UpDownAlign = LeftRightAlignment.Left,
                 Dock = DockStyle.Top
             };
             AddControl(numericUpDown, column, row);
             return numericUpDown;
         }
         
-        public LabeledNumericControl AddLabeledNumeric(int column, int row, string text, int startValue)
+        public LabeledNumericControl AddLabeledNumeric(int column, int row, string text)
         {
-            var labeledNumericControl = CreateLabeledNumericControl(text, startValue);
+            var labeledNumericControl = CreateLabeledNumericControl(text);
             AddControl(labeledNumericControl, column, row);
             return labeledNumericControl;
         }
         
-        public LabeledNumericControl CreateLabeledNumericControl(string text, int startValue) => new LabeledNumericControl(text, startValue) {Dock = DockStyle.Fill};
+        public LabeledNumericControl CreateLabeledNumericControl(string text) => new LabeledNumericControl(text) {Dock = DockStyle.Fill};
+        public CheckBox CreateCheckBox(string text) => new IdentifiedCheckBox(text) {Dock = DockStyle.Fill};
 
         public CheckBox AddCheckBox(int column, int row, string text)
         {
-            var checkBox = new CheckBox {Dock = DockStyle.Fill, Text = text};
+            var checkBox = CreateCheckBox(text);
             AddControl(checkBox, column, row);
             return checkBox;
         }

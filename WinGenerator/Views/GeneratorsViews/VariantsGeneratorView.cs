@@ -16,7 +16,7 @@ namespace WinGenerator.Views.GeneratorsViews
             
             _variantsView = AddTable(0, 0);
             _variantsView.AddRow(height);
-            _variantsNumeric = _variantsView.AddLabeledNumeric(0, 0,"Количество вариантов", 4);
+            _variantsNumeric = _variantsView.AddLabeledNumeric(0, 0,"Количество вариантов");
         }
 
         protected void OnVariantCountChanged(object sender, EventArgs e)
