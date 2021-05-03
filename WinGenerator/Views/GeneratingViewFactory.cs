@@ -12,8 +12,7 @@ namespace WinGenerator.Views
         public View Create(Generator generator, string id, int rowCount = 1)
         {
             var values = generator.Values.ToList();
-            var count = values.Count % 2 == 0 ? values.Count : values.Count + 1;
-            var columnCount = count / rowCount;
+            var columnCount = (int) Math.Ceiling((float)values.Count / rowCount);
             
             var view = new GeneratingView(id);
             var rowScale = 100 / rowCount;
@@ -25,6 +24,8 @@ namespace WinGenerator.Views
                 view.AddRow(rowScale);
                 for (int column = 0; column < columnCount; column++)
                 {
+                    if (counter >= values.Count)
+                        break;
                     view.AddColumn(columnScale);
                     var value = values[counter];
                     var control = GetControl(value);

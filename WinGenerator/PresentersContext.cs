@@ -25,8 +25,6 @@ namespace WinGenerator
             
             AddTaskPresenter(new NumberBelongsSetTaskPresenter(viewContext.GetView<INumberBelongsSetGeneratorView>(), generatorContext.Get<NumberBelongsSetTaskGenerator>()));
             AddTaskPresenter(new NumbersBelongSetTaskPresenter(viewContext.GetView<INumbersBelongSetGeneratorView>(), generatorContext.Get<NumbersBelongSetTaskGenerator>()));
-            AddTaskPresenter(new SymbolBelongSetTaskPresenter(viewContext.GetView<ISymbolBelongsSetView>(), generatorContext.Get<SymbolBelongsSetTaskGenerator>()));
-            AddTaskPresenter(new SymbolsBelongSetPresenter(viewContext.GetView<ISymbolsBelongSetView>(), generatorContext.Get<SymbolsBelongSetTaskGenerator>()));
             
             AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
             AddTaskPresenter(new VariantsSubSetTaskPresenter());

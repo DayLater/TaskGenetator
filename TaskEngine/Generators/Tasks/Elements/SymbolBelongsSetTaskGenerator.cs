@@ -4,14 +4,22 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks.Elements;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolBelongsSetTaskGenerator: IVariantsTaskGenerator
+    public class SymbolBelongsSetTaskGenerator: Generator, IVariantsTaskGenerator
     {
         private readonly Random _random = new Random();
-        public SymbolMathSetGenerator SetGenerator { get; }= new SymbolMathSetGenerator();
-        public int VariantsCount { get; set; }
+        private SymbolMathSetGenerator SetGenerator { get; }= new SymbolMathSetGenerator();
+
+        public SymbolBelongsSetTaskGenerator()
+        {
+            Add(new IntValue(ValuesIds.VariantsCount) {Value = 4});
+
+            foreach (var value in SetGenerator.Values)
+                Add(value);
+        }
 
         public SymbolBelongToSetTask Generate()
         {
@@ -22,7 +30,8 @@ namespace TaskEngine.Generators.Tasks.Elements
             var answer = elements[answerIndex];
 
             var variants = new List<string> {answer};
-            while (variants.Count < VariantsCount)
+            var variantsCount = Get<IntValue>(ValuesIds.VariantsCount).Value;
+            while (variants.Count < variantsCount)
             {
                 var element = Symbols.GetRandomElementSymbol(elements.ToArray());
                 if (!variants.Contains(element))

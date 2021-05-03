@@ -78,12 +78,9 @@
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
         <Compile Include="Presenters\MathSetGeneratorPresenter.cs" />
-        <Compile Include="Presenters\SymbolSetGeneratorPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
         <Compile Include="Presenters\Tasks\Elements\NumberBelongsSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\Elements\NumbersBelongSetTaskPresenter.cs" />
-        <Compile Include="Presenters\Tasks\Elements\SymbolBelongSetTaskPresenter.cs" />
-        <Compile Include="Presenters\Tasks\Elements\SymbolsBelongSetPresenter.cs" />
         <Compile Include="Presenters\Tasks\SubSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\VariantsCharacteristicPropertyTaskPresenter.cs" />
         <Compile Include="DocWriters\DocWriter.cs" />

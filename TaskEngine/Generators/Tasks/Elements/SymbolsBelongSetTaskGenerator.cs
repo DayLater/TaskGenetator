@@ -4,24 +4,32 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks.Elements;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolsBelongSetTaskGenerator: IVariantsTaskGenerator
+    public class SymbolsBelongSetTaskGenerator: Generator, IVariantsTaskGenerator
     {
         private readonly Random _random = new Random();
-        public SymbolMathSetGenerator SetGenerator { get; } = new SymbolMathSetGenerator();
-        
-        public int VariantsCount { get; set; } = 6;
-        public int AnswersCount { get; set; } = 2;
+        private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();
 
+        public SymbolsBelongSetTaskGenerator()
+        {
+            Add(new IntValue(ValuesIds.VariantsCount) {Value = 6});
+            Add(new IntValue(ValuesIds.AnswersCount) {Value = 2});
+
+            foreach (var value in _setGenerator.Values)
+                Add(value);
+        }
+        
         public SymbolsBelongSetTask Generate()
         {
-            var set = SetGenerator.Generate();
+            var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
 
             var answers = new List<string>();
-            while (answers.Count < AnswersCount)
+            var answersCount = Get<IntValue>(ValuesIds.AnswersCount).Value;
+            while (answers.Count < answersCount)
             {
                 var elementIndex = _random.Next(0, elements.Count);
                 var element = elements[elementIndex];
@@ -30,7 +38,8 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var variants = new List<string>(answers);
-            while (variants.Count < VariantsCount)
+            var variantsCount = Get<IntValue>(ValuesIds.VariantsCount).Value;
+            while (variants.Count < variantsCount)
             {
                 var element = Symbols.GetRandomElementSymbol(elements.ToArray());
                 if (!variants.Contains(element))
