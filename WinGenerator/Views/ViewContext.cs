@@ -27,8 +27,10 @@ namespace WinGenerator.Views
             AddTaskView(numberBelongsSetGeneratorView);
             INumbersBelongSetGeneratorView numbersBelongSetGeneratorView = new NumbersBelongSetGeneratorView();
             AddTaskView(numbersBelongSetGeneratorView);
-            ISymbolBelongToSetView symbolBelongToSetView = new SymbolBelongSetGeneratorView();
-            AddTaskView(symbolBelongToSetView);
+            ISymbolBelongsSetView symbolBelongsSetView = new SymbolBelongSetGeneratorView();
+            AddTaskView(symbolBelongsSetView);
+            ISymbolsBelongSetView symbolsBelongSetView = new SymbolsBelongSetGeneratorView();
+            AddTaskView(symbolsBelongSetView);
             
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
             AddTaskView(VariantsCharacteristicPropertyGeneratorView);

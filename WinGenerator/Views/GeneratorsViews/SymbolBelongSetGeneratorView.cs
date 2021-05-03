@@ -4,7 +4,7 @@ using TaskEngine.Views.TaskGenerators;
 
 namespace WinGenerator.Views.GeneratorsViews
 {
-    public class SymbolBelongSetGeneratorView: VariantsGeneratorView, ISymbolBelongToSetView
+    public class SymbolBelongSetGeneratorView: VariantsGeneratorView, ISymbolBelongsSetView
     {
         public override string Id => TaskIds.SymbolBelongsSetTask;
         public ISymbolMathSetGeneratorView SetGeneratorView { get; }

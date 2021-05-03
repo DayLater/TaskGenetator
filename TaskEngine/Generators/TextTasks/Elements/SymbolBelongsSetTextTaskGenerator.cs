@@ -6,10 +6,10 @@ namespace TaskEngine.Generators.TextTasks.Elements
 {
     public class SymbolBelongsSetTextTaskGenerator: ITextTaskGenerator
     {
-        private readonly SymbolBelongToSetTaskGenerator _taskGenerator;
+        private readonly SymbolBelongsSetTaskGenerator _taskGenerator;
         private readonly ISetWriter _setWriter;
 
-        public SymbolBelongsSetTextTaskGenerator(ISetWriter setWriter, SymbolBelongToSetTaskGenerator taskGenerator)
+        public SymbolBelongsSetTextTaskGenerator(ISetWriter setWriter, SymbolBelongsSetTaskGenerator taskGenerator)
         {
             _taskGenerator = taskGenerator;
             _setWriter = setWriter;

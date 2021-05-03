@@ -7,7 +7,7 @@ using TaskEngine.Tasks.Elements;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolBelongToSetTaskGenerator: IVariantsTaskGenerator
+    public class SymbolBelongsSetTaskGenerator: IVariantsTaskGenerator
     {
         private readonly Random _random = new Random();
         public SymbolMathSetGenerator SetGenerator { get; }= new SymbolMathSetGenerator();

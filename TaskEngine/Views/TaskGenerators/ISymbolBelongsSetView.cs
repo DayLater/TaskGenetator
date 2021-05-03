@@ -1,6 +1,6 @@
 ﻿namespace TaskEngine.Views.TaskGenerators
 {
-    public interface ISymbolBelongToSetView: IVariantsView
+    public interface ISymbolBelongsSetView: IVariantsView
     {
         ISymbolMathSetGeneratorView SetGeneratorView { get; }
     }

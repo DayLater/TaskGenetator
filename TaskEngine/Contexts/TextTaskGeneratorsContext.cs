@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Generators.TextTasks;
@@ -19,7 +18,8 @@ namespace TaskEngine.Contexts
         {
             Add(new NumberBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTaskGenerator>()));
             Add(new NumbersBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTaskGenerator>()));
-            Add(new SymbolBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongToSetTaskGenerator>()));
+            Add(new SymbolBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator>()));
+            Add(new SymbolsBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator>()));
             
             Add(new CharacteristicPropertyTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertyTaskGenerator>()));
             Add(new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTaskGenerator>()));

@@ -59,13 +59,15 @@
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumberBelongsSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumbersBelongSetTaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\Elements\SymbolBelongToSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Elements\SymbolBelongsSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\IVariantsTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\BorderSetOperationTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\CharacteristicPropertyTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\NumberBelongsSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\NumbersBelongSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\SymbolBelongsSetTextTaskGenerator.cs" />
+        <Compile Include="Generators\TextTasks\Elements\SymbolsBelongSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\ITextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\SetAnswerTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\SubSetTextTaskGenerator.cs" />
@@ -78,7 +80,8 @@
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
         <Compile Include="Presenters\Tasks\Elements\NumberBelongsSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\Elements\NumbersBelongSetTaskPresenter.cs" />
-        <Compile Include="Presenters\Tasks\Elements\SymbolBelongToSetTaskPresenter.cs" />
+        <Compile Include="Presenters\Tasks\Elements\SymbolBelongSetTaskPresenter.cs" />
+        <Compile Include="Presenters\Tasks\Elements\SymbolsBelongSetPresenter.cs" />
         <Compile Include="Presenters\Tasks\SubSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\VariantsCharacteristicPropertyTaskPresenter.cs" />
         <Compile Include="DocWriters\DocWriter.cs" />
@@ -125,6 +128,7 @@
         <Compile Include="Tasks\Elements\NumberBelongsSetTask.cs" />
         <Compile Include="Tasks\Elements\NumbersBelongSetTask.cs" />
         <Compile Include="Tasks\Elements\SymbolBelongToSetTask.cs" />
+        <Compile Include="Tasks\Elements\SymbolsBelongSetTask.cs" />
         <Compile Include="Tasks\ISetAnswerTask.cs" />
         <Compile Include="Tasks\ITask.cs" />
         <Compile Include="Tasks\IVariantsSetAnswerTask.cs" />
@@ -145,7 +149,8 @@
         <Compile Include="Views\TaskGenerators\INumberBelongsSetGeneratorView.cs" />
         <Compile Include="Views\TaskGenerators\INumbersBelongSetGeneratorView.cs" />
         <Compile Include="Views\TaskGenerators\ISeveralAnswersVariantsGeneratorView.cs" />
-        <Compile Include="Views\TaskGenerators\ISymbolBelongToSetView.cs" />
+        <Compile Include="Views\TaskGenerators\ISymbolBelongsSetView.cs" />
+        <Compile Include="Views\TaskGenerators\ISymbolsBelongSetView.cs" />
         <Compile Include="Views\TaskGenerators\IVariantsCharacteristicPropertyGeneratorView.cs" />
         <Compile Include="Views\TaskGenerators\IVariantsView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />

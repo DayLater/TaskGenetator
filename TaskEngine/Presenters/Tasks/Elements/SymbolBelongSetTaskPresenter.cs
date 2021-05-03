@@ -3,12 +3,12 @@ using TaskEngine.Views.TaskGenerators;
 
 namespace TaskEngine.Presenters.Tasks.Elements
 {
-    public class SymbolBelongToSetTaskPresenter: IPresenter
+    public class SymbolBelongSetTaskPresenter: IPresenter
     {
-        private readonly ISymbolBelongToSetView _view;
-        private readonly SymbolBelongToSetTaskGenerator _taskGenerator;
+        private readonly ISymbolBelongsSetView _view;
+        private readonly SymbolBelongsSetTaskGenerator _taskGenerator;
 
-        public SymbolBelongToSetTaskPresenter(ISymbolBelongToSetView view, SymbolBelongToSetTaskGenerator taskGenerator)
+        public SymbolBelongSetTaskPresenter(ISymbolBelongsSetView view, SymbolBelongsSetTaskGenerator taskGenerator)
         {
             _view = view;
             _taskGenerator = taskGenerator;
