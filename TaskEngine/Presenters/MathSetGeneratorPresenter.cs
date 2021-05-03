@@ -5,10 +5,10 @@ namespace TaskEngine.Presenters
 {
     public class MathSetGeneratorPresenter: IPresenter
     {
-        private readonly IMathSetGeneratorView _view;
+        private readonly IIntMathSetGeneratorView _view;
         private readonly IntMathSetGenerator _intMathSetGenerator;
 
-        public MathSetGeneratorPresenter(IMathSetGeneratorView view, IntMathSetGenerator intMathSetGenerator)
+        public MathSetGeneratorPresenter(IIntMathSetGeneratorView view, IntMathSetGenerator intMathSetGenerator)
         {
             _view = view;
             _intMathSetGenerator = intMathSetGenerator;

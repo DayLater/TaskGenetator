@@ -2,7 +2,7 @@
 
 namespace TaskEngine.Views
 {
-    public interface IMathSetGeneratorView: IView
+    public interface IIntMathSetGeneratorView: IView
     {
         event Action<int> ElementsMinCountChanged;
         event Action<int> ElementsMaxCountChanged;

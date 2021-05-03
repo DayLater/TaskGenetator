@@ -16,6 +16,8 @@ namespace TaskEngine.Generators.TextTasks.Elements
             _taskGenerator = taskGenerator;
         }
 
+        public string Id => TaskIds.NumbersBelongSetTask;
+
         public ITextTask Generate()
         {
             var task = _taskGenerator.Generate();

@@ -1,22 +1,23 @@
 ﻿using System.Linq;
 using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class CharacteristicPropertySetAnswerTextTaskGenerator: SetAnswerTextTaskGenerator<CharacteristicPropertySetAnswerTask>
+    public class CharacteristicPropertyTextTaskGenerator: SetAnswerTextTaskGenerator
     {
         private readonly ISetWriter _setWriter;
         private readonly CharacteristicPropertyTaskGenerator _taskGenerator;
 
-        public CharacteristicPropertySetAnswerTextTaskGenerator(ISetWriter setWriter, CharacteristicPropertyTaskGenerator taskGenerator)
+        public CharacteristicPropertyTextTaskGenerator(ISetWriter setWriter, CharacteristicPropertyTaskGenerator taskGenerator)
         {
             _setWriter = setWriter;
             _taskGenerator = taskGenerator;
         }
-        
+
+        public override string Id => TaskIds.CharacteristicPropertyTask;
+
         public override ITextTask Generate()
         {
             var task = _taskGenerator.Generate();

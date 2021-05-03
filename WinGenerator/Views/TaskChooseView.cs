@@ -22,13 +22,13 @@ namespace WinGenerator.Views
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
         public event Action Activated = () => { };
         
-        public TaskChooseView(GeneratorViews generatorViews)
+        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds)
         {
             _generatorViews = generatorViews;
             _checkedListBox = new CheckedListBox
             {
                 Dock = DockStyle.Fill,
-                DataSource = TaskIds.Ids,
+                DataSource = taskIds
             };
 
             RowStyles.Clear();

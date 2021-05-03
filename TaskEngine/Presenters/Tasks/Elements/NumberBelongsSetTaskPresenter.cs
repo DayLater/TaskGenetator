@@ -13,9 +13,9 @@ namespace TaskEngine.Presenters.Tasks.Elements
             _view = view;
             _taskGenerator = taskGenerator;
             
-            var mathSetPresenter = new MathSetGeneratorPresenter(view.MathSetGeneratorView, taskGenerator.IntMathSetGenerator);
+            var mathSetPresenter = new MathSetGeneratorPresenter(view.IntMathSetGeneratorView, taskGenerator.IntMathSetGenerator);
 
-            view.VariantsCountChanged += variants => _taskGenerator.VariantCount = variants;
+            view.VariantsCountChanged += variants => _taskGenerator.VariantsCount = variants;
         }
     }
 }

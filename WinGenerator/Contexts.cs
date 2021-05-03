@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
+using TaskEngine.Contexts;
 using TaskEngine.Writers;
+using WinGenerator.Views;
 
-namespace TaskEngine.Contexts
+namespace WinGenerator
 {
     public class Contexts
     {
@@ -12,18 +15,18 @@ namespace TaskEngine.Contexts
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
-        public Contexts(ISetWriter setWriter, Random random, IViewContext viewContext)
+        public Contexts(ISetWriter setWriter, Random random)
         {
-            ViewContext = viewContext;
             TaskGeneratorsContext = new TaskGeneratorContext(random);
             TextTaskGeneratorsContext = new TextTaskGeneratorsContext(setWriter, TaskGeneratorsContext);
 
-            foreach (var (id, generator) in TextTaskGeneratorsContext.Generators)
+            foreach (var generator in TextTaskGeneratorsContext.Generators)
             {
-                ExamplesContext.Add(id, generator.Generate().Task);
+                ExamplesContext.Add(generator.Id, generator.Generate().Task);
             }
-            
-            PresentersContext = new PresentersContext(TaskGeneratorsContext, TextTaskGeneratorsContext, viewContext, UserContext, ExamplesContext);
+
+            ViewContext = new ViewContext(TextTaskGeneratorsContext.Generators.Select(g => g.Id).ToList());
+            PresentersContext = new PresentersContext(TaskGeneratorsContext, TextTaskGeneratorsContext, ViewContext, UserContext, ExamplesContext);
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using TaskEngine.Tasks;
-
-namespace TaskEngine.Generators.Tasks
+﻿namespace TaskEngine.Generators.Tasks
 {
-    public interface IVariantsTaskGenerator<out TTask>: ITaskGenerator
-        where TTask: ITask
+    public interface IVariantsTaskGenerator : ITaskGenerator
     {
-        int VariantCount { get; set; }
+        int VariantsCount { get; set; }
     }
 }

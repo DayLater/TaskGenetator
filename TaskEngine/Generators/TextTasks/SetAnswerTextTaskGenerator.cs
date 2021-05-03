@@ -3,15 +3,15 @@ using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public abstract class SetAnswerTextTaskGenerator<TTask>: ITextTaskGenerator
-        where TTask: ISetAnswerTask<int>
+    public abstract class SetAnswerTextTaskGenerator : ITextTaskGenerator
     {
-        protected virtual string WriteAnswer(IVariantsSetAnswerTask<int> variantsSetAnswerTask)
+        protected virtual string WriteAnswer<T>(IVariantsSetAnswerTask<T> variantsSetAnswerTask)
         {
             var rightAnswerIndex = variantsSetAnswerTask.Variants.IndexOf(variantsSetAnswerTask.RightAnswer);
             return $"{rightAnswerIndex + 1}";
         }
-        
+
+        public abstract string Id { get; }
         public abstract ITextTask Generate();
     }
 }

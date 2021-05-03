@@ -9,9 +9,9 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class VariantsSubSetTaskGenerator: IVariantsTaskGenerator<VariantsSetAnswerSubSetTask>
+    public class VariantsSubSetTaskGenerator: IVariantsTaskGenerator
     {
-        public int VariantCount { get; set; } = 4;
+        public int VariantsCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;
         
         private readonly IntMathSetGenerator _generator;
@@ -32,7 +32,7 @@ namespace TaskEngine.Generators.Tasks
             var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ShuffleToList();
             var variants = new List<List<int>>() {rightSubSet};
 
-            while (variants.Count < VariantCount)
+            while (variants.Count < VariantsCount)
             {
                 var variant = GetVariant(set);
                 if (!(new HashSet<int>(variant).SetEquals(rightSubSet)))

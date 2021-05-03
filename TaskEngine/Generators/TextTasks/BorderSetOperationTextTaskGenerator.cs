@@ -17,7 +17,9 @@ namespace TaskEngine.Generators.TextTasks
             _setWriter = setWriter;
             _taskGenerator = taskGenerator;
         }
-        
+
+        public string Id => TaskIds.BorderSetOperationTask;
+
         public ITextTask Generate()
         {
             var task = _taskGenerator.Generate();

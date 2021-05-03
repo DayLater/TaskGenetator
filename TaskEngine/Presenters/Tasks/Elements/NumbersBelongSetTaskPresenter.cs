@@ -7,9 +7,9 @@ namespace TaskEngine.Presenters.Tasks.Elements
     {
         public NumbersBelongSetTaskPresenter(INumbersBelongSetGeneratorView view, NumbersBelongSetTaskGenerator taskGenerator)
         {
-            var mathGeneratorPresenter = new MathSetGeneratorPresenter(view.MathSetGeneratorView, taskGenerator.IntMathSetGenerator);
+            var mathGeneratorPresenter = new MathSetGeneratorPresenter(view.IntMathSetGeneratorView, taskGenerator.IntMathSetGenerator);
             view.AnswerCountChanged += answerCount => taskGenerator.AnswerCount = answerCount;
-            view.VariantsCountChanged += variantCount => taskGenerator.VariantCount = variantCount;
+            view.VariantsCountChanged += variantCount => taskGenerator.VariantsCount = variantCount;
 
             view.AnswerCount = 2;
             view.VariantsCount = 6;

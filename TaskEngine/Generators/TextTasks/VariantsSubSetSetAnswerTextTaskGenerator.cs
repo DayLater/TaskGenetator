@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Helpers;
-using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class VariantsSubSetSetAnswerTextTaskGenerator: SetAnswerTextTaskGenerator<VariantsSetAnswerSubSetTask>
+    public class VariantsSubSetSetAnswerTextTaskGenerator: SetAnswerTextTaskGenerator
     {
         private readonly ISetWriter _setWriter;
         private readonly VariantsSubSetTaskGenerator _taskGenerator;
@@ -17,6 +16,8 @@ namespace TaskEngine.Generators.TextTasks
             _setWriter = setWriter;
             _taskGenerator = taskGenerator;
         }
+
+        public override string Id => TaskIds.VariantsSubSetTask;
 
         public override ITextTask Generate()
         {

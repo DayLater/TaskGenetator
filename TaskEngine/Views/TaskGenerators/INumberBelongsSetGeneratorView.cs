@@ -2,6 +2,6 @@
 {
     public interface INumberBelongsSetGeneratorView: IView, IVariantsView
     {
-        IMathSetGeneratorView MathSetGeneratorView { get; }
+        IIntMathSetGeneratorView IntMathSetGeneratorView { get; }
     }
 }

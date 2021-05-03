@@ -25,13 +25,13 @@ namespace TaskEngine.Contexts
             
             AddTaskPresenter(new NumberBelongsSetTaskPresenter(viewContext.GetView<INumberBelongsSetGeneratorView>(), generatorContext.Get<NumberBelongsSetTaskGenerator>()));
             AddTaskPresenter(new NumbersBelongSetTaskPresenter(viewContext.GetView<INumbersBelongSetGeneratorView>(), generatorContext.Get<NumbersBelongSetTaskGenerator>()));
+            AddTaskPresenter(new SymbolBelongToSetTaskPresenter(viewContext.GetView<ISymbolBelongToSetView>(), generatorContext.Get<SymbolBelongToSetTaskGenerator>()));
+            
             AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
             AddTaskPresenter(new VariantsSubSetTaskPresenter());
             AddTaskPresenter(new SubSetTaskPresenter(textTaskGeneratorsContext.Get<SubSetTextTaskGenerator>(), viewContext.Empty));
         }
 
         private void AddTaskPresenter(IPresenter presenter) => _taskPresenters.Add(presenter);
-
-        public IEnumerable<IPresenter> TaskPresenters => _taskPresenters;
     }
 }

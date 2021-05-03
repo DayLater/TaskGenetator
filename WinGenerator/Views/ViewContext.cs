@@ -21,13 +21,14 @@ namespace WinGenerator.Views
         private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
-        public ViewContext()
+        public ViewContext(List<string> taskIds)
         {
             INumberBelongsSetGeneratorView numberBelongsSetGeneratorView = new NumberBelongsSetGeneratorView();
             AddTaskView(numberBelongsSetGeneratorView);
-
             INumbersBelongSetGeneratorView numbersBelongSetGeneratorView = new NumbersBelongSetGeneratorView();
             AddTaskView(numbersBelongSetGeneratorView);
+            ISymbolBelongToSetView symbolBelongToSetView = new SymbolBelongSetGeneratorView();
+            AddTaskView(symbolBelongToSetView);
             
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
             AddTaskView(VariantsCharacteristicPropertyGeneratorView);
@@ -37,7 +38,7 @@ namespace WinGenerator.Views
             AddTaskView(Empty, TaskIds.BorderSetOperationTask);
             AddTaskView(Empty, TaskIds.VariantsSubSetTask);
 
-            var taskChooseView = new TaskChooseView(_generatorViews);
+            var taskChooseView = new TaskChooseView(_generatorViews, taskIds);
             TaskChooseView = taskChooseView;
 
             var createViewDocument = new CreateDocumentView();

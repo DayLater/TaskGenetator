@@ -1,5 +1,4 @@
-﻿using System;
-using TaskEngine;
+﻿using TaskEngine;
 using TaskEngine.Views;
 using TaskEngine.Views.TaskGenerators;
 
@@ -7,13 +6,13 @@ namespace WinGenerator.Views.GeneratorsViews
 {
     public class NumbersBelongSetGeneratorView: SeveralAnswersVariantGeneratorView, INumbersBelongSetGeneratorView
     {
-        public IMathSetGeneratorView  MathSetGeneratorView { get; }
+        public IIntMathSetGeneratorView  IntMathSetGeneratorView { get; }
         public override string Id => TaskIds.NumbersBelongSetTask;
 
         public NumbersBelongSetGeneratorView(): base(20)
         {
-            var mathSetView = new MathSetGeneratorSettingsView();
-            MathSetGeneratorView = mathSetView;
+            var mathSetView = new IntMathSetGeneratorSettingsView();
+            IntMathSetGeneratorView = mathSetView;
             AddControl(mathSetView, 1, 0);
         }
 
@@ -21,14 +20,14 @@ namespace WinGenerator.Views.GeneratorsViews
         {
             _answerCountNumeric.Numeric.ValueChanged += OnAnswerCountChanged;
             _variantsNumeric.Numeric.ValueChanged += OnVariantCountChanged;
-            MathSetGeneratorView.Activate();
+            IntMathSetGeneratorView.Activate();
         }
 
         public override void Deactivate()
         {
             _answerCountNumeric.Numeric.ValueChanged -= OnAnswerCountChanged;
             _variantsNumeric.Numeric.ValueChanged -= OnVariantCountChanged;
-            MathSetGeneratorView.Deactivate();
+            IntMathSetGeneratorView.Deactivate();
         }
     }
 }

@@ -50,6 +50,24 @@ namespace TaskEngine
             var index = _random.Next(0, Names.Count);
             return Names[index];
         }
+
+        public static string GetRandomElementSymbol(params string[] except)
+        {
+            if (except.Length > 0)
+            {
+                string symbol;
+                do
+                {
+                    var i = _random.Next(0, Elements.Count);
+                    symbol = Elements[i];
+                } while (except.Contains(symbol));
+
+                return symbol;
+            }
+            
+            var index = _random.Next(0, Elements.Count);
+            return Elements[index];
+        }
         
         public static IReadOnlyList<string> Elements { get; } = new List<string>
         {

@@ -5,7 +5,7 @@ using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views.GeneratorsViews
 {
-    public class MathSetGeneratorSettingsView: View, IMathSetGeneratorView
+    public class IntMathSetGeneratorSettingsView: View, IIntMathSetGeneratorView
     {
         public override string Id => "Настройки генератора множеств";
 
@@ -19,7 +19,7 @@ namespace WinGenerator.Views.GeneratorsViews
         private readonly LabeledNumericControl _negativeElementsMinCountNumeric;
         private readonly CheckBox _isZeroNecessaryCheckBox;
 
-        public MathSetGeneratorSettingsView()
+        public IntMathSetGeneratorSettingsView()
         {
             AddRow(50);
             AddRow(50);

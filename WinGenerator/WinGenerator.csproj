@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts.cs" />
     <Compile Include="CustomControls\LabeledNumericControl.cs" />
     <Compile Include="CustomControls\PercentTableLayoutPanel.cs" />
     <Compile Include="MainForm.cs">
@@ -59,10 +60,12 @@
     <Compile Include="Views\CreateDocumentView.cs" />
     <Compile Include="Views\EmptyView.cs" />
     <Compile Include="Views\GeneratorsViews\GeneratorViews.cs" />
-    <Compile Include="Views\GeneratorsViews\MathSetGeneratorSettingsView.cs" />
+    <Compile Include="Views\GeneratorsViews\IntMathSetGeneratorSettingsView.cs" />
     <Compile Include="Views\GeneratorsViews\NumberBelongsSetGeneratorView.cs" />
     <Compile Include="Views\GeneratorsViews\NumbersBelongSetGeneratorView.cs" />
     <Compile Include="Views\GeneratorsViews\SeveralAnswersVariantGeneratorView.cs" />
+    <Compile Include="Views\GeneratorsViews\SymbolBelongSetGeneratorView.cs" />
+    <Compile Include="Views\GeneratorsViews\SymbolMathSetGeneratorView.cs" />
     <Compile Include="Views\GeneratorsViews\VariantsCharacteristicPropertyView.cs" />
     <Compile Include="Views\GeneratorsViews\VariantsGeneratorView.cs" />
     <Compile Include="Views\View.cs" />

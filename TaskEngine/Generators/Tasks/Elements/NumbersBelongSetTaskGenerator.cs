@@ -7,7 +7,7 @@ using TaskEngine.Tasks.Elements;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class NumbersBelongSetTaskGenerator: IVariantsTaskGenerator<NumbersBelongSetTask>
+    public class NumbersBelongSetTaskGenerator: IVariantsTaskGenerator
     {
         public IntMathSetGenerator IntMathSetGenerator { get; } = new IntMathSetGenerator();
         private readonly Random _random = new Random();
@@ -27,7 +27,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var variants = new List<int>(answers);
-            while (variants.Count < VariantCount)
+            while (variants.Count < VariantsCount)
             {
                 var element = _random.Next(IntMathSetGenerator.MinValue, IntMathSetGenerator.MaxValue);
                 if (!variants.Contains(element) && !elements.Contains(element))
@@ -37,7 +37,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             return new NumbersBelongSetTask(answers, variants.ShuffleToList(), set);
         }
 
-        public int VariantCount { get; set; } = 6;
+        public int VariantsCount { get; set; } = 6;
         public int AnswerCount { get; set; } = 2;
     }
 }

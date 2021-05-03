@@ -22,6 +22,8 @@ namespace TaskEngine.Generators.TextTasks
             return _setWriter.Write(setAnswerTask.TaskSet, false);
         }
 
+        public string Id => TaskIds.SubSetTask;
+
         public ITextTask Generate()
         {
             var setAnswerTask = _taskGenerator.Generate();

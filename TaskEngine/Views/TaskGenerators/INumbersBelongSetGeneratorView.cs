@@ -4,6 +4,6 @@ namespace TaskEngine.Views.TaskGenerators
 {
     public interface INumbersBelongSetGeneratorView: ISeveralAnswersVariantsGeneratorView
     {
-        IMathSetGeneratorView MathSetGeneratorView { get; }
+        IIntMathSetGeneratorView IntMathSetGeneratorView { get; }
     }
 }

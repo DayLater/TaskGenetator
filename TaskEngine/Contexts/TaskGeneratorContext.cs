@@ -16,6 +16,8 @@ namespace TaskEngine.Contexts
         {
             Add(new NumberBelongsSetTaskGenerator());
             Add(new NumbersBelongSetTaskGenerator());
+            Add(new SymbolBelongToSetTaskGenerator());
+            
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random)); 
             Add(new SubSetTaskGenerator(new IntMathSetGenerator()));
