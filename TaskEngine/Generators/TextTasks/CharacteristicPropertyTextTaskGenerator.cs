@@ -1,38 +1,35 @@
 ﻿using System.Linq;
 using TaskEngine.Generators.Tasks;
+using TaskEngine.Tasks;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class CharacteristicPropertyTextTaskGenerator: SetAnswerTextTaskGenerator
+    public class CharacteristicPropertyTextTaskGenerator: TextTaskGenerator<CharacteristicPropertySetAnswerTask>
     {
-        private readonly ISetWriter _setWriter;
-        private readonly CharacteristicPropertyTaskGenerator _taskGenerator;
-
-        public CharacteristicPropertyTextTaskGenerator(ISetWriter setWriter, CharacteristicPropertyTaskGenerator taskGenerator)
-        {
-            _setWriter = setWriter;
-            _taskGenerator = taskGenerator;
-        }
-
-        public override string Id => TaskIds.CharacteristicPropertyTask;
-
         public override ITextTask Generate()
         {
-            var task = _taskGenerator.Generate();
+            var task = GetTask();
             var answer = task.RightAnswer;
-            var writeSet = _setWriter.Write(answer);
-            
+            var writeSet = WriteSet(answer);
             var textTask = $"Дано множество {writeSet}." +
                            $"\nУкажите его характеристическое свойство.";
 
-            var variants = task.Variants
-                .Select(set => _setWriter.WriteCharacteristicProperty(set))
-                .ToList();
-
+            var variants = task.Variants.Select(WriteCharacteristicProperty).ToList();
             var answerText = WriteAnswer(task);
             return new VariantsTextTask(textTask, answerText, variants);
+        }
+
+        private string WriteAnswer<T>(IVariantsSetAnswerTask<T> variantsSetAnswerTask)
+        {
+            var rightAnswerIndex = variantsSetAnswerTask.Variants.IndexOf(variantsSetAnswerTask.RightAnswer);
+            return $"{rightAnswerIndex + 1}";
+        }
+
+        public CharacteristicPropertyTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<CharacteristicPropertySetAnswerTask> taskGenerator) 
+            : base(setWriter, taskGenerator)
+        {
         }
     }
 }

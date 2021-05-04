@@ -6,7 +6,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class SubSetTaskGenerator: ITaskGenerator
+    public class SubSetTaskGenerator: Generator, ITaskGenerator<SubSetSetAnswerTask>
     {
         private readonly IntMathSetGenerator _generator;
 
@@ -14,6 +14,8 @@ namespace TaskEngine.Generators.Tasks
         {
             _generator = generator;
         }
+
+        public string Id => TaskIds.SubSetTask;
 
         public SubSetSetAnswerTask Generate()
         {

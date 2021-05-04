@@ -7,31 +7,23 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class BorderSetOperationTextTaskGenerator: ITextTaskGenerator
+    public class BorderSetOperationTextTaskGenerator: TextTaskGenerator<BorderSetOperationSetAnswerTask>
     {
-        private readonly ISetWriter _setWriter;
-        private readonly BorderSetOperationTaskGenerator _taskGenerator;
+        public BorderSetOperationTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<BorderSetOperationSetAnswerTask> taskGenerator)
+            : base(setWriter, taskGenerator) { }
 
-        public BorderSetOperationTextTaskGenerator(ISetWriter setWriter, BorderSetOperationTaskGenerator taskGenerator)
+        public override ITextTask Generate()
         {
-            _setWriter = setWriter;
-            _taskGenerator = taskGenerator;
-        }
-
-        public string Id => TaskIds.BorderSetOperationTask;
-
-        public ITextTask Generate()
-        {
-            var task = _taskGenerator.Generate();
+            var task = GetTask();
             var firstName = task.First.Name;
             var secondName = task.Second.Name;
-            var firstSet = _setWriter.Write(task.First);
-            var secondSet = _setWriter.Write(task.Second);
+            var firstSet = WriteSet(task.First);
+            var secondSet = WriteSet(task.Second);
             var operation = SetOperationHelper.GetString(task.Operation);
             
             var textTask = $"Найдите {operation} множеств {firstName} и {secondName}, если: {firstSet}, {secondSet}";
             var variants = task.Variants
-                .Select(variant => $"{_setWriter.Write(variant, false)}")
+                .Select(variant => $"{WriteSet(variant, false)}")
                 .ToList();
             
             var rightAnswer = WriteAnswer(task);
@@ -41,9 +33,11 @@ namespace TaskEngine.Generators.TextTasks
         private string WriteAnswer(BorderSetOperationSetAnswerTask setAnswerTask)
         {
             var index = setAnswerTask.Variants.IndexOf(setAnswerTask.RightAnswer) + 1;
-            var set = _setWriter.Write(setAnswerTask.RightAnswer, false);
+            var set = WriteSet(setAnswerTask.RightAnswer, false);
 
             return $"{index}) {set}";
         }
+
+
     }
 }

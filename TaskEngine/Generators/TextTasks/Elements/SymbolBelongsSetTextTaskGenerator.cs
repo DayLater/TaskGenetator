@@ -1,26 +1,19 @@
 ﻿using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks.Elements
 {
-    public class SymbolBelongsSetTextTaskGenerator: ITextTaskGenerator
+    public class SymbolBelongsSetTextTaskGenerator: TextTaskGenerator<SymbolBelongsSetTask>
     {
-        private readonly SymbolBelongsSetTaskGenerator _taskGenerator;
-        private readonly ISetWriter _setWriter;
-
         public SymbolBelongsSetTextTaskGenerator(ISetWriter setWriter, SymbolBelongsSetTaskGenerator taskGenerator)
-        {
-            _taskGenerator = taskGenerator;
-            _setWriter = setWriter;
-        }
+            : base(setWriter, taskGenerator) { }
 
-        public string Id => TaskIds.SymbolBelongsSetTask;
-
-        public ITextTask Generate()
+        public override ITextTask Generate()
         {
-            var task = _taskGenerator.Generate();
-            var writtenSet = _setWriter.Write(task.Set);
+            var task = GetTask();
+            var writtenSet = WriteSet(task.Set);
             var answerIndex = task.Variants.IndexOf(task.Answer);
             var answer = (answerIndex + 1).ToString();
             var writtenTask = $"Выберите элемент, принадлежащий множеству {writtenSet}.";

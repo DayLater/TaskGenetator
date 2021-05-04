@@ -8,17 +8,17 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolBelongsSetTaskGenerator: VariantsGenerator
+    public class SymbolBelongsSetTaskGenerator: VariantsGenerator<SymbolBelongsSetTask>
     {
         private readonly Random _random = new Random();
         private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();
 
-        public SymbolBelongsSetTaskGenerator()
+        public SymbolBelongsSetTaskGenerator() : base(TaskIds.SymbolBelongsSetTask)
         {
             Add(_setGenerator);
         }
 
-        public SymbolBelongToSetTask Generate()
+        public override SymbolBelongsSetTask Generate()
         {
             var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
@@ -35,7 +35,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(element);
             }
 
-            return new SymbolBelongToSetTask(variants.ShuffleToList(), answer, set);
+            return new SymbolBelongsSetTask(variants.ShuffleToList(), answer, set);
         }
     }
 }

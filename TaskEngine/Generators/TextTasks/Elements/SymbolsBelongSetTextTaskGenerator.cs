@@ -1,27 +1,20 @@
 ﻿using System.Linq;
-using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Generators.Tasks;
+using TaskEngine.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks.Elements
 {
-    public class SymbolsBelongSetTextTaskGenerator: ITextTaskGenerator
+    public class SymbolsBelongSetTextTaskGenerator: TextTaskGenerator<SymbolsBelongSetTask>
     {
-        private readonly SymbolsBelongSetTaskGenerator _taskGenerator;
-        private readonly ISetWriter _setWriter;
+        public SymbolsBelongSetTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<SymbolsBelongSetTask> taskGenerator) 
+            : base(setWriter, taskGenerator) { }
 
-        public SymbolsBelongSetTextTaskGenerator(ISetWriter setWriter, SymbolsBelongSetTaskGenerator taskGenerator)
+        public override ITextTask Generate()
         {
-            _taskGenerator = taskGenerator;
-            _setWriter = setWriter;
-        }
-
-        public string Id => TaskIds.SymbolsBelongSetTask;
-        
-        public ITextTask Generate()
-        {
-            var task = _taskGenerator.Generate();
-            var writtenSet = _setWriter.Write(task.Set);
+            var task = GetTask();
+            var writtenSet = WriteSet(task.Set);
             var answerIndexes = task.Answers.Where(a => task.Variants.Contains(a)).Select(a => task.Variants.IndexOf(a) + 1);
             
             var answer = "";
@@ -32,5 +25,7 @@ namespace TaskEngine.Generators.TextTasks.Elements
             var writtenTask = $"Выберите элемент, принадлежащий множеству {writtenSet}.";
             return new VariantsTextTask(writtenTask, answer, task.Variants);
         }
+
+
     }
 }

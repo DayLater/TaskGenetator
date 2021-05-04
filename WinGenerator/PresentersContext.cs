@@ -4,6 +4,7 @@ using TaskEngine.DocWriters;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Presenters;
 using TaskEngine.Presenters.Tasks;
+using TaskEngine.Tasks;
 
 namespace WinGenerator
 {
@@ -20,7 +21,7 @@ namespace WinGenerator
             TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
             CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), textTaskGeneratorsContext);
 
-            AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
+            AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator, CharacteristicPropertySetAnswerTask>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
             AddTaskPresenter(new VariantsSubSetTaskPresenter());
             AddTaskPresenter(new SubSetTaskPresenter());
         }

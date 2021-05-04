@@ -6,34 +6,27 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class SubSetTextTaskGenerator: ITextTaskGenerator
+    public class SubSetTextTaskGenerator: TextTaskGenerator<SubSetSetAnswerTask>
     {
-        private readonly ISetWriter _setWriter;
-        private readonly SubSetTaskGenerator _taskGenerator;
-
-        public SubSetTextTaskGenerator(ISetWriter setWriter, SubSetTaskGenerator taskGenerator)
-        {
-            _setWriter = setWriter;
-            _taskGenerator = taskGenerator;
-        }
-        
         private string WriteAnswer(SubSetSetAnswerTask setAnswerTask)
         {
-            return _setWriter.Write(setAnswerTask.TaskSet, false);
+            return WriteSet(setAnswerTask.TaskSet, false);
         }
-
-        public string Id => TaskIds.SubSetTask;
-
-        public ITextTask Generate()
+        
+        public override ITextTask Generate()
         {
-            var setAnswerTask = _taskGenerator.Generate();
-            var writeSet = _setWriter.Write(setAnswerTask.TaskSet);
-            var writeType = SubSetTypeHelper.GetNumbersType(setAnswerTask.TypeTask);
+            var task = GetTask();
+            var writeSet = WriteSet(task.TaskSet);
+            var writeType = SubSetTypeHelper.GetNumbersType(task.TypeTask);
             var textTask = $"Дано множество {writeSet}." +
                            $"\nВыделите его подмножество, элементами которого являются {writeType} числа";
 
-            var answer = WriteAnswer(setAnswerTask);
+            var answer = WriteAnswer(task);
             return new TextTask(textTask, answer);
+        }
+
+        public SubSetTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<SubSetSetAnswerTask> taskGenerator) : base(setWriter, taskGenerator)
+        {
         }
     }
 }

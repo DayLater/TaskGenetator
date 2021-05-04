@@ -5,12 +5,13 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Tasks;
 
 namespace TaskEngine.Contexts
 {
     public class TaskGeneratorContext
     {
-        private readonly Dictionary<Type, ITaskGenerator> _generators = new Dictionary<Type, ITaskGenerator>();
+        private readonly Dictionary<Type, object> _generators = new Dictionary<Type, object>();
         
         public TaskGeneratorContext(Random random)
         {
@@ -18,7 +19,7 @@ namespace TaskEngine.Contexts
             Add(new NumbersBelongSetTaskGenerator());
             Add(new SymbolBelongsSetTaskGenerator());
             Add(new SymbolsBelongSetTaskGenerator());
-            Add(new NumberBelongBorderedSetTaskGenerator());
+            Add(new NumberBelongsBorderedSetTaskGenerator());
             
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random)); 
@@ -28,13 +29,15 @@ namespace TaskEngine.Contexts
             Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random));
         }
 
-        public TGenerator Get<TGenerator>()
-            where TGenerator : ITaskGenerator
+        public TGenerator Get<TGenerator, TTask>()
+            where TGenerator : ITaskGenerator<TTask>
+            where TTask: ITask
         {
             return (TGenerator) _generators[typeof(TGenerator)];
         }
 
-        private void Add<TGenerator>(TGenerator generator) where TGenerator: ITaskGenerator
+        private void Add<TTask>(ITaskGenerator<TTask> generator) 
+            where TTask: ITask
         {
             _generators.Add(generator.GetType(), generator);
         }

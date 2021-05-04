@@ -8,17 +8,17 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class NumberBelongsSetTaskGenerator: VariantsGenerator
+    public class NumberBelongsSetTaskGenerator: VariantsGenerator<NumberBelongsSetTask>
     {
         private readonly IntMathSetGenerator _intMathSetGenerator = new IntMathSetGenerator();
         private readonly Random _random = new Random();
 
-        public NumberBelongsSetTaskGenerator()
+        public NumberBelongsSetTaskGenerator() : base(TaskIds.NumberBelongsSetTask)
         {
             Add(_intMathSetGenerator);
         }
 
-        public NumberBelongsSetTask Generate()
+        public override NumberBelongsSetTask Generate()
         {
             var set = _intMathSetGenerator.Generate();
             var elements = set.GetElements().ToList();

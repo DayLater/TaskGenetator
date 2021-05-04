@@ -3,9 +3,9 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks.Elements
 {
-    public class SymbolBelongToSetTask: ITask
+    public class SymbolBelongsSetTask: ITask
     {
-        public SymbolBelongToSetTask(List<string> variants, string answer, IMathSet<string> set)
+        public SymbolBelongsSetTask(List<string> variants, string answer, IMathSet<string> set)
         {
             Variants = variants;
             Answer = answer;

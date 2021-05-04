@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TaskEngine;
 using TaskEngine.Contexts;
 using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Tasks.Elements;
 using TaskEngine.Views;
 using TaskEngine.Views.TaskGenerators;
 using WinGenerator.Views.GeneratorsViews;
@@ -26,13 +27,13 @@ namespace WinGenerator.Views
         {
             var generatingViewFactory = new GeneratingViewFactory();
             
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongsSetTaskGenerator>(), TaskIds.NumberBelongsSetTask, 2));
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumbersBelongSetTaskGenerator>(), TaskIds.NumbersBelongSetTask, 2));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongsSetTaskGenerator, NumberBelongsSetTask>(), TaskIds.NumberBelongsSetTask, 2));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumbersBelongSetTaskGenerator, NumbersBelongSetTask>(), TaskIds.NumbersBelongSetTask, 2));
             
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator>(), TaskIds.SymbolBelongsSetTask));
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator>(), TaskIds.SymbolsBelongSetTask));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator, SymbolBelongsSetTask>(), TaskIds.SymbolBelongsSetTask));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator, SymbolsBelongSetTask>(), TaskIds.SymbolsBelongSetTask));
             
-            AddTaskView( generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongBorderedSetTaskGenerator>(), TaskIds.NumberBelongsBorderedSetTask));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongsBorderedSetTaskGenerator, NumberBelongsSetTask>(), TaskIds.NumberBelongsBorderedSetTask));
             
 
             VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
