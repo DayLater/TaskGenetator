@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Tasks.Elements;
 using TaskEngine.Tasks.Texts;
@@ -15,17 +16,9 @@ namespace TaskEngine.Generators.TextTasks.Elements
         {
             var task = GetTask();
             var writtenSet = WriteSet(task.Set);
-            var answerIndexes = task.Answers.Where(a => task.Variants.Contains(a)).Select(a => task.Variants.IndexOf(a) + 1);
-            
-            var answer = "";
-            foreach (var index in answerIndexes)
-                answer += $"{index}, ";
-            answer = answer.Remove(answer.Length - 2, 2);
-            
-            var writtenTask = $"Выберите элемент, принадлежащий множеству {writtenSet}.";
+            var answer = task.Answers.Select(a => task.Variants.IndexOf(a) + 1).GetStringRepresentation();
+            var writtenTask = $"Выберите все элементы, принадлежащий множеству {writtenSet}";
             return new VariantsTextTask(writtenTask, answer, task.Variants);
         }
-
-
     }
 }

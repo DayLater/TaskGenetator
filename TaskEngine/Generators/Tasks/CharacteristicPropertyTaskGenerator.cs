@@ -4,7 +4,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class CharacteristicPropertyTaskGenerator: VariantsGenerator<CharacteristicPropertySetAnswerTask>
+    public class CharacteristicPropertyTaskGenerator: VariantsGenerator<CharacteristicPropertyTask>
     {
         private readonly ExpressionSetGenerator _expressionSetGenerator;
         private readonly Random _random;
@@ -16,12 +16,12 @@ namespace TaskEngine.Generators.Tasks
             Add(_expressionSetGenerator);
         }
 
-        public override CharacteristicPropertySetAnswerTask Generate()
+        public override CharacteristicPropertyTask Generate()
         {
             var variants = _expressionSetGenerator.Generate(VariantsCount);
             var rightAnswerIndex = _random.Next(0, variants.Count);
             var rightAnswer = variants[rightAnswerIndex];
-            return new CharacteristicPropertySetAnswerTask(rightAnswer, variants); 
+            return new CharacteristicPropertyTask(rightAnswer, variants); 
         }
     }
 }

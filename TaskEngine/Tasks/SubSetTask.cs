@@ -2,13 +2,15 @@
 
 namespace TaskEngine.Tasks
 {
-    public class SubSetSetAnswerTask: SetAnswerTask<int>
+    public class SubSetTask: ITask
     {
+        public IMathSet<int> Answer { get; }
         public SubSetType TypeTask { get; }
         public IMathSet<int> TaskSet { get; }
 
-        public SubSetSetAnswerTask(IMathSet<int> rightAnswer, SubSetType typeTask, IMathSet<int> taskSet) : base(rightAnswer)
+        public SubSetTask(IMathSet<int> answer, SubSetType typeTask, IMathSet<int> taskSet)
         {
+            Answer = answer;
             TypeTask = typeTask;
             TaskSet = taskSet;
         }

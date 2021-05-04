@@ -6,9 +6,9 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class SubSetTextTaskGenerator: TextTaskGenerator<SubSetSetAnswerTask>
+    public class SubSetTextTaskGenerator: TextTaskGenerator<SubSetTask>
     {
-        private string WriteAnswer(SubSetSetAnswerTask setAnswerTask)
+        private string WriteAnswer(SubSetTask setAnswerTask)
         {
             return WriteSet(setAnswerTask.TaskSet, false);
         }
@@ -25,7 +25,7 @@ namespace TaskEngine.Generators.TextTasks
             return new TextTask(textTask, answer);
         }
 
-        public SubSetTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<SubSetSetAnswerTask> taskGenerator) : base(setWriter, taskGenerator)
+        public SubSetTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<SubSetTask> taskGenerator) : base(setWriter, taskGenerator)
         {
         }
     }

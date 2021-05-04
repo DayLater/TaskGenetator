@@ -22,10 +22,10 @@ namespace TaskEngine.Contexts
             Add(new SetContainsElementsTextTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElement)));
             Add(new SetContainsElementsTextTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElements)));
 
-            Add(new CharacteristicPropertyTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertySetAnswerTask>(TaskIds.CharacteristicPropertyTask)));
-            Add(new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSetAnswerSubSetTask>(TaskIds.VariantsSubSetTask)));
-            Add(new SubSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetSetAnswerTask>(TaskIds.SubSetTask)));
-            Add(new BorderSetOperationTextTaskGenerator(setWriter, taskGeneratorContext.Get<BorderSetOperationSetAnswerTask>(TaskIds.BorderSetOperationTask)));
+            Add(new CharacteristicPropertyTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertyTask>(TaskIds.CharacteristicPropertyTask)));
+            Add(new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTask>(TaskIds.VariantsSubSetTask)));
+            Add(new SubSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetTask>(TaskIds.SubSetTask)));
+            Add(new BorderSetOperationTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsBorderSetOperationTask>(TaskIds.BorderSetOperationTask)));
         }
 
         public IEnumerable<ITextTaskGenerator> Generators => _generators.Values;

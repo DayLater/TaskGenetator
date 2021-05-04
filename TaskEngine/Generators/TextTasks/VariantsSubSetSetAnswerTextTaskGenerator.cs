@@ -7,7 +7,7 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class VariantsSubSetSetAnswerTextTaskGenerator: TextTaskGenerator<VariantsSetAnswerSubSetTask>
+    public class VariantsSubSetSetAnswerTextTaskGenerator: TextTaskGenerator<VariantsSubSetTask>
     {
         public override ITextTask Generate()
         {
@@ -18,17 +18,11 @@ namespace TaskEngine.Generators.TextTasks
                            $"\nУкажите его подмножество, элементами которого являются все его {type} числа";
             
             var variants = task.Variants.Select(variant => WriteSet(variant, false)).ToList();
-            var answer = WriteAnswer(task);
+            var answer = $"{task.Variants.IndexOf(task.Answer) + 1}";
             return new VariantsTextTask(textTask, answer, variants);
         }
-
-        private string WriteAnswer<T>(IVariantsSetAnswerTask<T> variantsSetAnswerTask)
-        {
-            var rightAnswerIndex = variantsSetAnswerTask.Variants.IndexOf(variantsSetAnswerTask.RightAnswer);
-            return $"{rightAnswerIndex + 1}";
-        }
-
-        public VariantsSubSetSetAnswerTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<VariantsSetAnswerSubSetTask> taskGenerator) 
+        
+        public VariantsSubSetSetAnswerTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<VariantsSubSetTask> taskGenerator) 
             : base(setWriter, taskGenerator) { }
     }
 }

@@ -10,7 +10,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class BorderSetOperationTaskGenerator: VariantsGenerator<BorderSetOperationSetAnswerTask>
+    public class BorderSetOperationTaskGenerator: VariantsGenerator<VariantsBorderSetOperationTask>
     {
         private readonly IntBorderSetGenerator _setGenerator;
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
@@ -27,7 +27,7 @@ namespace TaskEngine.Generators.Tasks
             AddSetGenerator(SetOperation.Except, new ExceptSetGenerator(random));
         }
 
-        public override BorderSetOperationSetAnswerTask Generate()
+        public override VariantsBorderSetOperationTask Generate()
         {
             var answerSet = _setGenerator.Generate();
             var operation = SetOperationHelper.GetRandomSetOperation();
@@ -35,7 +35,7 @@ namespace TaskEngine.Generators.Tasks
 
             var variants = _variantsGenerator.Generate(answerSet, VariantsCount).Cast<IMathSet<int>>().ToList();
             variants.Add(answerSet);
-            return new BorderSetOperationSetAnswerTask(answerSet, variants.ShuffleToList(), firstSet, secondSet, operation);
+            return new VariantsBorderSetOperationTask(answerSet, variants.ShuffleToList(), firstSet, secondSet, operation);
         }
 
         private void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) => _setGenerators.Add(operation, generator);

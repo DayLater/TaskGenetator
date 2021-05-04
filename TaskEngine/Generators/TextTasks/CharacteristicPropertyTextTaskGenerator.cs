@@ -6,28 +6,22 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class CharacteristicPropertyTextTaskGenerator: TextTaskGenerator<CharacteristicPropertySetAnswerTask>
+    public class CharacteristicPropertyTextTaskGenerator: TextTaskGenerator<CharacteristicPropertyTask>
     {
         public override ITextTask Generate()
         {
             var task = GetTask();
-            var answer = task.RightAnswer;
+            var answer = task.Answer;
             var writeSet = WriteSet(answer);
             var textTask = $"Дано множество {writeSet}." +
                            $"\nУкажите его характеристическое свойство.";
 
             var variants = task.Variants.Select(WriteCharacteristicProperty).ToList();
-            var answerText = WriteAnswer(task);
+            var answerText =  $"{task.Variants.IndexOf(task.Answer) + 1}";
             return new VariantsTextTask(textTask, answerText, variants);
         }
-
-        private string WriteAnswer<T>(IVariantsSetAnswerTask<T> variantsSetAnswerTask)
-        {
-            var rightAnswerIndex = variantsSetAnswerTask.Variants.IndexOf(variantsSetAnswerTask.RightAnswer);
-            return $"{rightAnswerIndex + 1}";
-        }
-
-        public CharacteristicPropertyTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<CharacteristicPropertySetAnswerTask> taskGenerator) 
+        
+        public CharacteristicPropertyTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<CharacteristicPropertyTask> taskGenerator) 
             : base(setWriter, taskGenerator)
         {
         }

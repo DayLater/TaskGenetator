@@ -10,7 +10,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class VariantsSubSetTaskGenerator: VariantsGenerator<VariantsSetAnswerSubSetTask>
+    public class VariantsSubSetTaskGenerator: VariantsGenerator<VariantsSubSetTask>
     {
         private readonly IntMathSetGenerator _setGenerator;
         private readonly Random _random;
@@ -23,7 +23,7 @@ namespace TaskEngine.Generators.Tasks
             Add(_setGenerator);
         }
 
-        public override VariantsSetAnswerSubSetTask Generate()
+        public override VariantsSubSetTask Generate()
         {
             var set = _setGenerator.Generate(1).First();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -44,7 +44,7 @@ namespace TaskEngine.Generators.Tasks
                 .ToList();
             
             var rightSet = setVariants[0];
-            var task = new VariantsSetAnswerSubSetTask(rightSet, setVariants.ShuffleToList(), type, set);
+            var task = new VariantsSubSetTask(rightSet, setVariants.ShuffleToList(), type, set);
             return task;
         }
         

@@ -7,21 +7,19 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
 {
-    public class BorderSetOperationTextTaskGenerator: TextTaskGenerator<BorderSetOperationSetAnswerTask>
+    public class BorderSetOperationTextTaskGenerator: TextTaskGenerator<VariantsBorderSetOperationTask>
     {
-        public BorderSetOperationTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<BorderSetOperationSetAnswerTask> taskGenerator)
+        public BorderSetOperationTextTaskGenerator(ISetWriter setWriter, ITaskGenerator<VariantsBorderSetOperationTask> taskGenerator)
             : base(setWriter, taskGenerator) { }
 
         public override ITextTask Generate()
         {
             var task = GetTask();
-            var firstName = task.First.Name;
-            var secondName = task.Second.Name;
             var firstSet = WriteSet(task.First);
             var secondSet = WriteSet(task.Second);
             var operation = SetOperationHelper.GetString(task.Operation);
             
-            var textTask = $"Найдите {operation} множеств {firstName} и {secondName}, если: {firstSet}, {secondSet}";
+            var textTask = $"Найдите {operation} множеств {firstSet} и {secondSet}";
             var variants = task.Variants
                 .Select(variant => $"{WriteSet(variant, false)}")
                 .ToList();
@@ -30,10 +28,10 @@ namespace TaskEngine.Generators.TextTasks
             return new VariantsTextTask(textTask, rightAnswer, variants);
         }
         
-        private string WriteAnswer(BorderSetOperationSetAnswerTask setAnswerTask)
+        private string WriteAnswer(VariantsBorderSetOperationTask setAnswerTask)
         {
-            var index = setAnswerTask.Variants.IndexOf(setAnswerTask.RightAnswer) + 1;
-            var set = WriteSet(setAnswerTask.RightAnswer, false);
+            var index = setAnswerTask.Variants.IndexOf(setAnswerTask.Answer) + 1;
+            var set = WriteSet(setAnswerTask.Answer, false);
 
             return $"{index}) {set}";
         }
