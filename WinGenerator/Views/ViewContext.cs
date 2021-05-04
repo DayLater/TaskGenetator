@@ -31,8 +31,8 @@ namespace WinGenerator.Views
             INumbersBelongSetGeneratorView numbersBelongSetGeneratorView = new NumbersBelongSetGeneratorView();
             AddTaskView(numbersBelongSetGeneratorView);
 
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator>(), TaskIds.SymbolBelongsSetTask, 3));
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator>(), TaskIds.SymbolsBelongSetTask, 3));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator>(), TaskIds.SymbolBelongsSetTask));
+            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator>(), TaskIds.SymbolsBelongSetTask));
             AddTaskView( generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongBorderedSetTaskGenerator>(), TaskIds.NumberBelongsBorderedSetTask));
             
 

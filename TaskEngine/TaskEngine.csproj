@@ -56,6 +56,7 @@
         <Compile Include="Contexts\TextTaskGeneratorsContext.cs" />
         <Compile Include="Contexts\UserContext.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
+        <Compile Include="Generators\SeveralAnswersGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumberBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumberBelongsSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumbersBelongSetTaskGenerator.cs" />
@@ -74,6 +75,7 @@
         <Compile Include="Generators\TextTasks\SetAnswerTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\SubSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\VariantsSubSetSetAnswerTextTaskGenerator.cs" />
+        <Compile Include="Generators\VariantsGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />

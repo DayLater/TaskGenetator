@@ -8,22 +8,19 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolBelongsSetTaskGenerator: Generator, IVariantsTaskGenerator
+    public class SymbolBelongsSetTaskGenerator: VariantsGenerator, IVariantsTaskGenerator
     {
         private readonly Random _random = new Random();
-        private SymbolMathSetGenerator SetGenerator { get; }= new SymbolMathSetGenerator();
+        private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();
 
         public SymbolBelongsSetTaskGenerator()
         {
-            Add(new IntValue(ValuesIds.VariantsCount) {Value = 4});
-
-            foreach (var value in SetGenerator.Values)
-                Add(value);
+            Add(_setGenerator);
         }
 
         public SymbolBelongToSetTask Generate()
         {
-            var set = SetGenerator.Generate();
+            var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
             
             var answerIndex = _random.Next(0, elements.Count);
