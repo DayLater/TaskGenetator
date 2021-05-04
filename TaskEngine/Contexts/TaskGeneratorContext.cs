@@ -22,7 +22,7 @@ namespace TaskEngine.Contexts
             Add(new NumberBelongsBorderedSetTaskGenerator());
             Add(new NumbersBelongBorderedSetTaskGenerator());
             Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement));
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, 6, 2, 3));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, 6, 2, 5));
             
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random)); 

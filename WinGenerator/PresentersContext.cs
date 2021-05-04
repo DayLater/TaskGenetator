@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using TaskEngine.Contexts;
-using TaskEngine.DocWriters;
-using TaskEngine.Generators.Tasks;
+﻿using TaskEngine.Contexts;
 using TaskEngine.Presenters;
-using TaskEngine.Presenters.Tasks;
+using TaskEngine.Writers.DocWriters;
 
 namespace WinGenerator
 {
     public class PresentersContext
     {
-        private readonly List<IPresenter> _taskPresenters = new List<IPresenter>();
         public MainPresenter MainPresenter { get; }
         public TaskChoosePresenter TaskChoosePresenter { get; }
         public CreateDocumentPresenter CreateDocumentPresenter { get; }
@@ -19,12 +15,6 @@ namespace WinGenerator
             MainPresenter = new MainPresenter(viewContext.MainView, userContext);
             TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
             CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), textTaskGeneratorsContext);
-
-            AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter());
-            AddTaskPresenter(new VariantsSubSetTaskPresenter());
-            AddTaskPresenter(new SubSetTaskPresenter());
         }
-
-        private void AddTaskPresenter(IPresenter presenter) => _taskPresenters.Add(presenter);
     }
 }

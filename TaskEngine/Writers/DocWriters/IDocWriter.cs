@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaskEngine.Tasks.Texts;
 
-namespace TaskEngine.DocWriters
+namespace TaskEngine.Writers.DocWriters
 {
     public interface IDocWriter
     {

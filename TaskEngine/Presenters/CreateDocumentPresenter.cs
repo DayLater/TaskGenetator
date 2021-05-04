@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using TaskEngine.Contexts;
-using TaskEngine.DocWriters;
 using TaskEngine.Views;
+using TaskEngine.Writers.DocWriters;
 
 namespace TaskEngine.Presenters
 {

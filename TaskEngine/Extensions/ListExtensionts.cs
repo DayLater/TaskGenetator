@@ -20,5 +20,21 @@ namespace TaskEngine.Extensions
 
             return list;
         }
+
+        public static List<T> GetListWithRandomElements<T>(this List<T> list, int count, Random random)
+        {
+            if (count > list.Count)
+                throw new ArgumentOutOfRangeException("Количество элементов не может быть больше списка");
+            var resultList = new List<T>();
+            while (resultList.Count < count)
+            {
+                var elementIndex = random.Next(0, list.Count);
+                var element = list[elementIndex];
+                if (!resultList.Contains(element))
+                    resultList.Add(element);
+            }
+
+            return resultList;
+        }
     }
 }

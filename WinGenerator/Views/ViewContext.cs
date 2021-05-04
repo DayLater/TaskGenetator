@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Views;
@@ -12,9 +11,7 @@ namespace WinGenerator.Views
         public IMainView MainView { get; }
         public ITaskChooseView TaskChooseView { get; }
         public ICreateDocumentView CreateDocumentView { get; }
-        
 
-        private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
         public ViewContext(TextTaskGeneratorsContext textTaskGenerators)

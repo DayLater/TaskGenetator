@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Comparers;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Sets;
 using TaskEngine.Tasks.Elements;
@@ -15,7 +16,8 @@ namespace TaskEngine.Generators.Tasks.Elements
         private readonly ISetComparer<IMathSet<int>> _setComparer = new IntMathSetComparer();
         private readonly Random _random = new Random();
         
-        public SetContainElementTaskGenerator(string id, int variantCount = 4, int answerCount = 1, int elementsCount = 1) : base(id, variantCount, answerCount)
+        public SetContainElementTaskGenerator(string id, int variantCount = 4, int answerCount = 1, int elementsCount = 1) 
+            : base(id, variantCount, answerCount)
         {
             Add(new ImmutableIntValue(ValuesIds.ElementsCount, elementsCount));
         }
@@ -24,16 +26,8 @@ namespace TaskEngine.Generators.Tasks.Elements
         {
             var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
-            
-            var taskElements = new List<int>();
             var elementCount = Get<ImmutableIntValue>(ValuesIds.ElementsCount).Value;
-            while (taskElements.Count < elementCount)
-            {
-                var elementIndex = _random.Next(0, elements.Count);
-                var element = elements[elementIndex];
-                if (!taskElements.Contains(element))
-                    taskElements.Add(element);
-            }
+            var taskElements = elements.GetListWithRandomElements(elementCount, _random);
 
             var answers = new List<IMathSet<int>> {set};
             while (answers.Count < AnswersCount - 1)
@@ -50,7 +44,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                 if (!variants.Any(v => _setComparer.IsEquals(v, variantSet)))
                     variants.Add(variantSet);
             }
-
+            
             return new SetContainElementsTask(taskElements, variants, answers);
         }
     }

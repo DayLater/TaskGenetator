@@ -1,7 +1,7 @@
 ﻿using TaskEngine.Tasks.Texts;
 using Xceed.Words.NET;
 
-namespace TaskEngine.DocWriters
+namespace TaskEngine.Writers.DocWriters
 {
     public class VariantTaskDocWriter
     {

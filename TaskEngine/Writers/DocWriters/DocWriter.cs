@@ -2,7 +2,7 @@
 using TaskEngine.Tasks.Texts;
 using Xceed.Words.NET;
 
-namespace TaskEngine.DocWriters
+namespace TaskEngine.Writers.DocWriters
 {
     public class DocWriter: IDocWriter
     {
@@ -13,6 +13,7 @@ namespace TaskEngine.DocWriters
         {
             using var doc = DocX.Create(filename);
             var taskIndex = 1;
+            
             foreach (var textTask in textTasks)
             {
                 switch (textTask)
@@ -26,6 +27,7 @@ namespace TaskEngine.DocWriters
                 doc.InsertParagraph();
                 taskIndex++;
             }
+            
             doc.Save();
         }
     }

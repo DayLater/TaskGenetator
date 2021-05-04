@@ -46,6 +46,7 @@ namespace WinGenerator.Views
 
             _exampleTextLabel = exampleTable.AddLabel(0, 1);
             _exampleTextLabel.Font = new Font(FontFamily.GenericMonospace, 10);
+            _exampleTextLabel.TextAlign = ContentAlignment.TopLeft;
             
             _generatorSettingsTable = AddTable(0, 1);
             _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
