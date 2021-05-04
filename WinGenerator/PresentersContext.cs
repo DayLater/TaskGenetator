@@ -2,11 +2,8 @@
 using TaskEngine.Contexts;
 using TaskEngine.DocWriters;
 using TaskEngine.Generators.Tasks;
-using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Presenters;
 using TaskEngine.Presenters.Tasks;
-using TaskEngine.Presenters.Tasks.Elements;
-using TaskEngine.Views.TaskGenerators;
 
 namespace WinGenerator
 {
@@ -22,10 +19,7 @@ namespace WinGenerator
             MainPresenter = new MainPresenter(viewContext.MainView, userContext);
             TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
             CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), textTaskGeneratorsContext);
-            
-            AddTaskPresenter(new NumberBelongsSetTaskPresenter(viewContext.GetView<INumberBelongsSetGeneratorView>(), generatorContext.Get<NumberBelongsSetTaskGenerator>()));
-            AddTaskPresenter(new NumbersBelongSetTaskPresenter(viewContext.GetView<INumbersBelongSetGeneratorView>(), generatorContext.Get<NumbersBelongSetTaskGenerator>()));
-            
+
             AddTaskPresenter(new VariantsCharacteristicPropertyTaskPresenter(generatorContext.Get<CharacteristicPropertyTaskGenerator>(), viewContext.VariantsCharacteristicPropertyGeneratorView));
             AddTaskPresenter(new VariantsSubSetTaskPresenter());
             AddTaskPresenter(new SubSetTaskPresenter());

@@ -9,7 +9,7 @@ using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class VariantsSubSetTaskGenerator: IVariantsTaskGenerator
+    public class VariantsSubSetTaskGenerator: VariantsGenerator
     {
         public int VariantsCount { get; set; } = 4;
         public int MinElementCountInVariant { get; set; } = 2;

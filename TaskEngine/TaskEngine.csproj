@@ -62,7 +62,6 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolBelongsSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\IVariantsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Generator.cs" />
         <Compile Include="Generators\TextTasks\BorderSetOperationTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\CharacteristicPropertyTextTaskGenerator.cs" />
@@ -81,8 +80,6 @@
         <Compile Include="Presenters\MainPresenter.cs" />
         <Compile Include="Presenters\MathSetGeneratorPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
-        <Compile Include="Presenters\Tasks\Elements\NumberBelongsSetTaskPresenter.cs" />
-        <Compile Include="Presenters\Tasks\Elements\NumbersBelongSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\SubSetTaskPresenter.cs" />
         <Compile Include="Presenters\Tasks\VariantsCharacteristicPropertyTaskPresenter.cs" />
         <Compile Include="DocWriters\DocWriter.cs" />
@@ -168,6 +165,9 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Presenters\Tasks\Elements" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,17 +8,14 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class NumberBelongBorderedSetTaskGenerator: Generator, ITaskGenerator
+    public class NumberBelongBorderedSetTaskGenerator: VariantsGenerator
     {
         private readonly IntBorderSetGenerator _setGenerator = new IntBorderSetGenerator();
         private readonly Random _random = new Random();
         
         public NumberBelongBorderedSetTaskGenerator()
         {
-            Add(new IntValue(ValuesIds.VariantsCount) {Value = 4});
-
-            foreach (var value in _setGenerator.Values)
-                Add(value);
+            Add(_setGenerator);
         }
 
         public NumberBelongsSetTask Generate()

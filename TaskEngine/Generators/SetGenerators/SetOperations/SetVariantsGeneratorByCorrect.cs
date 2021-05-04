@@ -4,7 +4,6 @@ using System.Linq;
 using TaskEngine.Comparers;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
-using TaskEngine.Tasks;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {

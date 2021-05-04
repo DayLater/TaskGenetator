@@ -3,7 +3,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators
 {
-    public abstract class VariantsGenerator: Generator
+    public abstract class VariantsGenerator: Generator, ITaskGenerator
     {
         protected VariantsGenerator(int variantCount = 4)
         {

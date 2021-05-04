@@ -8,7 +8,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolsBelongSetTaskGenerator: SeveralAnswersGenerator, IVariantsTaskGenerator
+    public class SymbolsBelongSetTaskGenerator: SeveralAnswersGenerator
     {
         private readonly Random _random = new Random();
         private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();

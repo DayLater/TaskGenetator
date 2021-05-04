@@ -11,5 +11,11 @@
         
         public const string ElementMaxCount = "Максимальное число элементов";
         public const string ElementMinCount = "Минимальное число элементов";
+        public const string ElementMinValue = "Минимальное значение элемента";
+        public const string ElementMaxValue = "Максимальное значение элемента";
+
+        public const string IsZeroNecessary = "Ноль обязателен";
+        public const string MinPositiveCount = "Минимальное количество положительных чисел";
+        public const string MinNegativeCount = "Минимальное количество отрицательных чисел";
     }
 }
