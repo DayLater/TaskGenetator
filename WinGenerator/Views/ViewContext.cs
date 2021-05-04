@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TaskEngine;
+using System.Linq;
 using TaskEngine.Contexts;
-using TaskEngine.Generators.Tasks.Elements;
-using TaskEngine.Tasks.Elements;
 using TaskEngine.Views;
-using TaskEngine.Views.TaskGenerators;
 using WinGenerator.Views.GeneratorsViews;
 
 namespace WinGenerator.Views
@@ -16,34 +13,24 @@ namespace WinGenerator.Views
         public ITaskChooseView TaskChooseView { get; }
         public ICreateDocumentView CreateDocumentView { get; }
         
-        public IVariantsCharacteristicPropertyGeneratorView VariantsCharacteristicPropertyGeneratorView { get; }
-
-        public IView Empty { get; }
 
         private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
-        public ViewContext(List<string> taskIds, TaskGeneratorContext taskGeneratorContext)
+        public ViewContext(TextTaskGeneratorsContext textTaskGenerators)
         {
             var generatingViewFactory = new GeneratingViewFactory();
-            
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongsSetTaskGenerator, NumberBelongsSetTask>(), TaskIds.NumberBelongsSetTask, 2));
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumbersBelongSetTaskGenerator, NumbersBelongSetTask>(), TaskIds.NumbersBelongSetTask, 2));
-            
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolBelongsSetTaskGenerator, SymbolBelongsSetTask>(), TaskIds.SymbolBelongsSetTask));
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<SymbolsBelongSetTaskGenerator, SymbolsBelongSetTask>(), TaskIds.SymbolsBelongSetTask));
-            
-            AddTaskView(generatingViewFactory.Create(taskGeneratorContext.Get<NumberBelongsBorderedSetTaskGenerator, NumberBelongsSetTask>(), TaskIds.NumberBelongsBorderedSetTask));
-            
 
-            VariantsCharacteristicPropertyGeneratorView = new VariantsCharacteristicPropertyView();
-            AddTaskView(VariantsCharacteristicPropertyGeneratorView);
-            
-            Empty = new EmptyView();
-            AddTaskView(Empty, TaskIds.SubSetTask);
-            AddTaskView(Empty, TaskIds.BorderSetOperationTask);
-            AddTaskView(Empty, TaskIds.VariantsSubSetTask);
+            foreach (var generator in textTaskGenerators.Generators)
+            {
+                var rowCount = 1;
+                if (generator.Generator.Values.Count() > 4)
+                    rowCount = 2;
+                
+                AddTaskView(generatingViewFactory.Create(generator.Generator, generator.Id, rowCount));
+            }
 
+            var taskIds = textTaskGenerators.Generators.Select(g => g.Id).ToList();
             var taskChooseView = new TaskChooseView(_generatorViews, taskIds);
             TaskChooseView = taskChooseView;
 
@@ -52,17 +39,10 @@ namespace WinGenerator.Views
             MainView = new MainView(new List<View> {new EmptyView(), taskChooseView, createViewDocument});
         }
 
-        private void AddTaskView<TView>(TView view, string customId = null)
+        private void AddTaskView<TView>(TView view)
             where TView : IView
         {
-            if (!_views.ContainsKey(typeof(TView)))
-                _views.Add(typeof(TView), view);
-            _generatorViews.Add(customId ?? view.Id, view);
-        }
-        
-        public TView GetView<TView>() where TView : IView
-        {
-            return (TView)_views[typeof(TView)];
+            _generatorViews.Add(view.Id, view);
         }
     }
 }

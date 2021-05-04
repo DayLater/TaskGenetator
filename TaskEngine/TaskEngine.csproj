@@ -48,6 +48,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Comparers\BorderedSetComparer.cs" />
+        <Compile Include="Comparers\IntMathSetComparer.cs" />
         <Compile Include="Comparers\ISetComparer.cs" />
         <Compile Include="Contexts\ExamplesContext.cs" />
         <Compile Include="Contexts\IViewContext.cs" />
@@ -56,25 +57,28 @@
         <Compile Include="Contexts\TextTaskGeneratorsContext.cs" />
         <Compile Include="Contexts\UserContext.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
-        <Compile Include="Generators\SeveralAnswersGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumberBelongsBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumberBelongsSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumbersBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolBelongsSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Generator.cs" />
+        <Compile Include="Generators\Tasks\IGenerator.cs" />
+        <Compile Include="Generators\Tasks\SeveralAnswersGenerator.cs" />
+        <Compile Include="Generators\Tasks\VariantsGenerator.cs" />
         <Compile Include="Generators\TextTasks\BorderSetOperationTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\CharacteristicPropertyTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\NumberBelongsSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\NumbersBelongSetTextTaskGenerator.cs" />
+        <Compile Include="Generators\TextTasks\Elements\SetContainsElementsTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\SymbolBelongsSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\Elements\SymbolsBelongSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\ITextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\SubSetTextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\TextTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\VariantsSubSetSetAnswerTextTaskGenerator.cs" />
-        <Compile Include="Generators\VariantsGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
@@ -120,11 +124,11 @@
         <Compile Include="Sets\SetBorder.cs" />
         <Compile Include="Sets\SubSetType.cs" />
         <Compile Include="Symbols.cs" />
-        <Compile Include="TaskIds.cs" />
         <Compile Include="Tasks\BorderSetOperationSetAnswerTask.cs" />
         <Compile Include="Tasks\CharacteristicPropertySetAnswerTask.cs" />
         <Compile Include="Tasks\Elements\NumberBelongsSetTask.cs" />
         <Compile Include="Tasks\Elements\NumbersBelongSetTask.cs" />
+        <Compile Include="Tasks\Elements\SetContainElementsTask.cs" />
         <Compile Include="Tasks\Elements\SymbolBelongsSetTask.cs" />
         <Compile Include="Tasks\Elements\SymbolsBelongSetTask.cs" />
         <Compile Include="Tasks\ISetAnswerTask.cs" />
@@ -132,6 +136,7 @@
         <Compile Include="Tasks\IVariantsSetAnswerTask.cs" />
         <Compile Include="Tasks\SubSetSetAnswerTask.cs" />
         <Compile Include="Tasks\SetAnswerTask.cs" />
+        <Compile Include="Tasks\TaskIds.cs" />
         <Compile Include="Tasks\VariantsSetAnswerSubSetTask.cs" />
         <Compile Include="Tasks\Texts\ITextTask.cs" />
         <Compile Include="Tasks\Texts\IVariantsTextTask.cs" />
@@ -141,6 +146,7 @@
         <Compile Include="Values\BoolValue.cs" />
         <Compile Include="Values\DefaultValue.cs" />
         <Compile Include="Values\IIdentified.cs" />
+        <Compile Include="Values\ImmutableIntValue.cs" />
         <Compile Include="Values\IntValue.cs" />
         <Compile Include="Values\IValue.cs" />
         <Compile Include="Values\ValuesIds.cs" />

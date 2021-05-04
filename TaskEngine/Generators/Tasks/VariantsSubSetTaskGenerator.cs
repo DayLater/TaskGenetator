@@ -6,31 +6,31 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks
 {
     public class VariantsSubSetTaskGenerator: VariantsGenerator<VariantsSetAnswerSubSetTask>
     {
-        public int VariantsCount { get; set; } = 4;
-        public int MinElementCountInVariant { get; set; } = 2;
-        
-        private readonly IntMathSetGenerator _generator;
+        private readonly IntMathSetGenerator _setGenerator;
         private readonly Random _random;
 
-        public VariantsSubSetTaskGenerator(IntMathSetGenerator generator, Random random) : base(TaskIds.VariantsSubSetTask)
+        public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random) : base(TaskIds.VariantsSubSetTask)
         {
-            _generator = generator;
+            Add(new IntValue(ValuesIds.MinCountElementsInVariant) {Value = 2});
+            _setGenerator = setGenerator;
             _random = random;
+            Add(_setGenerator);
         }
 
         public override VariantsSetAnswerSubSetTask Generate()
         {
-            var set = _generator.Generate(1).First();
+            var set = _setGenerator.Generate(1).First();
             var type = SubSetTypeHelper.GetRandomSubSetType();
             var createdSubSetFunc = SubSetTypeHelper.GetTypeFunc(type);
             
             var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ShuffleToList();
-            var variants = new List<List<int>>() {rightSubSet};
+            var variants = new List<List<int>> {rightSubSet};
 
             while (variants.Count < VariantsCount)
             {
@@ -44,8 +44,7 @@ namespace TaskEngine.Generators.Tasks
                 .ToList();
             
             var rightSet = setVariants[0];
-            setVariants = setVariants.ShuffleToList();
-            var task = new VariantsSetAnswerSubSetTask(rightSet, setVariants, type, set);
+            var task = new VariantsSetAnswerSubSetTask(rightSet, setVariants.ShuffleToList(), type, set);
             return task;
         }
         
@@ -53,7 +52,9 @@ namespace TaskEngine.Generators.Tasks
         {
             var result = new HashSet<int>();
             var elements = set.GetElements().ToList();
-            var count = _random.Next(MinElementCountInVariant, elements.Count);
+            
+            var minElementCountInVariant = Get<IntValue>(ValuesIds.MinCountElementsInVariant).Value;
+            var count = _random.Next(minElementCountInVariant, elements.Count);
             
             for (var i = 0; i < count; i++)
             {

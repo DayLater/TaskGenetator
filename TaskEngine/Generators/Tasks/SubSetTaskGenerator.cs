@@ -8,18 +8,20 @@ namespace TaskEngine.Generators.Tasks
 {
     public class SubSetTaskGenerator: Generator, ITaskGenerator<SubSetSetAnswerTask>
     {
-        private readonly IntMathSetGenerator _generator;
+        private readonly IntMathSetGenerator _setGenerator;
 
-        public SubSetTaskGenerator(IntMathSetGenerator generator)
+        public SubSetTaskGenerator(IntMathSetGenerator setGenerator)
         {
-            _generator = generator;
+
+            _setGenerator = setGenerator;
+            Add(_setGenerator);
         }
 
         public string Id => TaskIds.SubSetTask;
 
         public SubSetSetAnswerTask Generate()
         {
-            var set = _generator.Generate();
+            var set = _setGenerator.Generate();
             var type = SubSetTypeHelper.GetRandomSubSetType();
 
             var createdFunc = SubSetTypeHelper.GetTypeFunc(type);

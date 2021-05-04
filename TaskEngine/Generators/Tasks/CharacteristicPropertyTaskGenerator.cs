@@ -13,22 +13,9 @@ namespace TaskEngine.Generators.Tasks
         {
             _expressionSetGenerator = expressionSetGenerator;
             _random = random;
+            Add(_expressionSetGenerator);
         }
 
-        public int MinCoefficientValue
-        {
-            get => _expressionSetGenerator.Min;
-            set => _expressionSetGenerator.Min = value;
-        }
-
-        public int MaxCoefficientValue
-        {
-            get => _expressionSetGenerator.Max;
-            set => _expressionSetGenerator.Max = value;
-        }
-
-        public int VariantsCount { get; set; } = 4;
-        
         public override CharacteristicPropertySetAnswerTask Generate()
         {
             var variants = _expressionSetGenerator.Generate(VariantsCount);

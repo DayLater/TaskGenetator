@@ -17,5 +17,11 @@
         public const string IsZeroNecessary = "Ноль обязателен";
         public const string MinPositiveCount = "Минимальное количество положительных чисел";
         public const string MinNegativeCount = "Минимальное количество отрицательных чисел";
+
+        public const string ElementsCount = "Количество элементов";
+        public const string MinCountElementsInVariant = "Минимальное количество элементов в варианте";
+
+        public const string MinCoefficientValue = "Минимальный коэффициент при n";
+        public const string MaxCoefficientValue = "Максимальный коэффициент при n";
     }
 }

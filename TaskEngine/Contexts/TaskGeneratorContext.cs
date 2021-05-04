@@ -11,7 +11,7 @@ namespace TaskEngine.Contexts
 {
     public class TaskGeneratorContext
     {
-        private readonly Dictionary<Type, object> _generators = new Dictionary<Type, object>();
+        private readonly Dictionary<string, object> _idsAndGenerators = new Dictionary<string, object>();
         
         public TaskGeneratorContext(Random random)
         {
@@ -20,6 +20,9 @@ namespace TaskEngine.Contexts
             Add(new SymbolBelongsSetTaskGenerator());
             Add(new SymbolsBelongSetTaskGenerator());
             Add(new NumberBelongsBorderedSetTaskGenerator());
+            Add(new NumbersBelongBorderedSetTaskGenerator());
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, 6, 2, 3));
             
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random)); 
@@ -29,17 +32,16 @@ namespace TaskEngine.Contexts
             Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random));
         }
 
-        public TGenerator Get<TGenerator, TTask>()
-            where TGenerator : ITaskGenerator<TTask>
+        public ITaskGenerator<TTask> Get<TTask>(string id)
             where TTask: ITask
         {
-            return (TGenerator) _generators[typeof(TGenerator)];
+            return (ITaskGenerator<TTask>) _idsAndGenerators[id];
         }
 
         private void Add<TTask>(ITaskGenerator<TTask> generator) 
             where TTask: ITask
         {
-            _generators.Add(generator.GetType(), generator);
+            _idsAndGenerators.Add(generator.Id, generator);
         }
     }
 }

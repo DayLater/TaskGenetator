@@ -1,8 +1,7 @@
-﻿using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks;
+﻿using TaskEngine.Tasks;
 using TaskEngine.Values;
 
-namespace TaskEngine.Generators
+namespace TaskEngine.Generators.Tasks
 {
     public abstract class VariantsGenerator<TTask>: Generator, ITaskGenerator<TTask>
         where TTask: ITask
@@ -15,5 +14,7 @@ namespace TaskEngine.Generators
 
         public string Id { get; }
         public abstract TTask Generate();
+
+        protected int VariantsCount => Get<IntValue>(ValuesIds.VariantsCount).Value;
     }
 }

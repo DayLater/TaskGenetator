@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using TaskEngine;
+using TaskEngine.Tasks;
 using TaskEngine.Views.TaskGenerators;
 using WinGenerator.CustomControls;
 

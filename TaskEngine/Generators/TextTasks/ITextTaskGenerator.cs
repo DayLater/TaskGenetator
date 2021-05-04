@@ -1,4 +1,5 @@
-﻿using TaskEngine.Tasks.Texts;
+﻿using TaskEngine.Generators.Tasks;
+using TaskEngine.Tasks.Texts;
 
 namespace TaskEngine.Generators.TextTasks
 {
@@ -6,5 +7,6 @@ namespace TaskEngine.Generators.TextTasks
     {
         string Id { get; }
         ITextTask Generate();
+        IGenerator Generator { get; }
     }
 }

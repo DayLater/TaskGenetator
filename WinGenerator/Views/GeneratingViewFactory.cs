@@ -9,7 +9,7 @@ namespace WinGenerator.Views
 {
     public class GeneratingViewFactory
     {
-        public View Create(Generator generator, string id, int rowCount = 1)
+        public View Create(IGenerator generator, string id, int rowCount = 1)
         {
             var values = generator.Values.ToList();
             var columnCount = (int) Math.Ceiling((float)values.Count / rowCount);
@@ -28,8 +28,9 @@ namespace WinGenerator.Views
                         break;
                     view.AddColumn(columnScale);
                     var value = values[counter];
-                    var control = GetControl(value);
-                    view.AddControl(control, column, row);
+
+                    if (GetControl(value, out var control))
+                        view.AddControl(control, column, row);
                     counter++;
                 }
             }
@@ -37,7 +38,7 @@ namespace WinGenerator.Views
             return view;
         }
 
-        private Control GetControl(IValue value)
+        private bool GetControl(IValue value, out Control control)
         {
             var table = new PercentTableLayoutPanel();
             switch (value)
@@ -46,15 +47,18 @@ namespace WinGenerator.Views
                     var numericControl = table.CreateLabeledNumericControl(intValue.Id);
                     numericControl.ValueChanged += v => intValue.Value = v;
                     numericControl.Value = intValue.Value;
-                    return numericControl;
+                    control = numericControl;
+                    return true;
                 case BoolValue boolValue:
                     var checkBox = table.CreateCheckBox(boolValue.Id);
                     checkBox.Checked = boolValue.Value;
                     checkBox.CheckedChanged += (sender, args) => boolValue.Value = checkBox.Checked;
-                    return checkBox;
+                    control = checkBox;
+                    return true;
             }
-            
-            throw new ArgumentException();
+
+            control = null;
+            return false;
         }
     }
 }

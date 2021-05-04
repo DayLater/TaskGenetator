@@ -12,16 +12,16 @@ namespace TaskEngine.Generators.Tasks
 {
     public class BorderSetOperationTaskGenerator: VariantsGenerator<BorderSetOperationSetAnswerTask>
     {
-        public int VariantCount { get; set; } = 4;
-
-        private readonly IntBorderSetGenerator _generator;
+        private readonly IntBorderSetGenerator _setGenerator;
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         private readonly Dictionary<SetOperation, IOperationSetGenerator> _setGenerators = new Dictionary<SetOperation, IOperationSetGenerator>();
         
-        public BorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator generator, Random random) : base(TaskIds.BorderSetOperationTask)
+        public BorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator setGenerator, Random random) : base(TaskIds.BorderSetOperationTask)
         {
             _variantsGenerator = variantsGenerator;
-            _generator = generator;
+            _setGenerator = setGenerator;
+            Add(_setGenerator);
+            
             AddSetGenerator(SetOperation.Union, new UnionSetGenerator(random));
             AddSetGenerator(SetOperation.Intersect, new IntersectSetGenerator(random));
             AddSetGenerator(SetOperation.Except, new ExceptSetGenerator(random));
@@ -29,14 +29,13 @@ namespace TaskEngine.Generators.Tasks
 
         public override BorderSetOperationSetAnswerTask Generate()
         {
-            var answerSet = _generator.Generate();
+            var answerSet = _setGenerator.Generate();
             var operation = SetOperationHelper.GetRandomSetOperation();
             var (firstSet, secondSet) = _setGenerators[operation].Generate(answerSet);
 
-            var variants = _variantsGenerator.Generate(answerSet, VariantCount).Cast<IMathSet<int>>().ToList();
+            var variants = _variantsGenerator.Generate(answerSet, VariantsCount).Cast<IMathSet<int>>().ToList();
             variants.Add(answerSet);
-            variants = variants.ShuffleToList();
-            return new BorderSetOperationSetAnswerTask(answerSet, variants, firstSet, secondSet,  operation);
+            return new BorderSetOperationSetAnswerTask(answerSet, variants.ShuffleToList(), firstSet, secondSet, operation);
         }
 
         private void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) => _setGenerators.Add(operation, generator);

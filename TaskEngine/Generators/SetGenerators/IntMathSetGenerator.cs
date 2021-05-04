@@ -84,7 +84,7 @@ namespace TaskEngine.Generators.SetGenerators
             {
                 var name = Symbols.Names[i];
                 var elementCount = _random.Next(MinCount, MaxCount);
-                var set = CreateSet(elementCount, name);
+                var set = CreateSet(elementCount, name, new List<int>());
 
                 result.Add(set);
             }
@@ -92,11 +92,13 @@ namespace TaskEngine.Generators.SetGenerators
             return result;
         }
 
-        public IMathSet<int> Generate()
+        public IMathSet<int> Generate(List<int> exceptElements = null, params int[] startElements)
         {
+            exceptElements ??= new List<int>();
+            
             var name = Symbols.GetRandomName();
             var elementCount = _random.Next(MinCount, MaxCount);
-            var set = CreateSet(elementCount, name);
+            var set = CreateSet(elementCount, name, exceptElements, startElements);
             return set;
         }
 
@@ -123,16 +125,16 @@ namespace TaskEngine.Generators.SetGenerators
             return _random.Next(MinValue, MaxValue);
         }
 
-        private IMathSet<int> CreateSet(int elementCount, string name)
+        private IMathSet<int> CreateSet(int elementCount, string name, ICollection<int> exceptElements, params int[] startElements)
         {
             var elements = new List<int>();
-            for (var i = 0; i < elementCount; i++)
+            for (var i = 0; i < elementCount - startElements.Length; i++)
             {
                 int element;
                 do
                 {
                     element = GetNextElement();
-                } while (elements.Contains(element));
+                } while (elements.Contains(element) && exceptElements.Contains(element));
                 elements.Add(element);
             }
             

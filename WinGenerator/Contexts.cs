@@ -25,8 +25,8 @@ namespace WinGenerator
                 ExamplesContext.Add(generator.Id, generator.Generate().Task);
             }
 
-            ViewContext = new ViewContext(TextTaskGeneratorsContext.Generators.Select(g => g.Id).ToList(), TaskGeneratorsContext);
-            PresentersContext = new PresentersContext(TaskGeneratorsContext, TextTaskGeneratorsContext, ViewContext, UserContext, ExamplesContext);
+            ViewContext = new ViewContext(TextTaskGeneratorsContext);
+            PresentersContext = new PresentersContext(TextTaskGeneratorsContext, ViewContext, UserContext, ExamplesContext);
         }
     }
 }
