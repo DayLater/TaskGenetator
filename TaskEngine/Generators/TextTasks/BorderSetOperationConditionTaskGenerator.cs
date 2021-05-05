@@ -9,15 +9,13 @@ namespace TaskEngine.Generators.TextTasks
     {
         public BorderSetOperationConditionTaskGenerator(ISetWriter setWriter, ITaskGenerator<VariantsBorderSetOperationTask> taskGenerator)
             : base(setWriter, taskGenerator) { }
-
-        public override (ITask, string) Generate()
+        
+        protected override string GetCondition(VariantsBorderSetOperationTask task)
         {
-            var task = GetTask();
             var firstSet = WriteSet(task.First);
             var secondSet = WriteSet(task.Second);
             var operation = SetOperationHelper.GetString(task.Operation);
-            var textTask = $"Найдите {operation} множеств {firstSet} и {secondSet}";
-            return (task, textTask);
+            return $"Найдите {operation} множеств {firstSet} и {secondSet}";
         }
     }
 }

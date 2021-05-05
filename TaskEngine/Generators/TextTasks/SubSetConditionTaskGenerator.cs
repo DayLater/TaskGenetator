@@ -7,13 +7,11 @@ namespace TaskEngine.Generators.TextTasks
 {
     public class SubSetConditionTaskGenerator: ConditionTaskGenerator<SubSetTask>
     {
-        public override (ITask, string) Generate()
+        protected override string GetCondition(SubSetTask task)
         {
-            var task = GetTask();
             var writeSet = WriteSet(task.Set);
             var writeType = SubSetTypeHelper.GetNumbersType(task.TypeTask);
-            var textTask = $"Дано множество {writeSet}.\nВыделите его подмножество, элементами которого являются {writeType} числа";
-            return (task, textTask);
+            return $"Дано множество {writeSet}.\nВыделите его подмножество, элементами которого являются {writeType} числа";
         }
 
         public SubSetConditionTaskGenerator(ISetWriter setWriter, ITaskGenerator<SubSetTask> taskGenerator) : base(setWriter, taskGenerator)

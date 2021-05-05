@@ -9,8 +9,9 @@ namespace TaskEngine.Presenters
     public class CreateDocumentPresenter: IPresenter
     {
         private readonly ICreateDocumentView _view;
-        private readonly TasksContext _tasksContext;
         private readonly IDocWriter _docWriter;
+
+        private readonly TasksContext _tasksContext;
         private readonly TextTaskGeneratorsContext _taskGeneratorsContext;
         private readonly TaskWriter _taskWriter;
         
@@ -41,7 +42,7 @@ namespace TaskEngine.Presenters
                 for (int i = 0; i < count; i++)
                 {
                     var tasks = generators.Select(g => g.Generate())
-                        .Select(pair => _taskWriter.WriteTextTask(pair.Item1, pair.Item2));
+                        .Select(pair => _taskWriter.WriteTextTask(pair.Task, pair.Condition));
                     _docWriter.Write($"{name}_{i + 1}", tasks);
                 }
             }

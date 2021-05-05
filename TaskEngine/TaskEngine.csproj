@@ -79,7 +79,7 @@
         <Compile Include="Generators\TextTasks\IConditionTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\SubSetConditionTaskGenerator.cs" />
         <Compile Include="Generators\TextTasks\ConditionTaskGenerator.cs" />
-        <Compile Include="Generators\TextTasks\VariantsSubSetSetAnswerConditionTaskGenerator.cs" />
+        <Compile Include="Generators\TextTasks\VariantsSubSetConditionTaskGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
@@ -118,6 +118,8 @@
         <Compile Include="Sets\SubSetType.cs" />
         <Compile Include="Symbols.cs" />
         <Compile Include="Tasks\AnswerTask.cs" />
+        <Compile Include="Tasks\ConditionTask.cs" />
+        <Compile Include="Tasks\IConditionTask.cs" />
         <Compile Include="Tasks\VariantsBorderSetOperationTask.cs" />
         <Compile Include="Tasks\VariantsCharacteristicPropertyTask.cs" />
         <Compile Include="Tasks\Elements\NumberBelongsSetTask.cs" />

@@ -30,9 +30,9 @@ namespace TaskEngine.Writers
             return result;
         }
 
-        public string WriteAll(ITask task, string condition)
+        public string WriteAll(IConditionTask task)
         {
-            return WriteAll(WriteTextTask(task, condition));
+            return WriteAll(WriteTextTask(task.Task, task.Condition));
         }
 
         public IEnumerable<string> WriteVariants(IVariantsTextTask variantsTextTask)

@@ -6,7 +6,7 @@ namespace TaskEngine.Generators.TextTasks
     public interface IConditionTaskGenerator
     {
         string Id { get; }
-        (ITask, string) Generate();
+        IConditionTask Generate();
         IValued ValuedGenerator { get; }
     }
 }

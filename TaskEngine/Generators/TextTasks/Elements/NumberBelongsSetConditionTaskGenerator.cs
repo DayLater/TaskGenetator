@@ -1,5 +1,4 @@
 ﻿using TaskEngine.Generators.Tasks;
-using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
 using TaskEngine.Writers;
 
@@ -9,13 +8,10 @@ namespace TaskEngine.Generators.TextTasks.Elements
     {
         public NumberBelongsSetConditionTaskGenerator(ISetWriter setWriter, ITaskGenerator<NumberBelongsSetTask> taskGenerator)
             : base(setWriter, taskGenerator) { }
-
-        public override (ITask, string) Generate()
+        
+        protected override string GetCondition(NumberBelongsSetTask task)
         {
-            var task = GetTask();
-            var writtenSet = WriteSet(task.Set);
-            var condition = $"Выберите элемент, принадлежащий множеству {writtenSet}";
-            return (task, condition);
+            return $"Выберите элемент, принадлежащий множеству {WriteSet(task.Set)}";
         }
     }
 }

@@ -6,14 +6,12 @@ namespace TaskEngine.Generators.TextTasks
 {
     public class CharacteristicPropertyConditionTaskGenerator: ConditionTaskGenerator<VariantsCharacteristicPropertyTask>
     {
-        public override (ITask, string) Generate()
+        protected override string GetCondition(VariantsCharacteristicPropertyTask task)
         {
-            var task = GetTask();
             var writeSet = WriteSet(task.Answers[0]);
-            var textTask = $"Дано множество {writeSet}.\nУкажите его характеристическое свойство.";
-            return (task, textTask);
+            return $"Дано множество {writeSet}.\nУкажите его характеристическое свойство.";
         }
-        
+
         public CharacteristicPropertyConditionTaskGenerator(ISetWriter setWriter, ITaskGenerator<VariantsCharacteristicPropertyTask> taskGenerator) 
             : base(setWriter, taskGenerator)
         {

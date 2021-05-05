@@ -24,8 +24,8 @@ namespace WinGenerator
 
             foreach (var generator in TextTaskGeneratorsContext.Generators)
             {
-                var (task, condition) = generator.Generate();
-                var example = _taskWriter.WriteAll(task, condition);
+                var task = generator.Generate();
+                var example = _taskWriter.WriteAll(task);
                 ExamplesContext.Add(generator.Id, example);
             }
 

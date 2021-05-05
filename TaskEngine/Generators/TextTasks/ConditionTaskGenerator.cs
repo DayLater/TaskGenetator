@@ -1,7 +1,6 @@
 ﻿using TaskEngine.Generators.Tasks;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
-using TaskEngine.Tasks.Texts;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.TextTasks
@@ -19,11 +18,19 @@ namespace TaskEngine.Generators.TextTasks
         }
 
         public string Id => _taskGenerator.Id;
-        public abstract (ITask, string) Generate();
+
+        public IConditionTask Generate()
+        {
+            var task = _taskGenerator.Generate();
+            var condition = GetCondition(task);
+            return new ConditionTask(task, condition);
+        }
+
+        protected abstract string GetCondition(TTask task);
+        
         public IValued ValuedGenerator => _taskGenerator;
 
         protected TTask GetTask() => _taskGenerator.Generate();
         protected string WriteSet<T>(IMathSet<T> set, bool isWriteName = true) => _setWriter.Write(set, isWriteName);
-        protected string WriteCharacteristicProperty<T>(IMathSet<T> set) => _setWriter.WriteCharacteristicProperty(set);
     }
 }

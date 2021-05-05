@@ -23,7 +23,7 @@ namespace TaskEngine.Contexts
             Add(new SetContainsElementsConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElements)));
 
             Add(new CharacteristicPropertyConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsCharacteristicPropertyTask>(TaskIds.CharacteristicPropertyTask)));
-            Add(new VariantsSubSetSetAnswerConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTask>(TaskIds.VariantsSubSetTask)));
+            Add(new VariantsSubSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTask>(TaskIds.VariantsSubSetTask)));
             Add(new SubSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetTask>(TaskIds.SubSetTask)));
             Add(new BorderSetOperationConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsBorderSetOperationTask>(TaskIds.BorderSetOperationTask)));
         }
