@@ -31,7 +31,7 @@ namespace TaskEngine.Generators.Tasks
             var name = Symbols.GetRandomName(_random);
             var answerSet = new MathSet<int>(name, elements);
 
-            var task = new SubSetTask(answerSet, type, answerSet);
+            var task = new SubSetTask(answerSet, type, set);
             return task;
         }
     }
