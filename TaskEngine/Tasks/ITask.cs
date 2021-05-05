@@ -5,6 +5,7 @@ namespace TaskEngine.Tasks
 {
     public interface ITask
     {
+        string Condition { get; }
     }
 
     public interface IAnswerTask<T>: ITask

@@ -6,7 +6,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class IntBorderSetGenerator: Generator
+    public class IntBorderSetGenerator: Valued
     {
         private readonly Random _random;
         

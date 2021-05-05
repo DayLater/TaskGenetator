@@ -19,12 +19,12 @@ namespace TaskEngine.Writers
             _random = random;
         }
 
-        public VariantsTextTask Write<T>(IVariantsTask<T> variantsTask, string condition)
+        public VariantsTextTask Write<T>(IVariantsTask<T> variantsTask)
         {
             variantsTask.Variants.Shuffle(_random);
             string answer = variantsTask.Answers.Select(a => variantsTask.Variants.IndexOf(a) + 1).GetStringRepresentation();
             var variants = GetVariants(variantsTask.Variants);
-            return new VariantsTextTask(condition, answer, variants);
+            return new VariantsTextTask(variantsTask.Condition, answer, variants);
         }
 
         private IEnumerable<string> GetVariants<T>(IList<T> variants, bool withName = true)

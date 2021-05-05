@@ -6,7 +6,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class SymbolMathSetGenerator: Generator
+    public class SymbolMathSetGenerator: Valued
     {
         private readonly Random _random;
         public SymbolMathSetGenerator(Random random)

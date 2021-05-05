@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using TaskEngine.Contexts;
+using TaskEngine.Factories;
 using TaskEngine.Views;
 using TaskEngine.Writers;
 using TaskEngine.Writers.DocWriters;
@@ -12,15 +13,15 @@ namespace TaskEngine.Presenters
         private readonly IDocWriter _docWriter;
 
         private readonly TasksContext _tasksContext;
-        private readonly TextTaskGeneratorsContext _taskGeneratorsContext;
+        private readonly TaskGeneratorFactory _taskGeneratorFactory;
         private readonly TaskWriter _taskWriter;
         
-        public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TextTaskGeneratorsContext taskGeneratorsContext, TaskWriter taskWriter)
+        public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TaskGeneratorFactory taskGeneratorFactory, TaskWriter taskWriter)
         {
             _view = view;
             _tasksContext = tasksContext;
             _docWriter = docWriter;
-            _taskGeneratorsContext = taskGeneratorsContext;
+            _taskGeneratorFactory = taskGeneratorFactory;
             _taskWriter = taskWriter;
 
             _view.GenerateButtonClicked += OnGenerateButtonClicked;
@@ -37,12 +38,11 @@ namespace TaskEngine.Presenters
             {
                 var count = _view.GetFileCount();
                 var name = _view.GetFileName();
-                var generators = taskIds.Select(id => _taskGeneratorsContext.Get(id)).ToList();
+                var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
                 for (int i = 0; i < count; i++)
                 {
-                    var tasks = generators.Select(g => g.Generate())
-                        .Select(pair => _taskWriter.WriteTextTask(pair.Task, pair.Condition));
+                    var tasks = generators.Select(g => g.Generate()).Select(_taskWriter.WriteTextTask);
                     _docWriter.Write($"{name}_{i + 1}", tasks);
                 }
             }

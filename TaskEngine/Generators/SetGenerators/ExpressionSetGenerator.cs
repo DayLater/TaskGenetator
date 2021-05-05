@@ -6,7 +6,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class ExpressionSetGenerator: Generator
+    public class ExpressionSetGenerator: Valued
     {
         private readonly Random _random;
 

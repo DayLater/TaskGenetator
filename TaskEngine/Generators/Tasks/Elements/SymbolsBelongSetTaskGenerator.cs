@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
+using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
-using TaskEngine.Values;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SymbolsBelongSetTaskGenerator: VariantsGenerator<SymbolsBelongSetTask>
+    public class SymbolsBelongSetTaskGenerator: ElementBelongSetTaskGenerator
     {
         private readonly Random _random;
         private readonly SymbolMathSetGenerator _setGenerator;
 
-        public SymbolsBelongSetTaskGenerator(Random random, string id, int answerCount) : base(id, answerCount)
+        public SymbolsBelongSetTaskGenerator(Random random, string id, int answerCount, ISetWriter setWriter) 
+            : base(id, answerCount, setWriter)
         {
             _random = random;
             _setGenerator = new SymbolMathSetGenerator(random);
             Add(_setGenerator);
         }
         
-        public override SymbolsBelongSetTask Generate()
+        public override ITask Generate()
         {
             var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
@@ -41,7 +43,8 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(element);
             }
 
-            return new SymbolsBelongSetTask(answers, variants,  set);
+            var condition = GetCondition(answers, set);
+            return new SymbolsBelongSetTask(answers, condition, variants,  set);
         }
     }
 }

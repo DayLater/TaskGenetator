@@ -30,9 +30,9 @@ namespace TaskEngine.Writers
             return result;
         }
 
-        public string WriteAll(IConditionTask task)
+        public string WriteAll(ITask task)
         {
-            return WriteAll(WriteTextTask(task.Task, task.Condition));
+            return WriteAll(WriteTextTask(task));
         }
 
         public IEnumerable<string> WriteVariants(IVariantsTextTask variantsTextTask)
@@ -50,14 +50,15 @@ namespace TaskEngine.Writers
             return $"Ответ: {textTask.Answer}";
         }
 
-        public ITextTask WriteTextTask(ITask task, string condition)
+        public ITextTask WriteTextTask(ITask task)
         {
+            var condition = task.Condition;
             return task switch
             {
-                IVariantsTask<int> intVariantTask =>_variantTaskWriter.Write(intVariantTask, condition),
-                IVariantsTask<string> strVariantsTask => _variantTaskWriter.Write(strVariantsTask, condition),
-                IVariantsTask<IMathSet<int>> intSetVariantsTask =>_variantTaskWriter.Write(intSetVariantsTask, condition),
-                IVariantsTask<IMathSet<string>> strSetVariantsTask => _variantTaskWriter.Write(strSetVariantsTask, condition),
+                IVariantsTask<int> intVariantTask =>_variantTaskWriter.Write(intVariantTask),
+                IVariantsTask<string> strVariantsTask => _variantTaskWriter.Write(strVariantsTask),
+                IVariantsTask<IMathSet<int>> intSetVariantsTask =>_variantTaskWriter.Write(intSetVariantsTask),
+                IVariantsTask<IMathSet<string>> strSetVariantsTask => _variantTaskWriter.Write(strSetVariantsTask),
                 IAnswerTask<int> answerTask => new TextTask(condition, answerTask.Answers[0].ToString()),
                 IAnswerTask<string> answerTask => new TextTask(condition, answerTask.Answers[0]),
                 IAnswerTask<ExpressionSet> answerTask => new TextTask(condition, _setWriter.Write(answerTask.Answers[0])),

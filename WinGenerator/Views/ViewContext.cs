@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Contexts;
+using TaskEngine.Factories;
 using TaskEngine.Views;
 
 namespace WinGenerator.Views
@@ -13,20 +14,20 @@ namespace WinGenerator.Views
 
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
-        public ViewContext(TextTaskGeneratorsContext textTaskGenerators)
+        public ViewContext(TaskGeneratorFactory generatorFactory)
         {
             var generatingViewFactory = new GeneratingViewFactory();
 
-            foreach (var generator in textTaskGenerators.Generators)
+            foreach (var generator in generatorFactory.TaskGenerators)
             {
                 var rowCount = 1;
-                if (generator.ValuedGenerator.Values.Count() > 4)
+                if (generator.Values.Count() > 4)
                     rowCount = 2;
                 
-                AddTaskView(generatingViewFactory.Create(generator.ValuedGenerator, generator.Id, rowCount));
+                AddTaskView(generatingViewFactory.Create(generator, rowCount));
             }
 
-            var taskIds = textTaskGenerators.Generators.Select(g => g.Id).ToList();
+            var taskIds = generatorFactory.TaskGenerators.Select(g => g.Id).ToList();
             var taskChooseView = new TaskChooseView(_generatorViews, taskIds);
             TaskChooseView = taskChooseView;
 

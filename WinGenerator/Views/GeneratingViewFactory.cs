@@ -9,12 +9,12 @@ namespace WinGenerator.Views
 {
     public class GeneratingViewFactory
     {
-        public View Create(IValued generator, string id, int rowCount = 1)
+        public View Create(ITaskGenerator generator, int rowCount = 1)
         {
             var values = generator.Values.ToList();
             var columnCount = (int) Math.Ceiling((float)values.Count / rowCount);
             
-            var view = new GeneratingView(id);
+            var view = new GeneratingView(generator.Id);
             var rowScale = 100 / rowCount;
             var columnScale = 100 / columnCount;
 

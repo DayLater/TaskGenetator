@@ -5,26 +5,28 @@ using TaskEngine.Comparers;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Sets;
+using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
 using TaskEngine.Values;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SetContainElementTaskGenerator: VariantsGenerator<SetContainElementsTask>
+    public class SetContainElementTaskGenerator: VariantsGenerator
     {
         private readonly IntMathSetGenerator _setGenerator;
         private readonly ISetComparer<IMathSet<int>> _setComparer = new IntMathSetComparer();
         private readonly Random _random;
         
-        public SetContainElementTaskGenerator(string id, Random random, int answerCount = 1, int elementsCount = 1) 
-            : base(id, answerCount)
+        public SetContainElementTaskGenerator(string id, Random random, ISetWriter setWriter, int answerCount = 1, int elementsCount = 1) 
+            : base(id, answerCount, setWriter)
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);
             Add(new ImmutableIntValue(ValuesIds.ElementsCount, elementsCount));
         }
 
-        public override SetContainElementsTask Generate()
+        public override ITask Generate()
         {
             var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
@@ -46,8 +48,16 @@ namespace TaskEngine.Generators.Tasks.Elements
                 if (!variants.Any(v => _setComparer.IsEquals(v, variantSet)))
                     variants.Add(variantSet);
             }
-            
-            return new SetContainElementsTask(answers, variants, taskElements);
+
+            var condition = GetCondition(elements);
+            return new SetContainElementsTask(answers, condition,variants, taskElements);
+        }
+
+        private string GetCondition(IList<int> elements)
+        {
+            return elements.Count == 1
+                ? $"Выберите множество, в котором присутствует элемент {elements[0]}"
+                : $"Выберите множество, в котором присутствуеют элементы: {elements.GetStringRepresentation()}";
         }
     }
 }

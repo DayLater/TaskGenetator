@@ -7,12 +7,12 @@ namespace TaskEngine.Tasks.Elements
     {
         public IMathSet<int> Set { get; }
 
-        public NumbersBelongSetTask(IList<int> answers, IList<int> variants, IMathSet<int> set) : base(answers, variants)
+        public NumbersBelongSetTask(IList<int> answers, string condition, IList<int> variants, IMathSet<int> set) : base(answers, condition, variants)
         {
             Set = set;
         }
 
-        public NumbersBelongSetTask(int answer, IList<int> variants, IMathSet<int> set) : base(answer, variants)
+        public NumbersBelongSetTask(int answer, string condition, IList<int> variants, IMathSet<int> set) : base(answer, condition, variants)
         {
             Set = set;
         }

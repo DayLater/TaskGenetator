@@ -4,16 +4,16 @@ namespace TaskEngine.Tasks
 {
     public abstract class VariantsTask<T>: AnswerTask<T>, IVariantsTask<T>
     {
-        protected VariantsTask(IList<T> answers, IList<T> variants) : base(answers)
-        {
-            Variants = variants;
-        }
-
-        protected VariantsTask(T answer, IList<T> variants) : base(answer)
-        {
-            Variants = variants;
-        }
-
         public IList<T> Variants { get; }
+
+        protected VariantsTask(IList<T> answers, string condition, IList<T> variants) : base(answers, condition)
+        {
+            Variants = variants;
+        }
+
+        protected VariantsTask(T answer, string condition, IList<T> variants) : base(answer, condition)
+        {
+            Variants = variants;
+        }
     }
 }

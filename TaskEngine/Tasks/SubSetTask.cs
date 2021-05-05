@@ -7,14 +7,14 @@ namespace TaskEngine.Tasks
     {
         public SubSetType TypeTask { get; }
         public IMathSet<int> Set { get; }
-        
-        public SubSetTask(IList<IMathSet<int>> answers, SubSetType typeTask, IMathSet<int> set) : base(answers)
+
+        public SubSetTask(IList<IMathSet<int>> answers, string condition, SubSetType typeTask, IMathSet<int> set) : base(answers, condition)
         {
             TypeTask = typeTask;
             Set = set;
         }
 
-        public SubSetTask(IMathSet<int> answer, SubSetType typeTask, IMathSet<int> set) : base(answer)
+        public SubSetTask(IMathSet<int> answer, string condition, SubSetType typeTask, IMathSet<int> set) : base(answer, condition)
         {
             TypeTask = typeTask;
             Set = set;

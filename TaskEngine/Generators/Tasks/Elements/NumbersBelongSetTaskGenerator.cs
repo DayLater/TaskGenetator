@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
+using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class NumbersBelongSetTaskGenerator: VariantsGenerator<NumbersBelongSetTask>
+    public class NumbersBelongSetTaskGenerator: ElementBelongSetTaskGenerator
     {
         private readonly IntMathSetGenerator _intMathSetGenerator;
         private readonly Random _random;
 
-        public NumbersBelongSetTaskGenerator(Random random, string id, int answerCount) : base(id, answerCount)
+        public NumbersBelongSetTaskGenerator(Random random, string id, int answerCount, ISetWriter setWriter) : base(id, answerCount, setWriter)
         {
             _random = random;
             _intMathSetGenerator = new IntMathSetGenerator(random);
             Add(_intMathSetGenerator);
         }
 
-        public override NumbersBelongSetTask Generate()
+        public override ITask Generate()
         {
             var set = _intMathSetGenerator.Generate();
             var elements = set.GetElements().ToList();
@@ -40,7 +42,8 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(element);
             }
 
-            return new NumbersBelongSetTask(answers, variants, set);
+            var condition = GetCondition(answers, set);
+            return new NumbersBelongSetTask(answers, condition, variants, set);
         }
     }
 }

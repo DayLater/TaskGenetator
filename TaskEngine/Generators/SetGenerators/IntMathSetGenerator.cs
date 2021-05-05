@@ -7,7 +7,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class IntMathSetGenerator: Generator
+    public class IntMathSetGenerator: Valued
     {
         private readonly Random _random;
         

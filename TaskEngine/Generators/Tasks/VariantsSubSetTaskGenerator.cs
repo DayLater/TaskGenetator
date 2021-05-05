@@ -7,15 +7,17 @@ using TaskEngine.Helpers;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
 using TaskEngine.Values;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class VariantsSubSetTaskGenerator: VariantsGenerator<VariantsSubSetTask>
+    public class VariantsSubSetTaskGenerator: VariantsGenerator
     {
         private readonly IntMathSetGenerator _setGenerator;
         private readonly Random _random;
 
-        public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random) : base(TaskIds.VariantsSubSetTask, 1)
+        public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random, ISetWriter setWriter) 
+            : base(TaskIds.VariantsSubSetTask, 1, setWriter)
         {
             Add(new IntValue(ValuesIds.MinCountElementsInVariant) {Value = 2});
             _setGenerator = setGenerator;
@@ -23,7 +25,7 @@ namespace TaskEngine.Generators.Tasks
             Add(_setGenerator);
         }
 
-        public override VariantsSubSetTask Generate()
+        public override ITask Generate()
         {
             var set = _setGenerator.Generate(1).First();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -47,7 +49,8 @@ namespace TaskEngine.Generators.Tasks
                 .Cast<IMathSet<int>>().ToList();
             
             var answer = setVariants[0];
-            var task = new VariantsSubSetTask(answer, setVariants, type, set);
+            var condition = GetCondition(set, type);
+            var task = new VariantsSubSetTask(answer, condition, setVariants, type, set);
             return task;
         }
         
@@ -72,6 +75,13 @@ namespace TaskEngine.Generators.Tasks
             }
             
             return result.ToList();
+        }
+
+        private string GetCondition<T>(IMathSet<T> set, SubSetType setType)
+        {
+            var writeSet = WriteSet(set);
+            var type = SubSetTypeHelper.GetNumbersType(setType);
+            return $"Дано множество {writeSet}.\nУкажите его подмножество, элементами которого являются все его {type} числа";
         }
     }
 }

@@ -4,24 +4,23 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public class SubSetTaskGenerator: Generator, ITaskGenerator<SubSetTask>
+    public class SubSetTaskGenerator: TaskGenerator
     {
         private readonly Random _random;
         private readonly IntMathSetGenerator _setGenerator;
 
-        public SubSetTaskGenerator(Random random)
+        public SubSetTaskGenerator(Random random, ISetWriter setWriter): base(TaskIds.SubSetTask, setWriter)
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);
             Add(_setGenerator);
         }
 
-        public string Id => TaskIds.SubSetTask;
-
-        public SubSetTask Generate()
+        public override ITask Generate()
         {
             var set = _setGenerator.Generate();
             var type = SubSetTypeHelper.GetRandomSubSetType();
@@ -31,8 +30,16 @@ namespace TaskEngine.Generators.Tasks
             var name = Symbols.GetRandomName(_random);
             var answerSet = new MathSet<int>(name, elements);
 
-            var task = new SubSetTask(answerSet, type, set);
+            var condition = GetCondition(set, type);
+            var task = new SubSetTask(answerSet, condition, type, set);
             return task;
+        }
+
+        private string GetCondition<T>(IMathSet<T> set, SubSetType setType)
+        {
+            var writeSet = WriteSet(set);
+            var writeType = SubSetTypeHelper.GetNumbersType(setType);
+            return $"Дано множество {writeSet}.\nВыделите его подмножество, элементами которого являются {writeType} числа";
         }
     }
 }

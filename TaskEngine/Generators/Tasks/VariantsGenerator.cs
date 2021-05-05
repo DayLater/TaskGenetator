@@ -1,15 +1,12 @@
-﻿using TaskEngine.Tasks;
-using TaskEngine.Values;
+﻿using TaskEngine.Values;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public abstract class VariantsGenerator<TTask>: Generator, ITaskGenerator<TTask>
-        where TTask: ITask
+    public abstract class VariantsGenerator : TaskGenerator
     {
-        protected VariantsGenerator(string id, int answerCount)
+        protected VariantsGenerator(string id, int answerCount, ISetWriter setWriter): base(id, setWriter)
         {
-            Id = id;
-
             Add(new IntValue(ValuesIds.VariantsCount) {Value = 4});
             if (answerCount == 1)
             {
@@ -21,9 +18,6 @@ namespace TaskEngine.Generators.Tasks
                 Add(new IntValue(ValuesIds.AnswersCount) {Value = 2});
             }
         }
-
-        public string Id { get; }
-        public abstract TTask Generate();
 
         protected int VariantsCount => Get<IntValue>(ValuesIds.VariantsCount).Value;
         protected int AnswersCount

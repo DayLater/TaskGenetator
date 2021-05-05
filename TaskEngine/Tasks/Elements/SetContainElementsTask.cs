@@ -7,7 +7,12 @@ namespace TaskEngine.Tasks.Elements
     {
         public List<int> Elements { get; }
 
-        public SetContainElementsTask(IList<IMathSet<int>> answers, IList<IMathSet<int>> variants, List<int> elements) : base(answers, variants)
+        public SetContainElementsTask(IList<IMathSet<int>> answers, string condition, IList<IMathSet<int>> variants, List<int> elements) : base(answers, condition, variants)
+        {
+            Elements = elements;
+        }
+
+        public SetContainElementsTask(IMathSet<int> answer, string condition, IList<IMathSet<int>> variants, List<int> elements) : base(answer, condition, variants)
         {
             Elements = elements;
         }
