@@ -7,8 +7,6 @@ namespace TaskEngine
 {
     public static class Symbols
     {
-        private static readonly Random _random = new Random();
-        
         public const string Belongs = "∈";
         public const string MoreOrEquals = "≥";
         public const string More = ">";
@@ -33,39 +31,39 @@ namespace TaskEngine
             "U", "V", "W", "X", "Y", "Z"
         };
 
-        public static string GetRandomName(params string[] except)
+        public static string GetRandomName(Random random, params string[] except)
         {
             if (except.Length > 0)
             {
                 string name;
                 do
                 {
-                    var i = _random.Next(0, Names.Count);
+                    var i = random.Next(0, Names.Count);
                     name = Names[i];
                 } while (except.Contains(name));
 
                 return name;
             }
             
-            var index = _random.Next(0, Names.Count);
+            var index = random.Next(0, Names.Count);
             return Names[index];
         }
 
-        public static string GetRandomElementSymbol(params string[] except)
+        public static string GetRandomElementSymbol(Random random, string[] except)
         {
             if (except.Length > 0)
             {
                 string symbol;
                 do
                 {
-                    var i = _random.Next(0, Elements.Count);
+                    var i = random.Next(0, Elements.Count);
                     symbol = Elements[i];
                 } while (except.Contains(symbol));
 
                 return symbol;
             }
             
-            var index = _random.Next(0, Elements.Count);
+            var index = random.Next(0, Elements.Count);
             return Elements[index];
         }
         

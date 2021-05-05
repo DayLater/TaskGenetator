@@ -30,14 +30,14 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var exceptStartBorderType = BorderHelper.GetRandomBorderType();
             var exceptStartBorder = new SetBorder<int>(exceptStartBorderValue, exceptStartBorderType);
 
-            var exceptName = Symbols.GetRandomName();
+            var exceptName = Symbols.GetRandomName(_random);
             var exceptSet = new IntBorderedSet(exceptName, exceptStartBorder, exceptEndBorder);
 
             var firstSetEndBorder = answerSet.End.Clone();
             var firstSetStartBorderValue = _random.Next(exceptStartBorderValue + 1, startBorder.Value);
             var firstSetStartBorderType = BorderHelper.GetRandomBorderType();
             var firstSetStartBorder = new SetBorder<int>(firstSetStartBorderValue, firstSetStartBorderType);
-            var firstName = Symbols.GetRandomName(exceptName);
+            var firstName = Symbols.GetRandomName(_random, exceptName);
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder, firstSetEndBorder);
 
             return (firstSet, exceptSet);
@@ -53,14 +53,14 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var exceptEndBorderType = BorderHelper.GetRandomBorderType();
             var exceptEndBorder = new SetBorder<int>(exceptEndBorderValue, exceptEndBorderType);
             
-            var exceptName = Symbols.GetRandomName();
+            var exceptName = Symbols.GetRandomName(_random);
             var exceptSet = new IntBorderedSet(exceptName, exceptStartBorder, exceptEndBorder);
 
             var firstSetStartBorder = answerSet.Start.Clone();
             var firstSetEndBorderValue = _random.Next(endBorder.Value + 1, exceptEndBorderValue);
             var firstSetEndBorderType = BorderHelper.GetRandomBorderType();
             var firstSetEndBorder = new SetBorder<int>(firstSetEndBorderValue, firstSetEndBorderType);
-            var firstName = Symbols.GetRandomName(exceptName);
+            var firstName = Symbols.GetRandomName(_random, exceptName);
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder,  firstSetEndBorder);
 
             return (firstSet, exceptSet);

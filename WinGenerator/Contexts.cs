@@ -18,7 +18,7 @@ namespace WinGenerator
 
         public Contexts(ISetWriter setWriter, Random random)
         {
-            _taskWriter = new TaskWriter(setWriter);
+            _taskWriter = new TaskWriter(setWriter, random);
             TaskGeneratorsContext = new TaskGeneratorContext(random);
             TextTaskGeneratorsContext = new TextTaskGeneratorsContext(setWriter, TaskGeneratorsContext);
 

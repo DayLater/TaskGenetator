@@ -11,15 +11,17 @@ namespace TaskEngine.Writers
     public class VariantTaskWriter
     {
         private readonly ISetWriter _setWriter;
+        private readonly Random _random;
 
-        public VariantTaskWriter(ISetWriter setWriter)
+        public VariantTaskWriter(ISetWriter setWriter, Random random)
         {
             _setWriter = setWriter;
+            _random = random;
         }
 
         public VariantsTextTask Write<T>(IVariantsTask<T> variantsTask, string condition)
         {
-            variantsTask.Variants.Shuffle();
+            variantsTask.Variants.Shuffle(_random);
             string answer = variantsTask.Answers.Select(a => variantsTask.Variants.IndexOf(a) + 1).GetStringRepresentation();
             var variants = GetVariants(variantsTask.Variants);
             return new VariantsTextTask(condition, answer, variants);

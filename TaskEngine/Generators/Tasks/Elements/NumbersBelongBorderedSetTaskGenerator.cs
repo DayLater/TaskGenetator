@@ -7,16 +7,19 @@ using TaskEngine.Sets;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
 using TaskEngine.Values;
+using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
     public class NumbersBelongBorderedSetTaskGenerator: SeveralAnswersGenerator<NumbersBelongSetTask>
     {
-        private readonly IntBorderSetGenerator _setGenerator = new IntBorderSetGenerator();
-        private readonly Random _random = new Random();
+        private readonly IntBorderSetGenerator _setGenerator;
+        private readonly Random _random;
 
-        public NumbersBelongBorderedSetTaskGenerator() : base(TaskIds.NumbersBelongBorderedSetTask)
+        public NumbersBelongBorderedSetTaskGenerator(Random random) : base(TaskIds.NumbersBelongBorderedSetTask)
         {
+            _random = random;
+            _setGenerator = new IntBorderSetGenerator(random);
             Add(_setGenerator);
         }
 

@@ -12,13 +12,15 @@ namespace TaskEngine.Generators.Tasks.Elements
 {
     public class SetContainElementTaskGenerator: SeveralAnswersGenerator<SetContainElementsTask>
     {
-        private readonly IntMathSetGenerator _setGenerator = new IntMathSetGenerator();
+        private readonly IntMathSetGenerator _setGenerator;
         private readonly ISetComparer<IMathSet<int>> _setComparer = new IntMathSetComparer();
-        private readonly Random _random = new Random();
+        private readonly Random _random;
         
-        public SetContainElementTaskGenerator(string id, int variantCount = 4, int answerCount = 1, int elementsCount = 1) 
+        public SetContainElementTaskGenerator(string id, Random random, int variantCount = 4, int answerCount = 1, int elementsCount = 1) 
             : base(id, variantCount, answerCount)
         {
+            _random = random;
+            _setGenerator = new IntMathSetGenerator(random);
             Add(new ImmutableIntValue(ValuesIds.ElementsCount, elementsCount));
         }
 

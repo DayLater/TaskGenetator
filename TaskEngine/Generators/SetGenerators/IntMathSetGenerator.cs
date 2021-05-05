@@ -9,7 +9,7 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public class IntMathSetGenerator: Generator
     {
-        private readonly Random _random = new Random();
+        private readonly Random _random;
         
         private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10};
         private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6};
@@ -65,8 +65,9 @@ namespace TaskEngine.Generators.SetGenerators
             set => _minNegativeCount.Value = value;
         }
 
-        public IntMathSetGenerator()
+        public IntMathSetGenerator(Random random)
         {
+            _random = random;
             Add(_minCount);
             Add(_maxCount);
             Add(_minValue);
@@ -96,7 +97,7 @@ namespace TaskEngine.Generators.SetGenerators
         {
             exceptElements ??= new List<int>();
             
-            var name = Symbols.GetRandomName();
+            var name = Symbols.GetRandomName(_random);
             var elementCount = _random.Next(MinCount, MaxCount);
             var set = CreateSet(elementCount, name, exceptElements, startElements);
             return set;
@@ -142,7 +143,7 @@ namespace TaskEngine.Generators.SetGenerators
             _currentPositiveCount = 0;
             _isZeroTaken = false;
 
-            elements.Shuffle();
+            elements.Shuffle(_random);
             return new MathSet<int>(name, elements);
         }
     }

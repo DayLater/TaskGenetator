@@ -30,7 +30,7 @@ namespace TaskEngine.Generators.Tasks
             var createdSubSetFunc = SubSetTypeHelper.GetTypeFunc(type);
             
             var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ToList();
-            rightSubSet.Shuffle();
+            rightSubSet.Shuffle(_random);
             var variants = new List<List<int>> {rightSubSet};
 
             while (variants.Count < VariantsCount)
@@ -38,7 +38,7 @@ namespace TaskEngine.Generators.Tasks
                 var variant = GetVariant(set);
                 if (!new HashSet<int>(variant).SetEquals(rightSubSet))
                 {
-                    variant.Shuffle();
+                    variant.Shuffle(_random);
                     variants.Add(variant);
                 }
             }

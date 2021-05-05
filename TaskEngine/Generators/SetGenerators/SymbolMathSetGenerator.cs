@@ -8,16 +8,17 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public class SymbolMathSetGenerator: Generator
     {
-        private readonly Random _random = new Random();
-        public SymbolMathSetGenerator()
+        private readonly Random _random;
+        public SymbolMathSetGenerator(Random random)
         {
+            _random = random;
             Add(new IntValue(ValuesIds.ElementMaxCount) {Value = 10});
             Add(new IntValue(ValuesIds.ElementMinCount) {Value = 6});
         }
         
         public IMathSet<string> Generate()
         {
-            var name = Symbols.GetRandomName();
+            var name = Symbols.GetRandomName(_random);
             var elements = new List<string>();
             var minCount = Get<IntValue>(ValuesIds.ElementMinCount).Value;
             var maxCount = Get<IntValue>(ValuesIds.ElementMaxCount).Value;
@@ -25,7 +26,7 @@ namespace TaskEngine.Generators.SetGenerators
             
             while (elements.Count < count)
             {
-                var element = Symbols.GetRandomElementSymbol(elements.ToArray());
+                var element = Symbols.GetRandomElementSymbol(_random, elements.ToArray());
                 elements.Add(element);
             }
 

@@ -11,9 +11,9 @@ namespace TaskEngine.Writers
         private readonly ISetWriter _setWriter;
         private readonly VariantTaskWriter _variantTaskWriter;
 
-        public TaskWriter(ISetWriter setWriter)
+        public TaskWriter(ISetWriter setWriter, Random random)
         {
-            _variantTaskWriter = new VariantTaskWriter(setWriter);
+            _variantTaskWriter = new VariantTaskWriter(setWriter, random);
             _setWriter = setWriter;
         }
 

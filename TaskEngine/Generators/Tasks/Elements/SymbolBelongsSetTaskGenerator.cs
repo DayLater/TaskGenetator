@@ -10,11 +10,13 @@ namespace TaskEngine.Generators.Tasks.Elements
 {
     public class SymbolBelongsSetTaskGenerator: VariantsGenerator<SymbolBelongsSetTask>
     {
-        private readonly Random _random = new Random();
-        private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();
+        private readonly Random _random;
+        private readonly SymbolMathSetGenerator _setGenerator;
 
-        public SymbolBelongsSetTaskGenerator() : base(TaskIds.SymbolBelongsSetTask)
+        public SymbolBelongsSetTaskGenerator(Random random) : base(TaskIds.SymbolBelongsSetTask)
         {
+            _random = random;
+            _setGenerator = new SymbolMathSetGenerator(random);
             Add(_setGenerator);
         }
 
@@ -30,7 +32,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variantsCount = Get<IntValue>(ValuesIds.VariantsCount).Value;
             while (variants.Count < variantsCount)
             {
-                var element = Symbols.GetRandomElementSymbol(elements.ToArray());
+                var element = Symbols.GetRandomElementSymbol(_random, elements.ToArray());
                 if (!variants.Contains(element))
                     variants.Add(element);
             }

@@ -5,9 +5,8 @@ namespace TaskEngine.Extensions
 {
     public static class ListExtensions
     {
-        public static void Shuffle<T>(this IList<T> data)
+        public static void Shuffle<T>(this IList<T> data, Random random)
         {
-            var random = new Random();
             for (int i = data.Count - 1; i >= 1; i--)
             {
                 var j = random.Next(i + 1);

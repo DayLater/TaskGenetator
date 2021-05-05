@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
@@ -11,11 +10,13 @@ namespace TaskEngine.Generators.Tasks.Elements
 {
     public class SymbolsBelongSetTaskGenerator: SeveralAnswersGenerator<SymbolsBelongSetTask>
     {
-        private readonly Random _random = new Random();
-        private readonly SymbolMathSetGenerator _setGenerator = new SymbolMathSetGenerator();
+        private readonly Random _random;
+        private readonly SymbolMathSetGenerator _setGenerator;
 
-        public SymbolsBelongSetTaskGenerator() : base(TaskIds.SymbolsBelongSetTask)
+        public SymbolsBelongSetTaskGenerator(Random random) : base(TaskIds.SymbolsBelongSetTask)
         {
+            _random = random;
+            _setGenerator = new SymbolMathSetGenerator(random);
             Add(_setGenerator);
         }
         
@@ -38,7 +39,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variantsCount = Get<IntValue>(ValuesIds.VariantsCount).Value;
             while (variants.Count < variantsCount)
             {
-                var element = Symbols.GetRandomElementSymbol(elements.ToArray());
+                var element = Symbols.GetRandomElementSymbol(_random, elements.ToArray());
                 if (!variants.Contains(element))
                     variants.Add(element);
             }

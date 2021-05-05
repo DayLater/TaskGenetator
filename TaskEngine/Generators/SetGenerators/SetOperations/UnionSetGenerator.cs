@@ -16,8 +16,8 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         
         public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
         {
-            var firstName = Symbols.GetRandomName();
-            var secondName = Symbols.GetRandomName(firstName);
+            var firstName = Symbols.GetRandomName(_random);
+            var secondName = Symbols.GetRandomName(_random, firstName);
 
             var isOneInOther = _random.GetBool();
 

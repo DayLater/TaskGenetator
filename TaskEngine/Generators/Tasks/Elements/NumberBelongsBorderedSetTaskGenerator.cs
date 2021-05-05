@@ -11,11 +11,13 @@ namespace TaskEngine.Generators.Tasks.Elements
 {
     public class NumberBelongsBorderedSetTaskGenerator: VariantsGenerator<NumberBelongsSetTask>
     {
-        private readonly IntBorderSetGenerator _setGenerator = new IntBorderSetGenerator();
-        private readonly Random _random = new Random();
+        private readonly IntBorderSetGenerator _setGenerator;
+        private readonly Random _random;
         
-        public NumberBelongsBorderedSetTaskGenerator() : base(TaskIds.NumberBelongsBorderedSetTask)
+        public NumberBelongsBorderedSetTaskGenerator(Random random) : base(TaskIds.NumberBelongsBorderedSetTask)
         {
+            _setGenerator = new IntBorderSetGenerator(random);
+            _random = random;
             Add(_setGenerator);
         }
 

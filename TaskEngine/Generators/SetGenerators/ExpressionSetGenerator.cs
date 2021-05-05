@@ -8,10 +8,11 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public class ExpressionSetGenerator: Generator
     {
-        private readonly Random _random = new Random();
+        private readonly Random _random;
 
-        public ExpressionSetGenerator()
+        public ExpressionSetGenerator(Random random)
         {
+            _random = random;
             Add(new IntValue(ValuesIds.MinCoefficientValue) {Value = -10});
             Add(new IntValue(ValuesIds.MaxCoefficientValue) {Value = 10});
         }

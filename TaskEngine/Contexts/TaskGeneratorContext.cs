@@ -15,21 +15,21 @@ namespace TaskEngine.Contexts
         
         public TaskGeneratorContext(Random random)
         {
-            Add(new NumberBelongsSetTaskGenerator());
-            Add(new NumbersBelongSetTaskGenerator());
-            Add(new SymbolBelongsSetTaskGenerator());
-            Add(new SymbolsBelongSetTaskGenerator());
-            Add(new NumberBelongsBorderedSetTaskGenerator());
-            Add(new NumbersBelongBorderedSetTaskGenerator());
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement));
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, 6, 2, 5));
+            Add(new NumberBelongsSetTaskGenerator(random));
+            Add(new NumbersBelongSetTaskGenerator(random));
+            Add(new SymbolBelongsSetTaskGenerator(random));
+            Add(new SymbolsBelongSetTaskGenerator(random));
+            Add(new NumberBelongsBorderedSetTaskGenerator(random));
+            Add(new NumbersBelongBorderedSetTaskGenerator(random));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement, random));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random,6, 2, 5));
             
-            Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(), random));
-            Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(), random)); 
-            Add(new SubSetTaskGenerator(new IntMathSetGenerator()));
+            Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(random), random));
+            Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random)); 
+            Add(new SubSetTaskGenerator(random));
 
             var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new BorderedSetComparer());
-            Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(), random));
+            Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(random), random));
         }
 
         public ITaskGenerator<TTask> Get<TTask>(string id)

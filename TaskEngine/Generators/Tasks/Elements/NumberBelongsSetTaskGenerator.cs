@@ -11,11 +11,13 @@ namespace TaskEngine.Generators.Tasks.Elements
 {
     public class NumberBelongsSetTaskGenerator: VariantsGenerator<NumberBelongsSetTask>
     {
-        private readonly IntMathSetGenerator _intMathSetGenerator = new IntMathSetGenerator();
-        private readonly Random _random = new Random();
+        private readonly IntMathSetGenerator _intMathSetGenerator;
+        private readonly Random _random;
 
-        public NumberBelongsSetTaskGenerator() : base(TaskIds.NumberBelongsSetTask)
+        public NumberBelongsSetTaskGenerator(Random random) : base(TaskIds.NumberBelongsSetTask)
         {
+            _random = random;
+            _intMathSetGenerator = new IntMathSetGenerator(random);
             Add(_intMathSetGenerator);
         }
 

@@ -8,10 +8,11 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public class IntBorderSetGenerator: Generator
     {
-        private readonly Random _random = new Random();
+        private readonly Random _random;
         
-        public IntBorderSetGenerator()
+        public IntBorderSetGenerator(Random random)
         {
+            _random = random;
             Add(new IntValue(ValuesIds.BorderDelta) {Value = 5});
             Add(new IntValue(ValuesIds.MinBorder) {Value = -20});
             Add(new IntValue(ValuesIds.MaxBorder) {Value = 20});
@@ -27,7 +28,7 @@ namespace TaskEngine.Generators.SetGenerators
             var endValue = _random.Next(maxBorder - delta, maxBorder + delta);
             var startBorderType = BorderHelper.GetRandomBorderType();
             var endBorderType = BorderHelper.GetRandomBorderType();
-            var name = Symbols.GetRandomName();
+            var name = Symbols.GetRandomName(_random);
 
             var startBorder = new SetBorder<int>(startValue, startBorderType);
             var endBorder = new SetBorder<int>(endValue, endBorderType);
