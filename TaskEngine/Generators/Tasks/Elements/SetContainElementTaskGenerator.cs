@@ -23,18 +23,17 @@ namespace TaskEngine.Generators.Tasks.Elements
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);
-            Add(new ImmutableIntValue(ValuesIds.ElementsCount, elementsCount));
+            Add(new IntValue(ValuesIds.ElementsCount) {Value = elementsCount});
         }
 
         public override ITask Generate()
         {
             var set = _setGenerator.Generate();
-            var elements = set.GetElements().ToList();
-            var elementCount = Get<ImmutableIntValue>(ValuesIds.ElementsCount).Value;
-            var taskElements = elements.GetListWithRandomElements(elementCount, _random);
+            var elementCount = Get<IntValue>(ValuesIds.ElementsCount).Value;
+            var taskElements =  set.GetElements().ToList().GetListWithRandomElements(elementCount, _random);
 
             var answers = new List<IMathSet<int>> {set};
-            while (answers.Count < AnswersCount - 1)
+            while (answers.Count < AnswersCount)
             {
                 var answerSet = _setGenerator.Generate(new List<int>(), taskElements.ToArray());
                 if (!answers.Any(s => _setComparer.IsEquals(s, answerSet)))
@@ -49,15 +48,15 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(variantSet);
             }
 
-            var condition = GetCondition(elements);
+            var condition = GetCondition(taskElements, answers);
             return new SetContainElementsTask(answers, condition,variants, taskElements);
         }
 
-        private string GetCondition(IList<int> elements)
+        private string GetCondition(ICollection<int> elements, ICollection<IMathSet<int>> sets)
         {
-            return elements.Count == 1
-                ? $"Выберите множество, в котором присутствует элемент {elements[0]}"
-                : $"Выберите множество, в котором присутствуеют элементы: {elements.GetStringRepresentation()}";
+            var writtenSets = sets.Count == 1 ? "множество" : "множества";
+            var writtenElements = elements.Count == 1 ? "присутсвует элемент" : "присутствуют элементы";
+            return $"Выберите {writtenSets}, в котором {writtenElements} {elements.GetStringRepresentation()}";
         }
     }
 }

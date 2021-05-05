@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TaskEngine.Values;
 
-namespace TaskEngine.Generators.Tasks
+namespace TaskEngine.Values
 {
     public abstract class Valued: IValued
     {

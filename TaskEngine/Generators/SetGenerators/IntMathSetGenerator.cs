@@ -128,7 +128,7 @@ namespace TaskEngine.Generators.SetGenerators
 
         private IMathSet<int> CreateSet(int elementCount, string name, ICollection<int> exceptElements, params int[] startElements)
         {
-            var elements = new List<int>();
+            var elements = new List<int>(startElements);
             for (var i = 0; i < elementCount - startElements.Length; i++)
             {
                 int element;

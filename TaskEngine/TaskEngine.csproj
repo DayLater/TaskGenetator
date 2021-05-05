@@ -63,8 +63,6 @@
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\TaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\Valued.cs" />
-        <Compile Include="Generators\Tasks\IValued.cs" />
         <Compile Include="Generators\Tasks\VariantsGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
@@ -126,6 +124,8 @@
         <Compile Include="Values\ImmutableIntValue.cs" />
         <Compile Include="Values\IntValue.cs" />
         <Compile Include="Values\IValue.cs" />
+        <Compile Include="Values\IValued.cs" />
+        <Compile Include="Values\Valued.cs" />
         <Compile Include="Values\ValuesIds.cs" />
         <Compile Include="Views\ICreateDocumentView.cs" />
         <Compile Include="Views\IMainView.cs" />

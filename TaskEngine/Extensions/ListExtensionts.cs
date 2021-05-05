@@ -16,10 +16,11 @@ namespace TaskEngine.Extensions
             }
         }
 
-        public static List<T> GetListWithRandomElements<T>(this List<T> list, int count, Random random)
+        public static List<T> GetListWithRandomElements<T>(this IList<T> list, int count, Random random)
         {
             if (count > list.Count)
                 throw new ArgumentOutOfRangeException("Количество элементов не может быть больше списка");
+            
             var resultList = new List<T>();
             while (resultList.Count < count)
             {

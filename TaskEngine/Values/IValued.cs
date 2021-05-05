@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using TaskEngine.Values;
 
-namespace TaskEngine.Generators.Tasks
+namespace TaskEngine.Values
 {
     public interface IValued: IEnumerable<IValue>
     {

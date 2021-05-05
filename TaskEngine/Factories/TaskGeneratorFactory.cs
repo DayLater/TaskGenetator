@@ -23,8 +23,7 @@ namespace TaskEngine.Factories
             Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumberBelongsBorderedSetTask, 1, setWriter));
             Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumbersBelongBorderedSetTask, 2, setWriter));
 
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement, random, setWriter));
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random, setWriter, 2, 5));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random, setWriter, 2, 3));
             
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(random), random, setWriter));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random, setWriter)); 
