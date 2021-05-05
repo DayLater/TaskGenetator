@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaskEngine.Views;
 
-namespace WinGenerator.Views.GeneratorsViews
+namespace WinGenerator.Views
 {
     public class GeneratorViews
     {

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
-using WinGenerator.Views.GeneratorsViews;
 
 namespace WinGenerator.Views
 {

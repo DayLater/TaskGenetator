@@ -83,7 +83,6 @@
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
-        <Compile Include="Presenters\MathSetGeneratorPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
         <Compile Include="Extensions\ExpressionExtensions.cs" />
         <Compile Include="Extensions\ListExtensionts.cs" />
@@ -144,17 +143,8 @@
         <Compile Include="Values\ValuesIds.cs" />
         <Compile Include="Views\ICreateDocumentView.cs" />
         <Compile Include="Views\IMainView.cs" />
-        <Compile Include="Views\IIntMathSetGeneratorView.cs" />
-        <Compile Include="Views\ISymbolMathSetGeneratorView.cs" />
         <Compile Include="Views\ITaskChooseView.cs" />
         <Compile Include="Views\IView.cs" />
-        <Compile Include="Views\TaskGenerators\INumberBelongsSetGeneratorView.cs" />
-        <Compile Include="Views\TaskGenerators\INumbersBelongSetGeneratorView.cs" />
-        <Compile Include="Views\TaskGenerators\ISeveralAnswersVariantsGeneratorView.cs" />
-        <Compile Include="Views\TaskGenerators\ISymbolBelongsSetView.cs" />
-        <Compile Include="Views\TaskGenerators\ISymbolsBelongSetView.cs" />
-        <Compile Include="Views\TaskGenerators\IVariantsCharacteristicPropertyGeneratorView.cs" />
-        <Compile Include="Views\TaskGenerators\IVariantsView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />
         <Compile Include="Writers\DocWriters\DocWriter.cs" />
         <Compile Include="Writers\DocWriters\IDocWriter.cs" />

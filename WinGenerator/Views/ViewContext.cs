@@ -2,7 +2,6 @@
 using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Views;
-using WinGenerator.Views.GeneratorsViews;
 
 namespace WinGenerator.Views
 {
