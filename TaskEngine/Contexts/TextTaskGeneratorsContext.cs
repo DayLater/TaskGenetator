@@ -13,12 +13,13 @@ namespace TaskEngine.Contexts
 
         public TextTaskGeneratorsContext(ISetWriter setWriter, TaskGeneratorContext taskGeneratorContext)
         {
-            Add(new NumberBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsSetTask)));
-            Add(new NumbersBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongSetTask)));
-            Add(new SymbolBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongsSetTask>(TaskIds.SymbolBelongsSetTask)));
-            Add(new SymbolsBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTask>(TaskIds.SymbolsBelongSetTask)));
-            Add(new NumberBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsBorderedSetTask)));
-            Add(new NumbersBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongBorderedSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<NumbersBelongSetTask, int>(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumberBelongsSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<NumbersBelongSetTask, int>(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<SymbolsBelongSetTask, string>(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTask>(TaskIds.SymbolBelongsSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<SymbolsBelongSetTask, string>(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTask>(TaskIds.SymbolsBelongSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<NumbersBelongSetTask, int>(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumberBelongsBorderedSetTask)));
+            Add(new ElementsBelongsSetConditionTaskGenerator<NumbersBelongSetTask, int>(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongBorderedSetTask)));
+            
             Add(new SetContainsElementsConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElement)));
             Add(new SetContainsElementsConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElements)));
 

@@ -16,7 +16,7 @@ namespace TaskEngine.Generators.Tasks
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         private readonly Dictionary<SetOperation, IOperationSetGenerator> _setGenerators = new Dictionary<SetOperation, IOperationSetGenerator>();
         
-        public BorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator setGenerator, Random random) : base(TaskIds.BorderSetOperationTask)
+        public BorderSetOperationTaskGenerator(SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator setGenerator, Random random) : base(TaskIds.BorderSetOperationTask, 1)
         {
             _variantsGenerator = variantsGenerator;
             _setGenerator = setGenerator;

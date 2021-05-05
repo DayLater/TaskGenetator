@@ -11,12 +11,12 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class NumbersBelongBorderedSetTaskGenerator: SeveralAnswersGenerator<NumbersBelongSetTask>
+    public class NumbersBelongBorderedSetTaskGenerator: VariantsGenerator<NumbersBelongSetTask>
     {
         private readonly IntBorderSetGenerator _setGenerator;
         private readonly Random _random;
 
-        public NumbersBelongBorderedSetTaskGenerator(Random random) : base(TaskIds.NumbersBelongBorderedSetTask)
+        public NumbersBelongBorderedSetTaskGenerator(Random random, string id, int answerCount) : base(id, answerCount)
         {
             _random = random;
             _setGenerator = new IntBorderSetGenerator(random);
@@ -31,8 +31,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var endValue = set.End.BorderType == BorderType.Close? set.End.Value + 1: set.End.Value;
 
             var answers = new List<int>();
-            var answerCount = Get<IntValue>(ValuesIds.AnswersCount).Value;
-            while (answers.Count < answerCount)
+            while (answers.Count < AnswersCount)
             {
                 var answer = _random.Next(startValue, endValue);
                 if (!answers.Contains(answer))
@@ -40,10 +39,9 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var variants = new List<int>(answers);
-            var variantsCount = Get<IntValue>(ValuesIds.VariantsCount).Value;
-            while (variants.Count < variantsCount)
+            while (variants.Count < VariantsCount)
             {
-                var variant = _random.Next(startValue - elements.Count - variantsCount, endValue + elements.Count + variantsCount);
+                var variant = _random.Next(startValue - elements.Count - VariantsCount, endValue + elements.Count + VariantsCount);
                 if (!elements.Contains(variant) && !variants.Contains(variant))
                     variants.Add(variant);
             }

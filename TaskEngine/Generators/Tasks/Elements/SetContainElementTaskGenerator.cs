@@ -10,14 +10,14 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks.Elements
 {
-    public class SetContainElementTaskGenerator: SeveralAnswersGenerator<SetContainElementsTask>
+    public class SetContainElementTaskGenerator: VariantsGenerator<SetContainElementsTask>
     {
         private readonly IntMathSetGenerator _setGenerator;
         private readonly ISetComparer<IMathSet<int>> _setComparer = new IntMathSetComparer();
         private readonly Random _random;
         
-        public SetContainElementTaskGenerator(string id, Random random, int variantCount = 4, int answerCount = 1, int elementsCount = 1) 
-            : base(id, variantCount, answerCount)
+        public SetContainElementTaskGenerator(string id, Random random, int answerCount = 1, int elementsCount = 1) 
+            : base(id, answerCount)
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);

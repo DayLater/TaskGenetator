@@ -15,7 +15,7 @@ namespace TaskEngine.Generators.Tasks
         private readonly IntMathSetGenerator _setGenerator;
         private readonly Random _random;
 
-        public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random) : base(TaskIds.VariantsSubSetTask)
+        public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random) : base(TaskIds.VariantsSubSetTask, 1)
         {
             Add(new IntValue(ValuesIds.MinCountElementsInVariant) {Value = 2});
             _setGenerator = setGenerator;

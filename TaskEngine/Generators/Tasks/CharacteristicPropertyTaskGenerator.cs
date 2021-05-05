@@ -11,7 +11,7 @@ namespace TaskEngine.Generators.Tasks
         private readonly ExpressionSetGenerator _expressionSetGenerator;
         private readonly Random _random;
 
-        public CharacteristicPropertyTaskGenerator(ExpressionSetGenerator expressionSetGenerator, Random random) : base(TaskIds.CharacteristicPropertyTask)
+        public CharacteristicPropertyTaskGenerator(ExpressionSetGenerator expressionSetGenerator, Random random) : base(TaskIds.CharacteristicPropertyTask, 1)
         {
             _expressionSetGenerator = expressionSetGenerator;
             _random = random;

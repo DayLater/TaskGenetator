@@ -15,14 +15,15 @@ namespace TaskEngine.Contexts
         
         public TaskGeneratorContext(Random random)
         {
-            Add(new NumberBelongsSetTaskGenerator(random));
-            Add(new NumbersBelongSetTaskGenerator(random));
-            Add(new SymbolBelongsSetTaskGenerator(random));
-            Add(new SymbolsBelongSetTaskGenerator(random));
-            Add(new NumberBelongsBorderedSetTaskGenerator(random));
-            Add(new NumbersBelongBorderedSetTaskGenerator(random));
+            Add(new NumbersBelongSetTaskGenerator(random, TaskIds.NumberBelongsSetTask, 1));
+            Add(new NumbersBelongSetTaskGenerator(random, TaskIds.NumbersBelongSetTask, 2));
+            Add(new SymbolsBelongSetTaskGenerator(random, TaskIds.SymbolBelongsSetTask, 1));
+            Add(new SymbolsBelongSetTaskGenerator(random, TaskIds.SymbolsBelongSetTask, 2));
+            Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumberBelongsBorderedSetTask, 1));
+            Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumbersBelongBorderedSetTask, 2));
+
             Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElement, random));
-            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random,6, 2, 5));
+            Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random, 2, 5));
             
             Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(random), random));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random)); 

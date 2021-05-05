@@ -31,6 +31,9 @@ namespace WinGenerator.Views
 
                     if (GetControl(value, out var control))
                         view.AddControl(control, column, row);
+                    else
+                        column--;
+                    
                     counter++;
                 }
             }

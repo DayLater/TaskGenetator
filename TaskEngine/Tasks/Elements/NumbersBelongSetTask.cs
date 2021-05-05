@@ -3,7 +3,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks.Elements
 {
-    public class NumbersBelongSetTask: VariantsTask<int>
+    public class NumbersBelongSetTask: VariantsTask<int>, ISetContained<int>
     {
         public IMathSet<int> Set { get; }
 

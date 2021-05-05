@@ -17,6 +17,17 @@ namespace TaskEngine.Generators.Tasks
         public IEnumerable<IValue> Values => _values.Values;
         
         protected void Add(IValue value) => _values.Add(value.Id, value);
+        protected bool TryGetValue<T>(string id, out T value) where T: IValue
+        {
+            if (_values.TryGetValue(id, out IValue item) && item is T t)
+            {
+                value = t;
+                return true;
+            }
+
+            value = default;
+            return false;
+        }
 
         protected void Add(IEnumerable<IValue> values)
         {

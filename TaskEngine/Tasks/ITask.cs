@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
@@ -14,5 +15,10 @@ namespace TaskEngine.Tasks
     public interface IVariantsTask<T>: IAnswerTask<T>
     {
         IList<T> Variants { get; }
+    }
+    
+    public interface ISetContained<out T>
+    {
+        IMathSet<T> Set { get; }
     }
 }

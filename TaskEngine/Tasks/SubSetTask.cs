@@ -3,7 +3,7 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public class SubSetTask: AnswerTask<IMathSet<int>>
+    public class SubSetTask: AnswerTask<IMathSet<int>>, ISetContained<int>
     {
         public SubSetType TypeTask { get; }
         public IMathSet<int> Set { get; }
