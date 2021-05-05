@@ -36,7 +36,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(variant);
             }
 
-            return new NumberBelongsSetTask(answer, variants.ShuffleToList(), set);
+            return new NumberBelongsSetTask(answer, variants, set);
         }
     }
 }

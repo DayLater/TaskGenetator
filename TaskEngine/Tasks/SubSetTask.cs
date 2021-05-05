@@ -1,18 +1,23 @@
-﻿using TaskEngine.Sets;
+﻿using System.Collections.Generic;
+using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public class SubSetTask: ITask
+    public class SubSetTask: AnswerTask<IMathSet<int>>
     {
-        public IMathSet<int> Answer { get; }
         public SubSetType TypeTask { get; }
-        public IMathSet<int> TaskSet { get; }
-
-        public SubSetTask(IMathSet<int> answer, SubSetType typeTask, IMathSet<int> taskSet)
+        public IMathSet<int> Set { get; }
+        
+        public SubSetTask(IList<IMathSet<int>> answers, SubSetType typeTask, IMathSet<int> set) : base(answers)
         {
-            Answer = answer;
             TypeTask = typeTask;
-            TaskSet = taskSet;
+            Set = set;
+        }
+
+        public SubSetTask(IMathSet<int> answer, SubSetType typeTask, IMathSet<int> set) : base(answer)
+        {
+            TypeTask = typeTask;
+            Set = set;
         }
     }
 }

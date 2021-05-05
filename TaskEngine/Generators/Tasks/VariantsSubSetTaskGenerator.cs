@@ -29,22 +29,25 @@ namespace TaskEngine.Generators.Tasks
             var type = SubSetTypeHelper.GetRandomSubSetType();
             var createdSubSetFunc = SubSetTypeHelper.GetTypeFunc(type);
             
-            var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ShuffleToList();
+            var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ToList();
+            rightSubSet.Shuffle();
             var variants = new List<List<int>> {rightSubSet};
 
             while (variants.Count < VariantsCount)
             {
                 var variant = GetVariant(set);
-                if (!(new HashSet<int>(variant).SetEquals(rightSubSet)))
-                    variants.Add(variant.ShuffleToList());
+                if (!new HashSet<int>(variant).SetEquals(rightSubSet))
+                {
+                    variant.Shuffle();
+                    variants.Add(variant);
+                }
             }
             
-            var setVariants = variants
-                .Select((elements, i) => new MathSet<int>(Symbols.Names[i], elements)).Cast<IMathSet<int>>()
-                .ToList();
+            var setVariants = variants.Select((elements, i) => new MathSet<int>(Symbols.Names[i], elements))
+                .Cast<IMathSet<int>>().ToList();
             
-            var rightSet = setVariants[0];
-            var task = new VariantsSubSetTask(rightSet, setVariants.ShuffleToList(), type, set);
+            var answer = setVariants[0];
+            var task = new VariantsSubSetTask(answer, setVariants, type, set);
             return task;
         }
         
@@ -67,8 +70,8 @@ namespace TaskEngine.Generators.Tasks
 
                 result.Add(element);
             }
-
-            return result.ShuffleToList();
+            
+            return result.ToList();
         }
     }
 }

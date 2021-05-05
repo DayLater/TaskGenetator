@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 
 namespace TaskEngine.Sets
 {
-    public class ExpressionSet<T> : IExpressionSet<T>
+    public class ExpressionSet: IExpressionSet
     {
-        private readonly Func<int, T> _creatingFunc;
+        private readonly Func<int, int> _creatingFunc;
         private readonly int _count;
 
-        public ExpressionSet(string name, Expression<Func<int, T>> expression, int count = -1)
+        public ExpressionSet(string name, Expression<Func<int, int>> expression, int count = -1)
         {
             Name = name;
             Expression = expression;
@@ -19,12 +19,12 @@ namespace TaskEngine.Sets
 
         public string Name { get; }
 
-        public IEnumerable<T> GetElements()
+        public IEnumerable<int> GetElements()
         {
             for (var i = 1; i <= _count; i++)
                 yield return _creatingFunc.Invoke(i);
         }
 
-        public Expression<Func<int, T>> Expression { get; }
+        public Expression<Func<int, int>> Expression { get; }
     }
 }

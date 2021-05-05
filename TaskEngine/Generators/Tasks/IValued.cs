@@ -3,7 +3,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public interface IGenerator: IEnumerable<IValue>
+    public interface IValued: IEnumerable<IValue>
     {
         public TValue Get<TValue>(string id)
             where TValue : IValue;

@@ -43,7 +43,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(element);
             }
 
-            return new NumbersBelongSetTask(answers, variants.ShuffleToList(), set);
+            return new NumbersBelongSetTask(answers, variants, set);
         }
     }
 }

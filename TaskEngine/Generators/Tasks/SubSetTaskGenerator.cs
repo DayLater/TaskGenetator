@@ -12,7 +12,6 @@ namespace TaskEngine.Generators.Tasks
 
         public SubSetTaskGenerator(IntMathSetGenerator setGenerator)
         {
-
             _setGenerator = setGenerator;
             Add(_setGenerator);
         }
@@ -29,7 +28,7 @@ namespace TaskEngine.Generators.Tasks
             var name = Symbols.GetRandomName();
             var answerSet = new MathSet<int>(name, elements);
 
-            var task = new SubSetTask(set, type, answerSet);
+            var task = new SubSetTask(answerSet, type, answerSet);
             return task;
         }
     }

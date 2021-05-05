@@ -4,7 +4,7 @@ using TaskEngine.Values;
 
 namespace TaskEngine.Generators.Tasks
 {
-    public abstract class Generator: IGenerator
+    public abstract class Generator: IValued
     {
         private readonly Dictionary<string, IValue> _values = new Dictionary<string, IValue>();
 

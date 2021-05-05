@@ -3,18 +3,21 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks
 {
-    public class VariantsBorderSetOperationTask: ITask
+    public class VariantsBorderSetOperationTask: VariantsTask<IMathSet<int>>
     {
-        public IMathSet<int> Answer { get; }
-        public IList<IMathSet<int>> Variants { get; }
         public IntBorderedSet First { get; }
         public IntBorderedSet Second { get; }
         public SetOperation Operation { get; }
 
-        public VariantsBorderSetOperationTask(IMathSet<int> answer, IList<IMathSet<int>> variants, IntBorderedSet first, IntBorderedSet second, SetOperation operation)
+        public VariantsBorderSetOperationTask(IList<IMathSet<int>> answers, IList<IMathSet<int>> variants, IntBorderedSet first, IntBorderedSet second, SetOperation operation) : base(answers, variants)
         {
-            Answer = answer;
-            Variants = variants;
+            First = first;
+            Second = second;
+            Operation = operation;
+        }
+
+        public VariantsBorderSetOperationTask(IMathSet<int> answer, IList<IMathSet<int>> variants, IntBorderedSet first, IntBorderedSet second, SetOperation operation) : base(answer, variants)
+        {
             First = first;
             Second = second;
             Operation = operation;

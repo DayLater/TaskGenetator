@@ -2,11 +2,10 @@
 
 namespace TaskEngine.Generators.Tasks
 {
-    public interface ITaskGenerator<out TTask>: IGenerator
+    public interface ITaskGenerator<out TTask>: IValued
         where TTask: ITask
     {
         string Id { get; }
         TTask Generate();
-
     }
 }

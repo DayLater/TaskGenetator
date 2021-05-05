@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
@@ -36,7 +35,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(element);
             }
 
-            return new SymbolBelongsSetTask(variants.ShuffleToList(), answer, set);
+            return new SymbolBelongsSetTask(answer, variants, set);
         }
     }
 }

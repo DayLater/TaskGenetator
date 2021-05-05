@@ -5,20 +5,16 @@ namespace TaskEngine.Extensions
 {
     public static class ListExtensions
     {
-        public static List<T> ShuffleToList<T>(this IEnumerable<T> data)
+        public static void Shuffle<T>(this IList<T> data)
         {
-            var list = new List<T>(data);
             var random = new Random();
-            
-            for (int i = list.Count - 1; i >= 1; i--)
+            for (int i = data.Count - 1; i >= 1; i--)
             {
                 var j = random.Next(i + 1);
-                var temp = list[j];
-                list[j] = list[i];
-                list[i] = temp;
+                var temp = data[j];
+                data[j] = data[i];
+                data[i] = temp;
             }
-
-            return list;
         }
 
         public static List<T> GetListWithRandomElements<T>(this List<T> list, int count, Random random)

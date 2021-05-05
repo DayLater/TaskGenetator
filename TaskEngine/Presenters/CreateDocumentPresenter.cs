@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Views;
+using TaskEngine.Writers;
 using TaskEngine.Writers.DocWriters;
 
 namespace TaskEngine.Presenters
@@ -11,13 +12,15 @@ namespace TaskEngine.Presenters
         private readonly TasksContext _tasksContext;
         private readonly IDocWriter _docWriter;
         private readonly TextTaskGeneratorsContext _taskGeneratorsContext;
+        private readonly TaskWriter _taskWriter;
         
-        public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TextTaskGeneratorsContext taskGeneratorsContext)
+        public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TextTaskGeneratorsContext taskGeneratorsContext, TaskWriter taskWriter)
         {
             _view = view;
             _tasksContext = tasksContext;
             _docWriter = docWriter;
             _taskGeneratorsContext = taskGeneratorsContext;
+            _taskWriter = taskWriter;
 
             _view.GenerateButtonClicked += OnGenerateButtonClicked;
         }
@@ -33,11 +36,12 @@ namespace TaskEngine.Presenters
             {
                 var count = _view.GetFileCount();
                 var name = _view.GetFileName();
-                var generators = taskIds.Select(generatorId => _taskGeneratorsContext.Get(generatorId)).ToList();
+                var generators = taskIds.Select(id => _taskGeneratorsContext.Get(id)).ToList();
 
                 for (int i = 0; i < count; i++)
                 {
-                    var tasks = generators.Select(g => g.Generate());
+                    var tasks = generators.Select(g => g.Generate())
+                        .Select(pair => _taskWriter.WriteTextTask(pair.Item1, pair.Item2));
                     _docWriter.Write($"{name}_{i + 1}", tasks);
                 }
             }

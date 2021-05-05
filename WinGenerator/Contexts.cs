@@ -14,22 +14,23 @@ namespace WinGenerator
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
-        private readonly TaskWriter _taskWriter = new TaskWriter();
+        private readonly TaskWriter _taskWriter;
 
         public Contexts(ISetWriter setWriter, Random random)
         {
+            _taskWriter = new TaskWriter(setWriter);
             TaskGeneratorsContext = new TaskGeneratorContext(random);
             TextTaskGeneratorsContext = new TextTaskGeneratorsContext(setWriter, TaskGeneratorsContext);
 
             foreach (var generator in TextTaskGeneratorsContext.Generators)
             {
-                var task = generator.Generate();
-                var example = _taskWriter.WriteAll(task);
+                var (task, condition) = generator.Generate();
+                var example = _taskWriter.WriteAll(task, condition);
                 ExamplesContext.Add(generator.Id, example);
             }
 
             ViewContext = new ViewContext(TextTaskGeneratorsContext);
-            PresentersContext = new PresentersContext(TextTaskGeneratorsContext, ViewContext, UserContext, ExamplesContext);
+            PresentersContext = new PresentersContext(TextTaskGeneratorsContext, ViewContext, UserContext, ExamplesContext, _taskWriter);
         }
     }
 }

@@ -9,31 +9,31 @@ namespace TaskEngine.Contexts
 {
     public class TextTaskGeneratorsContext
     {
-        private readonly Dictionary<string, ITextTaskGenerator> _generators = new Dictionary<string, ITextTaskGenerator>();
+        private readonly Dictionary<string, IConditionTaskGenerator> _generators = new Dictionary<string, IConditionTaskGenerator>();
 
         public TextTaskGeneratorsContext(ISetWriter setWriter, TaskGeneratorContext taskGeneratorContext)
         {
-            Add(new NumberBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsSetTask)));
-            Add(new NumbersBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongSetTask)));
-            Add(new SymbolBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongsSetTask>(TaskIds.SymbolBelongsSetTask)));
-            Add(new SymbolsBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTask>(TaskIds.SymbolsBelongSetTask)));
-            Add(new NumberBelongsSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsBorderedSetTask)));
-            Add(new NumbersBelongSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongBorderedSetTask)));
-            Add(new SetContainsElementsTextTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElement)));
-            Add(new SetContainsElementsTextTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElements)));
+            Add(new NumberBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsSetTask)));
+            Add(new NumbersBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongSetTask)));
+            Add(new SymbolBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolBelongsSetTask>(TaskIds.SymbolBelongsSetTask)));
+            Add(new SymbolsBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SymbolsBelongSetTask>(TaskIds.SymbolsBelongSetTask)));
+            Add(new NumberBelongsSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumberBelongsSetTask>(TaskIds.NumberBelongsBorderedSetTask)));
+            Add(new NumbersBelongSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<NumbersBelongSetTask>(TaskIds.NumbersBelongBorderedSetTask)));
+            Add(new SetContainsElementsConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElement)));
+            Add(new SetContainsElementsConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SetContainElementsTask>(TaskIds.SetContainsElements)));
 
-            Add(new CharacteristicPropertyTextTaskGenerator(setWriter, taskGeneratorContext.Get<CharacteristicPropertyTask>(TaskIds.CharacteristicPropertyTask)));
-            Add(new VariantsSubSetSetAnswerTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTask>(TaskIds.VariantsSubSetTask)));
-            Add(new SubSetTextTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetTask>(TaskIds.SubSetTask)));
-            Add(new BorderSetOperationTextTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsBorderSetOperationTask>(TaskIds.BorderSetOperationTask)));
+            Add(new CharacteristicPropertyConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsCharacteristicPropertyTask>(TaskIds.CharacteristicPropertyTask)));
+            Add(new VariantsSubSetSetAnswerConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsSubSetTask>(TaskIds.VariantsSubSetTask)));
+            Add(new SubSetConditionTaskGenerator(setWriter, taskGeneratorContext.Get<SubSetTask>(TaskIds.SubSetTask)));
+            Add(new BorderSetOperationConditionTaskGenerator(setWriter, taskGeneratorContext.Get<VariantsBorderSetOperationTask>(TaskIds.BorderSetOperationTask)));
         }
 
-        public IEnumerable<ITextTaskGenerator> Generators => _generators.Values;
+        public IEnumerable<IConditionTaskGenerator> Generators => _generators.Values;
 
-        public ITextTaskGenerator Get(string generatorId) => _generators[generatorId];
+        public IConditionTaskGenerator Get(string generatorId) => _generators[generatorId];
 
         private void Add<TGenerator>(TGenerator generator)
-            where TGenerator: ITextTaskGenerator
+            where TGenerator: IConditionTaskGenerator
         {
             _generators.Add(generator.Id, generator);
         }

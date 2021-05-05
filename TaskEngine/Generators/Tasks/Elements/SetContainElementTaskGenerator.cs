@@ -45,7 +45,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(variantSet);
             }
             
-            return new SetContainElementsTask(taskElements, variants, answers);
+            return new SetContainElementsTask(answers, variants, taskElements);
         }
     }
 }

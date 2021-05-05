@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using TaskEngine.Sets;
-using Xceed.Document.NET;
 
 namespace TaskEngine.Tasks.Elements
 {
-    public class NumbersBelongSetTask: ITask
+    public class NumbersBelongSetTask: VariantsTask<int>
     {
-        public NumbersBelongSetTask(List<int> answers, List<int> variants, IMathSet<int> taskSet)
+        public IMathSet<int> Set { get; }
+
+        public NumbersBelongSetTask(IList<int> answers, IList<int> variants, IMathSet<int> set) : base(answers, variants)
         {
-            Answers = answers;
-            Variants = variants;
-            TaskSet = taskSet;
+            Set = set;
         }
 
-        public List<int> Variants { get; }
-        public List<int> Answers { get; }
-        public IMathSet<int> TaskSet { get; }
+        public NumbersBelongSetTask(int answer, IList<int> variants, IMathSet<int> set) : base(answer, variants)
+        {
+            Set = set;
+        }
     }
 }

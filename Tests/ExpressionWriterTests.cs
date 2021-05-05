@@ -16,7 +16,7 @@ namespace Tests
             for (int index = 0; index < 2; index++)
             {
                 var index1 = index;
-                var set = new ExpressionSet<int>("A", i => index1 * i, 10);
+                var set = new ExpressionSet("A", i => index1 * i, 10);
 
                 var result = _expressionWriter.Write(set.Expression);
 

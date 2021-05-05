@@ -3,17 +3,18 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Tasks.Elements
 {
-    public class NumberBelongsSetTask: ITask
+    public class NumberBelongsSetTask: VariantsTask<int>
     {
-        public IList<int> Variants { get; }
-        public int RightAnswer { get; }
         public IMathSet<int> Set { get; }
 
-        public NumberBelongsSetTask(int rightAnswer, IList<int> variants, IMathSet<int> set)
+        public NumberBelongsSetTask(IList<int> answers, IList<int> variants, IMathSet<int> set) : base(answers, variants)
         {
-            Variants = variants;
             Set = set;
-            RightAnswer = rightAnswer;
+        }
+
+        public NumberBelongsSetTask(int answer, IList<int> variants, IMathSet<int> set) : base(answer, variants)
+        {
+            Set = set;
         }
     }
 }

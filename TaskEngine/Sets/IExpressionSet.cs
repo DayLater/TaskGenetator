@@ -3,8 +3,8 @@ using System.Linq.Expressions;
 
 namespace TaskEngine.Sets
 {
-    public interface IExpressionSet<T>: IMathSet<T>
+    public interface IExpressionSet: IMathSet<int>
     {
-        Expression<Func<int, T>> Expression { get; }
+        Expression<Func<int, int>> Expression { get; }
     }
 }

@@ -142,7 +142,8 @@ namespace TaskEngine.Generators.SetGenerators
             _currentPositiveCount = 0;
             _isZeroTaken = false;
 
-            return new MathSet<int>(name, elements.ShuffleToList());
+            elements.Shuffle();
+            return new MathSet<int>(name, elements);
         }
     }
 }

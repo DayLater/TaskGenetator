@@ -9,7 +9,7 @@ namespace WinGenerator.Views
 {
     public class GeneratingViewFactory
     {
-        public View Create(IGenerator generator, string id, int rowCount = 1)
+        public View Create(IValued generator, string id, int rowCount = 1)
         {
             var values = generator.Values.ToList();
             var columnCount = (int) Math.Ceiling((float)values.Count / rowCount);

@@ -21,10 +21,10 @@ namespace WinGenerator.Views
             foreach (var generator in textTaskGenerators.Generators)
             {
                 var rowCount = 1;
-                if (generator.Generator.Values.Count() > 4)
+                if (generator.ValuedGenerator.Values.Count() > 4)
                     rowCount = 2;
                 
-                AddTaskView(generatingViewFactory.Create(generator.Generator, generator.Id, rowCount));
+                AddTaskView(generatingViewFactory.Create(generator.ValuedGenerator, generator.Id, rowCount));
             }
 
             var taskIds = textTaskGenerators.Generators.Select(g => g.Id).ToList();

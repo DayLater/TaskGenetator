@@ -45,7 +45,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                     variants.Add(variant);
             }
 
-            return new NumbersBelongSetTask(answers, variants.ShuffleToList(), set);
+            return new NumbersBelongSetTask(answers, variants, set);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace TaskEngine.Generators.SetGenerators
                 
                 containedItems.Add(coefficient);
                 var name = names[i];
-                var set = new ExpressionSet<int>(name, x => coefficient * x);
+                var set = new ExpressionSet(name, x => coefficient * x);
                 result.Add(set);
             }
 

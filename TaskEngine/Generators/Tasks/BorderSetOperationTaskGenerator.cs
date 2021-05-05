@@ -35,7 +35,7 @@ namespace TaskEngine.Generators.Tasks
 
             var variants = _variantsGenerator.Generate(answerSet, VariantsCount).Cast<IMathSet<int>>().ToList();
             variants.Add(answerSet);
-            return new VariantsBorderSetOperationTask(answerSet, variants.ShuffleToList(), firstSet, secondSet, operation);
+            return new VariantsBorderSetOperationTask(answerSet, variants, firstSet, secondSet, operation);
         }
 
         private void AddSetGenerator(SetOperation operation, IOperationSetGenerator generator) => _setGenerators.Add(operation, generator);
