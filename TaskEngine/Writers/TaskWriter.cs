@@ -57,11 +57,13 @@ namespace TaskEngine.Writers
             {
                 IVariantsTask<int> intVariantTask =>_variantTaskWriter.Write(intVariantTask),
                 IVariantsTask<string> strVariantsTask => _variantTaskWriter.Write(strVariantsTask),
+                IVariantsTask<ExpressionSet> answerTask => _variantTaskWriter.Write(answerTask),
                 IVariantsTask<IMathSet<int>> intSetVariantsTask =>_variantTaskWriter.Write(intSetVariantsTask),
                 IVariantsTask<IMathSet<string>> strSetVariantsTask => _variantTaskWriter.Write(strSetVariantsTask),
+                
                 IAnswerTask<int> answerTask => new TextTask(condition, answerTask.Answers[0].ToString()),
                 IAnswerTask<string> answerTask => new TextTask(condition, answerTask.Answers[0]),
-                IAnswerTask<ExpressionSet> answerTask => new TextTask(condition, _setWriter.Write(answerTask.Answers[0])),
+                IAnswerTask<ExpressionSet> answerTask => new TextTask(condition, _setWriter.WriteCharacteristicProperty(answerTask.Answers[0])),
                 IAnswerTask<IMathSet<int>> answerTask => new TextTask(condition, _setWriter.Write(answerTask.Answers[0])),
                 IAnswerTask<IMathSet<string>> answerTask => new TextTask(condition, _setWriter.Write(answerTask.Answers[0])),
                 _ => throw new ArgumentOutOfRangeException("")

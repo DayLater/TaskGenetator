@@ -4,6 +4,7 @@ using TaskEngine.Comparers;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.Tasks;
+using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Tasks;
 using TaskEngine.Writers;
@@ -22,10 +23,11 @@ namespace TaskEngine.Factories
             Add(new SymbolsBelongSetTaskGenerator(random, TaskIds.SymbolsBelongSetTask, 2, setWriter));
             Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumberBelongsBorderedSetTask, 1, setWriter));
             Add(new NumbersBelongBorderedSetTaskGenerator(random, TaskIds.NumbersBelongBorderedSetTask, 2, setWriter));
-
             Add(new SetContainElementTaskGenerator(TaskIds.SetContainsElements, random, setWriter, 2, 3));
             
-            Add(new CharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(random), random, setWriter));
+            Add(new CharacteristicPropertyTaskGenerator(setWriter, random));
+            Add(new VariantsCharacteristicPropertyTaskGenerator(new ExpressionSetGenerator(random), random, setWriter));
+            
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random, setWriter)); 
             Add(new SubSetTaskGenerator(random, setWriter));
 

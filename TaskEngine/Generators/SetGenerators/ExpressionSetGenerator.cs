@@ -17,9 +17,9 @@ namespace TaskEngine.Generators.SetGenerators
             Add(new IntValue(ValuesIds.MaxCoefficientValue) {Value = 10});
         }
         
-        public List<IMathSet<int>> Generate(int count)
+        public List<ExpressionSet> Generate(int count)
         {
-            var result = new List<IMathSet<int>>();
+            var result = new List<ExpressionSet>();
             var containedItems = new HashSet<int>();
             var names = Symbols.Names;
             var min = Get<IntValue>(ValuesIds.MinCoefficientValue).Value;

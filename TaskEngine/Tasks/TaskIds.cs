@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TaskEngine.Tasks
+﻿namespace TaskEngine.Tasks
 {
     public static class TaskIds
     {
@@ -10,19 +8,14 @@ namespace TaskEngine.Tasks
         public const string NumbersBelongBorderedSetTask = "Принадлежность элементов ограниченному множеству";
         public const string SymbolBelongsSetTask = "Принадлежность элемента множеству (буквы)";
         public const string SymbolsBelongSetTask = "Принадлежность элементов множеству (буквы)";
-
-        public const string SetContainsElement = "Множество, содержащее элемент (числа)";
+        
         public const string SetContainsElements = "Множество, содержащее элементы (числа)";
         
-
-        public const string CharacteristicPropertyTask = "Характеристическое свойство (тестовое)";
+        public const string CharacteristicPropertyTask = "Указать характеристическое свойство";
+        public const string VariantsCharacteristicPropertyTask = "Выбрать характеристическое свойство (тестовое)";
+        
         public const string VariantsSubSetTask = "Подмножество (тестовое)";
         public const string SubSetTask = "Подмножество";
         public const string BorderSetOperationTask = "Операции над множествами. Граничные";
-
-        public static IEnumerable<string> Ids => new[]
-        {
-            NumberBelongsSetTask, CharacteristicPropertyTask, VariantsSubSetTask, SubSetTask, BorderSetOperationTask, NumbersBelongSetTask
-        };
     }
 }
