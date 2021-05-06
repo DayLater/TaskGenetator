@@ -25,8 +25,8 @@ namespace TaskEngine.Generators.Tasks.SubSets
         {
             var set = _setGenerator.Generate();
             var type = SubSetTypeHelper.GetRandomSubSetType();
-
             var createdFunc = SubSetTypeHelper.GetTypeFunc(type);
+            
             var elements = set.GetElements().Where(e => createdFunc.Invoke(e)).ToList();
             var name = Symbols.GetRandomName(_random);
             var answerSet = new MathSet<int>(name, elements);

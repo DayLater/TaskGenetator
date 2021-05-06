@@ -28,25 +28,25 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         public override ITask Generate()
         {
-            var set = _setGenerator.Generate(1).First();
+            var set = _setGenerator.Generate();
             var type = SubSetTypeHelper.GetRandomSubSetType();
             var createdSubSetFunc = SubSetTypeHelper.GetTypeFunc(type);
             
-            var rightSubSet = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ToList();
-            rightSubSet.Shuffle(_random);
-            var variants = new List<List<int>> {rightSubSet};
+            var elements = set.GetElements().Where(e => createdSubSetFunc.Invoke(e)).ToList();
+            elements.Shuffle(_random);
+            var variants = new List<List<int>> {elements};
 
             while (variants.Count < VariantsCount)
             {
                 var variant = GetVariant(set);
-                if (!new HashSet<int>(variant).SetEquals(rightSubSet))
+                if (!new HashSet<int>(variant).SetEquals(elements))
                 {
                     variant.Shuffle(_random);
                     variants.Add(variant);
                 }
             }
             
-            var setVariants = variants.Select((elements, i) => new MathSet<int>(Symbols.Names[i], elements))
+            var setVariants = variants.Select((e, i) => new MathSet<int>(Symbols.Names[i], e))
                 .Cast<IMathSet<int>>().ToList();
             
             var answer = setVariants[0];

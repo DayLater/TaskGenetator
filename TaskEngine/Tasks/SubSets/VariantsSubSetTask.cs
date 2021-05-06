@@ -5,8 +5,8 @@ namespace TaskEngine.Tasks.SubSets
 {
     public class VariantsSubSetTask: VariantsTask<IMathSet<int>>
     {
-        public SubSetType Type { get; }
-        public IMathSet<int> Set { get; }
+        private SubSetType Type { get; }
+        private IMathSet<int> Set { get; }
 
         public VariantsSubSetTask(IList<IMathSet<int>> answers, string condition, IList<IMathSet<int>> variants, SubSetType type, IMathSet<int> set) : base(answers, condition, variants)
         {

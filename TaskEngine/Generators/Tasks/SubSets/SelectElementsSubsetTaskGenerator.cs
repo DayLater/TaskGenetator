@@ -7,6 +7,7 @@ using TaskEngine.Sets;
 using TaskEngine.Tasks;
 using TaskEngine.Values;
 using TaskEngine.Writers;
+using Xceed.Document.NET;
 
 namespace TaskEngine.Generators.Tasks.SubSets
 {
@@ -30,6 +31,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var set = _setGenerator.Generate();
             var elements = set.GetElements().ToList();
             var count = GetElementCountInSubset(_random, elements);
+            var names = new List<string>();
             var answers = CreateAnswers(elements, count, _random);
 
             var variants = new List<List<T>>(answers);
@@ -46,15 +48,19 @@ namespace TaskEngine.Generators.Tasks.SubSets
                     variants.Add(variant);
             }
 
-            var condition = GetCondition(set, answers);
-            return new VariantsTask<List<T>>(answers, condition, variants);
+            var mathSetVariants = CreateSets(variants, names);
+            var answerIndexes = answers.Select(a => variants.IndexOf(a)).ToList();
+            var setAnswers = answerIndexes.Select(index => mathSetVariants[index]).ToList();
+
+            var condition = GetCondition(set, setAnswers);
+            return new VariantsTask<IMathSet<T>>(setAnswers, condition, mathSetVariants);
         }
 
         protected abstract T GetElement(IList<T> elements);
         
         private int MinCountInSubSet => _minCountInSubSet.Value;
 
-        private string GetCondition(IMathSet<T> set, IReadOnlyCollection<List<T>> answers)
+        private string GetCondition(IMathSet<T> set, IReadOnlyCollection<IMathSet<T>> answers)
         {
             var subSet = answers.Count == 1 ? "подмножество" : "подмножества";
             return $"Дано множество {WriteSet(set)}. Выберите его {subSet}.";
@@ -71,6 +77,19 @@ namespace TaskEngine.Generators.Tasks.SubSets
             }
 
             return answers;
+        }
+
+        private List<IMathSet<T>> CreateSets(IEnumerable<IList<T>> lists, List<string> names)
+        {
+            var result = new List<IMathSet<T>>();
+            foreach (var item in lists)
+            {
+                var name = Symbols.GetRandomName(_random, names.ToArray());
+                names.Add(name);
+                result.Add(new MathSet<T>(name, item));
+            }
+
+            return result;
         }
 
         private int GetElementCountInSubset(Random random, ICollection<T> elements)

@@ -14,7 +14,7 @@ namespace TaskEngine.Helpers
                 SubSetType.Negative => i => i < 0,
                 SubSetType.NonNegative => i => i >= 0,
                 SubSetType.Even => i => i % 2 == 0,
-                SubSetType.Odd => i => i % 2 == 1,
+                SubSetType.Odd => i => i % 2 == 1 || i % 2 == -1,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
