@@ -40,14 +40,18 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
             var subsetName = _random.GetRandomName(names.ToArray());
             var subset = new MathSet<T>(subsetName, subsetElements);
-
+            names.Add(subsetName);
+            
             var answers = new List<IMathSet<T>> {answerSet};
             while (answers.Count < AnswersCount)
             {
                 var answerName = _random.GetRandomName( names.ToArray());
                 var set = _setGenerator.Generate(answerName, subsetElements.ToArray());
                 if (!IsContain(answers, set))
+                {
+                    names.Add(answerName);
                     answers.Add(set);
+                }
             }
             
             var variants = new List<IMathSet<T>>(answers);
@@ -56,7 +60,10 @@ namespace TaskEngine.Generators.Tasks.SubSets
                 var variantName = _random.GetRandomName(names.ToArray());
                 var variant = _setGenerator.Generate(variantName);
                 if (!IsContain(variants, variant) && !IsContainsAllElements(variant, subsetElements))
+                {
+                    names.Add(variantName);
                     variants.Add(variant);
+                }
             }
 
             var condition = GetCondition(answers, subset);
