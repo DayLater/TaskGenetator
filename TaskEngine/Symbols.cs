@@ -49,7 +49,7 @@ namespace TaskEngine
             return Names[index];
         }
 
-        public static string GetRandomElementSymbol(Random random, string[] except)
+        public static string GetRandomElementSymbol(Random random, params string[] except)
         {
             if (except.Length > 0)
             {

@@ -32,5 +32,16 @@ namespace TaskEngine.Extensions
 
             return resultList;
         }
+
+        public static bool TryAdd<T>(this IList<T> list, T item)
+        {
+            if (!list.Contains(item))
+            {
+                list.Add(item);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

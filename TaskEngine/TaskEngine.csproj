@@ -56,6 +56,7 @@
         <Compile Include="Contexts\UserContext.cs" />
         <Compile Include="Extensions\EnumerableExtensions.cs" />
         <Compile Include="Factories\TaskGeneratorFactory.cs" />
+        <Compile Include="Generators\SetGenerators\ISetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyTaskGenerator.cs" />
@@ -66,6 +67,11 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SubSets\SelectElementsSubsetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SubSets\SelectNumbersSubSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SubSets\SelectSymbolsSubsetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SubSets\SubSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SubSets\VariantsSubSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\TaskGenerator.cs" />
         <Compile Include="Generators\Tasks\VariantsGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
@@ -85,8 +91,6 @@
         <Compile Include="Generators\SetGenerators\SetOperations\SetVariantsGeneratorByCorrect.cs" />
         <Compile Include="Generators\Tasks\BorderSetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\ITaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\SubSetTaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\VariantsSubSetTaskGenerator.cs" />
         <Compile Include="Helpers\BorderHelper.cs" />
         <Compile Include="Helpers\SetOperationHelper.cs" />
         <Compile Include="Helpers\SubSetTypeHelper.cs" />
@@ -109,14 +113,14 @@
         <Compile Include="Tasks\CharacteristicProperty\SelectCharacteristicPropertyTask.cs" />
         <Compile Include="Tasks\CharacteristicProperty\VariantsCharacteristicPropertyElementsTask.cs" />
         <Compile Include="Tasks\CharacteristicProperty\VariantsSelectCharacteristicPropertyTask.cs" />
+        <Compile Include="Tasks\SubSets\SubSetTask.cs" />
+        <Compile Include="Tasks\SubSets\VariantsSubSetTask.cs" />
         <Compile Include="Tasks\VariantsBorderSetOperationTask.cs" />
         <Compile Include="Tasks\Elements\NumbersBelongSetTask.cs" />
         <Compile Include="Tasks\Elements\SetContainElementsTask.cs" />
         <Compile Include="Tasks\Elements\SymbolsBelongSetTask.cs" />
         <Compile Include="Tasks\ITask.cs" />
-        <Compile Include="Tasks\SubSetTask.cs" />
         <Compile Include="Tasks\TaskIds.cs" />
-        <Compile Include="Tasks\VariantsSubSetTask.cs" />
         <Compile Include="Tasks\Texts\ITextTask.cs" />
         <Compile Include="Tasks\Texts\IVariantsTextTask.cs" />
         <Compile Include="Tasks\Texts\TextTask.cs" />

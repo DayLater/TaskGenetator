@@ -23,5 +23,7 @@
 
         public const string MinCoefficientValue = "Минимальный коэффициент при n";
         public const string MaxCoefficientValue = "Максимальный коэффициент при n";
+
+        public const string MinCountInSubSet = "Минимальное количество элементов в подмножестве";
     }
 }

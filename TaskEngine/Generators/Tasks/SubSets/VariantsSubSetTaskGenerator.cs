@@ -6,10 +6,11 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
+using TaskEngine.Tasks.SubSets;
 using TaskEngine.Values;
 using TaskEngine.Writers;
 
-namespace TaskEngine.Generators.Tasks
+namespace TaskEngine.Generators.Tasks.SubSets
 {
     public class VariantsSubSetTaskGenerator: VariantsGenerator
     {

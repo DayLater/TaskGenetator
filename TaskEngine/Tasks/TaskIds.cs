@@ -16,6 +16,11 @@
         public const string CharacteristicPropertyElementsTask = "Укажите элементы множества по характерестическому свойству";
         public const string VariantsCharacteristicPropertyElementsTask = "Выберите элементы множества по характерестическому свойству";
 
+        public const string SelectOneNumbersSubSet = "Выбрать подмонжество (числа)";
+        public const string SelectSeveralNumbersSubSet = "Выбрать подмонжества (числа)";
+        public const string SelectOneSymbolsSubSet = "Выбрать подмонжество (буквы)";
+        public const string SelectSeveralSymbolsSubSet = "Выбрать подмонжества (буквы)";
+
         
         public const string VariantsSubSetTask = "Подмножество (тестовое)";
         public const string SubSetTask = "Подмножество";

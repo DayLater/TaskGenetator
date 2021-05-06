@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TaskEngine.Extensions;
-using TaskEngine.Generators.Tasks;
 using TaskEngine.Sets;
 using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators
 {
-    public class IntMathSetGenerator: Valued
+    public class IntMathSetGenerator: Valued, ISetGenerator<int>
     {
         private readonly Random _random;
         
@@ -145,6 +145,11 @@ namespace TaskEngine.Generators.SetGenerators
 
             elements.Shuffle(_random);
             return new MathSet<int>(name, elements);
+        }
+
+        public IMathSet<int> Generate()
+        {
+            return Generate(1).First();
         }
     }
 }

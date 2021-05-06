@@ -10,5 +10,10 @@ namespace TaskEngine.Extensions
             var result = enumerable.Aggregate("", (s, arg2) => s + $"{arg2.ToString()}, ");
             return result.Remove(result.Length - 2, 2);
         }
+
+        public static bool IsContain<T>(this IEnumerable<IEnumerable<T>> enumerable, IEnumerable<T> item)
+        {
+            return enumerable.Any(e => new HashSet<T>(e).SetEquals(item));
+        }
     }
 }

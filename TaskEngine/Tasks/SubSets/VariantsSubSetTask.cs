@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TaskEngine.Sets;
 
-namespace TaskEngine.Tasks
+namespace TaskEngine.Tasks.SubSets
 {
     public class VariantsSubSetTask: VariantsTask<IMathSet<int>>
     {

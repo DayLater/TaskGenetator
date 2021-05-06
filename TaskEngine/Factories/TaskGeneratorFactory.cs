@@ -6,7 +6,9 @@ using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Generators.Tasks.SubSets;
 using TaskEngine.Tasks;
+using TaskEngine.Tasks.SubSets;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Factories
@@ -30,6 +32,10 @@ namespace TaskEngine.Factories
             Add(new CharacteristicPropertyElementsTaskGenerator(setWriter, random));
             Add(new VariantsCharacteristicPropertyElementsTaskGenerator(setWriter, random));
             
+            Add(new SelectNumbersSubSetTaskGenerator(1, setWriter, random, TaskIds.SelectOneNumbersSubSet));
+            Add(new SelectNumbersSubSetTaskGenerator(2, setWriter, random, TaskIds.SelectSeveralNumbersSubSet));
+            Add(new SelectSymbolsSubsetTaskGenerator(1, setWriter, random, TaskIds.SelectOneSymbolsSubSet));
+            Add(new SelectSymbolsSubsetTaskGenerator(2, setWriter, random, TaskIds.SelectSeveralSymbolsSubSet));
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random, setWriter)); 
             Add(new SubSetTaskGenerator(random, setWriter));
 
