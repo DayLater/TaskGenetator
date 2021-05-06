@@ -25,7 +25,7 @@ namespace TaskEngine.Generators.SetGenerators
             
             while (elements.Count < count)
             {
-                var element = _random.GetRandomName(elements.ToArray());
+                var element = _random.GetRandomElementSymbol(elements.ToArray());
                 elements.Add(element);
             }
 

@@ -18,7 +18,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         protected override string GetElement(IList<string> elements)
         {
-            return _random.GetRandomName();
+            return _random.GetRandomElementSymbol();
         }
     }
 }

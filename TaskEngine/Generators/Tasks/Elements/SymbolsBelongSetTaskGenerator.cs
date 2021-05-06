@@ -40,7 +40,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variants = new List<string>(answers);
             while (variants.Count < VariantsCount)
             {
-                var element = _random.GetRandomName(elements.ToArray());
+                var element = _random.GetRandomElementSymbol(elements.ToArray());
                 if (!variants.Contains(element))
                     variants.Add(element);
             }
