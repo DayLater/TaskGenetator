@@ -132,10 +132,10 @@
         <Compile Include="Views\ITaskChooseView.cs" />
         <Compile Include="Views\IView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />
+        <Compile Include="Writers\DocWriters\Document.cs" />
+        <Compile Include="Writers\DocWriters\DocumentFactory.cs" />
         <Compile Include="Writers\DocWriters\DocWriter.cs" />
         <Compile Include="Writers\DocWriters\IDocWriter.cs" />
-        <Compile Include="Writers\DocWriters\TaskDocWriter.cs" />
-        <Compile Include="Writers\DocWriters\VariantTaskDocWriter.cs" />
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />
         <Compile Include="Writers\ISetWriter.cs" />

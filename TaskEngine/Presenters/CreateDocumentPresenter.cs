@@ -42,8 +42,8 @@ namespace TaskEngine.Presenters
 
                 for (int i = 0; i < count; i++)
                 {
-                    var tasks = generators.Select(g => g.Generate()).Select(_taskWriter.WriteTextTask);
-                    _docWriter.Write($"{name}_{i + 1}", tasks);
+                    var tasks = generators.Select(g => g.Generate()).Select(_taskWriter.WriteTextTask).ToList();
+                    _docWriter.Write($"{name}_{i + 1}", tasks, i + 1);
                 }
             }
         }

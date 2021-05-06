@@ -1,34 +1,64 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TaskEngine.Tasks.Texts;
-using Xceed.Words.NET;
 
 namespace TaskEngine.Writers.DocWriters
 {
     public class DocWriter: IDocWriter
     {
-        private readonly VariantTaskDocWriter _variantTaskDocWriter = new VariantTaskDocWriter();
-        private readonly TaskDocWriter _taskDocWriter = new TaskDocWriter();
-        
-        public void Write(string filename, IEnumerable<ITextTask> textTasks)
+        private readonly DocumentFactory _factory = new DocumentFactory();
+
+        public void Write(string filename, IEnumerable<ITextTask> textTasks, int variantNumber)
         {
-            using var doc = DocX.Create(filename);
+            using var doc = _factory.Create(filename);
+            doc.AddTitle("Контрольная работа");
+            doc.AddTitle($"Вариант №{variantNumber}");
+            doc.AddSpace();
+
             var taskIndex = 1;
-            
-            foreach (var textTask in textTasks)
+            var tasks = textTasks.ToList();
+            foreach (var textTask in tasks)
             {
                 switch (textTask)
                 {
-                    case IVariantsTextTask variantsTextTask: _variantTaskDocWriter.Write(doc, variantsTextTask, taskIndex);
+                    case IVariantsTextTask variantsTextTask: WriteVariantsTask(variantsTextTask, taskIndex, doc);
                         break;
-                    case { }: _taskDocWriter.Write(doc, textTask, taskIndex);
+                    case { }: WriteTask(textTask, taskIndex, doc);
                         break;
                 }
-
-                doc.InsertParagraph();
+                
+                doc.AddSpace();
                 taskIndex++;
             }
             
+            doc.InsertPageBreak();
+            WriteAnswers(tasks, doc);
+            
             doc.Save();
+        }
+
+        private void WriteVariantsTask(IVariantsTextTask textTask, int index, Document document)
+        {
+            WriteTask(textTask, index, document);
+            document.AddList(textTask.Variants);
+        }
+        
+        private void WriteTask(ITextTask textTask, int index, Document document)
+        {
+            document.AddText($"№ {index}. {textTask.Task}");
+        }
+
+        private void WriteAnswers(IEnumerable<ITextTask> textTasks, Document doc)
+        {
+            doc.AddTitle("Ответы");
+            doc.AddSpace();
+
+            int taskIndex = 1;
+            foreach (var textTask in textTasks)
+            {
+                doc.AddText($"{taskIndex}. {textTask.Answer}");
+                taskIndex++;
+            }
         }
     }
 }
