@@ -34,9 +34,11 @@ namespace TaskEngine.Writers
             {
                 int _ => variants.Select(v => v.ToString()),
                 string _ => variants.Select(v => v.ToString()),
+                List<int> _ => variants.Select(v => v as List<int>).Select(v => v.GetStringRepresentation()),
                 ExpressionSet _ => variants.Select(v => _setWriter.WriteCharacteristicProperty((ExpressionSet) (object) v)),
                 IMathSet<int> _ => variants.Select(v => _setWriter.Write((IMathSet<int>) v, withName)),
                 IMathSet<string> _ => variants.Select(v => _setWriter.Write((IMathSet<string>) v, withName)),
+
                 _ => throw new ArgumentOutOfRangeException($"Unknown type of T - {typeof(T)}")
             };
         }

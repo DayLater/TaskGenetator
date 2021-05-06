@@ -12,7 +12,10 @@
         public const string SetContainsElements = "Множество, содержащее элементы (числа)";
         
         public const string CharacteristicPropertyTask = "Указать характеристическое свойство";
-        public const string VariantsCharacteristicPropertyTask = "Выбрать характеристическое свойство (тестовое)";
+        public const string VariantsCharacteristicPropertyTask = "Выбрать характеристическое свойство";
+        public const string CharacteristicPropertyElementsTask = "Укажите элементы множества по характерестическому свойству";
+        public const string VariantsCharacteristicPropertyElementsTask = "Выберите элементы множества по характерестическому свойству";
+
         
         public const string VariantsSubSetTask = "Подмножество (тестовое)";
         public const string SubSetTask = "Подмножество";

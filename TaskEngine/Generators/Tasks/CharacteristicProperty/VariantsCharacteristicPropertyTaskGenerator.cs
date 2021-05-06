@@ -25,7 +25,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
             var rightAnswerIndex = _random.Next(0, variants.Count);
             var answer = variants[rightAnswerIndex];
             var condition = $"Дано множество {WriteSet(answer)}.\nУкажите его характеристическое свойство.";
-            return new VariantsCharacteristicPropertyTask(answer,  condition, variants); 
+            return new VariantsSelectCharacteristicPropertyTask(answer,  condition, variants); 
         }
     }
 }

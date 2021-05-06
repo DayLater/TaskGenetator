@@ -1,5 +1,6 @@
 ﻿using TaskEngine.Sets;
 using TaskEngine.Tasks;
+using TaskEngine.Tasks.Texts;
 using TaskEngine.Values;
 using TaskEngine.Writers;
 
@@ -17,7 +18,7 @@ namespace TaskEngine.Generators.Tasks
 
         public string Id { get; }
         public abstract ITask Generate();
-        
         protected string WriteSet<T>(IMathSet<T> set) => _setWriter.Write(set);
+        protected string WriteProperty<T>(IMathSet<T> set) => _setWriter.WriteCharacteristicProperty(set);
     }
 }

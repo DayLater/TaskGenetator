@@ -57,7 +57,9 @@
         <Compile Include="Extensions\EnumerableExtensions.cs" />
         <Compile Include="Factories\TaskGeneratorFactory.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
+        <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\CharacteristicProperty\VariantsCharacteristicPropertyElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\VariantsCharacteristicPropertyTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\ElementBelongSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\NumbersBelongSetTaskGenerator.cs" />
@@ -103,8 +105,10 @@
         <Compile Include="Sets\SubSetType.cs" />
         <Compile Include="Symbols.cs" />
         <Compile Include="Tasks\AnswerTask.cs" />
-        <Compile Include="Tasks\CharacteristicProperty\CharacteristicPropertyTask.cs" />
-        <Compile Include="Tasks\CharacteristicProperty\VariantsCharacteristicPropertyTask.cs" />
+        <Compile Include="Tasks\CharacteristicProperty\CharacteristicPropertyElementsTask.cs" />
+        <Compile Include="Tasks\CharacteristicProperty\SelectCharacteristicPropertyTask.cs" />
+        <Compile Include="Tasks\CharacteristicProperty\VariantsCharacteristicPropertyElementsTask.cs" />
+        <Compile Include="Tasks\CharacteristicProperty\VariantsSelectCharacteristicPropertyTask.cs" />
         <Compile Include="Tasks\VariantsBorderSetOperationTask.cs" />
         <Compile Include="Tasks\Elements\NumbersBelongSetTask.cs" />
         <Compile Include="Tasks\Elements\SetContainElementsTask.cs" />

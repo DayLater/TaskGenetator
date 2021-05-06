@@ -21,7 +21,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
         {
             var set = _setGenerator.Generate(1).First();
             var condition = $"Дано множество {WriteSet(set)}.\nУкажите его характеристическое свойство.";
-            return new CharacteristicPropertyTask(set, condition);
+            return new SelectCharacteristicPropertyTask(set, condition);
         }
     }
 }
