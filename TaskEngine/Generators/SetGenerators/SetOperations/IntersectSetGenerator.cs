@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskEngine.Extensions;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 
@@ -25,7 +26,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         private IntBorderedSet CreateFirstSetOnIntersect(string name, IntBorderedSet set)
         {
             var startBorderValue = _random.Next(set.Start.Value - 10, set.Start.Value + 1);
-            var startBorderType = BorderHelper.GetRandomBorderType();
+            var startBorderType = _random.GetRandomBorderType();
             var startBorder = new SetBorder<int>(startBorderValue, startBorderType);
             var endBorder = set.End.Clone();
             return new IntBorderedSet(name, startBorder, endBorder);
@@ -35,7 +36,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         {
             var startBorder = set.Start.Clone();
             var endBorderValue = _random.Next(set.End.Value + 1, set.End.Value + 20);
-            var endBorderType = BorderHelper.GetRandomBorderType();
+            var endBorderType = _random.GetRandomBorderType();
             var endBorder = new SetBorder<int>(endBorderValue, endBorderType);
             return new IntBorderedSet(name, startBorder, endBorder);
         }

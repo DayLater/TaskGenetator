@@ -14,6 +14,7 @@ namespace TaskEngine.Generators.Tasks
     public class BorderSetOperationTaskGenerator: VariantsGenerator
     {
         private readonly IntBorderSetGenerator _setGenerator;
+        private readonly Random _random;
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         private readonly Dictionary<SetOperation, IOperationSetGenerator> _setGenerators = new Dictionary<SetOperation, IOperationSetGenerator>();
         
@@ -22,6 +23,7 @@ namespace TaskEngine.Generators.Tasks
         {
             _variantsGenerator = variantsGenerator;
             _setGenerator = setGenerator;
+            _random = random;
             Add(_setGenerator);
             
             AddSetGenerator(SetOperation.Union, new UnionSetGenerator(random));
@@ -31,7 +33,8 @@ namespace TaskEngine.Generators.Tasks
 
         public override ITask Generate()
         {
-            var answerSet = _setGenerator.Generate();
+            var name = Symbols.GetRandomName(_random);
+            var answerSet = (IntBorderedSet) _setGenerator.Generate(name);
             var operation = SetOperationHelper.GetRandomSetOperation();
             var (firstSet, secondSet) = _setGenerators[operation].Generate(answerSet);
 

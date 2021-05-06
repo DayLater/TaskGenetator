@@ -4,7 +4,10 @@
     {
         protected override void FillElements()
         {
-            for (var i = Start.Value; i < End.Value; i++)
+            var start = Start.BorderType == BorderType.Close ? Start.Value : Start.Value + 1;
+            var end = End.BorderType == BorderType.Close ? End.Value + 1 : End.Value;
+            
+            for (var i = start; i < end; i++)
                 _elements.Add(i);
         }
 

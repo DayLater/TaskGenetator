@@ -27,7 +27,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var exceptEndBorder = new SetBorder<int>(startBorder.Value, exceptEndBorderType);
 
             var exceptStartBorderValue = _random.Next(startBorder.Value - 20, startBorder.Value);
-            var exceptStartBorderType = BorderHelper.GetRandomBorderType();
+            var exceptStartBorderType = _random.GetRandomBorderType();
             var exceptStartBorder = new SetBorder<int>(exceptStartBorderValue, exceptStartBorderType);
 
             var exceptName = Symbols.GetRandomName(_random);
@@ -35,7 +35,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 
             var firstSetEndBorder = answerSet.End.Clone();
             var firstSetStartBorderValue = _random.Next(exceptStartBorderValue + 1, startBorder.Value);
-            var firstSetStartBorderType = BorderHelper.GetRandomBorderType();
+            var firstSetStartBorderType = _random.GetRandomBorderType();
             var firstSetStartBorder = new SetBorder<int>(firstSetStartBorderValue, firstSetStartBorderType);
             var firstName = Symbols.GetRandomName(_random, exceptName);
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder, firstSetEndBorder);
@@ -50,7 +50,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var exceptStartBorder = new SetBorder<int>(endBorder.Value, exceptStartBorderType);
 
             var exceptEndBorderValue = _random.Next(endBorder.Value + 1, endBorder.Value + 20);
-            var exceptEndBorderType = BorderHelper.GetRandomBorderType();
+            var exceptEndBorderType = _random.GetRandomBorderType();
             var exceptEndBorder = new SetBorder<int>(exceptEndBorderValue, exceptEndBorderType);
             
             var exceptName = Symbols.GetRandomName(_random);
@@ -58,7 +58,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 
             var firstSetStartBorder = answerSet.Start.Clone();
             var firstSetEndBorderValue = _random.Next(endBorder.Value + 1, exceptEndBorderValue);
-            var firstSetEndBorderType = BorderHelper.GetRandomBorderType();
+            var firstSetEndBorderType = _random.GetRandomBorderType();
             var firstSetEndBorder = new SetBorder<int>(firstSetEndBorderValue, firstSetEndBorderType);
             var firstName = Symbols.GetRandomName(_random, exceptName);
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder,  firstSetEndBorder);

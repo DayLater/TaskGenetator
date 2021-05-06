@@ -24,7 +24,8 @@ namespace TaskEngine.Generators.Tasks.Elements
 
         public override ITask Generate()
         {
-            var set = _setGenerator.Generate();
+            var name = Symbols.GetRandomName(_random);
+            var set = (IntBorderedSet) _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
             var startValue = set.Start.BorderType == BorderType.Close? set.Start.Value: set.Start.Value + 1;
             var endValue = set.End.BorderType == BorderType.Close? set.End.Value + 1: set.End.Value;
