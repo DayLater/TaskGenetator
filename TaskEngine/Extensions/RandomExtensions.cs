@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaskEngine.Sets;
 
 namespace TaskEngine.Extensions
@@ -20,6 +22,34 @@ namespace TaskEngine.Extensions
         public static int GetNext(this Random random, int min, int max, int delta)
         {
             return random.Next(min - delta, max + delta);
+        }
+        
+        public static string GetRandomName(this Random random, params string[] except)
+        {
+            return random.GetRandomItem(Symbols.Names, except);
+        }
+
+        private static T GetRandomItem<T>(this Random random, IReadOnlyList<T> source, params T[] except)
+        {
+            if (except.Length > 0)
+            {
+                T symbol;
+                do
+                {
+                    var i = random.Next(0,  source.Count);
+                    symbol =  source[i];
+                } while (except.Contains(symbol));
+
+                return symbol;
+            }
+            
+            var index = random.Next(0,  source.Count);
+            return source[index];
+        }
+
+        public static string GetRandomElementSymbol(this Random random, params string[] except)
+        {
+            return random.GetRandomItem(Symbols.Elements, except);
         }
     }
 }

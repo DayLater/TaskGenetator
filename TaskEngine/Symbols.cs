@@ -30,42 +30,6 @@ namespace TaskEngine
             "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "O", "P", "Q", "R", "S", "T",
             "U", "V", "W", "X", "Y", "Z"
         };
-
-        public static string GetRandomName(Random random, params string[] except)
-        {
-            if (except.Length > 0)
-            {
-                string name;
-                do
-                {
-                    var i = random.Next(0, Names.Count);
-                    name = Names[i];
-                } while (except.Contains(name));
-
-                return name;
-            }
-            
-            var index = random.Next(0, Names.Count);
-            return Names[index];
-        }
-
-        public static string GetRandomElementSymbol(Random random, params string[] except)
-        {
-            if (except.Length > 0)
-            {
-                string symbol;
-                do
-                {
-                    var i = random.Next(0, Elements.Count);
-                    symbol = Elements[i];
-                } while (except.Contains(symbol));
-
-                return symbol;
-            }
-            
-            var index = random.Next(0, Elements.Count);
-            return Elements[index];
-        }
         
         public static IReadOnlyList<string> Elements { get; } = new List<string>
         {

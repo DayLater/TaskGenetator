@@ -36,7 +36,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var answers = new List<IMathSet<int>> {set};
             while (answers.Count < AnswersCount)
             {
-                var answerName = Symbols.GetRandomName(_random, names.ToArray());
+                var answerName = _random.GetRandomName(names.ToArray());
                 names.Add(answerName);
                 var answerSet = _setGenerator.Generate(answerName,new List<int>(), taskElements.ToArray());
                 if (!answers.Any(s => _setComparer.IsEquals(s, answerSet)))
@@ -46,7 +46,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variants = new List<IMathSet<int>>(answers);
             while (variants.Count < VariantsCount)
             {
-                var variantName = Symbols.GetRandomName(_random, names.ToArray());
+                var variantName = _random.GetRandomName(names.ToArray());
                 names.Add(variantName);
                 var variantSet = _setGenerator.Generate(variantName, taskElements);
                 if (!variants.Any(v => _setComparer.IsEquals(v, variantSet)))

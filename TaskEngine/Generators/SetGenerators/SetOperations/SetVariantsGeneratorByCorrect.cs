@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Comparers;
+using TaskEngine.Extensions;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 
@@ -58,7 +59,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
                 }
             }
             
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             var startBorder = new SetBorder<int>(startValue, startBorderType);
             var endBorder = new SetBorder<int>(endValue, endBorderType); 
             return new IntBorderedSet(name, startBorder,endBorder);

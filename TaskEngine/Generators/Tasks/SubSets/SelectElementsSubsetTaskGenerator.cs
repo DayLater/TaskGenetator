@@ -27,7 +27,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         public  override ITask Generate()
         {
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             var set = _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
             var count = GetElementCountInSubset(_random, elements);
@@ -84,7 +84,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var result = new List<IMathSet<T>>();
             foreach (var item in lists)
             {
-                var name = Symbols.GetRandomName(_random, names.ToArray());
+                var name = _random.GetRandomName(names.ToArray());
                 names.Add(name);
                 result.Add(new MathSet<T>(name, item));
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Writers;
 
@@ -17,7 +18,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         protected override string GetElement(IList<string> elements)
         {
-            return Symbols.GetRandomElementSymbol(_random);
+            return _random.GetRandomName();
         }
     }
 }

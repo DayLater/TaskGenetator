@@ -30,7 +30,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         public override ITask Generate()
         {
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             var names = new List<string> {name};
             var answerSet = _setGenerator.Generate(name);
             var elements = answerSet.GetElements().ToList();
@@ -38,13 +38,13 @@ namespace TaskEngine.Generators.Tasks.SubSets
             subsetElements.Add(elements.Min());
             subsetElements.Add(elements.Max());
 
-            var subsetName = Symbols.GetRandomName(_random, names.ToArray());
+            var subsetName = _random.GetRandomName(names.ToArray());
             var subset = new MathSet<T>(subsetName, subsetElements);
 
             var answers = new List<IMathSet<T>> {answerSet};
             while (answers.Count < AnswersCount)
             {
-                var answerName = Symbols.GetRandomName(_random, names.ToArray());
+                var answerName = _random.GetRandomName( names.ToArray());
                 var set = _setGenerator.Generate(answerName, subsetElements.ToArray());
                 if (!IsContain(answers, set))
                     answers.Add(set);
@@ -53,7 +53,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var variants = new List<IMathSet<T>>(answers);
             while (variants.Count < VariantsCount)
             {
-                var variantName = Symbols.GetRandomName(_random, names.ToArray());
+                var variantName = _random.GetRandomName(names.ToArray());
                 var variant = _setGenerator.Generate(variantName);
                 if (!IsContain(variants, variant) && !IsContainsAllElements(variant, subsetElements))
                     variants.Add(variant);

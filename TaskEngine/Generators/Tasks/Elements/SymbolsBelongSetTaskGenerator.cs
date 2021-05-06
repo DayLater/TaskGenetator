@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Tasks;
 using TaskEngine.Tasks.Elements;
@@ -23,7 +24,7 @@ namespace TaskEngine.Generators.Tasks.Elements
         
         public override ITask Generate()
         {
-            var name = Symbols.GetRandomName(_random);
+            var name =_random.GetRandomName();
             var set = _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
 
@@ -39,7 +40,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variants = new List<string>(answers);
             while (variants.Count < VariantsCount)
             {
-                var element = Symbols.GetRandomElementSymbol(_random, elements.ToArray());
+                var element = _random.GetRandomName(elements.ToArray());
                 if (!variants.Contains(element))
                     variants.Add(element);
             }

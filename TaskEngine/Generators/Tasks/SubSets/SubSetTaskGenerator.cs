@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
@@ -14,7 +15,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
         private readonly Random _random;
         private readonly IntMathSetGenerator _setGenerator;
 
-        public SubSetTaskGenerator(Random random, ISetWriter setWriter): base(TaskIds.SubSetTask, setWriter)
+        public SubSetTaskGenerator(Random random, ISetWriter setWriter): base(TaskIds.SelectSubsetByCharacterTask, setWriter)
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);
@@ -28,12 +29,11 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var createdFunc = SubSetTypeHelper.GetTypeFunc(type);
             
             var elements = set.GetElements().Where(e => createdFunc.Invoke(e)).ToList();
-            var name = Symbols.GetRandomName(_random);
+            var name =_random.GetRandomName();
             var answerSet = new MathSet<int>(name, elements);
 
             var condition = GetCondition(set, type);
-            var task = new SubSetTask(answerSet, condition, type, set);
-            return task;
+            return new SubSetTask(answerSet, condition, type, set);
         }
 
         private string GetCondition<T>(IMathSet<T> set, SubSetType setType)

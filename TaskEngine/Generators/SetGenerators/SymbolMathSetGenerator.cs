@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TaskEngine.Extensions;
 using TaskEngine.Sets;
 using TaskEngine.Values;
 
@@ -24,7 +25,7 @@ namespace TaskEngine.Generators.SetGenerators
             
             while (elements.Count < count)
             {
-                var element = Symbols.GetRandomElementSymbol(_random, elements.ToArray());
+                var element = _random.GetRandomName(elements.ToArray());
                 elements.Add(element);
             }
 

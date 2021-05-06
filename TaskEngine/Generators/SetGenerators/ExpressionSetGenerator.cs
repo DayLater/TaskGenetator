@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TaskEngine.Extensions;
 using TaskEngine.Sets;
 using TaskEngine.Values;
 
@@ -54,7 +55,7 @@ namespace TaskEngine.Generators.SetGenerators
                 coefficient = _random.Next(min, max);
             } while (IsSuitableCoefficient(coefficients, coefficient));
 
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             return new ExpressionSet(name, x => coefficient * x);
         }
 

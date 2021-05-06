@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Sets;
 using TaskEngine.Tasks;
@@ -24,7 +25,7 @@ namespace TaskEngine.Generators.Tasks.Elements
 
         public override ITask Generate()
         {
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             var set = (IntBorderedSet) _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
             var startValue = set.Start.BorderType == BorderType.Close? set.Start.Value: set.Start.Value + 1;

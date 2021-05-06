@@ -33,7 +33,7 @@ namespace TaskEngine.Generators.Tasks
 
         public override ITask Generate()
         {
-            var name = Symbols.GetRandomName(_random);
+            var name = _random.GetRandomName();
             var answerSet = (IntBorderedSet) _setGenerator.Generate(name);
             var operation = SetOperationHelper.GetRandomSetOperation();
             var (firstSet, secondSet) = _setGenerators[operation].Generate(answerSet);
