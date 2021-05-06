@@ -144,7 +144,14 @@
         <Compile Include="Writers\IExpressionWriter.cs" />
         <Compile Include="Writers\ISetWriter.cs" />
         <Compile Include="Writers\SetWriter.cs" />
-        <Compile Include="Writers\TaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\BaseTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\ExpressionSetTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\IntTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\ITaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\ListTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\MathSetTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\StringTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\TaskWriter.cs" />
         <Compile Include="Writers\VariantTaskWriter.cs" />
     </ItemGroup>
     <ItemGroup>

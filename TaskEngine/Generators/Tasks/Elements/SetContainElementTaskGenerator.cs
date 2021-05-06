@@ -49,7 +49,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var condition = GetCondition(taskElements, answers);
-            return new SetContainElementsTask(answers, condition,variants, taskElements);
+            return new SetContainElementsTask(answers, condition, variants, taskElements);
         }
 
         private string GetCondition(ICollection<int> elements, ICollection<IMathSet<int>> sets)

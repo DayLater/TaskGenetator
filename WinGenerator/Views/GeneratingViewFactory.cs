@@ -29,7 +29,7 @@ namespace WinGenerator.Views
                     view.AddColumn(columnScale);
                     var value = values[counter];
 
-                    if (GetControl(value, out var control))
+                    if (TryGetControl(value, out var control))
                         view.AddControl(control, column, row);
                     else
                         column--;
@@ -41,7 +41,7 @@ namespace WinGenerator.Views
             return view;
         }
 
-        private bool GetControl(IValue value, out Control control)
+        private bool TryGetControl(IValue value, out Control control)
         {
             var table = new PercentTableLayoutPanel();
             switch (value)

@@ -4,6 +4,7 @@ using TaskEngine.Factories;
 using TaskEngine.Views;
 using TaskEngine.Writers;
 using TaskEngine.Writers.DocWriters;
+using TaskEngine.Writers.TaskWriters;
 
 namespace TaskEngine.Presenters
 {
