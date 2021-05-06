@@ -2,14 +2,16 @@
 
 namespace TaskEngine.Comparers
 {
-    public class BorderedSetComparer: ISetComparer<IntBorderedSet>
+    public class BorderedSetComparer: ISetComparer<int>
     {
-        public bool IsEquals(IntBorderedSet first, IntBorderedSet second)
+        public bool IsEquals(IMathSet<int> first, IMathSet<int> second)
         {
-            var firstStart = first.Start;
-            var firstEnd = first.End;
-            var secondStart = second.Start;
-            var secondEnd = second.End;
+            var firstSet = (IntBorderedSet) first;
+            var secondSet = (IntBorderedSet) second;
+            var firstStart = firstSet.Start;
+            var firstEnd = firstSet.End;
+            var secondStart = secondSet.Start;
+            var secondEnd = secondSet.End;
 
             return firstStart.Value == secondStart.Value && firstStart.BorderType == secondStart.BorderType
                                                          && firstEnd.Value == secondEnd.Value

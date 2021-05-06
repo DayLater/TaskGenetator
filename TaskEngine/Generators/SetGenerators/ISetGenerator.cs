@@ -5,6 +5,6 @@ namespace TaskEngine.Generators.SetGenerators
 {
     public interface ISetGenerator<T>: IValued
     {
-        IMathSet<T> Generate();
+        IMathSet<T> Generate(string name, params T[] startElements);
     }
 }

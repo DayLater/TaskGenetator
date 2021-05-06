@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TaskEngine.Generators.Tasks;
 using TaskEngine.Sets;
 using TaskEngine.Values;
 
@@ -16,10 +15,9 @@ namespace TaskEngine.Generators.SetGenerators
             Add(new IntValue(ValuesIds.ElementMinCount) {Value = 6});
         }
         
-        public IMathSet<string> Generate()
+        public IMathSet<string> Generate(string name, params string[] startElements)
         {
-            var name = Symbols.GetRandomName(_random);
-            var elements = new List<string>();
+            var elements = new List<string>(startElements);
             var minCount = Get<IntValue>(ValuesIds.ElementMinCount).Value;
             var maxCount = Get<IntValue>(ValuesIds.ElementMaxCount).Value;
             var count = _random.Next(minCount, maxCount);

@@ -23,7 +23,8 @@ namespace TaskEngine.Generators.Tasks.Elements
         
         public override ITask Generate()
         {
-            var set = _setGenerator.Generate();
+            var name = Symbols.GetRandomName(_random);
+            var set = _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
 
             var answers = new List<string>();

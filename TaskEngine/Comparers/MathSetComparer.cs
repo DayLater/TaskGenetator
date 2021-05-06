@@ -3,9 +3,9 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Comparers
 {
-    public class IntMathSetComparer: ISetComparer<IMathSet<int>>
+    public class MathSetComparer<T>: ISetComparer<T>
     {
-        public bool IsEquals(IMathSet<int> first, IMathSet<int> second)
+        public bool IsEquals(IMathSet<T> first, IMathSet<T> second)
         {
             var firstElements = first.GetElements().ToArray();
             var secondElements = second.GetElements().ToArray();

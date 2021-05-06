@@ -7,7 +7,6 @@ using TaskEngine.Sets;
 using TaskEngine.Tasks;
 using TaskEngine.Values;
 using TaskEngine.Writers;
-using Xceed.Document.NET;
 
 namespace TaskEngine.Generators.Tasks.SubSets
 {
@@ -28,7 +27,8 @@ namespace TaskEngine.Generators.Tasks.SubSets
 
         public  override ITask Generate()
         {
-            var set = _setGenerator.Generate();
+            var name = Symbols.GetRandomName(_random);
+            var set = _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
             var count = GetElementCountInSubset(_random, elements);
             var names = new List<string>();

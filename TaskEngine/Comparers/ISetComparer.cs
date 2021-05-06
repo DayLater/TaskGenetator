@@ -2,9 +2,8 @@
 
 namespace TaskEngine.Comparers
 {
-    public interface ISetComparer<in TSet>
-        where TSet: IMathSet<int>
+    public interface ISetComparer<in T>
     {
-        bool IsEquals(TSet first, TSet second);
+        bool IsEquals(IMathSet<T> first, IMathSet<T> second);
     }
 }

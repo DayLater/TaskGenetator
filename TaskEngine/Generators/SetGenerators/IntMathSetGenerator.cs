@@ -93,11 +93,10 @@ namespace TaskEngine.Generators.SetGenerators
             return result;
         }
 
-        public IMathSet<int> Generate(List<int> exceptElements = null, params int[] startElements)
+        public IMathSet<int> Generate(string name, List<int> exceptElements = null, params int[] startElements)
         {
             exceptElements ??= new List<int>();
             
-            var name = Symbols.GetRandomName(_random);
             var elementCount = _random.Next(MinCount, MaxCount);
             var set = CreateSet(elementCount, name, exceptElements, startElements);
             return set;
@@ -150,6 +149,12 @@ namespace TaskEngine.Generators.SetGenerators
         public IMathSet<int> Generate()
         {
             return Generate(1).First();
+        }
+
+        public IMathSet<int> Generate(string name, params int[] startElements)
+        { 
+            var elementCount = _random.Next(MinCount, MaxCount);
+            return CreateSet(elementCount, name, new List<int>(), startElements);
         }
     }
 }
