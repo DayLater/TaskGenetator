@@ -1,9 +1,10 @@
 ﻿using TaskEngine.Sets;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public interface IOperationSetGenerator
+    public interface IOperationSetGenerator<T>: IValued
     {
-        (IMathSet<T> , IMathSet<T>) Generate<T>(IMathSet<T> answerSet);
+        (IMathSet<T> , IMathSet<T>) Generate(IMathSet<T> answerSet);
     }
 }

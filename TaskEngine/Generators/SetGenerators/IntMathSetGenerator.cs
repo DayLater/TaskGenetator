@@ -26,12 +26,12 @@ namespace TaskEngine.Generators.SetGenerators
         public int MaxCount
         {
             get => _maxCount.Value;
-            set => _minCount.Value = value;
+            set => _maxCount.Value = value;
         }
         
         public int MinCount
         {
-            get => _maxCount.Value;
+            get => _minCount.Value;
             set => _minCount.Value = value;
         }
         
@@ -76,15 +76,15 @@ namespace TaskEngine.Generators.SetGenerators
             Add(_minNegativeCount);
             Add(_isZeroNecessary);
         }
-        
-        public List<IMathSet<int>> Generate(int count)
+
+        private List<IMathSet<int>> Generate(int count)
         {
             var result = new List<IMathSet<int>>();
             
             for (var i = 0; i < count; i++)
             {
                 var name = Symbols.Names[i];
-                var elementCount = _random.Next(MinCount, MaxCount);
+                var elementCount = _random.Next(MinCount, MaxCount + 1);
                 var set = CreateSet(elementCount, name, new List<int>());
 
                 result.Add(set);
@@ -97,7 +97,7 @@ namespace TaskEngine.Generators.SetGenerators
         {
             exceptElements ??= new List<int>();
             
-            var elementCount = _random.Next(MinCount, MaxCount);
+            var elementCount = _random.Next(MinCount, MaxCount + 1);
             var set = CreateSet(elementCount, name, exceptElements, startElements);
             return set;
         }
@@ -153,7 +153,7 @@ namespace TaskEngine.Generators.SetGenerators
 
         public IMathSet<int> Generate(string name, params int[] startElements)
         { 
-            var elementCount = _random.Next(MinCount, MaxCount);
+            var elementCount = _random.Next(MinCount, MaxCount + 1);
             return CreateSet(elementCount, name, new List<int>(), startElements);
         }
     }

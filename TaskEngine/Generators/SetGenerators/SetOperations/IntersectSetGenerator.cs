@@ -1,41 +1,69 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Sets;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public class IntersectSetGenerator: OperationSetGenerator
+    public abstract class IntersectSetGenerator<T>: OperationSetGenerator<T>
     {
+        private readonly IntValue _addedElementCount = new IntValue(ValuesIds.AddElementsInSet) {Value = 3};
         private readonly Random _random;
 
-        public IntersectSetGenerator(Random random) : base(random)
+        protected IntersectSetGenerator(Random random) : base(random)
         {
             _random = random;
+            Add(_addedElementCount);
         }
 
-        private IntBorderedSet CreateFirstSetOnIntersect(string name, IntBorderedSet set)
+        protected override (IMathSet<T>, IMathSet<T>) CreateSets(string firstName, string secondName, IMathSet<T> answerSet)
         {
-            var startBorderValue = _random.Next(set.Start.Value - 10, set.Start.Value + 1);
-            var startBorderType = _random.GetRandomBorderType();
-            var startBorder = new SetBorder<int>(startBorderValue, startBorderType);
-            var endBorder = set.End.Clone();
-            return new IntBorderedSet(name, startBorder, endBorder);
+            var elements = answerSet.GetElements().ToList();
+            var isOneInOther = _random.GetBool();
+            var (firstElements, secondElements) = isOneInOther ? CreateOneInOtherElements(elements): CreateOnIntersect(elements);
+            firstElements.Shuffle(_random);
+            secondElements.Shuffle(_random);
+            return (new MathSet<T>(firstName, firstElements), new MathSet<T>(secondName, secondElements));
+        }
+
+        private (List<T>, List<T>) CreateOneInOtherElements(IReadOnlyCollection<T> elements)
+        {
+            var otherList = new List<T>(elements);
+            
+            int added = 0;
+            while (added < _addedElementCount.Value)
+            {
+                var element = CreateElement(_random, otherList);
+                if (otherList.TryAdd(element))
+                    added++;
+            }
+
+            return (new List<T>(elements), otherList);
         }
         
-        private IntBorderedSet CreateSecondSetOnIntersect(string name, IntBorderedSet set)
+        private (List<T>, List<T>) CreateOnIntersect(IList<T> elements)
         {
-            var startBorder = set.Start.Clone();
-            var endBorderValue = _random.Next(set.End.Value + 1, set.End.Value + 20);
-            var endBorderType = _random.GetRandomBorderType();
-            var endBorder = new SetBorder<int>(endBorderValue, endBorderType);
-            return new IntBorderedSet(name, startBorder, endBorder);
+            var firstList = new List<T>(elements);
+            var secondList = new List<T>(elements);
+            
+            AddElementsInList(firstList, secondList);
+            AddElementsInList(secondList, firstList);
+            return (firstList, secondList);
         }
-        protected override (IMathSet<T>, IMathSet<T>) CreateSets<T>(string firstName, string secondName, IMathSet<T> answerSet)
+
+        private void AddElementsInList(IList<T> addingList, IList<T> exceptList)
         {
-            var set = (IntBorderedSet) answerSet;
-            var firstSet = (IMathSet<T>) CreateFirstSetOnIntersect(firstName, set);
-            var secondSet = (IMathSet<T>) CreateSecondSetOnIntersect(secondName, set);
-            return (firstSet, secondSet);
+            int added = 0;
+            while (added < _addedElementCount.Value)
+            {
+                var element = CreateElement(_random, exceptList);
+                if (!exceptList.Contains(element) && addingList.TryAdd(element))
+                    added++;
+            }
         }
+
+        protected abstract T CreateElement(Random random, IList<T> elements);
     }
 }

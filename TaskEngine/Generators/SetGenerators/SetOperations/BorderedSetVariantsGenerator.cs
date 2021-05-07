@@ -5,38 +5,19 @@ using TaskEngine.Comparers;
 using TaskEngine.Extensions;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public class SetVariantsGeneratorByCorrect
+    public class BorderedSetVariantsGenerator: Valued, ISetVariantGenerator<int>
     {
         private readonly ISetComparer<int> _setComparer = new BorderedSetComparer();
         private readonly Random _random;
         private readonly List<IntBorderedSet> _tempVariants = new List<IntBorderedSet>();
 
-        public SetVariantsGeneratorByCorrect(Random random)
+        public BorderedSetVariantsGenerator(Random random)
         {
             _random = random;
-        }
-
-        public IEnumerable<IMathSet<T>> Generate<T>(IMathSet<T> answerSet, int variantCount)
-        {
-            var set = (IntBorderedSet) answerSet;
-            _tempVariants.Add(set);
-            
-            for (var i = 0; i < variantCount - 1; i++)
-            {
-                IntBorderedSet variant;
-                do
-                {
-                    variant = CreateVariant(set);
-                } while (ContainsSet(_tempVariants, variant));
-
-                yield return (IMathSet<T>) variant;
-                _tempVariants.Add(variant);
-            }
-            
-            _tempVariants.Clear();
         }
         
         private IntBorderedSet CreateVariant(IntBorderedSet correct)
@@ -79,6 +60,26 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         private bool ContainsSet(IEnumerable<IntBorderedSet> variants, IntBorderedSet set)
         {
             return variants.Any(variant => _setComparer.IsEquals(set, variant));
+        }
+
+        public IEnumerable<IMathSet<int>> Generate(IMathSet<int> answerSet, int variantCount)
+        {
+            var set = (IntBorderedSet) answerSet;
+            _tempVariants.Add(set);
+            
+            for (var i = 0; i < variantCount; i++)
+            {
+                IntBorderedSet variant;
+                do
+                {
+                    variant = CreateVariant(set);
+                } while (ContainsSet(_tempVariants, variant));
+
+                yield return variant;
+                _tempVariants.Add(variant);
+            }
+            
+            _tempVariants.Clear();
         }
     }
 }

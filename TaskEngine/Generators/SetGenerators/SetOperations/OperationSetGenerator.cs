@@ -1,10 +1,11 @@
 ﻿using System;
 using TaskEngine.Extensions;
 using TaskEngine.Sets;
+using TaskEngine.Values;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public abstract class OperationSetGenerator: IOperationSetGenerator
+    public abstract class OperationSetGenerator<T>: Valued, IOperationSetGenerator<T>
     {
         private readonly Random _random;
 
@@ -13,7 +14,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             _random = random;
         }
 
-        public (IMathSet<T>, IMathSet<T>) Generate<T>(IMathSet<T> answerSet)
+        public (IMathSet<T>, IMathSet<T>) Generate(IMathSet<T> answerSet)
         {
             var firstName = _random.GetRandomName();
             var secondName = _random.GetRandomName();
@@ -22,6 +23,6 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             return CreateSets(firstName, secondName, answerSet);
         }
 
-        protected abstract (IMathSet<T>, IMathSet<T>) CreateSets<T>(string firstName, string secondName, IMathSet<T> answerSet);
+        protected abstract (IMathSet<T>, IMathSet<T>) CreateSets(string firstName, string secondName, IMathSet<T> answerSet);
     }
 }

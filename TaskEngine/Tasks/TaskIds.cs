@@ -36,5 +36,13 @@
         public const string BorderSetExceptOperationTask = "Разность ограниченных множеств";
         public const string BorderSetIntersectOperationTask = "Пересечение ограниченных множеств";
         public const string BorderSetUnionOperationTask = "Объединение ограниченных множеств";
+        
+        public const string NumbersSetExceptOperationTask = "Разность множеств (числа)";
+        public const string NumbersSetIntersectOperationTask = "Пересечение множеств (числа)";
+        public const string NumbersSetUnionOperationTask = "Объединение множеств (числа)";
+
+        public const string SymbolsSetExceptOperationTask = "Разность множеств (буквы)";
+        public const string SymbolsSetIntersectOperationTask = "Пересечение множеств (буквы)";
+        public const string SymbolsSetUnionOperationTask = "Объединение множеств (буквы)";
     }
 }

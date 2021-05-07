@@ -20,10 +20,12 @@
 
         public const string ElementsCount = "Количество элементов";
         public const string MinCountElementsInVariant = "Минимальное количество элементов в варианте";
+        public const string CountSameElementsInVariant = "Минимальное количество элементов из ответа в варианте";
 
         public const string MinCoefficientValue = "Минимальный коэффициент при n";
         public const string MaxCoefficientValue = "Максимальный коэффициент при n";
 
         public const string MinCountInSubSet = "Минимальное количество элементов в подмножестве";
+        public const string AddElementsInSet = "Добавить элементов во множество";
     }
 }
