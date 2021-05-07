@@ -17,9 +17,10 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
         {
             var firstName = _random.GetRandomName();
-            var secondName = _random.GetRandomName(firstName);
+            var secondName = _random.GetRandomName();
             var firstSet = CreateFirstSetOnIntersect(firstName, answerSet);
             var secondSet = CreateSecondSetOnIntersect(secondName, answerSet);
+            _random.ClearNames();
             return (firstSet, secondSet);
         }
         

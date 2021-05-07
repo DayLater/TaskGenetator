@@ -23,11 +23,17 @@ namespace TaskEngine.Extensions
         {
             return random.Next(min - delta, max + delta);
         }
+
+        private static readonly List<string> _usedNames = new List<string>();
         
-        public static string GetRandomName(this Random random, params string[] except)
+        public static string GetRandomName(this Random random)
         {
-            return random.GetRandomItem(Symbols.Names, except);
+            var name = random.GetRandomItem(Symbols.Names, _usedNames.ToArray());
+            _usedNames.Add(name);
+            return name;
         }
+
+        public static void ClearNames(this Random random) => _usedNames.Clear();
 
         private static T GetRandomItem<T>(this Random random, IReadOnlyList<T> source, params T[] except)
         {

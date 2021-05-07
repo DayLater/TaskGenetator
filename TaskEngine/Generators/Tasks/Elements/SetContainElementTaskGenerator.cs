@@ -31,13 +31,11 @@ namespace TaskEngine.Generators.Tasks.Elements
             var set = _setGenerator.Generate();
             var elementCount = Get<IntValue>(ValuesIds.ElementsCount).Value;
             var taskElements =  set.GetElements().ToList().GetListWithRandomElements(elementCount, _random);
-            var names = new List<string> {set.Name};
-            
+
             var answers = new List<IMathSet<int>> {set};
             while (answers.Count < AnswersCount)
             {
-                var answerName = _random.GetRandomName(names.ToArray());
-                names.Add(answerName);
+                var answerName = _random.GetRandomName();
                 var answerSet = _setGenerator.Generate(answerName,new List<int>(), taskElements.ToArray());
                 if (!answers.Any(s => _setComparer.IsEquals(s, answerSet)))
                     answers.Add(answerSet);
@@ -46,13 +44,13 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variants = new List<IMathSet<int>>(answers);
             while (variants.Count < VariantsCount)
             {
-                var variantName = _random.GetRandomName(names.ToArray());
-                names.Add(variantName);
+                var variantName = _random.GetRandomName();
                 var variantSet = _setGenerator.Generate(variantName, taskElements);
                 if (!variants.Any(v => _setComparer.IsEquals(v, variantSet)))
                     variants.Add(variantSet);
             }
 
+            _random.ClearNames();
             var condition = GetCondition(taskElements, answers);
             return new SetContainElementsTask(answers, condition, variants, taskElements);
         }

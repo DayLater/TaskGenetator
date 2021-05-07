@@ -6,6 +6,7 @@ using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Generators.Tasks.SetOperations;
 using TaskEngine.Generators.Tasks.SubSets;
 using TaskEngine.Tasks;
 using TaskEngine.Writers;
@@ -41,10 +42,11 @@ namespace TaskEngine.Factories
             Add(new SelectSetBySubsetTaskGenerator<int>(TaskIds.SelectSeveralBorderedSetBySubset, 2, setWriter, new IntBorderSetGenerator(random), random, new BorderedSetComparer()));
             Add(new SelectSetBySubsetTaskGenerator<string>(TaskIds.SelectOneSymbolSetBySubset, 1, setWriter, new SymbolMathSetGenerator(random), random, new MathSetComparer<string>()));
             Add(new SelectSetBySubsetTaskGenerator<string>(TaskIds.SelectSeveralSymbolSetBySubset, 2, setWriter, new SymbolMathSetGenerator(random), random, new MathSetComparer<string>()));
-
-            
             Add(new VariantsSubSetTaskGenerator(new IntMathSetGenerator(random), random, setWriter)); 
             Add(new SubSetTaskGenerator(random, setWriter));
+            
+            Add(new SetEqualsTaskGenerator<int>(TaskIds.NumberSetsEquals, setWriter, new IntMathSetGenerator(random), random, new MathSetComparer<int>()));
+            Add(new SetEqualsTaskGenerator<string>(TaskIds.SymbolSetsEquals, setWriter, new SymbolMathSetGenerator(random), random, new MathSetComparer<string>()));
 
             var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new BorderedSetComparer());
             Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(random), random, setWriter));

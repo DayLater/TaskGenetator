@@ -60,6 +60,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             }
             
             var name = _random.GetRandomName();
+            _random.ClearNames();
             var startBorder = new SetBorder<int>(startValue, startBorderType);
             var endBorder = new SetBorder<int>(endValue, endBorderType); 
             return new IntBorderedSet(name, startBorder,endBorder);

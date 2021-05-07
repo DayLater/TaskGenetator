@@ -16,10 +16,11 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
         {
             var firstName = _random.GetRandomName();
-            var secondName = _random.GetRandomName(firstName);
+            var secondName = _random.GetRandomName();
 
             var isOneInOther = _random.GetBool();
 
+            _random.ClearNames();
             return isOneInOther ? GenerateOneInOther(firstName, secondName, answerSet) 
                 : GenerateOnIntersect(firstName, secondName, answerSet);
         }

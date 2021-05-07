@@ -46,6 +46,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var condition = GetCondition(answers, set);
+            _random.ClearNames();
             return new SymbolsBelongSetTask(answers, condition, variants,  set);
         }
     }

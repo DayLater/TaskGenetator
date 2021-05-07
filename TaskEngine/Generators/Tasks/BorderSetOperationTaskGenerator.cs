@@ -41,6 +41,7 @@ namespace TaskEngine.Generators.Tasks
             var variants = _variantsGenerator.Generate(answerSet, VariantsCount).Cast<IMathSet<int>>().ToList();
             variants.Add(answerSet);
             var condition = GetCondition(firstSet, secondSet, operation);
+            _random.ClearNames();
             return new VariantsBorderSetOperationTask(answerSet, condition, variants, firstSet, secondSet, operation);
         }
 

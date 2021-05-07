@@ -31,5 +31,8 @@
         public const string VariantsSelectSubsetByCharacterTask = "Выбрать подмножество по свойству";
         public const string SelectSubsetByCharacterTask = "Указать подмножество по свойству";
         public const string BorderSetOperationTask = "Операции над множествами. Граничные";
+
+        public const string NumberSetsEquals = "Равенство множеств (числа)";
+        public const string SymbolSetsEquals = "Равенство множеств (буквы)";
     }
 }

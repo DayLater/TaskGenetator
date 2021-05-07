@@ -17,6 +17,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             : base(id, answerCount, setWriter, new IntMathSetGenerator(random), random)
         {
             _random = random;
+            Add(_elementDelta);
         }
 
         protected override int GetElement(IList<int> elements)

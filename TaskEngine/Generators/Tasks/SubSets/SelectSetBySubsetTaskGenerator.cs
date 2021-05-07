@@ -31,41 +31,34 @@ namespace TaskEngine.Generators.Tasks.SubSets
         public override ITask Generate()
         {
             var name = _random.GetRandomName();
-            var names = new List<string> {name};
             var answerSet = _setGenerator.Generate(name);
             var elements = answerSet.GetElements().ToList();
             var subsetElements = elements.GetListWithRandomElements(_elementCount.Value - 2, _random);
             subsetElements.Add(elements.Min());
             subsetElements.Add(elements.Max());
 
-            var subsetName = _random.GetRandomName(names.ToArray());
+            var subsetName = _random.GetRandomName();
             var subset = new MathSet<T>(subsetName, subsetElements);
-            names.Add(subsetName);
-            
+
             var answers = new List<IMathSet<T>> {answerSet};
             while (answers.Count < AnswersCount)
             {
-                var answerName = _random.GetRandomName( names.ToArray());
+                var answerName = _random.GetRandomName();
                 var set = _setGenerator.Generate(answerName, subsetElements.ToArray());
                 if (!IsContain(answers, set))
-                {
-                    names.Add(answerName);
                     answers.Add(set);
-                }
             }
             
             var variants = new List<IMathSet<T>>(answers);
             while (variants.Count < VariantsCount)
             {
-                var variantName = _random.GetRandomName(names.ToArray());
+                var variantName = _random.GetRandomName();
                 var variant = _setGenerator.Generate(variantName);
                 if (!IsContain(variants, variant) && !IsContainsAllElements(variant, subsetElements))
-                {
-                    names.Add(variantName);
                     variants.Add(variant);
-                }
             }
 
+            _random.ClearNames();
             var condition = GetCondition(answers, subset);
             return new VariantsTask<IMathSet<T>>(answers, condition, variants);
         }

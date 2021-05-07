@@ -17,7 +17,9 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
         {
             var isFromStart = _random.GetBool();
-            return isFromStart ? GenerateFromStart(answerSet) : GenerateFromEnd(answerSet);
+            var (set, secondSet) =  isFromStart ? GenerateFromStart(answerSet) : GenerateFromEnd(answerSet);
+            _random.ClearNames();
+            return (set, secondSet);
         }
 
         private (IntBorderedSet, IntBorderedSet) GenerateFromStart(IntBorderedSet answerSet)
@@ -37,7 +39,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var firstSetStartBorderValue = _random.Next(exceptStartBorderValue + 1, startBorder.Value);
             var firstSetStartBorderType = _random.GetRandomBorderType();
             var firstSetStartBorder = new SetBorder<int>(firstSetStartBorderValue, firstSetStartBorderType);
-            var firstName = _random.GetRandomName(exceptName);
+            var firstName = _random.GetRandomName();
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder, firstSetEndBorder);
 
             return (firstSet, exceptSet);
@@ -60,9 +62,9 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var firstSetEndBorderValue = _random.Next(endBorder.Value + 1, exceptEndBorderValue);
             var firstSetEndBorderType = _random.GetRandomBorderType();
             var firstSetEndBorder = new SetBorder<int>(firstSetEndBorderValue, firstSetEndBorderType);
-            var firstName = _random.GetRandomName(exceptName);
+            var firstName = _random.GetRandomName();
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder,  firstSetEndBorder);
-
+            
             return (firstSet, exceptSet);
         }
     }

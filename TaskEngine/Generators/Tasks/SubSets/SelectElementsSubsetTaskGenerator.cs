@@ -31,7 +31,6 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var set = _setGenerator.Generate(name);
             var elements = set.GetElements().ToList();
             var count = GetElementCountInSubset(_random, elements);
-            var names = new List<string>();
             var answers = CreateAnswers(elements, count, _random);
 
             var variants = new List<List<T>>(answers);
@@ -48,11 +47,12 @@ namespace TaskEngine.Generators.Tasks.SubSets
                     variants.Add(variant);
             }
 
-            var mathSetVariants = CreateSets(variants, names);
+            var mathSetVariants = CreateSets(variants);
             var answerIndexes = answers.Select(a => variants.IndexOf(a)).ToList();
             var setAnswers = answerIndexes.Select(index => mathSetVariants[index]).ToList();
 
             var condition = GetCondition(set, setAnswers);
+            _random.ClearNames();
             return new VariantsTask<IMathSet<T>>(setAnswers, condition, mathSetVariants);
         }
 
@@ -79,13 +79,12 @@ namespace TaskEngine.Generators.Tasks.SubSets
             return answers;
         }
 
-        private List<IMathSet<T>> CreateSets(IEnumerable<IList<T>> lists, List<string> names)
+        private List<IMathSet<T>> CreateSets(IEnumerable<IList<T>> lists)
         {
             var result = new List<IMathSet<T>>();
             foreach (var item in lists)
             {
-                var name = _random.GetRandomName(names.ToArray());
-                names.Add(name);
+                var name = _random.GetRandomName();
                 result.Add(new MathSet<T>(name, item));
             }
 
