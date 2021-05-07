@@ -1,6 +1,6 @@
 ﻿namespace TaskEngine.Values
 {
-    public class ImmutableIntValue: IValue
+    public class ImmutableIntValue: IValue, IUnseenValue
     {
         public ImmutableIntValue(string id, int value)
         {

@@ -20,9 +20,10 @@ namespace TaskEngine.Generators.Tasks.SubSets
         public VariantsSubSetTaskGenerator(IntMathSetGenerator setGenerator, Random random, ISetWriter setWriter) 
             : base(TaskIds.VariantsSelectSubsetByCharacterTask, 1, setWriter)
         {
-            Add(new IntValue(ValuesIds.MinCountElementsInVariant) {Value = 2});
             _setGenerator = setGenerator;
             _random = random;
+            
+            Add(new IntValue(ValuesIds.MinCountElementsInVariant) {Value = 2});
             Add(_setGenerator);
         }
 

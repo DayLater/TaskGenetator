@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
@@ -10,25 +9,21 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.SetOperations
 {
-    public class VariantsSetOperationTaskGenerator<T>: VariantsGenerator
+    public class SetOperationTaskGenerator<T> : TaskGenerator
     {
-        private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
-        private readonly ISetVariantGenerator<T> _variantsGenerator;
-        
-        private readonly SetOperation _setOperation;
+        private readonly ISetGenerator<T> _setGenerator;
         private readonly IOperationSetGenerator<T> _operationSetGenerator;
+        private readonly SetOperation _setOperation;
         
-        public VariantsSetOperationTaskGenerator(string id, SetOperation setOperation, IOperationSetGenerator<T> operationSetGenerator, ISetVariantGenerator<T> variantsGenerator, ISetGenerator<T> setGenerator, Random random, ISetWriter setWriter)
-            : base(id, 1, setWriter)
+        public SetOperationTaskGenerator(string id, IOperationSetGenerator<T> operationSetGenerator, SetOperation setOperation, ISetWriter setWriter, Random random, ISetGenerator<T> setGenerator) : base(id, setWriter)
         {
-            _variantsGenerator = variantsGenerator;
-            _setGenerator = setGenerator;
             _random = random;
-            _setOperation = setOperation;
+            _setGenerator = setGenerator;
             _operationSetGenerator = operationSetGenerator;
+            _setOperation = setOperation;
+            
             Add(_operationSetGenerator);
-            Add(_variantsGenerator);
             Add(_setGenerator);
         }
 
@@ -37,14 +32,9 @@ namespace TaskEngine.Generators.Tasks.SetOperations
             var name = _random.GetRandomName();
             var answerSet = _setGenerator.Generate(name);
             var (firstSet, secondSet) = _operationSetGenerator.Generate(answerSet);
-
-            var variants = _variantsGenerator.Generate(answerSet, VariantsCount - 1).ToList();
-            variants.Add(answerSet);
-            
             var condition = GetCondition(firstSet, secondSet, _setOperation);
-            
             _random.ClearNames();
-            return new VariantsTask<IMathSet<T>>(answerSet, condition, variants);
+            return new AnswerTask<IMathSet<T>>(answerSet, condition);
         }
 
         private string GetCondition(IMathSet<T> first, IMathSet<T> second, SetOperation setOperation)

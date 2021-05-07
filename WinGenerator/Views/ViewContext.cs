@@ -21,7 +21,7 @@ namespace WinGenerator.Views
             foreach (var generator in generatorFactory.TaskGenerators)
             {
                 var rowCount = 1;
-                if (generator.Values.Count() > 4)
+                if (generator.Values.Count() > 5)
                     rowCount = 2;
                 
                 AddTaskView(generatingViewFactory.Create(generator, rowCount));

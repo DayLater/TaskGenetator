@@ -77,6 +77,7 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SetOperations\SetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\VariantsSetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\SetEqualsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SubSets\SelectElementsSubsetTaskGenerator.cs" />
@@ -143,6 +144,7 @@
         <Compile Include="Values\IIdentified.cs" />
         <Compile Include="Values\ImmutableIntValue.cs" />
         <Compile Include="Values\IntValue.cs" />
+        <Compile Include="Values\IUnseenValue.cs" />
         <Compile Include="Values\IValue.cs" />
         <Compile Include="Values\IValued.cs" />
         <Compile Include="Values\Valued.cs" />

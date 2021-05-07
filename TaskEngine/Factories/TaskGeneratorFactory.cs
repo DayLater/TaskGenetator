@@ -52,38 +52,45 @@ namespace TaskEngine.Factories
             
             Add(new SetEqualsTaskGenerator<int>(TaskIds.NumberSetsEquals, setWriter, new IntMathSetGenerator(random), random, new MathSetComparer<int>()));
             Add(new SetEqualsTaskGenerator<string>(TaskIds.SymbolSetsEquals, setWriter, new SymbolMathSetGenerator(random), random, new MathSetComparer<string>()));
-            
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.BorderSetExceptOperationTask, SetOperation.Except, new ExceptBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.BorderSetIntersectOperationTask, SetOperation.Intersect, new IntersectBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.BorderSetUnionOperationTask, SetOperation.Union, new UnionBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsBorderSetExceptOperationTask, SetOperation.Except, new ExceptBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsBorderSetIntersectOperationTask, SetOperation.Intersect, new IntersectBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsBorderSetUnionOperationTask, SetOperation.Union, new UnionBorderedSetGenerator(random), new BorderedSetVariantsGenerator(random),  new IntBorderSetGenerator(random), random, setWriter));
 
             var exceptIntSetGenerator = new IntMathSetGenerator(random) {MinCount = 4, MaxCount = 6};
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.NumbersSetExceptOperationTask, SetOperation.Except, new ExceptIntSetGenerator(random),new SetVariantGenerator<int>(exceptIntSetGenerator, random, new MathSetComparer<int>()), exceptIntSetGenerator, random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsNumbersSetExceptOperationTask, SetOperation.Except, new ExceptIntSetGenerator(random),new SetVariantGenerator<int>(exceptIntSetGenerator, random), exceptIntSetGenerator, random, setWriter));
+           
             var intersectIntSetGenerator = new IntMathSetGenerator(random) {MinCount = 4, MaxCount = 6};
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.NumbersSetIntersectOperationTask, SetOperation.Intersect, new IntersectIntSetGenerator(random),new SetVariantGenerator<int>(intersectIntSetGenerator, random, new MathSetComparer<int>()), intersectIntSetGenerator, random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsNumbersSetIntersectOperationTask, SetOperation.Intersect, new IntersectIntSetGenerator(random),new SetVariantGenerator<int>(intersectIntSetGenerator, random), intersectIntSetGenerator, random, setWriter));
+           
             var unionIntSetGenerator = new IntMathSetGenerator(random);
-            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.NumbersSetUnionOperationTask, SetOperation.Union, new UnionSetGenerator<int>(random),new SetVariantGenerator<int>(unionIntSetGenerator, random, new MathSetComparer<int>()), unionIntSetGenerator, random, setWriter));
-
-            var exceptSymbolSetGenerator = new SymbolMathSetGenerator(random);
-            exceptSymbolSetGenerator.Get<IntValue>(ValuesIds.ElementMinCount).Value = 4;
-            exceptSymbolSetGenerator.Get<IntValue>(ValuesIds.ElementMaxCount).Value = 6;
-            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.SymbolsSetExceptOperationTask, SetOperation.Except, new ExceptSymbolSetGenerator(random),new SetVariantGenerator<string>(exceptSymbolSetGenerator, random, new MathSetComparer<string>()), exceptSymbolSetGenerator, random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<int>(TaskIds.VariantsNumbersSetUnionOperationTask, SetOperation.Union, new UnionSetGenerator<int>(random),new SetVariantGenerator<int>(unionIntSetGenerator, random), unionIntSetGenerator, random, setWriter));
             
-            var intersectSymbolSetGenerator = new SymbolMathSetGenerator(random);
-            intersectSymbolSetGenerator.Get<IntValue>(ValuesIds.ElementMinCount).Value = 4;
-            intersectSymbolSetGenerator.Get<IntValue>(ValuesIds.ElementMaxCount).Value = 6;
-            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.SymbolsSetIntersectOperationTask, SetOperation.Intersect, new IntersectSymbolSetGenerator(random),new SetVariantGenerator<string>(intersectSymbolSetGenerator, random, new MathSetComparer<string>()), intersectSymbolSetGenerator, random, setWriter));
+            var exceptSymbolSetGenerator = new SymbolMathSetGenerator(random) {MaxCount = 6, MinCount = 4};
+            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.VariantsSymbolsSetExceptOperationTask, SetOperation.Except, new ExceptSymbolSetGenerator(random),new SetVariantGenerator<string>(exceptSymbolSetGenerator, random), exceptSymbolSetGenerator, random, setWriter));
+            
+            var intersectSymbolSetGenerator = new SymbolMathSetGenerator(random) {MaxCount = 6, MinCount = 4};
+            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.VariantsSymbolsSetIntersectOperationTask, SetOperation.Intersect, new IntersectSymbolSetGenerator(random),new SetVariantGenerator<string>(intersectSymbolSetGenerator, random), intersectSymbolSetGenerator, random, setWriter));
             
             var unionSymbolSetGenerator = new SymbolMathSetGenerator(random);
-            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.SymbolsSetUnionOperationTask, SetOperation.Union, new UnionSetGenerator<string>(random),new SetVariantGenerator<string>(unionSymbolSetGenerator, random, new MathSetComparer<string>()), unionSymbolSetGenerator, random, setWriter));
+            Add(new VariantsSetOperationTaskGenerator<string>(TaskIds.VariantsSymbolsSetUnionOperationTask, SetOperation.Union, new UnionSetGenerator<string>(random),new SetVariantGenerator<string>(unionSymbolSetGenerator, random), unionSymbolSetGenerator, random, setWriter));
+            
+            Add(new SetOperationTaskGenerator<int>(TaskIds.BorderSetExceptOperationTask, new ExceptBorderedSetGenerator(random), SetOperation.Except, setWriter, random, new IntBorderSetGenerator(random)));
+            Add(new SetOperationTaskGenerator<int>(TaskIds.BorderSetIntersectOperationTask, new IntersectBorderedSetGenerator(random), SetOperation.Intersect, setWriter, random, new IntBorderSetGenerator(random)));
+            Add(new SetOperationTaskGenerator<int>(TaskIds.BorderSetUnionOperationTask, new UnionBorderedSetGenerator(random), SetOperation.Union, setWriter, random, new IntBorderSetGenerator(random)));
+            Add(new SetOperationTaskGenerator<int>(TaskIds.NumbersSetExceptOperationTask, new ExceptIntSetGenerator(random), SetOperation.Except, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
+            Add(new SetOperationTaskGenerator<int>(TaskIds.NumbersSetIntersectOperationTask, new IntersectIntSetGenerator(random), SetOperation.Intersect, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
+            Add(new SetOperationTaskGenerator<int>(TaskIds.NumbersSetUnionOperationTask, new UnionSetGenerator<int>(random), SetOperation.Union, setWriter, random, new IntMathSetGenerator(random)));
+            Add(new SetOperationTaskGenerator<string>(TaskIds.SymbolsSetExceptOperationTask, new ExceptSymbolSetGenerator(random), SetOperation.Except, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
+            Add(new SetOperationTaskGenerator<string>(TaskIds.SymbolsSetIntersectOperationTask, new IntersectSymbolSetGenerator(random), SetOperation.Intersect, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
+            Add(new SetOperationTaskGenerator<string>(TaskIds.SymbolsSetUnionOperationTask, new UnionSetGenerator<string>(random), SetOperation.Union, setWriter, random, new SymbolMathSetGenerator(random)));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;
         public ITaskGenerator Get(string id) => _idsAndGenerators[id];
 
         private void Add(ITaskGenerator generator)
-        {
-            if (_idsAndGenerators != null) _idsAndGenerators.Add(generator.Id, generator);
+        { 
+            _idsAndGenerators.Add(generator.Id, generator);
         }
     }
 }

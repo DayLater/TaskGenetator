@@ -10,17 +10,16 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
     public class SetVariantGenerator<T>: Valued, ISetVariantGenerator<T>
     {
-        private readonly ISetComparer<T> _setComparer;
+        private readonly ISetComparer<T> _setComparer = new MathSetComparer<T>();
         private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
         
         private readonly IntValue _sameElementsCountInVariant = new IntValue(ValuesIds.CountSameElementsInVariant) {Value = 2};
 
-        public SetVariantGenerator(ISetGenerator<T> setGenerator, Random random, ISetComparer<T> setComparer)
+        public SetVariantGenerator(ISetGenerator<T> setGenerator, Random random)
         {
             _setGenerator = setGenerator;
             _random = random;
-            _setComparer = setComparer;
             Add(_sameElementsCountInVariant);
         }
 

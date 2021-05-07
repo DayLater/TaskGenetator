@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TaskEngine.Values
 {
@@ -13,7 +14,7 @@ namespace TaskEngine.Values
             return (TValue) _values[id];
         }
 
-        public IEnumerable<IValue> Values => _values.Values;
+        public IEnumerable<IValue> Values => _values.Values.Where(v => !(v is IUnseenValue));
         
         protected void Add(IValue value) => _values.Add(value.Id, value);
         protected bool TryGetValue<T>(string id, out T value) where T: IValue

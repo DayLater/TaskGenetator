@@ -33,16 +33,24 @@
         public const string NumberSetsEquals = "Равенство множеств (числа)";
         public const string SymbolSetsEquals = "Равенство множеств (буквы)";
         
-        public const string BorderSetExceptOperationTask = "Разность ограниченных множеств";
-        public const string BorderSetIntersectOperationTask = "Пересечение ограниченных множеств";
-        public const string BorderSetUnionOperationTask = "Объединение ограниченных множеств";
+        public const string VariantsBorderSetExceptOperationTask = "Выбрать разность ограниченных множеств";
+        public const string VariantsBorderSetIntersectOperationTask = "Выбрать пересечение ограниченных множеств";
+        public const string VariantsBorderSetUnionOperationTask = "Выбрать объединение ограниченных множеств";
+        public const string VariantsNumbersSetExceptOperationTask = "Выбрать разность множеств (числа)";
+        public const string VariantsNumbersSetIntersectOperationTask = "Выбрать пересечение множеств (числа)";
+        public const string VariantsNumbersSetUnionOperationTask = "Выбрать объединение множеств (числа)";
+        public const string VariantsSymbolsSetExceptOperationTask = "Выбрать разность множеств (буквы)";
+        public const string VariantsSymbolsSetIntersectOperationTask = "Выбрать пересечение множеств (буквы)";
+        public const string VariantsSymbolsSetUnionOperationTask = "Выбрать объединение множеств (буквы)";
         
-        public const string NumbersSetExceptOperationTask = "Разность множеств (числа)";
-        public const string NumbersSetIntersectOperationTask = "Пересечение множеств (числа)";
-        public const string NumbersSetUnionOperationTask = "Объединение множеств (числа)";
-
-        public const string SymbolsSetExceptOperationTask = "Разность множеств (буквы)";
-        public const string SymbolsSetIntersectOperationTask = "Пересечение множеств (буквы)";
-        public const string SymbolsSetUnionOperationTask = "Объединение множеств (буквы)";
+        public const string BorderSetExceptOperationTask = "Указать разность ограниченных множеств";
+        public const string BorderSetIntersectOperationTask = "Указать пересечение ограниченных множеств";
+        public const string BorderSetUnionOperationTask = "Указать объединение ограниченных множеств";
+        public const string NumbersSetExceptOperationTask = "Указать разность множеств (числа)";
+        public const string NumbersSetIntersectOperationTask = "Указать пересечение множеств (числа)";
+        public const string NumbersSetUnionOperationTask = "Указать объединение множеств (числа)";
+        public const string SymbolsSetExceptOperationTask = "Указать разность множеств (буквы)";
+        public const string SymbolsSetIntersectOperationTask = "Указать пересечение множеств (буквы)";
+        public const string SymbolsSetUnionOperationTask = "Указать объединение множеств (буквы)";
     }
 }

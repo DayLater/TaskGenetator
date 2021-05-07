@@ -2,15 +2,15 @@
 
 namespace TaskEngine.Tasks
 {
-    public abstract class AnswerTask<T>: IAnswerTask<T>
+    public class AnswerTask<T>: IAnswerTask<T>
     {
-        protected AnswerTask(IList<T> answers, string condition)
+        public AnswerTask(IList<T> answers, string condition)
         {
             Answers = answers;
             Condition = condition;
         }
 
-        protected AnswerTask(T answer, string condition)
+        public AnswerTask(T answer, string condition)
         {
             Condition = condition;
             Answers = new List<T> {answer};
