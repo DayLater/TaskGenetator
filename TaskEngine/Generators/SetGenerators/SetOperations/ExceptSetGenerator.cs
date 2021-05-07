@@ -36,7 +36,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             while (added < _addedElements.Value)
             {
                 var element = CreateElement(_random, firstSubset);
-                if (!firstSubset.Contains(element) && secondSubset.Contains(element))
+                if (!firstSubset.Contains(element) && !secondSubset.Contains(element))
                 {
                     firstSubset.Add(element);
                     secondSubset.Add(element);

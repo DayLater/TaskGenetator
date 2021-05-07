@@ -18,8 +18,6 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         {
             var firstName = _random.GetRandomName();
             var secondName = _random.GetRandomName();
-            
-            _random.ClearNames();
             return CreateSets(firstName, secondName, answerSet);
         }
 

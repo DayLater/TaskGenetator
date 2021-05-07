@@ -41,12 +41,11 @@ namespace TaskEngine.Writers.TaskWriters
         }
 
         protected abstract string GetAnswer(IList<T> answers); 
+        protected abstract IEnumerable<string> GetVariants(IEnumerable<T> variants);
 
         private IList<T> GetAnswers(ITask task)
         {
             return ((IAnswerTask<T>) task).Answers;
         }
-        
-        protected abstract IEnumerable<string> GetVariants(IEnumerable<T> variants);
     }
 }

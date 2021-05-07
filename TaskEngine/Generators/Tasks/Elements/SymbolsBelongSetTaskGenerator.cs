@@ -40,13 +40,12 @@ namespace TaskEngine.Generators.Tasks.Elements
             var variants = new List<string>(answers);
             while (variants.Count < VariantsCount)
             {
-                var element = _random.GetRandomElementSymbol(elements.ToArray());
-                if (!variants.Contains(element))
+                var element = _random.GetRandomElementSymbol();
+                if (!variants.Contains(element) && !elements.Contains(element))
                     variants.Add(element);
             }
 
             var condition = GetCondition(answers, set);
-            _random.ClearNames();
             return new SymbolsBelongSetTask(answers, condition, variants,  set);
         }
     }

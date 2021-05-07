@@ -56,7 +56,6 @@ namespace TaskEngine.Generators.SetGenerators
             } while (IsSuitableCoefficient(coefficients, coefficient));
 
             var name = _random.GetRandomName();
-            _random.ClearNames();
             return new ExpressionSet(name, x => coefficient * x);
         }
 

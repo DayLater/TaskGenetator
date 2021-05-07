@@ -19,6 +19,8 @@ namespace TaskEngine.Writers.TaskWriters
             Add(typeof(IMathSet<string>), new MathSetTaskWriter<string>(random, setWriter));
             Add(typeof(List<int>), new ListTaskWriter<int>(random));
             Add(typeof(List<string>), new ListTaskWriter<string>(random));
+            Add(typeof(CartesianProduct<int>), new CartesianProductTaskWriter<int>(random));
+            Add(typeof(CartesianProduct<string>), new CartesianProductTaskWriter<string>(random));
         }
 
         private void Add(Type type, ITaskWriter taskWriter)

@@ -52,7 +52,6 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var setAnswers = answerIndexes.Select(index => mathSetVariants[index]).ToList();
 
             var condition = GetCondition(set, setAnswers);
-            _random.ClearNames();
             return new VariantsTask<IMathSet<T>>(setAnswers, condition, mathSetVariants);
         }
 

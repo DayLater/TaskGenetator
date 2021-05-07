@@ -57,8 +57,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
                 if (!IsContain(variants, variant) && !IsContainsAllElements(variant, subsetElements))
                     variants.Add(variant);
             }
-
-            _random.ClearNames();
+            
             var condition = GetCondition(answers, subset);
             return new VariantsTask<IMathSet<T>>(answers, condition, variants);
         }

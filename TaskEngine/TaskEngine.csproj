@@ -47,6 +47,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CartesianProduct.cs" />
         <Compile Include="Comparers\BorderedSetComparer.cs" />
         <Compile Include="Comparers\MathSetComparer.cs" />
         <Compile Include="Comparers\ISetComparer.cs" />
@@ -68,6 +69,7 @@
         <Compile Include="Generators\SetGenerators\SetOperations\Symbols\IntersectSymbolSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\UnionSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
+        <Compile Include="Generators\Tasks\CartesianProducts\CartesianProductElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\VariantsCharacteristicPropertyElementsTaskGenerator.cs" />
@@ -163,6 +165,7 @@
         <Compile Include="Writers\ISetWriter.cs" />
         <Compile Include="Writers\SetWriter.cs" />
         <Compile Include="Writers\TaskWriters\BaseTaskWriter.cs" />
+        <Compile Include="Writers\TaskWriters\CartesianProductTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\ExpressionSetTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\IntTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\ITaskWriter.cs" />

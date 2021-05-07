@@ -40,10 +40,11 @@ namespace TaskEngine.Generators.SetGenerators
             
             while (elements.Count < count)
             {
-                var element = _random.GetRandomElementSymbol(elements.ToArray());
-                elements.Add(element);
+                var element = _random.GetRandomElementSymbol();
+                if (!elements.Contains(element))
+                    elements.Add(element);
             }
-
+            
             return new MathSet<string>(name, elements);
         }
     }

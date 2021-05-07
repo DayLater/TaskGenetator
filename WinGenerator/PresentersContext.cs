@@ -1,4 +1,5 @@
-﻿using TaskEngine.Contexts;
+﻿using System;
+using TaskEngine.Contexts;
 using TaskEngine.Factories;
 using TaskEngine.Presenters;
 using TaskEngine.Writers;
@@ -13,11 +14,11 @@ namespace WinGenerator
         public TaskChoosePresenter TaskChoosePresenter { get; }
         public CreateDocumentPresenter CreateDocumentPresenter { get; }
         
-        public PresentersContext(TaskGeneratorFactory generatorFactory, IViewContext viewContext, UserContext userContext, ExamplesContext examplesContext, TaskWriter taskWriter)
+        public PresentersContext(TaskGeneratorFactory generatorFactory, IViewContext viewContext, UserContext userContext, ExamplesContext examplesContext, TaskWriter taskWriter, Random random)
         {
             MainPresenter = new MainPresenter(viewContext.MainView, userContext);
             TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
-            CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), generatorFactory, taskWriter);
+            CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), generatorFactory, taskWriter, random);
         }
     }
 }

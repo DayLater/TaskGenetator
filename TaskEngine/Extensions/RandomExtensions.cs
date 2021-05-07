@@ -25,7 +25,8 @@ namespace TaskEngine.Extensions
         }
 
         private static readonly List<string> _usedNames = new List<string>();
-        
+        private static readonly List<string> _usedSymbols = new List<string>();
+
         public static string GetRandomName(this Random random)
         {
             var name = random.GetRandomItem(Symbols.Names, _usedNames.ToArray());
@@ -34,28 +35,23 @@ namespace TaskEngine.Extensions
         }
 
         public static void ClearNames(this Random random) => _usedNames.Clear();
+        public static void ClearSymbols(this Random random) => _usedSymbols.Clear();
 
-        private static T GetRandomItem<T>(this Random random, IReadOnlyList<T> source, params T[] except)
+        private static string GetRandomItem(this Random random, IReadOnlyList<string> source, params string[] except)
         {
-            if (except.Length > 0)
-            {
-                T symbol;
-                do
-                {
-                    var i = random.Next(0,  source.Count);
-                    symbol =  source[i];
-                } while (except.Contains(symbol));
+            var i = random.Next(0,  source.Count);
+            var symbol =  source[i];
+            while (except.Contains(symbol))
+                    symbol += "'";
 
-                return symbol;
-            }
-            
-            var index = random.Next(0,  source.Count);
-            return source[index];
+            return symbol;
         }
 
-        public static string GetRandomElementSymbol(this Random random, params string[] except)
+        public static string GetRandomElementSymbol(this Random random)
         {
-            return random.GetRandomItem(Symbols.Elements, except);
+            var s = random.GetRandomItem(Symbols.Elements, _usedSymbols.ToArray());
+            _usedSymbols.Add(s);
+            return s;
         }
     }
 }

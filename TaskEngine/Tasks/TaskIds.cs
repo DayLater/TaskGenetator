@@ -52,5 +52,9 @@
         public const string SymbolsSetExceptOperationTask = "Указать разность множеств (буквы)";
         public const string SymbolsSetIntersectOperationTask = "Указать пересечение множеств (буквы)";
         public const string SymbolsSetUnionOperationTask = "Указать объединение множеств (буквы)";
+
+        public const string IntCartesianProductElementsTask = "Указать декартово произведение множеств (числа)";
+        public const string SymbolCartesianProductElementsTask = "Указать декартово произведение множеств (буквы)";
+
     }
 }

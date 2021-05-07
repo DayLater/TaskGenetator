@@ -42,8 +42,6 @@ namespace TaskEngine.Generators.Tasks.SetOperations
             variants.Add(answerSet);
             
             var condition = GetCondition(firstSet, secondSet, _setOperation);
-            
-            _random.ClearNames();
             return new VariantsTask<IMathSet<T>>(answerSet, condition, variants);
         }
 

@@ -46,8 +46,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                 if (!elements.Contains(variant) && !variants.Contains(variant))
                     variants.Add(variant);
             }
-
-            _random.ClearNames();
+            
             var condition = GetCondition(answers, set);
             return new NumbersBelongSetTask(answers, condition, variants, set);
         }

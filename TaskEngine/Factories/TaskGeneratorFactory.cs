@@ -8,6 +8,7 @@ using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.SetGenerators.SetOperations.Ints;
 using TaskEngine.Generators.SetGenerators.SetOperations.Symbols;
 using TaskEngine.Generators.Tasks;
+using TaskEngine.Generators.Tasks.CartesianProducts;
 using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Generators.Tasks.SetOperations;
@@ -82,6 +83,9 @@ namespace TaskEngine.Factories
             Add(new SetOperationTaskGenerator<int>(TaskIds.NumbersSetExceptOperationTask, new ExceptIntSetGenerator(random), SetOperation.Except, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
             Add(new SetOperationTaskGenerator<string>(TaskIds.SymbolsSetExceptOperationTask, new ExceptSymbolSetGenerator(random), SetOperation.Except, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 6, MinCount = 4}));
             Add(new SetOperationTaskGenerator<int>(TaskIds.BorderSetExceptOperationTask, new ExceptBorderedSetGenerator(random), SetOperation.Except, setWriter, random, new IntBorderSetGenerator(random)));
+            
+            Add(new CartesianProductElementsTaskGenerator<int>(TaskIds.IntCartesianProductElementsTask, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
+            Add(new CartesianProductElementsTaskGenerator<string>(TaskIds.SymbolCartesianProductElementsTask, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;

@@ -42,8 +42,7 @@ namespace TaskEngine.Generators.Tasks.SetOperations
                 if (!IsContain(variants, variantSet))
                     variants.Add(variantSet);
             }
-
-            _random.ClearNames();
+            
             var condition = $"Дано множество {WriteSet(set)}. Выберите равно ему множество";
             return new VariantsTask<IMathSet<T>>(equalsSet, condition, variants);
         }

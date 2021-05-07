@@ -33,7 +33,6 @@ namespace TaskEngine.Generators.Tasks.SetOperations
             var answerSet = _setGenerator.Generate(name);
             var (firstSet, secondSet) = _operationSetGenerator.Generate(answerSet);
             var condition = GetCondition(firstSet, secondSet, _setOperation);
-            _random.ClearNames();
             return new AnswerTask<IMathSet<T>>(answerSet, condition);
         }
 

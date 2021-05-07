@@ -12,6 +12,7 @@ namespace TaskEngine
         public const string More = ">";
         public const string LessOrEquals = "≤";
         public const string Less = "<";
+        public const string Multiply = "×";
         
         public static string GetTypeSymbol(Type type)
         {

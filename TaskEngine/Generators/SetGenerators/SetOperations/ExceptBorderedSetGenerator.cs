@@ -65,7 +65,6 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var set = (IntBorderedSet) answerSet;
             var isFromStart = _random.GetBool();
             var (firstSet, secondSet) =  isFromStart ? GenerateFromStart(set) : GenerateFromEnd(set);
-            _random.ClearNames();
             return (firstSet, secondSet);
         }
     }

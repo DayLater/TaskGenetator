@@ -49,8 +49,7 @@ namespace TaskEngine.Generators.Tasks.Elements
                 if (!variants.Any(v => _setComparer.IsEquals(v, variantSet)))
                     variants.Add(variantSet);
             }
-
-            _random.ClearNames();
+            
             var condition = GetCondition(taskElements, answers);
             return new SetContainElementsTask(answers, condition, variants, taskElements);
         }

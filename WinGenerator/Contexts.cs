@@ -1,5 +1,6 @@
 ﻿using System;
 using TaskEngine.Contexts;
+using TaskEngine.Extensions;
 using TaskEngine.Factories;
 using TaskEngine.Writers;
 using TaskEngine.Writers.TaskWriters;
@@ -23,12 +24,14 @@ namespace WinGenerator
             foreach (var generator in TaskGeneratorsFactory.TaskGenerators)
             {
                 var task = generator.Generate();
+                random.ClearNames();
+                random.ClearSymbols();
                 var example = taskWriter.WriteAll(task);
                 ExamplesContext.Add(generator.Id, example);
             }
 
             ViewContext = new ViewContext(TaskGeneratorsFactory);
-            PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter);
+            PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random);
         }
     }
 }
