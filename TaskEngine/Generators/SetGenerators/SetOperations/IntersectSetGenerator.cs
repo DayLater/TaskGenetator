@@ -1,29 +1,18 @@
 ﻿using System;
 using TaskEngine.Extensions;
-using TaskEngine.Helpers;
 using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public class IntersectSetGenerator: IOperationSetGenerator
+    public class IntersectSetGenerator: OperationSetGenerator
     {
         private readonly Random _random;
 
-        public IntersectSetGenerator(Random random)
+        public IntersectSetGenerator(Random random) : base(random)
         {
             _random = random;
         }
 
-        public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
-        {
-            var firstName = _random.GetRandomName();
-            var secondName = _random.GetRandomName();
-            var firstSet = CreateFirstSetOnIntersect(firstName, answerSet);
-            var secondSet = CreateSecondSetOnIntersect(secondName, answerSet);
-            _random.ClearNames();
-            return (firstSet, secondSet);
-        }
-        
         private IntBorderedSet CreateFirstSetOnIntersect(string name, IntBorderedSet set)
         {
             var startBorderValue = _random.Next(set.Start.Value - 10, set.Start.Value + 1);
@@ -40,6 +29,13 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var endBorderType = _random.GetRandomBorderType();
             var endBorder = new SetBorder<int>(endBorderValue, endBorderType);
             return new IntBorderedSet(name, startBorder, endBorder);
+        }
+        protected override (IMathSet<T>, IMathSet<T>) CreateSets<T>(string firstName, string secondName, IMathSet<T> answerSet)
+        {
+            var set = (IntBorderedSet) answerSet;
+            var firstSet = (IMathSet<T>) CreateFirstSetOnIntersect(firstName, set);
+            var secondSet = (IMathSet<T>) CreateSecondSetOnIntersect(secondName, set);
+            return (firstSet, secondSet);
         }
     }
 }

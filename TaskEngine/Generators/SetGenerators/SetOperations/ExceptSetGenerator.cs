@@ -1,27 +1,20 @@
 ﻿using System;
+using System.Security.Cryptography;
 using TaskEngine.Extensions;
 using TaskEngine.Helpers;
 using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public class ExceptSetGenerator: IOperationSetGenerator
+    public class ExceptSetGenerator: OperationSetGenerator
     {
         private readonly Random _random;
 
-        public ExceptSetGenerator(Random random)
+        public ExceptSetGenerator(Random random) : base(random)
         {
             _random = random;
         }
-
-        public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
-        {
-            var isFromStart = _random.GetBool();
-            var (set, secondSet) =  isFromStart ? GenerateFromStart(answerSet) : GenerateFromEnd(answerSet);
-            _random.ClearNames();
-            return (set, secondSet);
-        }
-
+        
         private (IntBorderedSet, IntBorderedSet) GenerateFromStart(IntBorderedSet answerSet)
         {
             var startBorder = answerSet.Start;
@@ -66,6 +59,15 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var firstSet = new IntBorderedSet(firstName, firstSetStartBorder,  firstSetEndBorder);
             
             return (firstSet, exceptSet);
+        }
+
+        protected override (IMathSet<T>, IMathSet<T>) CreateSets<T>(string firstName, string secondName, IMathSet<T> answerSet)
+        {
+            var set = (IntBorderedSet) answerSet;
+            var isFromStart = _random.GetBool();
+            var (firstSet, secondSet) =  isFromStart ? GenerateFromStart(set) : GenerateFromEnd(set);
+            _random.ClearNames();
+            return ((IMathSet<T>) firstSet, (IMathSet<T>) secondSet);
         }
     }
 }

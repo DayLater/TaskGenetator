@@ -57,6 +57,7 @@
         <Compile Include="Extensions\EnumerableExtensions.cs" />
         <Compile Include="Factories\TaskGeneratorFactory.cs" />
         <Compile Include="Generators\SetGenerators\ISetGenerator.cs" />
+        <Compile Include="Generators\SetGenerators\SetOperations\OperationSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SymbolMathSetGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyElementsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\CharacteristicProperty\CharacteristicPropertyTaskGenerator.cs" />

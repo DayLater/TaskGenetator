@@ -19,19 +19,20 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             _random = random;
         }
 
-        public IEnumerable<IntBorderedSet> Generate(IntBorderedSet answerSet, int variantCount)
+        public IEnumerable<IMathSet<T>> Generate<T>(IMathSet<T> answerSet, int variantCount)
         {
-            _tempVariants.Add(answerSet);
+            var set = (IntBorderedSet) answerSet;
+            _tempVariants.Add(set);
             
             for (var i = 0; i < variantCount - 1; i++)
             {
                 IntBorderedSet variant;
                 do
                 {
-                    variant = CreateVariant(answerSet);
+                    variant = CreateVariant(set);
                 } while (ContainsSet(_tempVariants, variant));
 
-                yield return variant;
+                yield return (IMathSet<T>) variant;
                 _tempVariants.Add(variant);
             }
             

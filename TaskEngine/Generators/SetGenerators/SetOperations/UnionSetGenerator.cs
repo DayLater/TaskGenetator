@@ -4,25 +4,13 @@ using TaskEngine.Sets;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
-    public class UnionSetGenerator : IOperationSetGenerator
+    public class UnionSetGenerator : OperationSetGenerator
     {
         private readonly Random _random;
 
-        public UnionSetGenerator(Random random)
+        public UnionSetGenerator(Random random) : base(random)
         {
             _random = random;
-        }
-        
-        public (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet)
-        {
-            var firstName = _random.GetRandomName();
-            var secondName = _random.GetRandomName();
-
-            var isOneInOther = _random.GetBool();
-
-            _random.ClearNames();
-            return isOneInOther ? GenerateOneInOther(firstName, secondName, answerSet) 
-                : GenerateOnIntersect(firstName, secondName, answerSet);
         }
 
         private (IntBorderedSet, IntBorderedSet) GenerateOneInOther(string firstName, string secondName, IntBorderedSet answerSet)
@@ -65,6 +53,16 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
             var secondSet = new IntBorderedSet(secondName, secondSetStartBorder, secondSetEndBorder);
 
             return (firstSet, secondSet);
+        }
+
+        protected override (IMathSet<T>, IMathSet<T>) CreateSets<T>(string firstName, string secondName, IMathSet<T> answerSet)
+        {
+            var set = (IntBorderedSet) answerSet;
+            var isOneInOther = _random.GetBool();
+            var (firstIntSet, secondIntSet) = isOneInOther ? GenerateOneInOther(firstName, secondName, set) 
+                : GenerateOnIntersect(firstName, secondName, set);
+            
+            return ((IMathSet<T>) firstIntSet, (IMathSet<T>) secondIntSet);
         }
     }
 }

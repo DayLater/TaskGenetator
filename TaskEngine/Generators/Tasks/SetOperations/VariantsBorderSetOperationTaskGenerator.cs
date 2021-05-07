@@ -10,16 +10,16 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.SetOperations
 {
-    public class VariantsBorderSetOperationTaskGenerator: VariantsGenerator
+    public class VariantsBorderSetOperationTaskGenerator<T>: VariantsGenerator
     {
-        private readonly IntBorderSetGenerator _setGenerator;
+        private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
         private readonly SetVariantsGeneratorByCorrect _variantsGenerator;
         
         private readonly SetOperation _setOperation;
         private readonly IOperationSetGenerator _operationSetGenerator;
         
-        public VariantsBorderSetOperationTaskGenerator(string id, SetVariantsGeneratorByCorrect variantsGenerator, IntBorderSetGenerator setGenerator, Random random, ISetWriter setWriter, SetOperation setOperation, IOperationSetGenerator operationSetGenerator) 
+        public VariantsBorderSetOperationTaskGenerator(string id, SetVariantsGeneratorByCorrect variantsGenerator, ISetGenerator<T> setGenerator, Random random, ISetWriter setWriter, SetOperation setOperation, IOperationSetGenerator operationSetGenerator) 
             : base(id, 1, setWriter)
         {
             _variantsGenerator = variantsGenerator;
@@ -33,17 +33,17 @@ namespace TaskEngine.Generators.Tasks.SetOperations
         public override ITask Generate()
         {
             var name = _random.GetRandomName();
-            var answerSet = (IntBorderedSet) _setGenerator.Generate(name);
+            var answerSet = _setGenerator.Generate(name);
             var (firstSet, secondSet) = _operationSetGenerator.Generate(answerSet);
 
-            var variants = _variantsGenerator.Generate(answerSet, VariantsCount).Cast<IMathSet<int>>().ToList();
+            var variants = _variantsGenerator.Generate(answerSet, VariantsCount).ToList();
             variants.Add(answerSet);
             var condition = GetCondition(firstSet, secondSet, _setOperation);
             _random.ClearNames();
-            return new VariantsBorderSetOperationTask(answerSet, condition, variants, firstSet, secondSet, _setOperation);
+            return new VariantsTask<IMathSet<T>>(answerSet, condition, variants);
         }
 
-        private string GetCondition<T>(IMathSet<T> first, IMathSet<T> second, SetOperation setOperation)
+        private string GetCondition(IMathSet<T> first, IMathSet<T> second, SetOperation setOperation)
         {
             var firstSet = WriteSet(first);
             var secondSet = WriteSet(second);

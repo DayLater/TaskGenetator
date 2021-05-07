@@ -4,6 +4,6 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
     public interface IOperationSetGenerator
     {
-        (IntBorderedSet, IntBorderedSet) Generate(IntBorderedSet answerSet);
+        (IMathSet<T> , IMathSet<T>) Generate<T>(IMathSet<T> answerSet);
     }
 }
