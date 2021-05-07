@@ -67,6 +67,7 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\SetOperations\VariantsBorderSetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\SetEqualsTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SubSets\SelectElementsSubsetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SubSets\SelectNumbersSubSetTaskGenerator.cs" />
@@ -91,7 +92,6 @@
         <Compile Include="Generators\SetGenerators\SetOperations\IOperationSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\UnionSetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\SetVariantsGeneratorByCorrect.cs" />
-        <Compile Include="Generators\Tasks\BorderSetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\ITaskGenerator.cs" />
         <Compile Include="Helpers\BorderHelper.cs" />
         <Compile Include="Helpers\SetOperationHelper.cs" />

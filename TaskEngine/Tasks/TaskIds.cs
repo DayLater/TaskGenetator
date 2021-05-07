@@ -27,12 +27,14 @@
         public const string SelectSeveralBorderedSetBySubset = "Выбрать множества по подмножеству (ограниченное)";
         public const string SelectOneSymbolSetBySubset = "Выбрать множество по подмножеству (буквы)";
         public const string SelectSeveralSymbolSetBySubset = "Выбрать множества по подмножеству (буквы)";
-
         public const string VariantsSelectSubsetByCharacterTask = "Выбрать подмножество по свойству";
         public const string SelectSubsetByCharacterTask = "Указать подмножество по свойству";
-        public const string BorderSetOperationTask = "Операции над множествами. Граничные";
 
         public const string NumberSetsEquals = "Равенство множеств (числа)";
         public const string SymbolSetsEquals = "Равенство множеств (буквы)";
+        
+        public const string BorderSetExceptOperationTask = "Разность ограниченных множеств";
+        public const string BorderSetIntersectOperationTask = "Пересечение ограниченных множеств";
+        public const string BorderSetUnionOperationTask = "Объединение ограниченных множеств";
     }
 }

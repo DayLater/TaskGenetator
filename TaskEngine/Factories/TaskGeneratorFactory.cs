@@ -47,9 +47,10 @@ namespace TaskEngine.Factories
             
             Add(new SetEqualsTaskGenerator<int>(TaskIds.NumberSetsEquals, setWriter, new IntMathSetGenerator(random), random, new MathSetComparer<int>()));
             Add(new SetEqualsTaskGenerator<string>(TaskIds.SymbolSetsEquals, setWriter, new SymbolMathSetGenerator(random), random, new MathSetComparer<string>()));
-
-            var variantsGeneratorByCorrect = new SetVariantsGeneratorByCorrect(random, new BorderedSetComparer());
-            Add(new BorderSetOperationTaskGenerator(variantsGeneratorByCorrect, new IntBorderSetGenerator(random), random, setWriter));
+            
+            Add(new VariantsBorderSetOperationTaskGenerator(TaskIds.BorderSetExceptOperationTask, new SetVariantsGeneratorByCorrect(random),  new IntBorderSetGenerator(random), random, setWriter, SetOperation.Except, new ExceptSetGenerator(random)));
+            Add(new VariantsBorderSetOperationTaskGenerator(TaskIds.BorderSetIntersectOperationTask, new SetVariantsGeneratorByCorrect(random),  new IntBorderSetGenerator(random), random, setWriter, SetOperation.Intersect, new IntersectSetGenerator(random)));
+            Add(new VariantsBorderSetOperationTaskGenerator(TaskIds.BorderSetUnionOperationTask, new SetVariantsGeneratorByCorrect(random),  new IntBorderSetGenerator(random), random, setWriter, SetOperation.Union, new UnionSetGenerator(random)));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;

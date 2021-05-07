@@ -10,13 +10,12 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
     public class SetVariantsGeneratorByCorrect
     {
-        private readonly ISetComparer<int> _setComparer;
+        private readonly ISetComparer<int> _setComparer = new BorderedSetComparer();
         private readonly Random _random;
         private readonly List<IntBorderedSet> _tempVariants = new List<IntBorderedSet>();
 
-        public SetVariantsGeneratorByCorrect(Random random, ISetComparer<int> setComparer)
+        public SetVariantsGeneratorByCorrect(Random random)
         {
-            _setComparer = setComparer;
             _random = random;
         }
 
