@@ -27,10 +27,9 @@ namespace TaskEngine.Presenters
         
         private void ViewOnItemFlagChanged(string id, bool isChecked)
         {
-            if (!isChecked)
+            if (isChecked && !_tasksContext.Contains(id))
             {
-                if (!_tasksContext.Contains(id))
-                    _tasksContext.Add(id);
+                _tasksContext.Add(id);
             }
             else
             {

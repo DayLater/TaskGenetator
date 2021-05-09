@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using TaskEngine.Views;
@@ -21,9 +22,13 @@ namespace WinGenerator.CustomControls
             Controls.Add(control, column, row);
         }
 
-        public CheckedListBox AddCheckedListBox(int column, int row, List<string> dataSource)
+        public MaterialCheckedListBox AddCheckedListBox(int column, int row, IEnumerable<string> items)
         {
-            var list = new CheckedListBox {Dock = DockStyle.Fill, DataSource = dataSource};
+            var list = new MaterialCheckedListBox {Dock = DockStyle.Fill};
+            
+            foreach (var item in items.Reverse())
+                list.Items.Add(item);
+            
             AddControl(list, column, row);
             return list;
         }
@@ -80,15 +85,8 @@ namespace WinGenerator.CustomControls
         }
         
         public LabeledNumericControl CreateLabeledNumericControl(string text) => new LabeledNumericControl(text) {Dock = DockStyle.Fill};
-        public CheckBox CreateCheckBox(string text) => new IdentifiedCheckBox(text) {Dock = DockStyle.Fill};
-
-        public CheckBox AddCheckBox(int column, int row, string text)
-        {
-            var checkBox = CreateCheckBox(text);
-            AddControl(checkBox, column, row);
-            return checkBox;
-        }
-
+        public CheckBox CreateCheckBox(string text) => new MaterialCheckbox() {Dock = DockStyle.Fill, Text = text};
+        
         public void AddView(IView view)
         {
             Controls.Add((Control) view);

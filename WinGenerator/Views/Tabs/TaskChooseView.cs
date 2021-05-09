@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
 
@@ -9,7 +11,7 @@ namespace WinGenerator.Views.Tabs
 {
     public class TaskChooseView: IdentifiedTabPage, ITaskChooseView
     {
-        private readonly CheckedListBox _checkedListBox;
+        private readonly MaterialCheckedListBox _checkedListBox;
         private readonly Label _exampleTextLabel;
         private readonly PercentTableLayoutPanel _generatorSettingsTable;
         private readonly GeneratorViews _generatorViews;
@@ -20,7 +22,7 @@ namespace WinGenerator.Views.Tabs
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
         public event Action Activated = () => { };
         
-        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds) : base(ViewIds.TaskChoose)
+        public TaskChooseView(GeneratorViews generatorViews, IEnumerable<string> taskIds) : base(ViewIds.TaskChoose)
         {
             _generatorViews = generatorViews;
             
@@ -30,8 +32,8 @@ namespace WinGenerator.Views.Tabs
             _table.AddColumn(100);
 
             var topTable = _table.AddTable(0, 0);
-            topTable.AddColumn(40);
-            topTable.AddColumn(60);
+            topTable.AddColumn(50);
+            topTable.AddColumn(50);
             topTable.AddRow(100);
             _checkedListBox = topTable.AddCheckedListBox(0, 0, taskIds);
 
@@ -57,9 +59,8 @@ namespace WinGenerator.Views.Tabs
             generatorSettingsTopText.Text = @"Настройка генерации задания";
             
             Controls.Add(_table);
-            
-            _checkedListBox.SelectedIndexChanged += OnSelectedItemChanged;
-            _checkedListBox.ItemCheck += OnItemCheck;
+
+            _checkedListBox.Items.SelectedIndexChanged += OnSelectedItemChanged;
         }
         
         public void SetExampleText(string example)
@@ -82,25 +83,17 @@ namespace WinGenerator.Views.Tabs
         {
             foreach (var taskId in taskIds)
             {
-                if (_checkedListBox.Items.Contains(taskId))
-                {
-                    var idIndex = _checkedListBox.FindStringExact(taskId);
-                    _checkedListBox.SetItemChecked(idIndex, true);
-                }
+                var checkBox = _checkedListBox.Items.FirstOrDefault(m => m.Text == taskId); 
+                if (checkBox != null)
+                    checkBox.Checked = true;
             }
         }
         
-        private void OnSelectedItemChanged(object sender, EventArgs e)
+        private void OnSelectedItemChanged(int index)
         {
-            var itemId = (string) _checkedListBox.SelectedItem;
+            var itemId = _checkedListBox.Items[index].Text;
+            ItemFlagChanged(itemId, _checkedListBox.Items[index].Checked);
             SelectedItemChanged(itemId);
-        }
-
-        private void OnItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            var itemId = (string) _checkedListBox.Items[e.Index];
-            var isChecked = _checkedListBox.GetItemChecked(e.Index);
-            ItemFlagChanged(itemId, isChecked);
         }
     }
 }
