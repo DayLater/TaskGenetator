@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Factories;
 using TaskEngine.Views;
+using WinGenerator.Views.Tabs;
 
 namespace WinGenerator.Views
 {
@@ -14,8 +14,9 @@ namespace WinGenerator.Views
 
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         
-        public ViewContext(TaskGeneratorFactory generatorFactory)
+        public ViewContext(TaskGeneratorFactory generatorFactory, IMainView mainView)
         {
+            MainView = mainView;
             var generatingViewFactory = new GeneratingViewFactory();
 
             foreach (var generator in generatorFactory.TaskGenerators)
@@ -33,7 +34,6 @@ namespace WinGenerator.Views
 
             var createViewDocument = new CreateDocumentView();
             CreateDocumentView = createViewDocument;
-            MainView = new MainView(new List<View> {new EmptyView(), taskChooseView, createViewDocument});
         }
 
         private void AddTaskView<TView>(TView view)

@@ -56,7 +56,7 @@ namespace TaskEngine.Writers.DocWriters
             int taskIndex = 1;
             foreach (var textTask in textTasks)
             {
-                doc.AddText($"{taskIndex}. {textTask.Answer}");
+                doc.AddText($"{taskIndex}) {textTask.Answer}");
                 taskIndex++;
             }
         }

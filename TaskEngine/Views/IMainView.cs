@@ -9,7 +9,9 @@ namespace TaskEngine.Views
 
         event Action PreviousButtonClicked;
         public bool PreviousButtonEnable { get; set; }
-        public bool Contains(int viewId);
+
+        public int TabsCount { get; }
+        event Action<int> SelectedTabChanged; 
         public void SetView(int viewId);
     }
 }

@@ -5,36 +5,36 @@ using System.Windows.Forms;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
 
-namespace WinGenerator.Views
+namespace WinGenerator.Views.Tabs
 {
-    public class TaskChooseView: View, ITaskChooseView
+    public class TaskChooseView: IdentifiedTabPage, ITaskChooseView
     {
         private readonly CheckedListBox _checkedListBox;
         private readonly Label _exampleTextLabel;
         private readonly PercentTableLayoutPanel _generatorSettingsTable;
         private readonly GeneratorViews _generatorViews;
-        
-        public override string Id => "Выбор и настройка заданий";
 
+        private readonly PercentTableLayoutPanel _table = new PercentTableLayoutPanel();
+        
         public event Action<string> SelectedItemChanged = s => { };
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
         public event Action Activated = () => { };
         
-        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds)
+        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds) : base("Выбор заданий")
         {
             _generatorViews = generatorViews;
             
-            RowStyles.Clear();
-            AddRow(60);
-            AddRow(40);
-            AddColumn(100);
+            _table.RowStyles.Clear();
+            _table.AddRow(60);
+            _table.AddRow(40);
+            _table.AddColumn(100);
 
-            var topTable = AddTable(0, 0);
+            var topTable = _table.AddTable(0, 0);
             topTable.AddColumn(40);
             topTable.AddColumn(60);
             topTable.AddRow(100);
             _checkedListBox = topTable.AddCheckedListBox(0, 0, taskIds);
-            
+
             var exampleTable = topTable.AddTable(1, 0);
             exampleTable.AddRow(15);
             exampleTable.AddRow(85);
@@ -47,7 +47,7 @@ namespace WinGenerator.Views
             _exampleTextLabel.Font = new Font(FontFamily.GenericMonospace, 10);
             _exampleTextLabel.TextAlign = ContentAlignment.TopLeft;
             
-            _generatorSettingsTable = AddTable(0, 1);
+            _generatorSettingsTable = _table.AddTable(0, 1);
             _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
             _generatorSettingsTable.AddRow(10);
             _generatorSettingsTable.AddRow(90);
@@ -55,6 +55,11 @@ namespace WinGenerator.Views
             var generatorSettingsTopText = _generatorSettingsTable.AddLabel(0, 0);
             generatorSettingsTopText.Font = new Font(FontFamily.GenericMonospace, 10, FontStyle.Underline);
             generatorSettingsTopText.Text = @"Настройка генерации задания";
+            
+            Controls.Add(_table);
+            
+            _checkedListBox.SelectedIndexChanged += OnSelectedItemChanged;
+            _checkedListBox.ItemCheck += OnItemCheck;
         }
         
         public void SetExampleText(string example)
@@ -83,20 +88,6 @@ namespace WinGenerator.Views
                     _checkedListBox.SetItemChecked(idIndex, true);
                 }
             }
-        }
-
-        public override void Activate()
-        {
-            OnSelectedItemChanged(_checkedListBox, EventArgs.Empty);
-            _checkedListBox.SelectedIndexChanged += OnSelectedItemChanged;
-            _checkedListBox.ItemCheck += OnItemCheck;
-            Activated();
-        }
-
-        public override void Deactivate()
-        {
-            _checkedListBox.SelectedIndexChanged -= OnSelectedItemChanged;
-            _checkedListBox.ItemCheck -= OnItemCheck;
         }
         
         private void OnSelectedItemChanged(object sender, EventArgs e)

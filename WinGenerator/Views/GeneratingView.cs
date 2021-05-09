@@ -8,7 +8,5 @@
         }
 
         public override string Id { get; }
-        public override void Activate() { }
-        public override void Deactivate() { }
     }
 }

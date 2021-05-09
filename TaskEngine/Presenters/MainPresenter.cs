@@ -13,36 +13,38 @@ namespace TaskEngine.Presenters
             _view = view;
             _userContext = userContext;
             
-            _view.SetView(userContext.CurrentPageIndex);
             _view.PreviousButtonEnable = false;
             _view.NextButtonEnable = true;
 
             _view.NextButtonClicked += OnNextButtonClicked;
             _view.PreviousButtonClicked += OnPreviousButtonClicked;
+            _view.SelectedTabChanged += OnSelectedTabChanged;
         }
 
         private void OnNextButtonClicked()
         {
             _userContext.CurrentPageIndex++;
-            _view.SetView(_userContext.CurrentPageIndex);
-
-            if (!_view.PreviousButtonEnable)
-                _view.PreviousButtonEnable = true;
-
-            if (!_view.Contains(_userContext.CurrentPageIndex + 1))
-                _view.NextButtonEnable = false;
+            OnSelectedTabChanged(_userContext.CurrentPageIndex);
         }
 
         private void OnPreviousButtonClicked()
         {
             _userContext.CurrentPageIndex--;
+            OnSelectedTabChanged(_userContext.CurrentPageIndex);
+        }
+
+        private void OnSelectedTabChanged(int tabIndex)
+        {
+            _userContext.CurrentPageIndex = tabIndex;
             _view.SetView(_userContext.CurrentPageIndex);
 
-            if (!_view.Contains(_userContext.CurrentPageIndex - 1))
-                _view.PreviousButtonEnable = false;
+            _view.PreviousButtonEnable = Contains(_userContext.CurrentPageIndex - 1);
+            _view.NextButtonEnable = Contains(_userContext.CurrentPageIndex + 1);
+        }
 
-            if (!_view.NextButtonEnable)
-                _view.NextButtonEnable = true;
+        private bool Contains(int pageIndex)
+        {
+            return pageIndex >= 0 && pageIndex < _view.TabsCount;
         }
     }
 }

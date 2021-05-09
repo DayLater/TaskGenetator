@@ -2,6 +2,7 @@
 using TaskEngine.Contexts;
 using TaskEngine.Extensions;
 using TaskEngine.Factories;
+using TaskEngine.Views;
 using TaskEngine.Writers;
 using TaskEngine.Writers.TaskWriters;
 using WinGenerator.Views;
@@ -16,7 +17,7 @@ namespace WinGenerator
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
-        public Contexts(ISetWriter setWriter, Random random)
+        public Contexts(ISetWriter setWriter, Random random, IMainView mainView)
         {
             var taskWriter = new TaskWriter(setWriter, random);
             TaskGeneratorsFactory = new TaskGeneratorFactory(random, setWriter);
@@ -30,7 +31,7 @@ namespace WinGenerator
                 ExamplesContext.Add(generator.Id, example);
             }
 
-            ViewContext = new ViewContext(TaskGeneratorsFactory);
+            ViewContext = new ViewContext(TaskGeneratorsFactory, mainView);
             PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random);
         }
     }

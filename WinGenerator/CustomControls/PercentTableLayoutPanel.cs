@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using TaskEngine.Views;
 
 namespace WinGenerator.CustomControls
@@ -22,7 +23,7 @@ namespace WinGenerator.CustomControls
 
         public CheckedListBox AddCheckedListBox(int column, int row, List<string> dataSource)
         {
-            var list = new CheckedListBox() {Dock = DockStyle.Fill, DataSource = dataSource};
+            var list = new CheckedListBox {Dock = DockStyle.Fill, DataSource = dataSource};
             AddControl(list, column, row);
             return list;
         }
@@ -36,21 +37,26 @@ namespace WinGenerator.CustomControls
         
         public Label AddLabel(int column, int row, string text = null)
         {
-            var label = new Label() {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
+            var label = new MaterialLabel {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
             AddControl(label, column, row);
             return label;
         }
 
         public TextBox AddTextBox(int column, int row, string text = "default")
         {
-            var textBox = new TextBox() {Dock = DockStyle.Fill, TextAlign = HorizontalAlignment.Left, Text = text};
+            var textBox = new TextBox {Dock = DockStyle.Fill, TextAlign = HorizontalAlignment.Left, Text = text};
             AddControl(textBox, column, row);
             return textBox;
         }
         
-        public Button AddButton(int column, int row, string text = null)
+        public MaterialButton AddButton(int column, int row, string text = null)
         {
-            var button = new Button() {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
+            var button = new MaterialButton
+            {
+                Dock = DockStyle.Fill, 
+                TextAlign = ContentAlignment.MiddleCenter, 
+                Text = text
+            };
             AddControl(button, column, row);
             return button;
         }
@@ -85,13 +91,11 @@ namespace WinGenerator.CustomControls
 
         public void AddView(IView view)
         {
-            view.Activate();
             Controls.Add((Control) view);
         }
 
         public bool Remove(IView view)
         {
-            view.Deactivate();
             if (view is Control control && Controls.Contains(control))
             {
                 Controls.Remove(control);

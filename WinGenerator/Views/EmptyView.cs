@@ -4,16 +4,8 @@ using TaskEngine.Views;
 
 namespace WinGenerator.Views
 {
-    public class EmptyView: View, IView
+    public class EmptyView: View
     {
         public override string Id => string.Empty;
-            
-        public override void Activate()
-        {
-        }
-
-        public override void Deactivate()
-        {
-        }
     }
 }

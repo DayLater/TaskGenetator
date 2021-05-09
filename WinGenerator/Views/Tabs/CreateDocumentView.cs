@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 using TaskEngine.Views;
+using WinGenerator.CustomControls;
 
-namespace WinGenerator.Views
+namespace WinGenerator.Views.Tabs
 {
-    public class CreateDocumentView: View, ICreateDocumentView
+    public class CreateDocumentView: IdentifiedTabPage, ICreateDocumentView
     {
+        private readonly PercentTableLayoutPanel _table = new PercentTableLayoutPanel();
         private readonly Button _generateButton;
         private readonly TextBox _fileNameTextBox;
         private readonly NumericUpDown _fileCountNumeric;
@@ -26,29 +28,20 @@ namespace WinGenerator.Views
             MessageBox.Show(message);
         }
 
-        public override string Id => "Создание текстового документа";
-
-        public CreateDocumentView()
+        public CreateDocumentView(): base("Создание документа")
         {
-            AddRow(33);
-            AddRow(33);
-            AddRow(34);
-            AddColumn(100);
-            _fileNameTextBox = AddTextBox(0, 0);
-            _fileCountNumeric = AddNumeric(0, 1);
-            _generateButton = AddButton(0, 2, "Создать");
-        }
-
-        public override void Activate()
-        {
+            _table.AddRow(33);
+            _table.AddRow(33);
+            _table.AddRow(34);
+            _table.AddColumn(100);
+            _fileNameTextBox = _table.AddTextBox(0, 0);
+            _fileCountNumeric = _table.AddNumeric(0, 1);
+            _generateButton = _table.AddButton(0, 2, "Создать");
+            
             _generateButton.Click += OnGenerateButtonClicked;
+            Controls.Add(_table);
         }
-
-        public override void Deactivate()
-        {
-            _generateButton.Click -= OnGenerateButtonClicked;
-        }
-
+        
         private void OnGenerateButtonClicked(object sender, EventArgs eventArgs)
         {
             GenerateButtonClicked();
