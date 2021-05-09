@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
@@ -37,17 +38,20 @@ namespace WinGenerator.Views.Tabs
             topTable.AddRow(100);
             _checkedListBox = topTable.AddCheckedListBox(0, 0, taskIds);
 
-            var exampleTable = topTable.AddTable(1, 0);
+            var exampleTable = new PercentTableLayoutPanel();
             exampleTable.AddRow(15);
             exampleTable.AddRow(85);
             exampleTable.AddColumn(100);
             
-            var exampleTopText = exampleTable.AddLabel(0, 0, @"Пример задания");
-            exampleTopText.Font = new Font(FontFamily.GenericMonospace, 12, FontStyle.Underline);
+            var exampleTopText = new MaterialLabel {Text = @"Пример задания", TextAlign = ContentAlignment.TopLeft, FontType = MaterialSkinManager.fontType.H5, Dock = DockStyle.Fill, HighEmphasis = true};
+            exampleTable.AddControl(exampleTopText, 0, 0);
 
-            _exampleTextLabel = exampleTable.AddLabel(0, 1);
-            _exampleTextLabel.Font = new Font(FontFamily.GenericMonospace, 10);
-            _exampleTextLabel.TextAlign = ContentAlignment.TopLeft;
+            _exampleTextLabel = new MaterialLabel {TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill, FontType = MaterialSkinManager.fontType.Body1};
+            exampleTable.AddControl(_exampleTextLabel, 0, 1);
+            
+            var exampleTaskCard = new MaterialCard {Dock = DockStyle.Fill};
+            exampleTaskCard.Controls.Add(exampleTable);
+            topTable.AddControl(exampleTaskCard, 1, 0);
             
             _generatorSettingsTable = _table.AddTable(0, 1);
             _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
