@@ -20,7 +20,7 @@ namespace WinGenerator.Views.Tabs
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
         public event Action Activated = () => { };
         
-        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds) : base("Выбор заданий")
+        public TaskChooseView(GeneratorViews generatorViews, List<string> taskIds) : base(ViewIds.TaskChoose)
         {
             _generatorViews = generatorViews;
             

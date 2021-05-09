@@ -28,7 +28,7 @@ namespace WinGenerator.Views.Tabs
             MessageBox.Show(message);
         }
 
-        public CreateDocumentView(): base("Создание документа")
+        public CreateDocumentView(): base(ViewIds.CreateDocument)
         {
             _table.AddRow(33);
             _table.AddRow(33);

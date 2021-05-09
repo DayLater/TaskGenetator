@@ -81,11 +81,9 @@ namespace WinGenerator
 
             SizeChanged += OnWindowSizeChanged;
             
-            var page1 = new TabPage("First");
             var contexts = new Contexts(new SetWriter(new ExpressionWriter(), 10), new Random(), this);
-            var page2 = (TabPage) contexts.ViewContext.TaskChooseView;
-            _tabControl.Controls.Add(page1);
-            _tabControl.Controls.Add(page2);
+            foreach (var page in contexts.ViewContext.TabPages)
+                _tabControl.Controls.Add(page);
 
             _tabControl.SelectedIndexChanged += OnSelectedTabChanged;
         }

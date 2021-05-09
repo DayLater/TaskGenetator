@@ -13,7 +13,7 @@ namespace WinGenerator
     {
         public TaskGeneratorFactory TaskGeneratorsFactory { get; }
         public PresentersContext PresentersContext { get; }
-        public IViewContext ViewContext { get; }
+        public ViewContext ViewContext { get; }
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
