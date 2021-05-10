@@ -14,7 +14,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
     {
         private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
-        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 4};
+        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 4, MinValue = 2};
         
         public VariantsSelectReflectionTaskGenerator(string id, int answerCount, ISetWriter setWriter, Random random, ISetGenerator<T> setGenerator) : base(id, answerCount, setWriter)
         {

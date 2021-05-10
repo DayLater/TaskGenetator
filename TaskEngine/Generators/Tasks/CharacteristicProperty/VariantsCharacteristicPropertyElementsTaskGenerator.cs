@@ -12,8 +12,8 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
     {
         private readonly ExpressionSetGenerator _setGenerator;
         private readonly Random _random;
-        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 5};
-        private readonly IntValue _elementDeltaValue = new IntValue(ValuesIds.BorderDelta) {Value = 5};
+        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 5, MinValue = 2};
+        private readonly IntValue _elementDeltaValue = new IntValue(ValuesIds.BorderDelta) {Value = 5, MinValue = 2};
         
         public VariantsCharacteristicPropertyElementsTaskGenerator(ISetWriter setWriter, Random random) : base(TaskIds.VariantsCharacteristicPropertyElementsTask, 1, setWriter)
         {

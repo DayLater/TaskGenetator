@@ -9,8 +9,8 @@ namespace TaskEngine.Generators.SetGenerators
     public class SymbolMathSetGenerator: Valued, ISetGenerator<string>
     {
         private readonly Random _random;
-        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10};
-        private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6};
+        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10, MinValue = 4, MaxValue = 25};
+        private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6, MinValue = 1, MaxValue = 25};
         
         public int MaxCount
         {

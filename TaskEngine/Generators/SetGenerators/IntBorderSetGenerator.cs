@@ -13,7 +13,7 @@ namespace TaskEngine.Generators.SetGenerators
         public IntBorderSetGenerator(Random random)
         {
             _random = random;
-            Add(new IntValue(ValuesIds.BorderDelta) {Value = 5});
+            Add(new IntValue(ValuesIds.BorderDelta) {Value = 5, MinValue = 1});
             Add(new IntValue(ValuesIds.MinBorder) {Value = -10});
             Add(new IntValue(ValuesIds.MaxBorder) {Value = 10});
         }

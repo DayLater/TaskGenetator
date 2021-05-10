@@ -11,13 +11,13 @@ namespace TaskEngine.Generators.SetGenerators
     {
         private readonly Random _random;
         
-        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10};
-        private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6};
+        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10, MinValue = 4};
+        private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6, MinValue = 1};
         private readonly IntValue _maxValue = new IntValue(ValuesIds.ElementMaxValue) {Value = 10};
         private readonly IntValue _minValue = new IntValue(ValuesIds.ElementMinValue) {Value = -10};
         private readonly BoolValue _isZeroNecessary = new BoolValue(ValuesIds.IsZeroNecessary) {Value = true};
-        private readonly IntValue _minPositiveCount = new IntValue(ValuesIds.MinPositiveCount) {Value = 2};
-        private readonly IntValue _minNegativeCount = new IntValue(ValuesIds.MinNegativeCount) {Value = 2};
+        private readonly IntValue _minPositiveCount = new IntValue(ValuesIds.MinPositiveCount) {Value = 2, MinValue = 0};
+        private readonly IntValue _minNegativeCount = new IntValue(ValuesIds.MinNegativeCount) {Value = 2, MinValue = 0};
         
         private bool _isZeroTaken;
         private int _currentNegativeCount;

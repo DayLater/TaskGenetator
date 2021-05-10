@@ -22,7 +22,7 @@ namespace TaskEngine.Generators.Tasks.Elements
         {
             _random = random;
             _setGenerator = new IntMathSetGenerator(random);
-            Add(new IntValue(ValuesIds.ElementsCount) {Value = elementsCount});
+            Add(new IntValue(ValuesIds.ElementsCount) {Value = elementsCount, MinValue = 1});
         }
 
         public override ITask Generate()

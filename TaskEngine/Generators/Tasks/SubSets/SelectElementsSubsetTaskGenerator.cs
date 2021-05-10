@@ -12,7 +12,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 {
     public abstract class SelectElementsSubsetTaskGenerator<T>: VariantsGenerator
     {
-        private readonly IntValue _minCountInSubSet = new IntValue(ValuesIds.MinCountInSubSet) {Value = 3};
+        private readonly IntValue _minCountInSubSet = new IntValue(ValuesIds.MinCountInSubSet) {Value = 3, MinValue = 1};
         private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
         

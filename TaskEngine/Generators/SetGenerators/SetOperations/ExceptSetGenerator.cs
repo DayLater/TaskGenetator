@@ -9,7 +9,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
     public abstract class ExceptSetGenerator<T>: OperationSetGenerator<T>
     {
-        private readonly IntValue _addedElements = new IntValue(ValuesIds.AddElementsInSet) {Value = 4};
+        private readonly IntValue _addedElements = new IntValue(ValuesIds.AddElementsInSet) {Value = 4, MinValue = 1};
         private readonly Random _random;
 
         protected ExceptSetGenerator(Random random) : base(random)

@@ -10,7 +10,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
 {
     public class SelectNumbersSubSetTaskGenerator: SelectElementsSubsetTaskGenerator<int>
     {
-        private readonly IntValue _elementDelta = new IntValue(ValuesIds.BorderDelta) {Value = 4};
+        private readonly IntValue _elementDelta = new IntValue(ValuesIds.BorderDelta) {Value = 4, MinValue = 2};
         private readonly Random _random;
         
         public SelectNumbersSubSetTaskGenerator(int answerCount, ISetWriter setWriter, Random random, string id) 

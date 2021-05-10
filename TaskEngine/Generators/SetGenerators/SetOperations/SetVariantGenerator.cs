@@ -14,7 +14,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
         private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
         
-        private readonly IntValue _sameElementsCountInVariant = new IntValue(ValuesIds.CountSameElementsInVariant) {Value = 2};
+        private readonly IntValue _sameElementsCountInVariant = new IntValue(ValuesIds.CountSameElementsInVariant) {Value = 2, MinValue = 0};
 
         public SetVariantGenerator(ISetGenerator<T> setGenerator, Random random)
         {

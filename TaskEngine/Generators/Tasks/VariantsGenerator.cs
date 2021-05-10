@@ -5,9 +5,10 @@ namespace TaskEngine.Generators.Tasks
 {
     public abstract class VariantsGenerator : TaskGenerator
     {
+        private readonly IntValue _variantsCount = new IntValue(ValuesIds.VariantsCount) {Value = 4, MaxValue = 20, MinValue = 2};
         protected VariantsGenerator(string id, int answerCount, ISetWriter setWriter): base(id, setWriter)
         {
-            Add(new IntValue(ValuesIds.VariantsCount) {Value = 4});
+            Add(_variantsCount);
             if (answerCount == 1)
             {
                 Add(new ImmutableIntValue(ValuesIds.AnswersCount, 1));
@@ -15,11 +16,12 @@ namespace TaskEngine.Generators.Tasks
             else
             {
                 Get<IntValue>(ValuesIds.VariantsCount).Value = 6;
-                Add(new IntValue(ValuesIds.AnswersCount) {Value = 2});
+                Add(new IntValue(ValuesIds.AnswersCount) {Value = 2, MinValue = 1, MaxValue = 5});
             }
         }
 
-        protected int VariantsCount => Get<IntValue>(ValuesIds.VariantsCount).Value;
+        protected int VariantsCount => _variantsCount.Value;
+        
         protected int AnswersCount
         {
             get

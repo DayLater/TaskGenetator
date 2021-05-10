@@ -15,7 +15,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
     {
         private readonly ISetGenerator<T> _setGenerator;
         private readonly ISetComparer<T> _setComparer;
-        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 4};
+        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 4, MinValue = 2};
         private readonly Random _random;
         
         public SelectSetBySubsetTaskGenerator(string id, int answerCount, ISetWriter setWriter, ISetGenerator<T> setGenerator, Random random, ISetComparer<T> setComparer) 

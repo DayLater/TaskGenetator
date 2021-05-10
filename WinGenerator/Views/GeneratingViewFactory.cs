@@ -50,6 +50,8 @@ namespace WinGenerator.Views
                     var numericControl = table.CreateLabeledNumericControl(intValue.Id);
                     numericControl.ValueChanged += v => intValue.Value = v;
                     numericControl.Value = intValue.Value;
+                    numericControl.Numeric.Minimum = intValue.MinValue;
+                    numericControl.Numeric.Maximum = intValue.MaxValue;
                     control = numericControl;
                     return true;
                 case BoolValue boolValue:

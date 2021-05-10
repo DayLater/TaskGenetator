@@ -8,7 +8,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations.Ints
 {
     public class ExceptIntSetGenerator: ExceptSetGenerator<int>
     {
-        private readonly IntValue _delta = new IntValue(ValuesIds.BorderDelta) {Value = 5};
+        private readonly IntValue _delta = new IntValue(ValuesIds.BorderDelta) {Value = 5, MinValue = 1};
         
         public ExceptIntSetGenerator(Random random) : base(random)
         {

@@ -9,7 +9,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations
 {
     public abstract class IntersectSetGenerator<T>: OperationSetGenerator<T>
     {
-        private readonly IntValue _addedElementCount = new IntValue(ValuesIds.AddElementsInSet) {Value = 3};
+        private readonly IntValue _addedElementCount = new IntValue(ValuesIds.AddElementsInSet) {Value = 3, MinValue = 1};
         private readonly Random _random;
 
         protected IntersectSetGenerator(Random random) : base(random)

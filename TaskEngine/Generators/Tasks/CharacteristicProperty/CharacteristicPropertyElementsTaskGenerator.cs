@@ -10,7 +10,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
     public class CharacteristicPropertyElementsTaskGenerator: TaskGenerator
     {
         private readonly ExpressionSetGenerator _setGenerator;
-        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 5};
+        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 5, MinValue = 2};
         
         public CharacteristicPropertyElementsTaskGenerator(ISetWriter setWriter, Random random) : base(TaskIds.CharacteristicPropertyElementsTask, setWriter)
         {

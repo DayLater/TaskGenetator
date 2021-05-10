@@ -8,7 +8,7 @@ namespace TaskEngine.Generators.SetGenerators.SetOperations.Ints
 {
     public class IntersectIntSetGenerator: IntersectSetGenerator<int>
     {
-        private readonly IntValue _delta = new IntValue(ValuesIds.BorderDelta) {Value = 5};
+        private readonly IntValue _delta = new IntValue(ValuesIds.BorderDelta) {Value = 5, MinValue = 1};
         
         public IntersectIntSetGenerator(Random random) : base(random)
         {
