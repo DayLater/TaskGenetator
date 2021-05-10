@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.Elements;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
@@ -43,7 +42,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var condition = GetCondition(answers, set);
-            return new NumbersBelongSetTask(answers, condition, variants, set);
+            return new VariantsTask<int>(answers, condition, variants);
         }
     }
 }

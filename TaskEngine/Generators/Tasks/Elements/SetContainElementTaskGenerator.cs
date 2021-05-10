@@ -6,7 +6,6 @@ using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.Elements;
 using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
@@ -51,7 +50,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
             
             var condition = GetCondition(taskElements, answers);
-            return new SetContainElementsTask(answers, condition, variants, taskElements);
+            return new VariantsTask<IMathSet<int>>(answers, condition, variants);
         }
 
         private string GetCondition(ICollection<int> elements, ICollection<IMathSet<int>> sets)

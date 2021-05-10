@@ -6,7 +6,6 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.SubSets;
 using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
@@ -52,8 +51,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             
             var answer = setVariants[0];
             var condition = GetCondition(set, type);
-            var task = new VariantsSubSetTask(answer, condition, setVariants, type, set);
-            return task;
+            return new VariantsTask<IMathSet<int>>(answer, condition, setVariants);
         }
         
         private List<int> GetVariant(IMathSet<int> set)

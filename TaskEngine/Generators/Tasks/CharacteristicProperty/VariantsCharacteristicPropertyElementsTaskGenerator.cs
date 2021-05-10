@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.CharacteristicProperty;
 using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
@@ -54,7 +53,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
             }
             
             var condition = $"Выберите первые {count} элементов по его характеристическому свойству {WriteProperty(set)}";
-            return new VariantsCharacteristicPropertyElementsTask(elements, condition, variants);
+            return new VariantsTask<List<int>>(elements, condition, variants);
         }
 
         private bool IsContain(IEnumerable<List<int>> variants, IReadOnlyCollection<int> variant)

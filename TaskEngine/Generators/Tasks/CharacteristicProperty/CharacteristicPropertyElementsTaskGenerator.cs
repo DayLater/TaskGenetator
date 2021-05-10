@@ -2,7 +2,6 @@
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.CharacteristicProperty;
 using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
@@ -25,7 +24,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
             var set = _setGenerator.Generate(1).First();
             var elements = set.GetElements().Take(_elementCount.Value).ToList();
             var condition = $"Укажите первые {_elementCount.Value} элементов по его характеристическому свойству {WriteProperty(set)}";
-            return new CharacteristicPropertyElementsTask(condition, elements);
+            return new AnswerTask<int>(elements, condition);
         }
     }
 }

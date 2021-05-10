@@ -1,7 +1,7 @@
 ﻿using System;
 using TaskEngine.Generators.SetGenerators;
+using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.CharacteristicProperty;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.CharacteristicProperty
@@ -25,7 +25,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
             var rightAnswerIndex = _random.Next(0, variants.Count);
             var answer = variants[rightAnswerIndex];
             var condition = $"Дано множество {WriteSet(answer)}.\nУкажите его характеристическое свойство.";
-            return new VariantsSelectCharacteristicPropertyTask(answer,  condition, variants); 
+            return new VariantsTask<ExpressionSet>(answer,  condition, variants); 
         }
     }
 }

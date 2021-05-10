@@ -4,7 +4,6 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.Elements;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements
@@ -46,7 +45,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             }
 
             var condition = GetCondition(answers, set);
-            return new SymbolsBelongSetTask(answers, condition, variants,  set);
+            return new VariantsTask<string>(answers, condition, variants);
         }
     }
 }

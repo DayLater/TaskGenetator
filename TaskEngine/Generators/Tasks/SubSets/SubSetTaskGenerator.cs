@@ -5,7 +5,6 @@ using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Helpers;
 using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.SubSets;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.SubSets
@@ -33,7 +32,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var answerSet = new MathSet<int>(name, elements);
 
             var condition = GetCondition(set, type);
-            return new SubSetTask(answerSet, condition, type, set);
+            return new AnswerTask<IMathSet<int>>(answerSet, condition);
         }
 
         private string GetCondition<T>(IMathSet<T> set, SubSetType setType)

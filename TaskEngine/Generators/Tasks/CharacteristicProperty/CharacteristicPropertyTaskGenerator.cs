@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
+using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
-using TaskEngine.Models.Tasks.CharacteristicProperty;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.CharacteristicProperty
@@ -21,7 +21,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
         {
             var set = _setGenerator.Generate(1).First();
             var condition = $"Дано множество {WriteSet(set)}.\nУкажите его характеристическое свойство.";
-            return new SelectCharacteristicPropertyTask(set, condition);
+            return new AnswerTask<ExpressionSet>(set, condition);
         }
     }
 }

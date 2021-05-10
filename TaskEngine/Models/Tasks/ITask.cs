@@ -17,9 +17,4 @@ namespace TaskEngine.Models.Tasks
     {
         IList<T> Variants { get; }
     }
-    
-    public interface ISetContained<out T>
-    {
-        IMathSet<T> Set { get; }
-    }
 }
