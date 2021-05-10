@@ -1,7 +1,6 @@
-﻿using TaskEngine.Sets;
-using TaskEngine.Tasks;
-using TaskEngine.Tasks.Texts;
-using TaskEngine.Values;
+﻿using TaskEngine.Models.Sets;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks

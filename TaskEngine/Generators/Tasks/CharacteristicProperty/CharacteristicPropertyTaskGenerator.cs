@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
-using TaskEngine.Tasks;
-using TaskEngine.Tasks.CharacteristicProperty;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Tasks.CharacteristicProperty;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.CharacteristicProperty

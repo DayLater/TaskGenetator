@@ -1,5 +1,5 @@
-﻿using TaskEngine.Tasks;
-using TaskEngine.Values;
+﻿using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Values;
 
 namespace TaskEngine.Generators.Tasks
 {

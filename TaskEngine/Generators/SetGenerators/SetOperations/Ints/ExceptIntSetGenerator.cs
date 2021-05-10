@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
-using TaskEngine.Values;
+using TaskEngine.Models.Values;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations.Ints
 {

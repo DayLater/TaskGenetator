@@ -6,7 +6,7 @@ using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Extensions;
 using TaskEngine.Factories;
-using TaskEngine.Tasks.Texts;
+using TaskEngine.Models.Tasks.Texts;
 using TaskEngine.Views;
 using TaskEngine.Writers.DocWriters;
 using TaskEngine.Writers.TaskWriters;

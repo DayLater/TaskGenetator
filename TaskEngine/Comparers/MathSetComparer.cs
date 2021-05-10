@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using TaskEngine.Sets;
+using TaskEngine.Models.Sets;
 
 namespace TaskEngine.Comparers
 {

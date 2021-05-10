@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using TaskEngine;
-using TaskEngine.Sets;
+using TaskEngine.Models.Sets;
 using TaskEngine.Writers;
 
 namespace Tests

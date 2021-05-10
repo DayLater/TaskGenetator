@@ -11,10 +11,10 @@ using TaskEngine.Generators.Tasks;
 using TaskEngine.Generators.Tasks.CartesianProducts;
 using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
+using TaskEngine.Generators.Tasks.Reflections;
 using TaskEngine.Generators.Tasks.SetOperations;
 using TaskEngine.Generators.Tasks.SubSets;
-using TaskEngine.Tasks;
-using TaskEngine.Values;
+using TaskEngine.Models.Tasks;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Factories
@@ -86,6 +86,11 @@ namespace TaskEngine.Factories
             
             Add(new CartesianProductElementsTaskGenerator<int>(TaskIds.IntCartesianProductElementsTask, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
             Add(new CartesianProductElementsTaskGenerator<string>(TaskIds.SymbolCartesianProductElementsTask, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
+            
+            Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectOneNumbersReflectionFromAccordance, 1, setWriter, random, new IntMathSetGenerator(random)));
+            Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectSeveralNumbersReflectionFromAccordance, 2, setWriter, random, new IntMathSetGenerator(random)));
+            Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectOneSymbolsReflectionFromAccordance, 1, setWriter, random, new SymbolMathSetGenerator(random)));
+            Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, 2, setWriter, random, new SymbolMathSetGenerator(random)));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;

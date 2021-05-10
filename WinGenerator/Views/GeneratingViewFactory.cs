@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using TaskEngine.Generators.Tasks;
-using TaskEngine.Values;
+using TaskEngine.Models.Values;
 using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views

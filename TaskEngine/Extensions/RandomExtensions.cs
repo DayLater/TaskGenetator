@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TaskEngine.Sets;
+using TaskEngine.Models.Sets;
 
 namespace TaskEngine.Extensions
 {

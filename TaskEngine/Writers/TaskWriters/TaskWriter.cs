@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using TaskEngine.Sets;
-using TaskEngine.Tasks;
-using TaskEngine.Tasks.Texts;
+using TaskEngine.Models;
+using TaskEngine.Models.Sets;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Tasks.Texts;
 
 namespace TaskEngine.Writers.TaskWriters
 {
@@ -21,6 +22,8 @@ namespace TaskEngine.Writers.TaskWriters
             Add(typeof(List<string>), new ListTaskWriter<string>(random));
             Add(typeof(CartesianProduct<int>), new CartesianProductTaskWriter<int>(random));
             Add(typeof(CartesianProduct<string>), new CartesianProductTaskWriter<string>(random));
+            Add(typeof(Accordance<int>), new AccordanceTaskWriter<int>(random));
+            Add(typeof(Accordance<string>), new AccordanceTaskWriter<string>(random));
         }
 
         private void Add(Type type, ITaskWriter taskWriter)

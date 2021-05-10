@@ -50,8 +50,7 @@ namespace WinGenerator.Views.Tabs
             aboutProgramTable.AddControl(new Panel(), 0, 2);
             var byLabel = aboutProgramTable.AddLabel(0, 3, MaterialSkinManager.fontType.Caption, "By DayLater");
             byLabel.TextAlign = ContentAlignment.BottomRight;
-
-
+            
             var themeConfigCard = mainTable.AddCard(1, 0);
             var themeConfigTable = new PercentTableLayoutPanel();
             themeConfigCard.Controls.Add(themeConfigTable);

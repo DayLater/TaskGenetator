@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TaskEngine.Tasks.Texts;
+using TaskEngine.Models.Tasks.Texts;
 
 namespace TaskEngine.Writers.DocWriters
 {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TaskEngine.Tasks.Texts;
+using TaskEngine.Models.Tasks.Texts;
 
 namespace TaskEngine.Writers.DocWriters
 {

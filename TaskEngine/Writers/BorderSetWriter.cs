@@ -1,5 +1,5 @@
 ﻿using TaskEngine.Generators.Tasks;
-using TaskEngine.Sets;
+using TaskEngine.Models.Sets;
 
 namespace TaskEngine.Writers
 {

@@ -1,5 +1,5 @@
-﻿using TaskEngine.Tasks;
-using TaskEngine.Tasks.Texts;
+﻿using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Tasks.Texts;
 
 namespace TaskEngine.Writers.TaskWriters
 {

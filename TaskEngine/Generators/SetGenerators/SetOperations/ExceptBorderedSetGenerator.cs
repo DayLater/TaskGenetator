@@ -1,7 +1,7 @@
 ﻿using System;
 using TaskEngine.Extensions;
 using TaskEngine.Helpers;
-using TaskEngine.Sets;
+using TaskEngine.Models.Sets;
 
 namespace TaskEngine.Generators.SetGenerators.SetOperations
 {

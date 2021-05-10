@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
-using TaskEngine.Values;
+using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.SubSets

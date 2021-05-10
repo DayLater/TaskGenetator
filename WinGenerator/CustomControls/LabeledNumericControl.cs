@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MaterialSkin;
-using TaskEngine.Values;
+using TaskEngine.Models.Values;
 
 namespace WinGenerator.CustomControls
 {

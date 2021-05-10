@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using TaskEngine.Values;
+using TaskEngine.Models.Values;
 
 namespace WinGenerator.CustomControls
 {

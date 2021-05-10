@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
-using TaskEngine.Sets;
-using TaskEngine.Tasks;
-using TaskEngine.Tasks.Elements;
+using TaskEngine.Models.Sets;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Tasks.Elements;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Elements

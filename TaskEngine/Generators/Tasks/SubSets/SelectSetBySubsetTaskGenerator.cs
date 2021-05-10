@@ -4,9 +4,9 @@ using System.Linq;
 using TaskEngine.Comparers;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
-using TaskEngine.Sets;
-using TaskEngine.Tasks;
-using TaskEngine.Values;
+using TaskEngine.Models.Sets;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.SubSets

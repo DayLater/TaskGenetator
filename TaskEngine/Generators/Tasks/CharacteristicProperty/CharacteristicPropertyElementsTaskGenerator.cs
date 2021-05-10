@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using TaskEngine.Generators.SetGenerators;
-using TaskEngine.Tasks;
-using TaskEngine.Tasks.CharacteristicProperty;
-using TaskEngine.Values;
+using TaskEngine.Models.Tasks;
+using TaskEngine.Models.Tasks.CharacteristicProperty;
+using TaskEngine.Models.Values;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.CharacteristicProperty

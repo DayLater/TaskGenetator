@@ -15,5 +15,10 @@ namespace TaskEngine.Extensions
         {
             return enumerable.Any(e => new HashSet<T>(e).SetEquals(item));
         }
+
+        public static bool SetEquals<T>(this IEnumerable<T> first, IEnumerable<T> second)
+        {
+            return new HashSet<T>(first).SetEquals(second);
+        }
     }
 }
