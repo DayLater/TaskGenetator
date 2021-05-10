@@ -35,7 +35,7 @@ namespace TaskEngine.Writers.DocWriters
             doc.InsertPageBreak();
             WriteAnswers(tasks, doc);
             
-            doc.Save($"{Path}\\{filename}.docx");
+            doc.Save(filename);
         }
 
         private void WriteVariantsTask(IVariantsTextTask textTask, int index, Document document)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Extensions;
@@ -20,6 +21,7 @@ namespace TaskEngine.Presenters
         private readonly TaskGeneratorFactory _taskGeneratorFactory;
         private readonly TaskWriter _taskWriter;
         private readonly Random _random;
+        private string _path;
         
         public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TaskGeneratorFactory taskGeneratorFactory, TaskWriter taskWriter, Random random)
         {
@@ -33,6 +35,7 @@ namespace TaskEngine.Presenters
             _view.GenerateButtonClicked += OnGenerateButtonClicked;
             _view.FileDialogButtonClicked += OnFolderBrowserButtonClicked;
             _view.FileCount = 10;
+            _view.FileName = "Самостоятельная работа";
 
             var path = Environment.CurrentDirectory;
             SetPath(path);
@@ -42,11 +45,13 @@ namespace TaskEngine.Presenters
         {
             if (_view.TryGetFolderPath(out var path))
                 SetPath(path);
+            else
+                _view.ShowMessage("Не удалось получить путь");
         }
 
         private void SetPath(string path)
         {
-            _docWriter.Path = path;
+            _path = path;
             _view.Path = path;
         }
         
@@ -63,6 +68,10 @@ namespace TaskEngine.Presenters
                 var name = _view.FileName;
                 var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
+                var directoryPath = $"{_path}\\{name}";
+                if (!Directory.Exists(directoryPath))
+                    Directory.CreateDirectory(directoryPath);
+
                 for (int i = 0; i < count; i++)
                 {
                     var textTasks = new List<ITextTask>();
@@ -75,7 +84,7 @@ namespace TaskEngine.Presenters
                         _random.ClearNames();
                     }
                     
-                    _docWriter.Write($"{name}_{i + 1}", textTasks, i + 1);
+                    _docWriter.Write($"{directoryPath}\\{name}_{i + 1}.docx", textTasks, i + 1);
                 }
             }
         }
