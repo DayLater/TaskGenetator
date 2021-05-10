@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using TaskEngine.Contexts;
@@ -86,6 +87,8 @@ namespace TaskEngine.Presenters
                     
                     _docWriter.Write($"{directoryPath}\\{name}_{i + 1}.docx", textTasks, i + 1);
                 }
+
+                Process.Start(directoryPath);
             }
         }
     }

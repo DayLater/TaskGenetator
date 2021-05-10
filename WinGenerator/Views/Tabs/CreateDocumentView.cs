@@ -62,11 +62,11 @@ namespace WinGenerator.Views.Tabs
             var table = new PercentTableLayoutPanel();
             card.Controls.Add(table);
             table.AddRow(10);
+            table.AddRow(12);
             table.AddRow(10);
             table.AddRow(10);
             table.AddRow(20);
-            table.AddRow(20);
-
+            table.AddRow(25);
             table.AddColumn(100);
 
             var label = table.AddLabel(0, 0, MaterialSkinManager.fontType.H6, "Настройка файлов");
@@ -78,9 +78,9 @@ namespace WinGenerator.Views.Tabs
             _filePathTextBox.Enabled = false;
             _filePathTextBox.UseAccent = true;
             
-            _fileCountNumeric = table.AddLabeledNumeric(0, 2, "Количество вариантов");
-            
-            _openFileDialogButton = table.AddButton(0, 4, "Указать путь");
+            _openFileDialogButton = table.AddButton(0, 3, "Указать путь");
+            _fileCountNumeric = table.AddLabeledNumeric(0, 4, "Количество вариантов");
+            table.AddControl(new Panel(), 0, 5);
 
             _openFileDialogButton.Click += (sender, args) => FileDialogButtonClicked();
         }
