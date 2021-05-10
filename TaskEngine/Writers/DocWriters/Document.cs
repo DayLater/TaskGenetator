@@ -7,10 +7,9 @@ namespace TaskEngine.Writers.DocWriters
 {
     public class Document: IDisposable
     {
-        public int TextFontSize { get; set; } = 12;
-        public int TitleFontSize { get; set; } = 16;
-        public string Font { get; set; } = "Times New Roman";
-        
+        public FontSettings TitleFont { get; } = new FontSettings();
+        public FontSettings TextFont { get; } = new FontSettings();
+
         private readonly DocX _doc;
 
         public Document(DocX doc)
@@ -20,21 +19,21 @@ namespace TaskEngine.Writers.DocWriters
         
         public void AddTitle(string text)
         {
-            var p = AddLine(text, TitleFontSize, Font);
+            var p = AddLine(text, TitleFont);
             p.Alignment = Alignment.center;
             p.Bold();
         }
 
-        public void AddText(string text) => AddLine(text, TextFontSize, Font);
+        public void AddText(string text) => AddLine(text, TextFont);
 
         public void AddSpace() => _doc.InsertParagraph();
 
-        private Paragraph AddLine(string text, int size, string font)
+        private Paragraph AddLine(string text, FontSettings fontSettings)
         {
             var p = _doc.InsertParagraph();
             p.Append(text);
-            p.FontSize(size);
-            p.Font(font);
+            p.FontSize(fontSettings.Size);
+            p.Font(fontSettings.Font);
             return p;
         }
 
@@ -47,8 +46,8 @@ namespace TaskEngine.Writers.DocWriters
             var insertList = _doc.InsertList(list);
             foreach (var item in insertList.Items)
             {
-                item.FontSize(TextFontSize);
-                item.Font(Font);
+                item.FontSize(TextFont.Size);
+                item.Font(TextFont.Font);
             }
         }
 

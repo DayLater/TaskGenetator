@@ -159,6 +159,8 @@
         <Compile Include="Writers\DocWriters\Document.cs" />
         <Compile Include="Writers\DocWriters\DocumentFactory.cs" />
         <Compile Include="Writers\DocWriters\DocWriter.cs" />
+        <Compile Include="Writers\DocWriters\FontSettings.cs" />
+        <Compile Include="Writers\DocWriters\Fonts.cs" />
         <Compile Include="Writers\DocWriters\IDocWriter.cs" />
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />

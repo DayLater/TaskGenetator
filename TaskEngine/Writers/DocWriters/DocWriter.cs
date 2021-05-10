@@ -6,12 +6,25 @@ namespace TaskEngine.Writers.DocWriters
 {
     public class DocWriter: IDocWriter
     {
-        public string Path { get; set; }
         private readonly DocumentFactory _factory = new DocumentFactory();
 
+        public FontSettings TitleFont { get; } = new FontSettings();
+        public FontSettings TextFont { get; } = new FontSettings();
+
+        public DocWriter()
+        {
+            TitleFont.Size = 16;
+        }
+        
         public void Write(string filename, IEnumerable<ITextTask> textTasks, int variantNumber)
         {
             using var doc = _factory.Create(filename);
+            doc.TextFont.Font = TextFont.Font;
+            doc.TextFont.Size = TextFont.Size;
+
+            doc.TitleFont.Font = TitleFont.Font;
+            doc.TitleFont.Size = TitleFont.Size;
+            
             doc.AddTitle("Контрольная работа");
             doc.AddTitle($"Вариант №{variantNumber}");
             doc.AddSpace();

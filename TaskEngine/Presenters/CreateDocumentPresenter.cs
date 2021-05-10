@@ -37,7 +37,10 @@ namespace TaskEngine.Presenters
             _view.FileDialogButtonClicked += OnFolderBrowserButtonClicked;
             _view.FileCount = 10;
             _view.FileName = "Самостоятельная работа";
-
+            
+            _view.TextFontSize = 12;
+            _view.TitleFontSize = 16;
+            
             var path = Environment.CurrentDirectory;
             SetPath(path);
         }
@@ -65,6 +68,11 @@ namespace TaskEngine.Presenters
             }
             else
             {
+                _docWriter.TitleFont.Font = _view.TitleFont;
+                _docWriter.TitleFont.Size = _view.TitleFontSize;
+                _docWriter.TextFont.Font = _view.TextFont;
+                _docWriter.TextFont.Size = _view.TextFontSize;
+                
                 var count = _view.FileCount;
                 var name = _view.FileName;
                 var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();

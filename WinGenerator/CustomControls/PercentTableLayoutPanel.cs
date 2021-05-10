@@ -98,6 +98,15 @@ namespace WinGenerator.CustomControls
             AddControl(labeledNumericControl, column, row);
             return labeledNumericControl;
         }
+
+        public MaterialComboBox AddComboBox(int column, int row, string hint, string[] items)
+        {
+            var comboBox = new MaterialComboBox {Dock = DockStyle.Fill, Hint = hint, DropDownStyle = ComboBoxStyle.DropDownList};
+            comboBox.Items.AddRange(items);
+            comboBox.SelectedIndex = 0;
+            AddControl(comboBox, column, row);
+            return comboBox;
+        }
         
         public LabeledNumericControl CreateLabeledNumericControl(string text) => new LabeledNumericControl(text) {Dock = DockStyle.Fill};
         public CheckBox CreateCheckBox(string text) => new MaterialCheckbox() {Dock = DockStyle.Fill, Text = text};

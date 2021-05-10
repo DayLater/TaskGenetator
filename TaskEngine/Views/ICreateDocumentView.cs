@@ -12,5 +12,10 @@ namespace TaskEngine.Views
         string Path { get; set; }
         void ShowMessage(string message);
         bool TryGetFolderPath(out string path);
+        
+        public string TitleFont { get; }
+        public string TextFont { get; }
+        public int TitleFontSize { get; set; }
+        public int TextFontSize { get; set; }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using TaskEngine.Views;
+using TaskEngine.Writers.DocWriters;
 using WinGenerator.CustomControls;
 
 namespace WinGenerator.Views.Tabs
@@ -17,6 +19,11 @@ namespace WinGenerator.Views.Tabs
         private MaterialTextBox _filePathTextBox;
         private LabeledNumericControl _fileCountNumeric;
         private MaterialButton _openFileDialogButton;
+
+        private LabeledNumericControl _titleFontSizeNumeric;
+        private ComboBox _titleFontBox;
+        private LabeledNumericControl _textFontSizeNumeric;
+        private ComboBox _textFontBox;
      
         public event Action GenerateButtonClicked = () => { };
         
@@ -84,7 +91,7 @@ namespace WinGenerator.Views.Tabs
 
             _openFileDialogButton.Click += (sender, args) => FileDialogButtonClicked();
         }
-
+        
         public bool TryGetFolderPath(out string path)
         {
             using var fbd = new FolderBrowserDialog {RootFolder = Environment.SpecialFolder.MyComputer};
@@ -98,6 +105,53 @@ namespace WinGenerator.Views.Tabs
 
             path = null;
             return false;
+        }
+
+        public string TitleFont => (string) _titleFontBox.SelectedItem;
+        public string TextFont => (string) _textFontBox.SelectedItem;
+
+        public int TitleFontSize
+        {
+            get => _titleFontSizeNumeric.Value;
+            set => _titleFontSizeNumeric.Value = value;
+        }
+        
+        public int TextFontSize
+        {
+            get => _textFontSizeNumeric.Value;
+            set => _textFontSizeNumeric.Value = value;
+        }
+
+        private void AddFontSettings()
+        {
+            var fontCard = _contentTable.AddCard(1, 0);
+            var table = new PercentTableLayoutPanel();
+            fontCard.Controls.Add(table);
+            table.AddColumn(100);
+            table.AddRow(10);
+            table.AddRow(90);
+
+            var label = table.AddLabel(0, 0, MaterialSkinManager.fontType.H6, "Настройки текста");
+            label.HighEmphasis = true;
+            label.TextAlign = ContentAlignment.TopLeft;
+            
+            var fontTable = table.AddTable(0, 1);
+            fontTable.AddColumn(100);
+            fontTable.AddRow(20);
+            fontTable.AddRow(20);
+            fontTable.AddRow(20);
+            fontTable.AddRow(20);
+            fontTable.AddRow(20);
+
+            _titleFontSizeNumeric = fontTable.AddLabeledNumeric(0, 0, "Размер шрифта заголовка");
+            _titleFontBox = fontTable.AddComboBox(0, 1, "Шрифт заголовка", Fonts.GetFonts().ToArray());
+            
+            _textFontSizeNumeric = fontTable.AddLabeledNumeric(0, 2, "Размер шрифта текста");
+            _textFontBox = fontTable.AddComboBox(0, 3, "Шрифт текста", Fonts.GetFonts().ToArray());
+            
+            var generateButton = fontTable.AddButton(0, 4, "Создать");
+            
+            generateButton.Click += (sender, args) =>  GenerateButtonClicked();
         }
 
         public event Action FileDialogButtonClicked = () => { };
@@ -118,15 +172,7 @@ namespace WinGenerator.Views.Tabs
             _contentTable.AddColumn(50);
             
             AddFileConfigs();
-            
-            var rightTable = _contentTable.AddTable(1, 0);
-            rightTable.AddColumn(100);
-            rightTable.AddRow(50);
-            rightTable.AddRow(50);
-
-            var generateButton = rightTable.AddButton(0, 1, "Создать");
-            
-            generateButton.Click += (sender, args) =>  GenerateButtonClicked();
+            AddFontSettings();
         }
     }
 }
