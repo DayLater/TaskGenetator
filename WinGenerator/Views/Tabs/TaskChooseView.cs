@@ -52,16 +52,17 @@ namespace WinGenerator.Views.Tabs
             var exampleTaskCard = new MaterialCard {Dock = DockStyle.Fill};
             exampleTaskCard.Controls.Add(exampleTable);
             topTable.AddControl(exampleTaskCard, 1, 0);
-            
-            _generatorSettingsTable = _table.AddTable(0, 1);
-            _generatorSettingsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.OutsetPartial;
+
+            var generatorSettingTableCard = new MaterialCard {Dock = DockStyle.Fill};
+            _generatorSettingsTable = new PercentTableLayoutPanel();
             _generatorSettingsTable.AddRow(10);
             _generatorSettingsTable.AddRow(90);
             _generatorSettingsTable.AddColumn(100);
-            var generatorSettingsTopText = _generatorSettingsTable.AddLabel(0, 0);
-            generatorSettingsTopText.Font = new Font(FontFamily.GenericMonospace, 10, FontStyle.Underline);
-            generatorSettingsTopText.Text = @"Настройка генерации задания";
+            generatorSettingTableCard.Controls.Add(_generatorSettingsTable);
+            _table.AddControl(generatorSettingTableCard, 0, 1);
             
+            var generatorSettingsTopText = _generatorSettingsTable.AddLabel(0, 0, MaterialSkinManager.fontType.Subtitle1,  @"Настройка генерации задания");
+
             Controls.Add(_table);
 
             _checkedListBox.Items.SelectedIndexChanged += OnSelectedItemChanged;

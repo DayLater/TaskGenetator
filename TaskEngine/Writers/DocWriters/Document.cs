@@ -53,7 +53,7 @@ namespace TaskEngine.Writers.DocWriters
         }
 
         public void InsertPageBreak() => _doc.InsertSectionPageBreak();
-        public void Save() => _doc.Save();
+        public void Save(string fileName) => _doc.SaveAs(fileName);
 
         public void Dispose()
         {

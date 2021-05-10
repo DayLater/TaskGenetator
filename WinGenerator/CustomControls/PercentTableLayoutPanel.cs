@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using TaskEngine.Views;
 
@@ -22,6 +23,13 @@ namespace WinGenerator.CustomControls
             Controls.Add(control, column, row);
         }
 
+        public MaterialCard AddCard(int column, int row)
+        {
+            var card = new MaterialCard() {Dock = DockStyle.Fill};
+            AddControl(card, column, row);
+            return card;
+        }
+
         public MaterialCheckedListBox AddCheckedListBox(int column, int row, IEnumerable<string> items)
         {
             var list = new MaterialCheckedListBox {Dock = DockStyle.Fill};
@@ -33,6 +41,13 @@ namespace WinGenerator.CustomControls
             return list;
         }
 
+        public MaterialSlider AddSlider(int column, int row, string name, int min, int max)
+        {
+            var slider = new MaterialSlider {Text = name, RangeMin = min, RangeMax = max, ValueSuffix = "", AutoSize = true, Dock = DockStyle.Fill};
+            Controls.Add(slider, column, row);
+            return slider;
+        }
+
         public PercentTableLayoutPanel AddTable(int column, int row)
         {
             var table = new PercentTableLayoutPanel();
@@ -40,16 +55,16 @@ namespace WinGenerator.CustomControls
             return table;
         }
         
-        public Label AddLabel(int column, int row, string text = null)
+        public MaterialLabel AddLabel(int column, int row, MaterialSkinManager.fontType fontType, string text = null)
         {
-            var label = new MaterialLabel {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, Text = text};
+            var label = new MaterialLabel {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, FontType = fontType, Text = text, AutoSize = false};
             AddControl(label, column, row);
             return label;
         }
 
-        public TextBox AddTextBox(int column, int row, string text = "default")
+        public MaterialTextBox AddTextBox(int column, int row, string hint)
         {
-            var textBox = new TextBox {Dock = DockStyle.Fill, TextAlign = HorizontalAlignment.Left, Text = text};
+            var textBox = new MaterialTextBox {Dock = DockStyle.Fill, Hint = hint, UseTallSize = true};
             AddControl(textBox, column, row);
             return textBox;
         }

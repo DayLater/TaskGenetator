@@ -6,7 +6,6 @@ using TaskEngine.Extensions;
 using TaskEngine.Factories;
 using TaskEngine.Tasks.Texts;
 using TaskEngine.Views;
-using TaskEngine.Writers;
 using TaskEngine.Writers.DocWriters;
 using TaskEngine.Writers.TaskWriters;
 
@@ -32,8 +31,25 @@ namespace TaskEngine.Presenters
             _random = random;
 
             _view.GenerateButtonClicked += OnGenerateButtonClicked;
+            _view.FileDialogButtonClicked += OnFolderBrowserButtonClicked;
+            _view.FileCount = 10;
+
+            var path = Environment.CurrentDirectory;
+            SetPath(path);
         }
 
+        private void OnFolderBrowserButtonClicked()
+        {
+            if (_view.TryGetFolderPath(out var path))
+                SetPath(path);
+        }
+
+        private void SetPath(string path)
+        {
+            _docWriter.Path = path;
+            _view.Path = path;
+        }
+        
         private void OnGenerateButtonClicked()
         {
             var taskIds = _tasksContext.Ids.ToList();
@@ -43,8 +59,8 @@ namespace TaskEngine.Presenters
             }
             else
             {
-                var count = _view.GetFileCount();
-                var name = _view.GetFileName();
+                var count = _view.FileCount;
+                var name = _view.FileName;
                 var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
                 for (int i = 0; i < count; i++)

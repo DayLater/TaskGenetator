@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using TaskEngine.Views;
 using WinGenerator.CustomControls;
 
@@ -7,44 +10,123 @@ namespace WinGenerator.Views.Tabs
 {
     public class CreateDocumentView: IdentifiedTabPage, ICreateDocumentView
     {
-        private readonly PercentTableLayoutPanel _table = new PercentTableLayoutPanel();
-        private readonly Button _generateButton;
-        private readonly TextBox _fileNameTextBox;
-        private readonly NumericUpDown _fileCountNumeric;
+        private readonly PercentTableLayoutPanel _mainTable = new PercentTableLayoutPanel();
+        private readonly PercentTableLayoutPanel _contentTable;
+        
+        private RichTextBox _fileNameTextBox;
+        private MaterialTextBox _filePathTextBox;
+        private LabeledNumericControl _fileCountNumeric;
+        private MaterialButton _openFileDialogButton;
      
         public event Action GenerateButtonClicked = () => { };
-        public string GetFileName()
+        
+        public string FileName
         {
-            return _fileNameTextBox.Text;
+            get => _fileNameTextBox.Text;
+            set => _fileNameTextBox.Text = value;
         }
 
-        public int GetFileCount()
+        public int FileCount
         {
-            return (int) _fileCountNumeric.Value;
+            get => _fileCountNumeric.Value;
+            set => _fileCountNumeric.Value = value;
+        }
+
+        public string Path
+        {
+            get => _filePathTextBox.Text;
+            set => _filePathTextBox.Text = value;
         }
 
         public void ShowMessage(string message)
         {
-            MessageBox.Show(message);
+            MaterialMessageBox.Show(message);
         }
 
+        private void AddHeader()
+        {
+            var headerCard = _mainTable.AddCard(0, 0);
+            var configLabel = new MaterialLabel
+            {
+                FontType = MaterialSkinManager.fontType.H5,
+                Text = "Настройка документа",
+                TextAlign = ContentAlignment.TopLeft,
+                HighEmphasis = true, Dock = DockStyle.Fill
+            };
+            headerCard.Controls.Add(configLabel);
+        }
+
+        private void AddFileConfigs()
+        {
+            var card = _contentTable.AddCard(0, 0);
+            var table = new PercentTableLayoutPanel();
+            card.Controls.Add(table);
+            table.AddRow(10);
+            table.AddRow(10);
+            table.AddRow(10);
+            table.AddRow(20);
+            table.AddRow(20);
+
+            table.AddColumn(100);
+
+            var label = table.AddLabel(0, 0, MaterialSkinManager.fontType.H6, "Настройка файлов");
+            label.TextAlign = ContentAlignment.TopLeft;
+            label.HighEmphasis = true;
+            
+            _fileNameTextBox = table.AddTextBox(0, 1, "Имя файла");
+            _filePathTextBox = table.AddTextBox(0, 2, "Сохранить в папку");
+            _filePathTextBox.Enabled = false;
+            _filePathTextBox.UseAccent = true;
+            
+            _fileCountNumeric = table.AddLabeledNumeric(0, 2, "Количество вариантов");
+            
+            _openFileDialogButton = table.AddButton(0, 4, "Указать путь");
+
+            _openFileDialogButton.Click += (sender, args) => FileDialogButtonClicked();
+        }
+
+        public bool TryGetFolderPath(out string path)
+        {
+            using var fbd = new FolderBrowserDialog {RootFolder = Environment.SpecialFolder.MyComputer};
+            var result = fbd.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                path = fbd.SelectedPath;
+                return true;
+            }
+
+            path = null;
+            return false;
+        }
+
+        public event Action FileDialogButtonClicked = () => { };
+        
         public CreateDocumentView(): base(ViewIds.CreateDocument)
         {
-            _table.AddRow(33);
-            _table.AddRow(33);
-            _table.AddRow(34);
-            _table.AddColumn(100);
-            _fileNameTextBox = _table.AddTextBox(0, 0);
-            _fileCountNumeric = _table.AddNumeric(0, 1);
-            _generateButton = _table.AddButton(0, 2, "Создать");
+            Controls.Add(_mainTable);
+
+            _mainTable.AddRow(15);
+            _mainTable.AddRow(85);
+            _mainTable.AddColumn(100);
             
-            _generateButton.Click += OnGenerateButtonClicked;
-            Controls.Add(_table);
-        }
-        
-        private void OnGenerateButtonClicked(object sender, EventArgs eventArgs)
-        {
-            GenerateButtonClicked();
+            AddHeader();
+
+            _contentTable = _mainTable.AddTable(0, 1);
+            _contentTable.AddRow(100);
+            _contentTable.AddColumn(50);
+            _contentTable.AddColumn(50);
+            
+            AddFileConfigs();
+            
+            var rightTable = _contentTable.AddTable(1, 0);
+            rightTable.AddColumn(100);
+            rightTable.AddRow(50);
+            rightTable.AddRow(50);
+
+            var generateButton = rightTable.AddButton(0, 1, "Создать");
+            
+            generateButton.Click += (sender, args) =>  GenerateButtonClicked();
         }
     }
 }

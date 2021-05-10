@@ -6,6 +6,7 @@ namespace TaskEngine.Writers.DocWriters
 {
     public class DocWriter: IDocWriter
     {
+        public string Path { get; set; }
         private readonly DocumentFactory _factory = new DocumentFactory();
 
         public void Write(string filename, IEnumerable<ITextTask> textTasks, int variantNumber)
@@ -34,7 +35,7 @@ namespace TaskEngine.Writers.DocWriters
             doc.InsertPageBreak();
             WriteAnswers(tasks, doc);
             
-            doc.Save();
+            doc.Save($"{Path}\\{filename}.docx");
         }
 
         private void WriteVariantsTask(IVariantsTextTask textTask, int index, Document document)

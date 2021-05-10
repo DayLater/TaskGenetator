@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
 using TaskEngine.Values;
 
 namespace WinGenerator.CustomControls
@@ -18,7 +19,7 @@ namespace WinGenerator.CustomControls
             AddRow(labelSize);
             AddRow(numericSizeInPercent);
 
-            _label = AddLabel(0, 0, labelText);
+            _label = AddLabel(0, 0, MaterialSkinManager.fontType.Caption, labelText);
             Numeric = AddNumeric(0, 1);
             Numeric.ValueChanged += (sender, args) => ValueChanged(Value);
         }
