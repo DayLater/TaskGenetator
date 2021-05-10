@@ -77,9 +77,13 @@ namespace TaskEngine.Presenters
                 var name = _view.FileName;
                 var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
-                var directoryPath = $"{_path}\\{name}";
-                if (!Directory.Exists(directoryPath))
-                    Directory.CreateDirectory(directoryPath);
+                var path = _path;
+                if (_view.IsCreateDirectory)
+                {
+                    path = $"{_path}\\{name}";
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                }
 
                 for (int i = 0; i < count; i++)
                 {
@@ -93,10 +97,10 @@ namespace TaskEngine.Presenters
                         _random.ClearNames();
                     }
                     
-                    _docWriter.Write($"{directoryPath}\\{name}_{i + 1}.docx", textTasks, i + 1);
+                    _docWriter.Write($"{path}\\{name}_{i + 1}.docx", textTasks, i + 1);
                 }
 
-                Process.Start(directoryPath);
+                Process.Start(path);
             }
         }
     }

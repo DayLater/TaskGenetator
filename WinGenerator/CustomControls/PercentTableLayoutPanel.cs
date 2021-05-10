@@ -41,11 +41,11 @@ namespace WinGenerator.CustomControls
             return list;
         }
 
-        public MaterialSlider AddSlider(int column, int row, string name, int min, int max)
+        public MaterialSwitch AddSwitch(int column, int row, string text, bool defaultValue = true)
         {
-            var slider = new MaterialSlider {Text = name, RangeMin = min, RangeMax = max, ValueSuffix = "", AutoSize = true, Dock = DockStyle.Fill};
-            Controls.Add(slider, column, row);
-            return slider;
+            var materialSwitch = new MaterialSwitch() {Text = text, Checked = defaultValue, AutoSize = true};
+            AddControl(materialSwitch, column, row);
+            return materialSwitch;
         }
 
         public PercentTableLayoutPanel AddTable(int column, int row)

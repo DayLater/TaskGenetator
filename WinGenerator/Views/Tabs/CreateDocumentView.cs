@@ -19,6 +19,7 @@ namespace WinGenerator.Views.Tabs
         private MaterialTextBox _filePathTextBox;
         private LabeledNumericControl _fileCountNumeric;
         private MaterialButton _openFileDialogButton;
+        private MaterialSwitch _isCreateDirectorySwitch;
 
         private LabeledNumericControl _titleFontSizeNumeric;
         private ComboBox _titleFontBox;
@@ -68,13 +69,15 @@ namespace WinGenerator.Views.Tabs
             var card = _contentTable.AddCard(0, 0);
             var table = new PercentTableLayoutPanel();
             card.Controls.Add(table);
+            table.AddColumn(100);
             table.AddRow(10);
             table.AddRow(12);
             table.AddRow(10);
             table.AddRow(10);
-            table.AddRow(20);
+            table.AddRow(10);
+            table.AddRow(15);
             table.AddRow(25);
-            table.AddColumn(100);
+
 
             var label = table.AddLabel(0, 0, MaterialSkinManager.fontType.H6, "Настройка файлов");
             label.TextAlign = ContentAlignment.TopLeft;
@@ -86,8 +89,12 @@ namespace WinGenerator.Views.Tabs
             _filePathTextBox.UseAccent = true;
             
             _openFileDialogButton = table.AddButton(0, 3, "Указать путь");
-            _fileCountNumeric = table.AddLabeledNumeric(0, 4, "Количество вариантов");
-            table.AddControl(new Panel(), 0, 5);
+            _isCreateDirectorySwitch = table.AddSwitch(0, 4, "Создать папку");
+            _isCreateDirectorySwitch.TextAlign = ContentAlignment.MiddleRight;
+
+            _fileCountNumeric = table.AddLabeledNumeric(0, 5, "Количество вариантов");
+
+            table.AddControl(new Panel(), 0, 6);
 
             _openFileDialogButton.Click += (sender, args) => FileDialogButtonClicked();
         }
@@ -122,6 +129,8 @@ namespace WinGenerator.Views.Tabs
             set => _textFontSizeNumeric.Value = value;
         }
 
+        public bool IsCreateDirectory => _isCreateDirectorySwitch.Checked;
+
         private void AddFontSettings()
         {
             var fontCard = _contentTable.AddCard(1, 0);
@@ -144,9 +153,11 @@ namespace WinGenerator.Views.Tabs
             fontTable.AddRow(20);
 
             _titleFontSizeNumeric = fontTable.AddLabeledNumeric(0, 0, "Размер шрифта заголовка");
+            _titleFontSizeNumeric.Numeric.Minimum = 5;
             _titleFontBox = fontTable.AddComboBox(0, 1, "Шрифт заголовка", Fonts.GetFonts().ToArray());
             
             _textFontSizeNumeric = fontTable.AddLabeledNumeric(0, 2, "Размер шрифта текста");
+            _textFontSizeNumeric.Numeric.Minimum = 4;
             _textFontBox = fontTable.AddComboBox(0, 3, "Шрифт текста", Fonts.GetFonts().ToArray());
             
             var generateButton = fontTable.AddButton(0, 4, "Создать");
