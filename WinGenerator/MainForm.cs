@@ -6,6 +6,7 @@ using MaterialSkin.Controls;
 using TaskEngine.Views;
 using TaskEngine.Writers;
 using WinGenerator.CustomControls;
+using WinGenerator.Views;
 
 namespace WinGenerator
 {
@@ -19,13 +20,13 @@ namespace WinGenerator
 
         public MainForm()
         {
-            DoubleBuffered = true;         
+            DoubleBuffered = true;
             DrawerShowIconsWhenHidden = true;
 
             var size = new Size(1024, 768);
             MinimumSize = size;
             Size = size;
-            
+
             _tabControl = new MaterialTabControl
             {
                 Margin = new Padding(0),
@@ -37,7 +38,7 @@ namespace WinGenerator
                 AutoSize = true,
                 Dock = DockStyle.Fill
             };
-            
+
             _tabSelector = new MaterialTabSelector
             {
                 BaseTabControl = _tabControl,
@@ -50,12 +51,13 @@ namespace WinGenerator
                 Dock = DockStyle.Fill
             };
 
-            _table = new PercentTableLayoutPanel {Dock = DockStyle.None, Size = GetClientSize(), Location = new Point(0, 60)};
+            _table = new PercentTableLayoutPanel
+                {Dock = DockStyle.None, Size = GetClientSize(), Location = new Point(0, 60)};
             _table.AddColumn(100);
             _table.AddRow(5);
             _table.AddRow(85);
             _table.AddRow(10);
-            
+
             _table.AddControl(_tabSelector, 0, 0);
             _table.AddControl(_tabControl, 0, 1);
 
@@ -68,26 +70,31 @@ namespace WinGenerator
             _nextButton = buttonTable.AddButton(3, 0, "Вперед");
             _backButton.Click += OnBackButtonClicked;
             _nextButton.Click += OnNextButtonClicked;
-            
+
             Controls.Add(_table);
 
             Text = "Генератор заданий";
-            
+
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100,
+                Accent.Pink200, TextShade.WHITE);
+
+            var themesController = new ThemesController(materialSkinManager, this);
 
             SizeChanged += OnWindowSizeChanged;
-            
-            var contexts = new Contexts(new SetWriter(new ExpressionWriter(), 10), new Random(), this);
+
+            var contexts = new Contexts(new SetWriter(new ExpressionWriter(), 10), new Random(), this,
+                themesController);
             foreach (var page in contexts.ViewContext.TabPages)
                 _tabControl.Controls.Add(page);
 
             _tabControl.SelectedIndexChanged += OnSelectedTabChanged;
+            themesController.UpdatedColors += () => _tabSelector.Invalidate();
         }
-        
+
         private Size GetClientSize() =>  new Size(Size.Width, Size.Height - 60);
         private void OnWindowSizeChanged(object sender, EventArgs e) => _table.Size = GetClientSize();
         private void OnBackButtonClicked(object sender, EventArgs eventArgs) => PreviousButtonClicked();

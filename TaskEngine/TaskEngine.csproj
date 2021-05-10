@@ -91,6 +91,7 @@
         <Compile Include="Generators\Tasks\TaskGenerator.cs" />
         <Compile Include="Generators\Tasks\VariantsGenerator.cs" />
         <Compile Include="Presenters\CreateDocumentPresenter.cs" />
+        <Compile Include="Presenters\HomePagePresenter.cs" />
         <Compile Include="Presenters\IPresenter.cs" />
         <Compile Include="Presenters\MainPresenter.cs" />
         <Compile Include="Presenters\TaskChoosePresenter.cs" />
@@ -152,8 +153,10 @@
         <Compile Include="Values\Valued.cs" />
         <Compile Include="Values\ValuesIds.cs" />
         <Compile Include="Views\ICreateDocumentView.cs" />
+        <Compile Include="Views\IHomePageView.cs" />
         <Compile Include="Views\IMainView.cs" />
         <Compile Include="Views\ITaskChooseView.cs" />
+        <Compile Include="Views\IThemesController.cs" />
         <Compile Include="Views\IView.cs" />
         <Compile Include="Writers\BorderSetWriter.cs" />
         <Compile Include="Writers\DocWriters\Document.cs" />

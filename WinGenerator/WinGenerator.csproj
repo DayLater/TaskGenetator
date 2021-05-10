@@ -69,8 +69,9 @@
     <Compile Include="Views\GeneratorViews.cs" />
     <Compile Include="Views\Tabs\CreateDocumentView.cs" />
     <Compile Include="Views\Tabs\IdentifiedTabPage.cs" />
-    <Compile Include="Views\Tabs\MainTabPage.cs" />
+    <Compile Include="Views\Tabs\HomeTabPage.cs" />
     <Compile Include="Views\Tabs\TaskChooseView.cs" />
+    <Compile Include="Views\ThemesController.cs" />
     <Compile Include="Views\View.cs" />
     <Compile Include="Views\ViewContext.cs" />
     <Compile Include="Views\ViewIds.cs" />

@@ -17,7 +17,7 @@ namespace WinGenerator
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
-        public Contexts(ISetWriter setWriter, Random random, IMainView mainView)
+        public Contexts(ISetWriter setWriter, Random random, IMainView mainView, IThemesController themesController)
         {
             var taskWriter = new TaskWriter(setWriter, random);
             TaskGeneratorsFactory = new TaskGeneratorFactory(random, setWriter);
@@ -32,7 +32,7 @@ namespace WinGenerator
             }
 
             ViewContext = new ViewContext(TaskGeneratorsFactory, mainView);
-            PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random);
+            PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random, themesController);
         }
     }
 }

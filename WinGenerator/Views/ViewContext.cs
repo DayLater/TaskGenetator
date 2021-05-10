@@ -12,6 +12,7 @@ namespace WinGenerator.Views
         public IMainView MainView { get; }
         public ITaskChooseView TaskChooseView { get; }
         public ICreateDocumentView CreateDocumentView { get; }
+        public IHomePageView HomePageView { get; }
 
         private readonly GeneratorViews _generatorViews = new GeneratorViews();
         private readonly List<IdentifiedTabPage> _tabs = new List<IdentifiedTabPage>();
@@ -38,8 +39,11 @@ namespace WinGenerator.Views
 
             var createViewDocument = new CreateDocumentView();
             CreateDocumentView = createViewDocument;
+
+            var homePage = new HomeTabPage();
+            HomePageView = homePage;
             
-            _tabs.Add(new MainTabPage());
+            _tabs.Add(homePage);
             _tabs.Add(taskChooseView);
             _tabs.Add(createViewDocument);
         }
