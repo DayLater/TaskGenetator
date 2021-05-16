@@ -22,8 +22,10 @@ namespace TaskEngine.Writers.TaskWriters
             Add(typeof(List<string>), new ListTaskWriter<string>(random));
             Add(typeof(CartesianProduct<int>), new CartesianProductTaskWriter<int>(random));
             Add(typeof(CartesianProduct<string>), new CartesianProductTaskWriter<string>(random));
-            Add(typeof(Accordance<int>), new AccordanceTaskWriter<int>(random));
-            Add(typeof(Accordance<string>), new AccordanceTaskWriter<string>(random));
+            Add(typeof(Accordance<int, int>), new AccordanceTaskWriter<int, int>(random));
+            Add(typeof(Accordance<string, string>), new AccordanceTaskWriter<string, string>(random));
+            Add(typeof(Accordance<int, string>), new AccordanceTaskWriter<int, string>(random));
+            Add(typeof(Accordance<string, int>), new AccordanceTaskWriter<string, int>(random));
         }
 
         private void Add(Type type, ITaskWriter taskWriter)

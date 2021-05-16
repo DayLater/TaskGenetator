@@ -1,4 +1,4 @@
-﻿namespace TaskEngine.Models.Tasks
+﻿namespace TaskEngine
 {
     public static class TaskIds
     {
@@ -61,5 +61,12 @@
         public const string SelectOneSymbolsReflectionFromAccordance = "Выберите соответствие, являющееся отображением (буквы)";
         public const string SelectSeveralNumbersReflectionFromAccordance = "Выберите соответствия, являющиеся отображением (числа)";
         public const string SelectSeveralSymbolsReflectionFromAccordance = "Выберите соответствия, являющиеся отображением (буквы)";
+
+        public const string SelectReflectionInjectionNumToSymbol = "Выберите инъекцию (числа -> буквы)";
+        public const string SelectReflectionInjectionSymbolToNum = "Выберите инъекцию (буквы -> числа)";
+
+        public const string SelectReflectionSurjective = "Выберите отображение, являющееся инъекцией";
+        public const string SelectReflectionBijective = "Выберите отображение, являющееся инъекцией";
+
     }
 }

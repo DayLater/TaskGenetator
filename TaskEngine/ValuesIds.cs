@@ -1,4 +1,4 @@
-﻿namespace TaskEngine.Models.Values
+﻿namespace TaskEngine
 {
     public static class ValuesIds
     {

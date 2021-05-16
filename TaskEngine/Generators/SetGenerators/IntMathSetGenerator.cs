@@ -11,7 +11,7 @@ namespace TaskEngine.Generators.SetGenerators
     {
         private readonly Random _random;
         
-        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10, MinValue = 4};
+        private readonly IntValue _maxCount = new IntValue(ValuesIds.ElementMaxCount) {Value = 10, MinValue = 1};
         private readonly IntValue _minCount = new IntValue(ValuesIds.ElementMinCount) {Value = 6, MinValue = 1};
         private readonly IntValue _maxValue = new IntValue(ValuesIds.ElementMaxValue) {Value = 10};
         private readonly IntValue _minValue = new IntValue(ValuesIds.ElementMinValue) {Value = -10};

@@ -12,6 +12,7 @@ using TaskEngine.Generators.Tasks.CartesianProducts;
 using TaskEngine.Generators.Tasks.CharacteristicProperty;
 using TaskEngine.Generators.Tasks.Elements;
 using TaskEngine.Generators.Tasks.Reflections;
+using TaskEngine.Generators.Tasks.Reflections.ReflectionTypes;
 using TaskEngine.Generators.Tasks.SetOperations;
 using TaskEngine.Generators.Tasks.SubSets;
 using TaskEngine.Models.Tasks;
@@ -91,6 +92,9 @@ namespace TaskEngine.Factories
             Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectSeveralNumbersReflectionFromAccordance, 2, setWriter, random, new IntMathSetGenerator(random)));
             Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectOneSymbolsReflectionFromAccordance, 1, setWriter, random, new SymbolMathSetGenerator(random)));
             Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, 2, setWriter, random, new SymbolMathSetGenerator(random)));
+            
+            Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 3}, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 4}));
+            Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 3, MinCount = 4}, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 4}));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;

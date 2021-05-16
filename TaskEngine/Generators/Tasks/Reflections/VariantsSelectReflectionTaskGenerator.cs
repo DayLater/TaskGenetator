@@ -46,14 +46,14 @@ namespace TaskEngine.Generators.Tasks.Reflections
                     elementVariants.Add(variant);
             }
 
-            var variants = elementVariants.Select(e => new Accordance<T>(e, _random.GetRandomName())).ToList();
+            var variants = elementVariants.Select(e => new Accordance<T, T>(e, _random.GetRandomName())).ToList();
             var answers = elementAnswers.Select(a => elementVariants.IndexOf(a)).Select(index => variants[index]).ToList();
             var condition = GetCondition(answers);
 
-            return new VariantsTask<Accordance<T>>(answers, condition, variants);
+            return new VariantsTask<Accordance<T, T>>(answers, condition, variants);
         }
 
-        private string GetCondition(ICollection<Accordance<T>> answers)
+        private string GetCondition(ICollection<Accordance<T, T>> answers)
         {
             return answers.Count == 1
                 ? "Выберите соответствие, являющееся отображением"

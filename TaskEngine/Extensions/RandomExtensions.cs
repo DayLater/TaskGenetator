@@ -24,6 +24,17 @@ namespace TaskEngine.Extensions
             return random.Next(min - delta, max + delta);
         }
 
+        public static int GetNextExcept(this Random random, int min, int max, params int[] except)
+        {
+            int result;
+            do
+            {
+                result = random.Next(min, max);
+            } while (except.Contains(result));
+
+            return result;
+        }
+
         private static readonly List<string> _usedNames = new List<string>();
         private static readonly List<string> _usedSymbols = new List<string>();
 
