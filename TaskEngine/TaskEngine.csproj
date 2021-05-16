@@ -79,13 +79,17 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\ReflectionFormTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantBijectiveTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantsSelectInjectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantsSelectSurjectiveTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\SelectReflectionCompositionTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\SelectReflectionFormTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectFuncReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectReflectionTaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\Reflections\VariantsSelectReversedReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\WriteFuncReflectionTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\WriteReflectionCompositionTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\WriteReflectionFormTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\SetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\VariantsSetOperationTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\SetOperations\SetEqualsTaskGenerator.cs" />
@@ -168,6 +172,7 @@
         <Compile Include="Writers\ExpressionWriter.cs" />
         <Compile Include="Writers\IExpressionWriter.cs" />
         <Compile Include="Writers\ISetWriter.cs" />
+        <Compile Include="Writers\ReflectionWriter.cs" />
         <Compile Include="Writers\SetWriter.cs" />
         <Compile Include="Writers\TaskWriters\AccordanceTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\BaseTaskWriter.cs" />
@@ -177,7 +182,7 @@
         <Compile Include="Writers\TaskWriters\ITaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\ListTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\MathSetTaskWriter.cs" />
-        <Compile Include="Writers\TaskWriters\ReflectionWriter.cs" />
+        <Compile Include="Writers\TaskWriters\ReflectionTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\StringTaskWriter.cs" />
         <Compile Include="Writers\TaskWriters\TaskWriter.cs" />
         <Compile Include="Writers\VariantTaskWriter.cs" />

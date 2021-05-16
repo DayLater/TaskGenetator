@@ -57,24 +57,29 @@
         public const string SymbolCartesianProductElementsTask = "Указать декартово произведение множеств (буквы)";
 
 
-        public const string SelectOneNumbersReflectionFromAccordance = "Выберите соответствие, являющееся отображением (числа)";
-        public const string SelectOneSymbolsReflectionFromAccordance = "Выберите соответствие, являющееся отображением (буквы)";
-        public const string SelectSeveralNumbersReflectionFromAccordance = "Выберите соответствия, являющиеся отображением (числа)";
-        public const string SelectSeveralSymbolsReflectionFromAccordance = "Выберите соответствия, являющиеся отображением (буквы)";
+        public const string SelectOneNumbersReflectionFromAccordance = "Выбрать соответствие, являющееся отображением (числа)";
+        public const string SelectOneSymbolsReflectionFromAccordance = "Выбрать соответствие, являющееся отображением (буквы)";
+        public const string SelectSeveralNumbersReflectionFromAccordance = "Выбрать соответствия, являющиеся отображением (числа)";
+        public const string SelectSeveralSymbolsReflectionFromAccordance = "Выбрать соответствия, являющиеся отображением (буквы)";
 
-        public const string SelectReflectionInjectionNumToSymbol = "Выберите инъекцию (числа -> буквы)";
-        public const string SelectReflectionInjectionSymbolToNum = "Выберите инъекцию (буквы -> числа)";
+        public const string SelectReflectionInjectionNumToSymbol = "Выбрать инъекцию (числа -> буквы)";
+        public const string SelectReflectionInjectionSymbolToNum = "Выбрать инъекцию (буквы -> числа)";
 
-        public const string SelectReflectionSurjectiveNumToSymbol = "Выберите сюръекцию (числа -> буквы)";
-        public const string SelectReflectionSurjectiveSymbolToNum = "Выберите сюръекцию (буквы -> числа)";
+        public const string SelectReflectionSurjectiveNumToSymbol = "Выбрать сюръекцию (числа -> буквы)";
+        public const string SelectReflectionSurjectiveSymbolToNum = "Выбрать сюръекцию (буквы -> числа)";
 
-        public const string SelectReflectionBijectiveNumToSymbol = "Выберите биекцию (числа -> буквы)";
-        public const string SelectReflectionBijectiveSymbolsToNum = "Выберите биекцию (буквы -> числа)";
+        public const string SelectReflectionBijectiveNumToSymbol = "Выбрать биекцию (числа -> буквы)";
+        public const string SelectReflectionBijectiveSymbolsToNum = "Выбрать биекцию (буквы -> числа)";
 
         public const string SelectFuncReflection = "Указать отображение";
         public const string VariantSelectFuncReflection = "Выбрать отображение";
         public const string SelectReversedReflection = "Указать обратное отображение";
         public const string VariantSelectReversedFuncReflection = "Выбрать обратное отображение";
 
+        public const string WriteReflectionComposition = "Указать композицию двух отображений";
+        public const string SelectReflectionComposition = "Выбрать композицию двух отображений";
+
+        public const string WriteReflectionForm = "Указать образ множества при отображении";
+        public const string SelectReflectionForm = "Выбрать образ множества при отображении";
     }
 }

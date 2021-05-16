@@ -26,7 +26,7 @@ namespace TaskEngine.Writers.TaskWriters
             Add(typeof(Accordance<string, string>), new AccordanceTaskWriter<string, string>(random));
             Add(typeof(Accordance<int, string>), new AccordanceTaskWriter<int, string>(random));
             Add(typeof(Accordance<string, int>), new AccordanceTaskWriter<string, int>(random));
-            Add(typeof(Reflection), new ReflectionWriter(random));
+            Add(typeof(Reflection), new ReflectionTaskWriter(random));
         }
 
         private void Add(Type type, ITaskWriter taskWriter)

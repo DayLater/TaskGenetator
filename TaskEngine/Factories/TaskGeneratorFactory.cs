@@ -106,6 +106,12 @@ namespace TaskEngine.Factories
 
             Add(new WriteFuncReflectionTaskGenerator(TaskIds.SelectFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, false));
             Add(new WriteFuncReflectionTaskGenerator(TaskIds.SelectReversedReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, true));
+            
+            Add(new WriteReflectionCompositionTaskGenerator(setWriter, new IntMathSetGenerator(random) {MaxCount = 6, IsZeroNecessary = false}, random));
+            Add(new SelectReflectionCompositionTaskGenerator(setWriter, new IntMathSetGenerator(random) {MaxCount = 6, IsZeroNecessary = false}, random));
+           
+            Add(new WriteReflectionFormTaskGenerator(setWriter, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}, random));
+            Add(new SelectReflectionFormTaskGenerator(setWriter, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}, random));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;
