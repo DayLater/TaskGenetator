@@ -28,7 +28,15 @@ namespace TaskEngine.Generators.SetGenerators
             get => _maxCount.Value;
             set => _maxCount.Value = value;
         }
-        
+
+        private int _count = -1;
+
+        public int Count
+        {
+            get => _count == -1 ? _random.Next(MinCount, MaxCount + 1) : _count;
+            set => _count = value;
+        }
+
         public int MinCount
         {
             get => _minCount.Value;
@@ -84,9 +92,7 @@ namespace TaskEngine.Generators.SetGenerators
             for (var i = 0; i < count; i++)
             {
                 var name = Symbols.Names[i];
-                var elementCount = _random.Next(MinCount, MaxCount + 1);
-                var set = CreateSet(elementCount, name, new List<int>());
-
+                var set = CreateSet(Count, name, new List<int>());
                 result.Add(set);
             }
             
@@ -96,9 +102,7 @@ namespace TaskEngine.Generators.SetGenerators
         public IMathSet<int> Generate(string name, List<int> exceptElements = null, params int[] startElements)
         {
             exceptElements ??= new List<int>();
-            
-            var elementCount = _random.Next(MinCount, MaxCount + 1);
-            var set = CreateSet(elementCount, name, exceptElements, startElements);
+            var set = CreateSet(Count, name, exceptElements, startElements);
             return set;
         }
 
@@ -134,14 +138,13 @@ namespace TaskEngine.Generators.SetGenerators
                 do
                 {
                     element = GetNextElement();
-                } while (elements.Contains(element) && exceptElements.Contains(element));
+                } while (elements.Contains(element) || exceptElements.Contains(element));
                 elements.Add(element);
             }
             
             _currentNegativeCount = 0;
             _currentPositiveCount = 0;
             _isZeroTaken = false;
-
             elements.Shuffle(_random);
             return new MathSet<int>(name, elements);
         }
@@ -152,9 +155,12 @@ namespace TaskEngine.Generators.SetGenerators
         }
 
         public IMathSet<int> Generate(string name, params int[] startElements)
-        { 
-            var elementCount = _random.Next(MinCount, MaxCount + 1);
-            return CreateSet(elementCount, name, new List<int>(), startElements);
+        {
+            if (Count == 4)
+            {
+                
+            }
+            return CreateSet(Count, name, new List<int>(), startElements);
         }
     }
 }

@@ -10,57 +10,52 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
 {
-    public class VariantsSelectInjectionTaskGenerator<T1, T2>: VariantsGenerator
+    public class VariantBijectiveTaskGenerator<T1, T2>: VariantsGenerator
     {
-        private readonly Random _random;
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
-
-        public VariantsSelectInjectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator) : base(id, 1, setWriter)
+        private readonly Random _random;
+        
+        public VariantBijectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random) : base(id,1, setWriter)
         {
-            _random = random;
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
+            _random = random;
         }
 
         public override ITask Generate()
         {
-            var firstName = _random.GetRandomName();
-            var firstSet = _firstSetGenerator.Generate(firstName);
+            var firstSet = _firstSetGenerator.Generate(_random.GetRandomName());
+            var secondSet = _secondSetGenerator.Generate(_random.GetRandomName());
 
-            var secondName = _random.GetRandomName();
-            var secondSet = _secondSetGenerator.Generate(secondName);
+            var firstElements = firstSet.GetElements().ToList();
+            firstElements.Shuffle(_random);
+            var secondElements = secondSet.GetElements().ToList();
+            secondElements.Shuffle(_random);
 
-            var condition = GetCondition(firstSet, secondSet);
-            
-            var firstSetElements = firstSet.GetElements().ToList();
-            var secondSetElements = secondSet.GetElements().ToList();
-
-            var addedElements = new List<T2>();
             var answerElements = new List<(T1, T2)>();
-            foreach (var element in firstSetElements)
+            for (int i = 0; i < firstElements.Count; i++)
             {
-                T2 addingElement;
-                do
-                {
-                    var index = _random.Next(0, secondSetElements.Count);
-                    addingElement = secondSetElements[index];
-                } while (addedElements.Contains(addingElement));
-                
-                addedElements.Add(addingElement);
-                var accordance = (element, addingElement);
-                answerElements.Add(accordance);
+                answerElements.Add((firstElements[i], secondElements[i]));
             }
 
-            var answerName = _random.GetRandomName();
-            var answer = new Accordance<T1, T2>(answerElements, answerName);
-            var variants = CreateVariants(firstSetElements, secondSetElements);
+            var answer = new Accordance<T1, T2>(answerElements, _random.GetRandomName());
+
+            var condition = CreateCondition(firstSet, secondSet);
+
+            var variants = CreateVariants(firstElements, secondElements);
             variants.Add(answer);
 
             return new VariantsTask<Accordance<T1, T2>>(answer, condition, variants);
         }
 
-        private List<Accordance<T1, T2>> CreateVariants(IList<T1> firstSetElements, IReadOnlyList<T2> secondSetElements)
+        private List<Accordance<T1, T2>> CreateVariants(List<T1> firstElements, IReadOnlyList<T2> secondElements)
+        {
+            var variants = CreateVariantsWithSameAccordance(firstElements, secondElements);
+            return variants.Select(e => new Accordance<T1, T2>(e, _random.GetRandomName())).ToList();
+        }
+        
+        private List<List<(T1, T2)>> CreateVariantsWithSameAccordance(IList<T1> firstSetElements, IReadOnlyList<T2> secondSetElements)
         {
             var variants = new List<List<(T1, T2)>>();
             while (variants.Count < VariantsCount - 1)
@@ -90,12 +85,12 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
                 }
             }
 
-            return variants.Select(v => new Accordance<T1, T2>(v, _random.GetRandomName())).ToList();
+            return variants;
         }
 
-        private string GetCondition(IMathSet<T1> firstSet, IMathSet<T2> secondSet)
+        private string CreateCondition(IMathSet<T1> firstSet, IMathSet<T2> secondSet)
         {
-            return $"Даны множества {WriteSet(firstSet)} и {WriteSet(secondSet)}. Укажите соответствие, являющееся инъекцией";
+            return $"Даны множества {WriteSet(firstSet)} и {WriteSet(secondSet)}. Укажите соответствие, являющееся биекцией";
         }
     }
 }

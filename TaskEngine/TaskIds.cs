@@ -65,10 +65,10 @@
         public const string SelectReflectionInjectionNumToSymbol = "Выберите инъекцию (числа -> буквы)";
         public const string SelectReflectionInjectionSymbolToNum = "Выберите инъекцию (буквы -> числа)";
 
-        public const string SelectReflectionSurjectiveNumToSymbol = "Выберите суръекцию (числа -> буквы)";
-        public const string SelectReflectionSurjectiveSymbolToNum = "Выберите суръекцию (буквы -> числа)";
+        public const string SelectReflectionSurjectiveNumToSymbol = "Выберите сюръекцию (числа -> буквы)";
+        public const string SelectReflectionSurjectiveSymbolToNum = "Выберите сюръекцию (буквы -> числа)";
 
-        public const string SelectReflectionBijective = "Выберите отображение, являющееся инъекцией";
-
+        public const string SelectReflectionBijectiveNumToSymbol = "Выберите биекцию (числа -> буквы)";
+        public const string SelectReflectionBijectiveSymbolsToNum = "Выберите биекцию (буквы -> числа)";
     }
 }

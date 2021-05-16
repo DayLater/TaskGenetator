@@ -78,6 +78,7 @@
         <Compile Include="Generators\Tasks\Elements\NumbersBelongBorderedSetTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SetContainElementTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Elements\SymbolsBelongSetTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantBijectiveTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantsSelectInjectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\ReflectionTypes\VariantsSelectSurjectiveTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectReflectionTaskGenerator.cs" />

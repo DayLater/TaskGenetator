@@ -76,7 +76,7 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
 
         private string GetCondition(IMathSet<T1> firstSet, IMathSet<T2> secondSet)
         {
-            return $"Даны множества {WriteSet(firstSet)} и {WriteSet(secondSet)}. Укажите соответствие, являющееся суръекцией";
+            return $"Даны множества {WriteSet(firstSet)} и {WriteSet(secondSet)}. Укажите соответствие, являющееся сюръекцией";
         }
     }
 }

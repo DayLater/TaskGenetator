@@ -24,6 +24,14 @@ namespace TaskEngine.Generators.SetGenerators
             set => _minCount.Value = value;
         }
         
+        private int _count = -1;
+
+        public int Count
+        {
+            get => _count == -1 ? _random.Next(MinCount, MaxCount + 1) : _count;
+            set => _count = value;
+        }
+        
         public SymbolMathSetGenerator(Random random)
         {
             _random = random;
@@ -34,11 +42,7 @@ namespace TaskEngine.Generators.SetGenerators
         public IMathSet<string> Generate(string name, params string[] startElements)
         {
             var elements = new List<string>(startElements);
-            var minCount = Get<IntValue>(ValuesIds.ElementMinCount).Value;
-            var maxCount = Get<IntValue>(ValuesIds.ElementMaxCount).Value;
-            var count = _random.Next(minCount, maxCount + 1);
-            
-            while (elements.Count < count)
+            while (elements.Count < Count)
             {
                 var element = _random.GetRandomElementSymbol();
                 if (!elements.Contains(element))
