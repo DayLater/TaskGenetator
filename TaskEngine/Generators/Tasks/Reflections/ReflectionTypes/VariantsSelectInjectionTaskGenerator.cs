@@ -100,11 +100,7 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
                 }
             }
 
-            return variants.Select(v =>
-            {
-                var name = _random.GetRandomName();
-                return new Accordance<T1, T2>(v, name);
-            }).ToList();
+            return variants.Select(v => new Accordance<T1, T2>(v, _random.GetRandomName())).ToList();
         }
 
         private string GetCondition(IMathSet<T1> firstSet, IMathSet<T2> secondSet)

@@ -65,7 +65,9 @@
         public const string SelectReflectionInjectionNumToSymbol = "Выберите инъекцию (числа -> буквы)";
         public const string SelectReflectionInjectionSymbolToNum = "Выберите инъекцию (буквы -> числа)";
 
-        public const string SelectReflectionSurjective = "Выберите отображение, являющееся инъекцией";
+        public const string SelectReflectionSurjectiveNumToSymbol = "Выберите суръекцию (числа -> буквы)";
+        public const string SelectReflectionSurjectiveSymbolToNum = "Выберите суръекцию (буквы -> числа)";
+
         public const string SelectReflectionBijective = "Выберите отображение, являющееся инъекцией";
 
     }

@@ -93,8 +93,10 @@ namespace TaskEngine.Factories
             Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectOneSymbolsReflectionFromAccordance, 1, setWriter, random, new SymbolMathSetGenerator(random)));
             Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, 2, setWriter, random, new SymbolMathSetGenerator(random)));
             
-            Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 3}, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 4}));
-            Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 3, MinCount = 4}, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 4}));
+            Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 3, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 4}));
+            Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 3}, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 4, IsZeroNecessary = false}));
+            Add(new VariantsSelectSurjectiveTaskGenerator<int, string>(TaskIds.SelectReflectionSurjectiveNumToSymbol, setWriter, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 3, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 4}, random));
+            Add(new VariantsSelectSurjectiveTaskGenerator<string, int>(TaskIds.SelectReflectionSurjectiveSymbolToNum, setWriter, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 3},new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 4, IsZeroNecessary = false},  random));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;
