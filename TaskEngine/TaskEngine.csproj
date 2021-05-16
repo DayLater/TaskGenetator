@@ -86,7 +86,7 @@
         <Compile Include="Generators\Tasks\Reflections\PrototypeByReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\SelectReflectionCompositionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\SelectReflectionFormTaskGenerator.cs" />
-        <Compile Include="Generators\Tasks\Reflections\VariantsPrototypeByReflectionTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\SelectPrototypeByReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectFuncReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\WriteFuncReflectionTaskGenerator.cs" />

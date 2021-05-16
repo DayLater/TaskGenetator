@@ -10,14 +10,14 @@ using TaskEngine.Writers;
 
 namespace TaskEngine.Generators.Tasks.Reflections
 {
-    public class VariantsPrototypeByReflectionTaskGenerator: VariantsGenerator
+    public class SelectPrototypeByReflectionTaskGenerator: VariantsGenerator
     {
         private readonly Random _random;
         private readonly PrototypeByReflectionTaskGenerator _prototypeByReflectionTaskGenerator;
         private readonly ISetGenerator<int> _setGenerator;
         private readonly ISetComparer<int> _setComparer = new MathSetComparer<int>();
         
-        public VariantsPrototypeByReflectionTaskGenerator(ISetWriter setWriter, Random random, ISetGenerator<int> setGenerator) : base(TaskIds.SelectPrototypeFormByReflection, 1, setWriter)
+        public SelectPrototypeByReflectionTaskGenerator(ISetWriter setWriter, Random random, ISetGenerator<int> setGenerator) : base(TaskIds.SelectPrototypeFormByReflection, 1, setWriter)
         {
             _random = random;
             _setGenerator = setGenerator;

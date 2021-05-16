@@ -2,11 +2,8 @@
 {
     public static class TaskIds
     {
-        public const string NumberBelongsSetTask = "Принадлежность элемента множеству (числа)";
         public const string NumbersBelongSetTask = "Принадлежность элементов множеству (числа)";
-        public const string NumberBelongsBorderedSetTask = "Принадлежность элемента ограниченному множеству";
         public const string NumbersBelongBorderedSetTask = "Принадлежность элементов ограниченному множеству";
-        public const string SymbolBelongsSetTask = "Принадлежность элемента множеству (буквы)";
         public const string SymbolsBelongSetTask = "Принадлежность элементов множеству (буквы)";
         public const string SetContainsElements = "Множество, содержащее элементы (числа)";
         
@@ -17,15 +14,10 @@
         public const string VariantsCharacteristicPropertyElementsTask = "Выберите элементы множества по характерестическому свойству";
 
         
-        public const string SelectOneNumbersSubSet = "Выбрать подмножество (числа)";
         public const string SelectSeveralNumbersSubSet = "Выбрать подмножества (числа)";
-        public const string SelectOneSymbolsSubSet = "Выбрать подмножество (буквы)";
         public const string SelectSeveralSymbolsSubSet = "Выбрать подмножества (буквы)";
-        public const string SelectOneNumberSetBySubset = "Выбрать множество по подмножеству (числа)";
         public const string SelectSeveralNumberSetBySubset = "Выбрать множества по подмножеству (числа)";
-        public const string SelectOneBorderedSetBySubset = "Выбрать множество по подмножеству (ограниченное)";
         public const string SelectSeveralBorderedSetBySubset = "Выбрать множества по подмножеству (ограниченное)";
-        public const string SelectOneSymbolSetBySubset = "Выбрать множество по подмножеству (буквы)";
         public const string SelectSeveralSymbolSetBySubset = "Выбрать множества по подмножеству (буквы)";
         public const string VariantsSelectSubsetByCharacterTask = "Выбрать подмножество по свойству";
         public const string SelectSubsetByCharacterTask = "Указать подмножество по свойству";
@@ -55,19 +47,13 @@
 
         public const string IntCartesianProductElementsTask = "Указать декартово произведение множеств (числа)";
         public const string SymbolCartesianProductElementsTask = "Указать декартово произведение множеств (буквы)";
-
-
-        public const string SelectOneNumbersReflectionFromAccordance = "Выбрать соответствие, являющееся отображением (числа)";
-        public const string SelectOneSymbolsReflectionFromAccordance = "Выбрать соответствие, являющееся отображением (буквы)";
+        
         public const string SelectSeveralNumbersReflectionFromAccordance = "Выбрать соответствия, являющиеся отображением (числа)";
         public const string SelectSeveralSymbolsReflectionFromAccordance = "Выбрать соответствия, являющиеся отображением (буквы)";
-
         public const string SelectReflectionInjectionNumToSymbol = "Выбрать инъекцию (числа -> буквы)";
         public const string SelectReflectionInjectionSymbolToNum = "Выбрать инъекцию (буквы -> числа)";
-
         public const string SelectReflectionSurjectiveNumToSymbol = "Выбрать сюръекцию (числа -> буквы)";
         public const string SelectReflectionSurjectiveSymbolToNum = "Выбрать сюръекцию (буквы -> числа)";
-
         public const string SelectReflectionBijectiveNumToSymbol = "Выбрать биекцию (числа -> буквы)";
         public const string SelectReflectionBijectiveSymbolsToNum = "Выбрать биекцию (буквы -> числа)";
 

@@ -75,7 +75,6 @@ namespace TaskEngine.Presenters
                 
                 var count = _view.FileCount;
                 var name = _view.FileName;
-                var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
                 var path = _path;
                 if (_view.IsCreateDirectory)
@@ -84,6 +83,8 @@ namespace TaskEngine.Presenters
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                 }
+
+                var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
 
                 for (int i = 0; i < count; i++)
                 {

@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-
-namespace TaskEngine
+﻿namespace TaskEngine
 {
     public static class ValuesIds
     {
