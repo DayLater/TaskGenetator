@@ -10,6 +10,8 @@ namespace TaskEngine.Writers.DocWriters
 
         public FontSettings TitleFont { get; } = new FontSettings();
         public FontSettings TextFont { get; } = new FontSettings();
+        
+        public string TitleText { get; set; }
 
         public DocWriter()
         {
@@ -25,7 +27,7 @@ namespace TaskEngine.Writers.DocWriters
             doc.TitleFont.Font = TitleFont.Font;
             doc.TitleFont.Size = TitleFont.Size;
             
-            doc.AddTitle("Контрольная работа");
+            doc.AddTitle(TitleText);
             doc.AddTitle($"Вариант №{variantNumber}");
             doc.AddSpace();
 

@@ -37,6 +37,7 @@ namespace TaskEngine.Presenters
             _view.FileDialogButtonClicked += OnFolderBrowserButtonClicked;
             _view.FileCount = 10;
             _view.FileName = "Самостоятельная работа";
+            _view.TitleText = "Самостоятельная работа";
             
             _view.TextFontSize = 12;
             _view.TitleFontSize = 16;
@@ -72,6 +73,7 @@ namespace TaskEngine.Presenters
                 _docWriter.TitleFont.Size = _view.TitleFontSize;
                 _docWriter.TextFont.Font = _view.TextFont;
                 _docWriter.TextFont.Size = _view.TextFontSize;
+                _docWriter.TitleText = _view.TitleText;
                 
                 var count = _view.FileCount;
                 var name = _view.FileName;

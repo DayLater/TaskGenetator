@@ -8,6 +8,7 @@ namespace TaskEngine.Views
         event Action FileDialogButtonClicked;
 
         string FileName { get; set; }
+        string TitleText { get; set; }
         int FileCount { get; set; }
         string Path { get; set; }
         void ShowMessage(string message);

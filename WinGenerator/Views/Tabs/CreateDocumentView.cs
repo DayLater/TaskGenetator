@@ -16,6 +16,7 @@ namespace WinGenerator.Views.Tabs
         private readonly PercentTableLayoutPanel _contentTable;
         
         private RichTextBox _fileNameTextBox;
+        private RichTextBox _titleTextBox;
         private MaterialTextBox _filePathTextBox;
         private LabeledNumericControl _fileCountNumeric;
         private MaterialButton _openFileDialogButton;
@@ -32,6 +33,12 @@ namespace WinGenerator.Views.Tabs
         {
             get => _fileNameTextBox.Text;
             set => _fileNameTextBox.Text = value;
+        }
+
+        public string TitleText
+        {
+            get => _titleTextBox.Text;
+            set => _titleTextBox.Text = value;
         }
 
         public int FileCount
@@ -70,11 +77,11 @@ namespace WinGenerator.Views.Tabs
             var table = new PercentTableLayoutPanel();
             card.Controls.Add(table);
             table.AddColumn(100);
-            table.AddRow(10);
             table.AddRow(12);
-            table.AddRow(10);
-            table.AddRow(10);
-            table.AddRow(10);
+            table.AddRow(12);
+            table.AddRow(12);
+            table.AddRow(12);
+            table.AddRow(12);
             table.AddRow(15);
             table.AddRow(25);
 
@@ -84,18 +91,18 @@ namespace WinGenerator.Views.Tabs
             label.HighEmphasis = true;
             
             _fileNameTextBox = table.AddTextBox(0, 1, "Имя файла");
-            _filePathTextBox = table.AddTextBox(0, 2, "Сохранить в папку");
+            _titleTextBox = table.AddTextBox(0, 2, "Текст заголовка");
+            _titleTextBox.Text = "Контрольная работа";
+            _filePathTextBox = table.AddTextBox(0, 3, "Сохранить в папку");
             _filePathTextBox.Enabled = false;
             _filePathTextBox.UseAccent = true;
             
-            _openFileDialogButton = table.AddButton(0, 3, "Указать путь");
-            _isCreateDirectorySwitch = table.AddSwitch(0, 4, "Создать папку");
+            _openFileDialogButton = table.AddButton(0, 4, "Указать путь");
+            _isCreateDirectorySwitch = table.AddSwitch(0, 5, "Создать папку");
             _isCreateDirectorySwitch.TextAlign = ContentAlignment.MiddleRight;
 
-            _fileCountNumeric = table.AddLabeledNumeric(0, 5, "Количество вариантов");
-
-            table.AddControl(new Panel(), 0, 6);
-
+            _fileCountNumeric = table.AddLabeledNumeric(0, 6, "Количество вариантов");
+            
             _openFileDialogButton.Click += (sender, args) => FileDialogButtonClicked();
         }
         
