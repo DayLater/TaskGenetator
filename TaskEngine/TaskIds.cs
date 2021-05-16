@@ -81,5 +81,8 @@
 
         public const string WriteReflectionForm = "Указать образ множества при отображении";
         public const string SelectReflectionForm = "Выбрать образ множества при отображении";
+
+        public const string WritePrototypeFormByReflection = "Указать прообраз множества";
+        public const string SelectPrototypeFormByReflection = "Выбрать прообраз множества";
     }
 }

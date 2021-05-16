@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TaskEngine.Comparers;
-using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.SetGenerators.SetOperations.Ints;
@@ -15,7 +13,6 @@ using TaskEngine.Generators.Tasks.Reflections;
 using TaskEngine.Generators.Tasks.Reflections.ReflectionTypes;
 using TaskEngine.Generators.Tasks.SetOperations;
 using TaskEngine.Generators.Tasks.SubSets;
-using TaskEngine.Models.Tasks;
 using TaskEngine.Writers;
 
 namespace TaskEngine.Factories
@@ -112,6 +109,9 @@ namespace TaskEngine.Factories
            
             Add(new WriteReflectionFormTaskGenerator(setWriter, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}, random));
             Add(new SelectReflectionFormTaskGenerator(setWriter, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}, random));
+            
+            Add(new WritePrototypeByReflectionTaskGenerator(setWriter, random, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}));
+            Add(new VariantsPrototypeByReflectionTaskGenerator(setWriter, random, new IntMathSetGenerator(random){MaxCount = 6, IsZeroNecessary = false}));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;
