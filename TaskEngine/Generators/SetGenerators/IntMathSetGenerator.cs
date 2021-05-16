@@ -156,10 +156,6 @@ namespace TaskEngine.Generators.SetGenerators
 
         public IMathSet<int> Generate(string name, params int[] startElements)
         {
-            if (Count == 4)
-            {
-                
-            }
             return CreateSet(Count, name, new List<int>(), startElements);
         }
     }

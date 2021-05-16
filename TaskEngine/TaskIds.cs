@@ -70,5 +70,11 @@
 
         public const string SelectReflectionBijectiveNumToSymbol = "Выберите биекцию (числа -> буквы)";
         public const string SelectReflectionBijectiveSymbolsToNum = "Выберите биекцию (буквы -> числа)";
+
+        public const string SelectFuncReflection = "Указать отображение";
+        public const string VariantSelectFuncReflection = "Выбрать отображение";
+        public const string SelectReversedReflection = "Указать обратное отображение";
+        public const string VariantSelectReversedFuncReflection = "Выбрать обратное отображение";
+
     }
 }

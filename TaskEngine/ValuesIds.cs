@@ -1,4 +1,6 @@
-﻿namespace TaskEngine
+﻿using System.CodeDom;
+
+namespace TaskEngine
 {
     public static class ValuesIds
     {
@@ -22,8 +24,11 @@
         public const string MinCountElementsInVariant = "Минимальное количество элементов в варианте";
         public const string CountSameElementsInVariant = "Минимальное количество элементов из ответа в варианте";
 
-        public const string MinCoefficientValue = "Минимальный коэффициент при n";
-        public const string MaxCoefficientValue = "Максимальный коэффициент при n";
+        public const string MinCoefficientValue = "Минимальное значение коэффициента при x";
+        public const string MaxCoefficientValue = "Максимальное значение коэффициента при x";
+        public const string MaxFreeCoefficientValue = "Максимальное значение свободного коэффициента";
+        public const string MinFreeCoefficientValue = "Минимальное значение свободного коэффициента";
+        public const string IsFreeCoefficientNecessary = "Свободный коэффициент обязателен?";
 
         public const string MinCountInSubSet = "Минимальное количество элементов в подмножестве";
         public const string AddElementsInSet = "Добавить элементов во множество";

@@ -101,6 +101,11 @@ namespace TaskEngine.Factories
             Add(new VariantBijectiveTaskGenerator<int, string>(TaskIds.SelectReflectionBijectiveNumToSymbol, setWriter, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}, random));
             Add(new VariantBijectiveTaskGenerator<string, int>(TaskIds.SelectReflectionBijectiveSymbolsToNum, setWriter, new SymbolMathSetGenerator(random) {Count = 5}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, random));
 
+            Add(new VariantsSelectFuncReflectionTaskGenerator(TaskIds.VariantSelectFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, false));
+            Add(new VariantsSelectFuncReflectionTaskGenerator(TaskIds.VariantSelectReversedFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, true));
+
+            Add(new WriteFuncReflectionTaskGenerator(TaskIds.SelectFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, false));
+            Add(new WriteFuncReflectionTaskGenerator(TaskIds.SelectReversedReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, true));
         }
 
         public IEnumerable<ITaskGenerator> TaskGenerators => _idsAndGenerators.Values;
