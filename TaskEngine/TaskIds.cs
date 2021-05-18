@@ -10,8 +10,8 @@
         
         public const string CharacteristicPropertyTask = "Указать характеристическое свойство";
         public const string VariantsCharacteristicPropertyTask = "Выбрать характеристическое свойство";
-        public const string CharacteristicPropertyElementsTask = "Укажите элементы множества по характерестическому свойству";
-        public const string VariantsCharacteristicPropertyElementsTask = "Выберите элементы множества по характерестическому свойству";
+        public const string CharacteristicPropertyElementsTask = "Указать элементы множества по характерестическому свойству";
+        public const string VariantsCharacteristicPropertyElementsTask = "Выбрать элементы множества по характерестическому свойству";
 
         
         public const string SelectSeveralNumbersSubSet = "Выбрать подмножества (числа)";

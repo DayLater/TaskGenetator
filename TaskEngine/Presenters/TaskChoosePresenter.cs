@@ -1,4 +1,5 @@
-﻿using TaskEngine.Contexts;
+﻿using System.Collections.Generic;
+using TaskEngine.Contexts;
 using TaskEngine.Views;
 
 namespace TaskEngine.Presenters
@@ -9,22 +10,46 @@ namespace TaskEngine.Presenters
         private readonly ExamplesContext _examplesContext;
         private readonly ITaskChooseView _view;
 
-        public TaskChoosePresenter(TasksContext tasksContext, ITaskChooseView view, ExamplesContext examplesContext)
+        private string _selectedGeneratorId;
+        private readonly IList<string> _taskIds;
+
+        public TaskChoosePresenter(TasksContext tasksContext, ITaskChooseView view, ExamplesContext examplesContext, IList<string> taskIds)
         {
             _tasksContext = tasksContext;
             _view = view;
             _examplesContext = examplesContext;
+            _taskIds = taskIds;
+            _view.SetItems(taskIds);
 
             _view.SelectedItemChanged += OnSelectedItemChanged;
             _view.ItemFlagChanged += ViewOnItemFlagChanged;
-            _view.Activated += OnActivated;
+            _view.OpenConfigureButtonClicked += OnOpenConfigureButtonClicked;
+            _view.SelectAllClicked += OnSelectAllClicked;
+            _view.DeselectAllClicked += OnDeselectAllClicked;
         }
 
-        private void OnActivated()
+        private void OnOpenConfigureButtonClicked()
         {
-            _view.SetCheckToTasks(_tasksContext.Ids);
+            _view.OpenGeneratorSettings(_selectedGeneratorId);
+        }
+
+        private void OnSelectAllClicked()
+        {
+            foreach (var id in _taskIds)
+            {
+                if (!_tasksContext.Contains(id))
+                    _tasksContext.Add(id);
+            }
+            
+            _view.SelectAll();
         }
         
+        private void OnDeselectAllClicked()
+        {
+            _tasksContext.Clear();
+            _view.DeselectAll();
+        }
+
         private void ViewOnItemFlagChanged(string id, bool isChecked)
         {
             if (isChecked && !_tasksContext.Contains(id))
@@ -40,8 +65,8 @@ namespace TaskEngine.Presenters
         private void OnSelectedItemChanged(string id)
         {
             var example = _examplesContext.GetExample(id);
-            _view.SetExampleText(example);
-            _view.ReplaceGeneratorView(id);
+            _view.SetExampleText(id, example);
+            _selectedGeneratorId = id;
         }
     }
 }

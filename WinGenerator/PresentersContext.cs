@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Factories;
 using TaskEngine.Presenters;
@@ -18,7 +19,9 @@ namespace WinGenerator
         {
             var homePagePresenter = new HomePagePresenter(viewContext.HomePageView, themesController);
             MainPresenter = new MainPresenter(viewContext.MainView, userContext);
-            TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext);
+            
+            var taskIds = generatorFactory.TaskGenerators.Select(g => g.Id).ToList();
+            TaskChoosePresenter = new TaskChoosePresenter(userContext.TasksContext, viewContext.TaskChooseView, examplesContext, taskIds);
             CreateDocumentPresenter = new CreateDocumentPresenter(viewContext.CreateDocumentView, userContext.TasksContext, new DocWriter(), generatorFactory, taskWriter, random);
         }
     }

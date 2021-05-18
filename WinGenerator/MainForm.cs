@@ -87,7 +87,7 @@ namespace WinGenerator
             SizeChanged += OnWindowSizeChanged;
 
             var contexts = new Contexts(new SetWriter(new ExpressionWriter(), 10), new Random(), this,
-                themesController);
+                themesController, materialSkinManager);
             foreach (var page in contexts.ViewContext.TabPages)
                 _tabControl.Controls.Add(page);
 

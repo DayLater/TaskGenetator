@@ -66,6 +66,12 @@
     <Compile Include="Views\EmptyView.cs" />
     <Compile Include="Views\GeneratingView.cs" />
     <Compile Include="Views\GeneratingViewFactory.cs" />
+    <Compile Include="Views\GeneratorConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GeneratorConfigForm.Designer.cs">
+      <DependentUpon>GeneratorConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\GeneratorViews.cs" />
     <Compile Include="Views\Tabs\CreateDocumentView.cs" />
     <Compile Include="Views\Tabs\IdentifiedTabPage.cs" />

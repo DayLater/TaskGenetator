@@ -1,4 +1,5 @@
 ﻿using System;
+using MaterialSkin;
 using TaskEngine.Contexts;
 using TaskEngine.Extensions;
 using TaskEngine.Factories;
@@ -17,7 +18,7 @@ namespace WinGenerator
         public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
         public UserContext UserContext { get; } = new UserContext();
 
-        public Contexts(ISetWriter setWriter, Random random, IMainView mainView, IThemesController themesController)
+        public Contexts(ISetWriter setWriter, Random random, IMainView mainView, IThemesController themesController, MaterialSkinManager skinManager)
         {
             var taskWriter = new TaskWriter(setWriter, random);
             TaskGeneratorsFactory = new TaskGeneratorFactory(random, setWriter);
@@ -31,7 +32,7 @@ namespace WinGenerator
                 ExamplesContext.Add(generator.Id, example);
             }
 
-            ViewContext = new ViewContext(TaskGeneratorsFactory, mainView);
+            ViewContext = new ViewContext(TaskGeneratorsFactory, mainView, skinManager);
             PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random, themesController);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MaterialSkin;
 using TaskEngine.Contexts;
 using TaskEngine.Factories;
 using TaskEngine.Views;
@@ -19,7 +20,7 @@ namespace WinGenerator.Views
 
         public IEnumerable<IdentifiedTabPage> TabPages => _tabs;
         
-        public ViewContext(TaskGeneratorFactory generatorFactory, IMainView mainView)
+        public ViewContext(TaskGeneratorFactory generatorFactory, IMainView mainView, MaterialSkinManager skinManager)
         {
             MainView = mainView;
             var generatingViewFactory = new GeneratingViewFactory();
@@ -27,14 +28,13 @@ namespace WinGenerator.Views
             foreach (var generator in generatorFactory.TaskGenerators)
             {
                 var rowCount = 1;
-                if (generator.Values.Count() > 5)
+                if (generator.Values.Count() > 8)
                     rowCount = 2;
                 
                 AddTaskView(generatingViewFactory.Create(generator, rowCount));
             }
-
-            var taskIds = generatorFactory.TaskGenerators.Select(g => g.Id).ToList();
-            var taskChooseView = new TaskChooseView(_generatorViews, taskIds);
+            
+            var taskChooseView = new TaskChooseView(_generatorViews, skinManager);
             TaskChooseView = taskChooseView;
 
             var createViewDocument = new CreateDocumentView();

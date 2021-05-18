@@ -30,13 +30,10 @@ namespace WinGenerator.CustomControls
             return card;
         }
 
-        public MaterialCheckedListBox AddCheckedListBox(int column, int row, IEnumerable<string> items)
+        public MaterialCheckedListBox AddCheckedListBox(int column, int row)
         {
             var list = new MaterialCheckedListBox {Dock = DockStyle.Fill};
-            
-            foreach (var item in items.Reverse())
-                list.Items.Add(item);
-            
+
             AddControl(list, column, row);
             return list;
         }
@@ -55,9 +52,9 @@ namespace WinGenerator.CustomControls
             return table;
         }
         
-        public MaterialLabel AddLabel(int column, int row, MaterialSkinManager.fontType fontType, string text = null)
+        public MaterialLabel AddLabel(int column, int row, MaterialSkinManager.fontType fontType, string text = null, bool highEmphasis = false)
         {
-            var label = new MaterialLabel {Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, FontType = fontType, Text = text, AutoSize = false};
+            var label = new MaterialLabel {Dock = DockStyle.Fill, TextAlign = ContentAlignment.TopLeft, FontType = fontType, Text = text, AutoSize = false, HighEmphasis = highEmphasis};
             AddControl(label, column, row);
             return label;
         }

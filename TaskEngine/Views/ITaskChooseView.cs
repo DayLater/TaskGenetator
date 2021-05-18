@@ -7,10 +7,15 @@ namespace TaskEngine.Views
     {
         event Action<string> SelectedItemChanged;
         event Action<string, bool> ItemFlagChanged;
-        event Action Activated;
-        
-        void SetExampleText(string example);
-        void ReplaceGeneratorView(string viewId);
-        void SetCheckToTasks(IEnumerable<string> taskIds);
+        event Action OpenConfigureButtonClicked;
+        event Action SelectAllClicked;
+        event Action DeselectAllClicked;
+
+        void SelectAll();
+        void DeselectAll();
+        void SetItems(IEnumerable<string> items);
+
+        void SetExampleText(string name, string example);
+        void OpenGeneratorSettings(string generatorId);
     }
 }

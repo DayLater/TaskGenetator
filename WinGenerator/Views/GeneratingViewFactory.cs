@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TaskEngine.Generators.Tasks;
@@ -9,30 +10,33 @@ namespace WinGenerator.Views
 {
     public class GeneratingViewFactory
     {
-        public View Create(ITaskGenerator generator, int rowCount = 1)
+        public View Create(ITaskGenerator generator, int columnCount = 1)
         {
             var values = generator.Values.ToList();
-            var columnCount = (int) Math.Ceiling((float)values.Count / rowCount);
+            var rowCount = Math.Max((int) Math.Ceiling((float)values.Count / columnCount), 8);
             
             var view = new GeneratingView(generator.Id);
-            var rowScale = 100 / rowCount;
             var columnScale = 100 / columnCount;
+            var rowScale = 100 / rowCount;
 
             int counter = 0;
-            for (int row = 0; row < rowCount; row++)
+            for (int column = 0; column < columnCount; column++)
             {
-                view.AddRow(rowScale);
-                for (int column = 0; column < columnCount; column++)
+                view.AddColumn(columnScale);
+                for (int row = 0; row < rowCount; row++)
                 {
+                    view.AddRow(rowScale);
                     if (counter >= values.Count)
-                        break;
-                    view.AddColumn(columnScale);
+                    {
+                        view.AddControl(new Panel(), column, row);
+                        continue;
+                    }
                     var value = values[counter];
-
+                    
                     if (TryGetControl(value, out var control))
                         view.AddControl(control, column, row);
                     else
-                        column--;
+                        row--;
                     
                     counter++;
                 }

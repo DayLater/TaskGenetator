@@ -17,6 +17,8 @@ namespace TaskEngine.Contexts
             _ids.Remove(id);
         }
 
+        public void Clear() => _ids.Clear();
+
         public bool Contains(string id) => _ids != null && _ids.Contains(id);
 
         public IEnumerable<string> Ids => _ids;
