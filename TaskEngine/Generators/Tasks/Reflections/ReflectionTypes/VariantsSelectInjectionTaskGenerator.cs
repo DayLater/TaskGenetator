@@ -16,14 +16,16 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
         private readonly Random _random;
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
-        private readonly IAccordanceGenerator<T1, T2> _injectiveGenerator;
+        private readonly InjectiveGenerator<T1, T2> _injectiveGenerator;
+        private readonly AccordanceGenerator<T1, T2> _accordanceGenerator;
 
-        public VariantsSelectInjectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, IAccordanceGenerator<T1, T2> injectiveGenerator) : base(id, 1, setWriter)
+        public VariantsSelectInjectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator) : base(id, 1, setWriter)
         {
             _random = random;
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
-            _injectiveGenerator = injectiveGenerator;
+            _injectiveGenerator = new InjectiveGenerator<T1, T2>(random);
+            _accordanceGenerator = new AccordanceGenerator<T1, T2>(random);
         }
 
         public override ITask Generate()
@@ -48,35 +50,9 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
 
         private List<Accordance<T1, T2>> CreateVariants(IList<T1> firstSetElements, IReadOnlyList<T2> secondSetElements)
         {
-            var variants = new List<List<(T1, T2)>>();
-            while (variants.Count < VariantsCount - 1)
-            {
-                var variantElements = new List<(T1, T2)>();
-                var firstElements = firstSetElements.GetListWithRandomElements(firstSetElements.Count, _random);
-
-                var firstRandomIndex = _random.Next(0, firstElements.Count);
-                var secondRandomIndex = _random.GetNextExcept(0, firstElements.Count, firstRandomIndex);
-                var secondElementIndex = _random.Next(0, secondSetElements.Count);
-                variantElements.Add((firstElements[firstRandomIndex], secondSetElements[secondElementIndex]));
-                variantElements.Add((firstElements[secondRandomIndex], secondSetElements[secondElementIndex]));
-                
-                foreach (var firstElement in firstElements)
-                {
-                    if (variantElements.Any(v => v.Item1.Equals(firstElement)))
-                        continue;
-                    
-                    var secondElement = secondSetElements[_random.Next(0, secondSetElements.Count)];
-                    variantElements.Add((firstElement, secondElement));
-                }
-
-                if (!variants.IsContain(variantElements))
-                {
-                    variantElements.Shuffle(_random);
-                    variants.Add(variantElements);
-                }
-            }
-
-            return variants.Select(v => new Accordance<T1, T2>(v, _random.GetRandomName())).ToList();
+           return _accordanceGenerator.CreateVariantsWithSameAccordance(firstSetElements, secondSetElements, VariantsCount - 1)
+                .Select(v => new Accordance<T1, T2>(v, _random.GetRandomName()))
+                .ToList();
         }
 
         private string GetCondition(IMathSet<T1> firstSet, IMathSet<T2> secondSet)

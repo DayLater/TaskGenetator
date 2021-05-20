@@ -15,15 +15,15 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
     {
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
-        private readonly IAccordanceGenerator<T1, T2> _surjectiveGenerator;
+        private readonly SurjectiveGenerator<T1, T2> _surjectiveGenerator;
         private readonly Random _random;
         
-        public VariantsSelectSurjectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random, IAccordanceGenerator<T1, T2> surjectiveGenerator) : base(id, 1, setWriter)
+        public VariantsSelectSurjectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random) : base(id, 1, setWriter)
         {
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
             _random = random;
-            _surjectiveGenerator = surjectiveGenerator;
+            _surjectiveGenerator = new SurjectiveGenerator<T1, T2>(random);
         }
 
         public override ITask Generate()

@@ -56,6 +56,7 @@
         <Compile Include="Contexts\UserContext.cs" />
         <Compile Include="Extensions\EnumerableExtensions.cs" />
         <Compile Include="Factories\TaskGeneratorFactory.cs" />
+        <Compile Include="Generators\Accordances\AccordanceGenerator.cs" />
         <Compile Include="Generators\Accordances\BijectiveGenerator.cs" />
         <Compile Include="Generators\Accordances\IAccordanceGenerator.cs" />
         <Compile Include="Generators\Accordances\InjectiveGenerator.cs" />
@@ -91,6 +92,7 @@
         <Compile Include="Generators\Tasks\Reflections\SelectReflectionCompositionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\SelectReflectionFormTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\SelectPrototypeByReflectionTaskGenerator.cs" />
+        <Compile Include="Generators\Tasks\Reflections\SelectReflectionTypeTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectFuncReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\VariantsSelectReflectionTaskGenerator.cs" />
         <Compile Include="Generators\Tasks\Reflections\WriteFuncReflectionTaskGenerator.cs" />

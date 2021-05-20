@@ -56,7 +56,10 @@
         public const string SelectReflectionSurjectiveSymbolToNum = "Выбрать сюръекцию (буквы -> числа)";
         public const string SelectReflectionBijectiveNumToSymbol = "Выбрать биекцию (числа -> буквы)";
         public const string SelectReflectionBijectiveSymbolsToNum = "Выбрать биекцию (буквы -> числа)";
+        public const string SelectReflectionTypeNumToSym = "Выбрать отображение по типу (числа -> буквы)";
+        public const string SelectReflectionTypeSymToNum = "Выбрать отображение по типу (буквы -> числа)";
 
+        
         public const string SelectFuncReflection = "Указать отображение";
         public const string VariantSelectFuncReflection = "Выбрать отображение";
         public const string SelectReversedReflection = "Указать обратное отображение";

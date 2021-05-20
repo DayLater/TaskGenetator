@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using TaskEngine.Comparers;
-using TaskEngine.Generators.Accordances;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.SetGenerators.SetOperations;
 using TaskEngine.Generators.SetGenerators.SetOperations.Ints;
@@ -80,12 +79,15 @@ namespace TaskEngine.Factories
             Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectSeveralNumbersReflectionFromAccordance, 2, setWriter, random, new IntMathSetGenerator(random)));
             Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, 2, setWriter, random, new SymbolMathSetGenerator(random)));
             
-            Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}, new InjectiveGenerator<int, string>(random)));
-            Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {Count = 4}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, new InjectiveGenerator<string, int>(random)));
-            Add(new VariantsSelectSurjectiveTaskGenerator<int, string>(TaskIds.SelectReflectionSurjectiveNumToSymbol, setWriter, new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 4}, random, new SurjectiveGenerator<int, string>(random)));
-            Add(new VariantsSelectSurjectiveTaskGenerator<string, int>(TaskIds.SelectReflectionSurjectiveSymbolToNum, setWriter, new SymbolMathSetGenerator(random) {Count = 4},new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false},  random, new SurjectiveGenerator<string, int>(random)));
+            Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}));
+            Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {Count = 4}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}));
+            Add(new VariantsSelectSurjectiveTaskGenerator<int, string>(TaskIds.SelectReflectionSurjectiveNumToSymbol, setWriter, new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 4}, random));
+            Add(new VariantsSelectSurjectiveTaskGenerator<string, int>(TaskIds.SelectReflectionSurjectiveSymbolToNum, setWriter, new SymbolMathSetGenerator(random) {Count = 4},new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false},  random));
             Add(new VariantBijectiveTaskGenerator<int, string>(TaskIds.SelectReflectionBijectiveNumToSymbol, setWriter, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}, random));
             Add(new VariantBijectiveTaskGenerator<string, int>(TaskIds.SelectReflectionBijectiveSymbolsToNum, setWriter, new SymbolMathSetGenerator(random) {Count = 5}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, random));
+            Add(new SelectReflectionTypeTaskGenerator<int, string>(TaskIds.SelectReflectionTypeNumToSym, setWriter, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}, random));
+            Add(new SelectReflectionTypeTaskGenerator<string, int>(TaskIds.SelectReflectionTypeSymToNum, setWriter, new SymbolMathSetGenerator(random) {Count = 5}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false},random));
+
 
             Add(new VariantsSelectFuncReflectionTaskGenerator(TaskIds.VariantSelectFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, false));
             Add(new VariantsSelectFuncReflectionTaskGenerator(TaskIds.VariantSelectReversedFuncReflection, setWriter, new IntMathSetGenerator(random) {MaxCount = 6}, random, true));
