@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
+using TaskEngine.Generators.Accordances;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models;
 using TaskEngine.Models.Sets;
@@ -15,12 +16,14 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
         private readonly Random _random;
+        private readonly BijectiveGenerator<T1, T2> _bijectiveGenerator;
         
         public VariantBijectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random) : base(id,1, setWriter)
         {
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
             _random = random;
+            _bijectiveGenerator = new BijectiveGenerator<T1, T2>(random);
         }
 
         public override ITask Generate()
@@ -29,23 +32,13 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             var secondSet = _secondSetGenerator.Generate(_random.GetRandomName());
 
             var firstElements = firstSet.GetElements().ToList();
-            firstElements.Shuffle(_random);
             var secondElements = secondSet.GetElements().ToList();
-            secondElements.Shuffle(_random);
 
-            var answerElements = new List<(T1, T2)>();
-            for (int i = 0; i < firstElements.Count; i++)
-            {
-                answerElements.Add((firstElements[i], secondElements[i]));
-            }
-
-            var answer = new Accordance<T1, T2>(answerElements, _random.GetRandomName());
-
-            var condition = CreateCondition(firstSet, secondSet);
-
+            var answer = _bijectiveGenerator.Generate(firstElements, secondElements);
             var variants = CreateVariants(firstElements, secondElements);
             variants.Add(answer);
 
+            var condition = CreateCondition(firstSet, secondSet);
             return new VariantsTask<Accordance<T1, T2>>(answer, condition, variants);
         }
 

@@ -56,6 +56,10 @@
         <Compile Include="Contexts\UserContext.cs" />
         <Compile Include="Extensions\EnumerableExtensions.cs" />
         <Compile Include="Factories\TaskGeneratorFactory.cs" />
+        <Compile Include="Generators\Accordances\BijectiveGenerator.cs" />
+        <Compile Include="Generators\Accordances\IAccordanceGenerator.cs" />
+        <Compile Include="Generators\Accordances\InjectiveGenerator.cs" />
+        <Compile Include="Generators\Accordances\SurjectiveGenerator.cs" />
         <Compile Include="Generators\ReflectionGenerator.cs" />
         <Compile Include="Generators\SetGenerators\ISetGenerator.cs" />
         <Compile Include="Generators\SetGenerators\SetOperations\ExceptSetGenerator.cs" />

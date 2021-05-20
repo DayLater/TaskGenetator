@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
+using TaskEngine.Generators.Accordances;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models;
 using TaskEngine.Models.Sets;
@@ -14,13 +15,15 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
     {
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
+        private readonly IAccordanceGenerator<T1, T2> _surjectiveGenerator;
         private readonly Random _random;
         
-        public VariantsSelectSurjectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random) : base(id, 1, setWriter)
+        public VariantsSelectSurjectiveTaskGenerator(string id, ISetWriter setWriter, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, Random random, IAccordanceGenerator<T1, T2> surjectiveGenerator) : base(id, 1, setWriter)
         {
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
             _random = random;
+            _surjectiveGenerator = surjectiveGenerator;
         }
 
         public override ITask Generate()
@@ -34,16 +37,9 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             var secondSetElements = secondSet.GetElements().ToList();
 
             var condition = GetCondition(firstSet, secondSet);
-            
-            var answerElements = new List<(T1, T2)>();
-            foreach (var element in secondSetElements)
-            {
-                var firstSetElement = firstSetElements[_random.Next(0, firstSetElements.Count)];
-                answerElements.Add((firstSetElement, element));
-            }
 
+            var answer = _surjectiveGenerator.Generate(firstSetElements, secondSetElements);
             var variants = CreateVariants(firstSetElements, secondSetElements);
-            var answer = new Accordance<T1, T2>(answerElements, _random.GetRandomName());
             variants.Add(answer);
 
             return new VariantsTask<Accordance<T1, T2>>(answer, condition, variants);
@@ -66,6 +62,7 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
 
                     previousElement = secondElement;
                 }
+                variant.Shuffle(_random);
                 
                 if (!variants.IsContain(variant))
                     variants.Add(variant);

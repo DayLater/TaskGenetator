@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
+using TaskEngine.Generators.Accordances;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models;
 using TaskEngine.Models.Sets;
@@ -15,12 +16,14 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
         private readonly Random _random;
         private readonly ISetGenerator<T1> _firstSetGenerator;
         private readonly ISetGenerator<T2> _secondSetGenerator;
+        private readonly IAccordanceGenerator<T1, T2> _injectiveGenerator;
 
-        public VariantsSelectInjectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator) : base(id, 1, setWriter)
+        public VariantsSelectInjectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T1> firstSetGenerator, ISetGenerator<T2> secondSetGenerator, IAccordanceGenerator<T1, T2> injectiveGenerator) : base(id, 1, setWriter)
         {
             _random = random;
             _firstSetGenerator = firstSetGenerator;
             _secondSetGenerator = secondSetGenerator;
+            _injectiveGenerator = injectiveGenerator;
         }
 
         public override ITask Generate()
@@ -35,25 +38,8 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             
             var firstSetElements = firstSet.GetElements().ToList();
             var secondSetElements = secondSet.GetElements().ToList();
-
-            var addedElements = new List<T2>();
-            var answerElements = new List<(T1, T2)>();
-            foreach (var element in firstSetElements)
-            {
-                T2 addingElement;
-                do
-                {
-                    var index = _random.Next(0, secondSetElements.Count);
-                    addingElement = secondSetElements[index];
-                } while (addedElements.Contains(addingElement));
-                
-                addedElements.Add(addingElement);
-                var accordance = (element, addingElement);
-                answerElements.Add(accordance);
-            }
-
-            var answerName = _random.GetRandomName();
-            var answer = new Accordance<T1, T2>(answerElements, answerName);
+            
+            var answer = _injectiveGenerator.Generate(firstSetElements, secondSetElements);
             var variants = CreateVariants(firstSetElements, secondSetElements);
             variants.Add(answer);
 
