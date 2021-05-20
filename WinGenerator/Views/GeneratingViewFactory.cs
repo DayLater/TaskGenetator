@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TaskEngine.Generators.Tasks;
@@ -13,12 +13,27 @@ namespace WinGenerator.Views
         public View Create(ITaskGenerator generator, int columnCount = 1)
         {
             var values = generator.Values.ToList();
-            var rowCount = Math.Max((int) Math.Ceiling((float)values.Count / columnCount), 8);
+            if (values.Count == 0)
+                return new EmptyView();
             
-            var view = new GeneratingView(generator.Id);
+            var rowCount = Math.Max((int) Math.Ceiling((float) values.Count / columnCount), 8);
             var columnScale = 100 / columnCount;
             var rowScale = 100 / rowCount;
 
+            var controls = new List<Control>();
+            foreach (var value in values.Where(v => v is IntValue))
+            {
+                if (TryGetControl(value, out var control))
+                    controls.Add(control);
+            }
+            
+            foreach (var value in values.Where(v => v is BoolValue))
+            {
+                if (TryGetControl(value, out var control))
+                    controls.Add(control);
+            }
+            
+            var view = new GeneratingView(generator.Id);
             int counter = 0;
             for (int column = 0; column < columnCount; column++)
             {
@@ -26,18 +41,7 @@ namespace WinGenerator.Views
                 for (int row = 0; row < rowCount; row++)
                 {
                     view.AddRow(rowScale);
-                    if (counter >= values.Count)
-                    {
-                        view.AddControl(new Panel(), column, row);
-                        continue;
-                    }
-                    var value = values[counter];
-                    
-                    if (TryGetControl(value, out var control))
-                        view.AddControl(control, column, row);
-                    else
-                        row--;
-                    
+                    view.AddControl(counter >= values.Count ? new Panel() : controls[counter], column, row);
                     counter++;
                 }
             }

@@ -105,6 +105,7 @@
         <Compile Include="Generators\Tasks\TaskGenerator.cs" />
         <Compile Include="Generators\Tasks\VariantsGenerator.cs" />
         <Compile Include="Models\Accordance.cs" />
+        <Compile Include="Models\ReflectionType.cs" />
         <Compile Include="Models\CartesianProduct.cs" />
         <Compile Include="Models\Reflection.cs" />
         <Compile Include="Models\Sets\BorderedSet.cs" />

@@ -106,22 +106,6 @@ namespace WinGenerator.CustomControls
         }
         
         public LabeledNumericControl CreateLabeledNumericControl(string text) => new LabeledNumericControl(text) {Dock = DockStyle.Fill};
-        public CheckBox CreateCheckBox(string text) => new MaterialCheckbox() {Dock = DockStyle.Fill, Text = text};
-        
-        public void AddView(IView view)
-        {
-            Controls.Add((Control) view);
-        }
-
-        public bool Remove(IView view)
-        {
-            if (view is Control control && Controls.Contains(control))
-            {
-                Controls.Remove(control);
-                return true;
-            }
-            
-            return false;
-        }
+        public CheckBox CreateCheckBox(string text) => new MaterialCheckbox {Dock = DockStyle.Fill, Text = text};
     }
 }
