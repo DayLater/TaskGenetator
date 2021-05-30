@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskEngine", "TaskEngine\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{1F9D5386-4801-4D00-816C-6382CC4B29C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinGenerator", "WinGenerator\WinGenerator.csproj", "{481AFDE7-E21B-4DD2-99C7-644B902DD696}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGenerator", "WindowsGenerator\WindowsGenerator.csproj", "{481AFDE7-E21B-4DD2-99C7-644B902DD696}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

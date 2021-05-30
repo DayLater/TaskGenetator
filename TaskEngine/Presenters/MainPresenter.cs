@@ -1,4 +1,5 @@
 ﻿using TaskEngine.Contexts;
+using TaskEngine.Models;
 using TaskEngine.Views;
 
 namespace TaskEngine.Presenters
@@ -6,12 +7,12 @@ namespace TaskEngine.Presenters
     public class MainPresenter: IPresenter
     {
         private readonly IMainView _view;
-        private readonly UserContext _userContext;
+        private readonly UserModel _userModel;
 
-        public MainPresenter(IMainView view, UserContext userContext)
+        public MainPresenter(IMainView view, UserModel userModel)
         {
             _view = view;
-            _userContext = userContext;
+            _userModel = userModel;
             
             _view.PreviousButtonEnable = false;
             _view.NextButtonEnable = true;
@@ -23,23 +24,23 @@ namespace TaskEngine.Presenters
 
         private void OnNextButtonClicked()
         {
-            _userContext.CurrentPageIndex++;
-            OnSelectedTabChanged(_userContext.CurrentPageIndex);
+            _userModel.CurrentPageIndex++;
+            OnSelectedTabChanged(_userModel.CurrentPageIndex);
         }
 
         private void OnPreviousButtonClicked()
         {
-            _userContext.CurrentPageIndex--;
-            OnSelectedTabChanged(_userContext.CurrentPageIndex);
+            _userModel.CurrentPageIndex--;
+            OnSelectedTabChanged(_userModel.CurrentPageIndex);
         }
 
         private void OnSelectedTabChanged(int tabIndex)
         {
-            _userContext.CurrentPageIndex = tabIndex;
-            _view.SetView(_userContext.CurrentPageIndex);
+            _userModel.CurrentPageIndex = tabIndex;
+            _view.SetView(_userModel.CurrentPageIndex);
 
-            _view.PreviousButtonEnable = Contains(_userContext.CurrentPageIndex - 1);
-            _view.NextButtonEnable = Contains(_userContext.CurrentPageIndex + 1);
+            _view.PreviousButtonEnable = Contains(_userModel.CurrentPageIndex - 1);
+            _view.NextButtonEnable = Contains(_userModel.CurrentPageIndex + 1);
         }
 
         private bool Contains(int pageIndex)

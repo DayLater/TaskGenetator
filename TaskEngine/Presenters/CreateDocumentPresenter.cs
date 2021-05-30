@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using TaskEngine.Contexts;
 using TaskEngine.Extensions;
-using TaskEngine.Factories;
+using TaskEngine.Models;
 using TaskEngine.Models.Tasks.Texts;
 using TaskEngine.Views;
 using TaskEngine.Writers.DocWriters;
@@ -18,18 +18,18 @@ namespace TaskEngine.Presenters
         private readonly ICreateDocumentView _view;
         private readonly IDocWriter _docWriter;
 
-        private readonly TasksContext _tasksContext;
-        private readonly TaskGeneratorFactory _taskGeneratorFactory;
+        private readonly TasksModel _tasksModel;
+        private readonly TaskGeneratorContext _taskGeneratorContext;
         private readonly TaskWriter _taskWriter;
         private readonly Random _random;
         private string _path;
         
-        public CreateDocumentPresenter(ICreateDocumentView view, TasksContext tasksContext, IDocWriter docWriter, TaskGeneratorFactory taskGeneratorFactory, TaskWriter taskWriter, Random random)
+        public CreateDocumentPresenter(ICreateDocumentView view, TasksModel tasksModel, IDocWriter docWriter, TaskGeneratorContext taskGeneratorContext, TaskWriter taskWriter, Random random)
         {
             _view = view;
-            _tasksContext = tasksContext;
+            _tasksModel = tasksModel;
             _docWriter = docWriter;
-            _taskGeneratorFactory = taskGeneratorFactory;
+            _taskGeneratorContext = taskGeneratorContext;
             _taskWriter = taskWriter;
             _random = random;
 
@@ -62,7 +62,7 @@ namespace TaskEngine.Presenters
         
         private void OnGenerateButtonClicked()
         {
-            var taskIds = _tasksContext.Ids.ToList();
+            var taskIds = _tasksModel.Ids.ToList();
             if (taskIds.Count == 0)
             {
                 _view.ShowMessage("Не выбрано ни одного задания. Создание отменено");
@@ -86,7 +86,7 @@ namespace TaskEngine.Presenters
                         Directory.CreateDirectory(path);
                 }
 
-                var generators = taskIds.Select(id => _taskGeneratorFactory.Get(id)).ToList();
+                var generators = taskIds.Select(id => _taskGeneratorContext.Get(id)).ToList();
 
                 for (int i = 0; i < count; i++)
                 {
