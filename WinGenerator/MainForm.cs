@@ -14,7 +14,6 @@ namespace WinGenerator
     {
         private readonly PercentTableLayoutPanel _table;
         private readonly MaterialTabControl _tabControl;
-        private readonly MaterialTabSelector _tabSelector;
         private readonly MaterialButton _backButton;
         private readonly MaterialButton _nextButton;
 
@@ -32,22 +31,19 @@ namespace WinGenerator
                 Margin = new Padding(0),
                 MouseState = MouseState.HOVER,
                 Multiline = true,
-                Name = "materialTabControl2",
                 SelectedIndex = 0,
                 TabIndex = 23,
                 AutoSize = true,
                 Dock = DockStyle.Fill
             };
 
-            _tabSelector = new MaterialTabSelector
+            var tabSelector = new MaterialTabSelector
             {
                 BaseTabControl = _tabControl,
                 Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel),
                 Margin = new Padding(0),
                 MouseState = MouseState.HOVER,
-                Name = "materialTabSelector1",
                 TabIndex = 24,
-                Text = "materialTabSelector1",
                 Dock = DockStyle.Fill
             };
 
@@ -58,7 +54,7 @@ namespace WinGenerator
             _table.AddRow(85);
             _table.AddRow(10);
 
-            _table.AddControl(_tabSelector, 0, 0);
+            _table.AddControl(tabSelector, 0, 0);
             _table.AddControl(_tabControl, 0, 1);
 
             var buttonTable = _table.AddTable(0, 2);
@@ -92,7 +88,7 @@ namespace WinGenerator
                 _tabControl.Controls.Add(page);
 
             _tabControl.SelectedIndexChanged += OnSelectedTabChanged;
-            themesController.UpdatedColors += () => _tabSelector.Invalidate();
+            themesController.UpdatedColors += () => tabSelector.Invalidate();
         }
 
         private Size GetClientSize() =>  new Size(Size.Width, Size.Height - 60);

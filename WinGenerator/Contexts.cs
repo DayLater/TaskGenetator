@@ -12,28 +12,26 @@ namespace WinGenerator
 {
     public class Contexts
     {
-        public TaskGeneratorFactory TaskGeneratorsFactory { get; }
         public PresentersContext PresentersContext { get; }
         public ViewContext ViewContext { get; }
-        public ExamplesContext ExamplesContext { get; } = new ExamplesContext();
-        public UserContext UserContext { get; } = new UserContext();
 
         public Contexts(ISetWriter setWriter, Random random, IMainView mainView, IThemesController themesController, MaterialSkinManager skinManager)
         {
             var taskWriter = new TaskWriter(setWriter, random);
-            TaskGeneratorsFactory = new TaskGeneratorFactory(random, setWriter);
+            var taskGeneratorsFactory = new TaskGeneratorFactory(random, setWriter);
 
-            foreach (var generator in TaskGeneratorsFactory.TaskGenerators)
+            var exampleContext = new ExamplesContext();
+            foreach (var generator in taskGeneratorsFactory.TaskGenerators)
             {
                 var task = generator.Generate();
                 random.ClearNames();
                 random.ClearSymbols();
                 var example = taskWriter.WriteAll(task);
-                ExamplesContext.Add(generator.Id, example);
+                exampleContext.Add(generator.Id, example);
             }
 
-            ViewContext = new ViewContext(TaskGeneratorsFactory, mainView, skinManager);
-            PresentersContext = new PresentersContext(TaskGeneratorsFactory, ViewContext, UserContext, ExamplesContext, taskWriter, random, themesController);
+            ViewContext = new ViewContext(taskGeneratorsFactory, mainView, skinManager);
+            PresentersContext = new PresentersContext(taskGeneratorsFactory, ViewContext, new UserContext(), exampleContext, taskWriter, random, themesController);
         }
     }
 }
