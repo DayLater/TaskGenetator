@@ -73,10 +73,10 @@
       <DependentUpon>GeneratorConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\GeneratorViews.cs" />
-    <Compile Include="Views\Tabs\CreateDocumentView.cs" />
+    <Compile Include="Views\Tabs\CreateDocumentTabPage.cs" />
     <Compile Include="Views\Tabs\IdentifiedTabPage.cs" />
     <Compile Include="Views\Tabs\HomeTabPage.cs" />
-    <Compile Include="Views\Tabs\TaskChooseView.cs" />
+    <Compile Include="Views\Tabs\TaskChooseTabPage.cs" />
     <Compile Include="Views\ThemesController.cs" />
     <Compile Include="Views\View.cs" />
     <Compile Include="Views\ViewContext.cs" />

@@ -120,6 +120,6 @@ namespace WindowsGenerator
         }
         
         public int TabsCount => _tabControl.TabCount;
-        public void SetView(int viewId) => _tabControl.SelectedIndex = viewId;
+        public void SetTab(int tabIndex) => _tabControl.SelectedIndex = tabIndex;
     }
 }

@@ -33,10 +33,10 @@ namespace WindowsGenerator.Views
                 AddTaskView(generatingViewFactory.Create(generator, rowCount));
             }
             
-            var taskChooseView = new TaskChooseView(_generatorViews, skinManager);
+            var taskChooseView = new TaskChooseTabPage(_generatorViews, skinManager);
             TaskChooseView = taskChooseView;
 
-            var createViewDocument = new CreateDocumentView();
+            var createViewDocument = new CreateDocumentTabPage();
             CreateDocumentView = createViewDocument;
 
             var homePage = new HomeTabPage();

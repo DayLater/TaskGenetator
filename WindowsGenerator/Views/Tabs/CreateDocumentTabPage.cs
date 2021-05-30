@@ -10,7 +10,7 @@ using TaskEngine.Writers.DocWriters;
 
 namespace WindowsGenerator.Views.Tabs
 {
-    public class CreateDocumentView: IdentifiedTabPage, ICreateDocumentView
+    public class CreateDocumentTabPage: IdentifiedTabPage, ICreateDocumentView
     {
         private readonly PercentTableLayoutPanel _mainTable = new PercentTableLayoutPanel();
         private readonly PercentTableLayoutPanel _contentTable;
@@ -174,7 +174,7 @@ namespace WindowsGenerator.Views.Tabs
 
         public event Action FileDialogButtonClicked = () => { };
         
-        public CreateDocumentView(): base(ViewIds.CreateDocument)
+        public CreateDocumentTabPage(): base(ViewIds.CreateDocument)
         {
             Controls.Add(_mainTable);
 

@@ -12,6 +12,6 @@ namespace TaskEngine.Views
 
         public int TabsCount { get; }
         event Action<int> SelectedTabChanged; 
-        public void SetView(int viewId);
+        public void SetTab(int tabIndex);
     }
 }

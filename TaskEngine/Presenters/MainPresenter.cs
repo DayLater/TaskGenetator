@@ -1,5 +1,4 @@
-﻿using TaskEngine.Contexts;
-using TaskEngine.Models;
+﻿using TaskEngine.Models;
 using TaskEngine.Views;
 
 namespace TaskEngine.Presenters
@@ -37,7 +36,7 @@ namespace TaskEngine.Presenters
         private void OnSelectedTabChanged(int tabIndex)
         {
             _userModel.CurrentPageIndex = tabIndex;
-            _view.SetView(_userModel.CurrentPageIndex);
+            _view.SetTab(_userModel.CurrentPageIndex);
 
             _view.PreviousButtonEnable = Contains(_userModel.CurrentPageIndex - 1);
             _view.NextButtonEnable = Contains(_userModel.CurrentPageIndex + 1);

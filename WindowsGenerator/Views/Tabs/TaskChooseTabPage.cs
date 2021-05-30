@@ -9,7 +9,7 @@ using TaskEngine.Views;
 
 namespace WindowsGenerator.Views.Tabs
 {
-    public class TaskChooseView: IdentifiedTabPage, ITaskChooseView
+    public class TaskChooseTabPage: IdentifiedTabPage, ITaskChooseView
     {
         private readonly MaterialCheckedListBox _checkedListBox;
         private readonly Label _exampleTextLabel;
@@ -28,7 +28,7 @@ namespace WindowsGenerator.Views.Tabs
 
         private const string _exampleText = "Пример задания";
 
-        public TaskChooseView(GeneratorViews generatorViews, MaterialSkinManager skinManager) : base(ViewIds.TaskChoose)
+        public TaskChooseTabPage(GeneratorViews generatorViews, MaterialSkinManager skinManager) : base(ViewIds.TaskChoose)
         {
             _generatorViews = generatorViews;
             _skinManager = skinManager;
