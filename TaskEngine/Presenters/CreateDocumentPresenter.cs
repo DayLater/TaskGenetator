@@ -65,7 +65,7 @@ namespace TaskEngine.Presenters
             var taskIds = _tasksModel.Ids.ToList();
             if (taskIds.Count == 0)
             {
-                _view.ShowMessage("Не выбрано ни одного задания. Создание отменено");
+                _view.ShowMessage("Не выбрано ни одного задания");
             }
             else
             {

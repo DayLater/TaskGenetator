@@ -7,7 +7,7 @@ namespace TaskEngine.Views
     {
         event Action<string> SelectedItemChanged;
         event Action<string, bool> ItemFlagChanged;
-        event Action OpenConfigureButtonClicked;
+        event Action OpenGeneratorSettingsButtonClicked;
         event Action SelectAllClicked;
         event Action DeselectAllClicked;
 

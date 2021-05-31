@@ -24,12 +24,12 @@ namespace TaskEngine.Presenters
 
             _view.SelectedItemChanged += OnSelectedItemChanged;
             _view.ItemFlagChanged += ViewOnItemFlagChanged;
-            _view.OpenConfigureButtonClicked += OnOpenConfigureButtonClicked;
+            _view.OpenGeneratorSettingsButtonClicked += OnOpenGeneratorSettingsButtonClicked;
             _view.SelectAllClicked += OnSelectAllClicked;
             _view.DeselectAllClicked += OnDeselectAllClicked;
         }
 
-        private void OnOpenConfigureButtonClicked()
+        private void OnOpenGeneratorSettingsButtonClicked()
         {
             _view.OpenGeneratorSettings(_selectedGeneratorId);
         }

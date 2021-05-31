@@ -22,7 +22,7 @@ namespace WindowsGenerator.Views.Tabs
 
         public event Action<string> SelectedItemChanged = s => { };
         public event Action<string, bool> ItemFlagChanged = (s, b) => { };
-        public event Action OpenConfigureButtonClicked = () => { };
+        public event Action OpenGeneratorSettingsButtonClicked = () => { };
         public event Action SelectAllClicked = () => { };
         public event Action DeselectAllClicked = () => { };
 
@@ -71,7 +71,7 @@ namespace WindowsGenerator.Views.Tabs
             deselectAllButton.Click += (sender, args) => DeselectAllClicked(); 
             
             _generatorSettingsButton = generatorSettingsTable.AddButton(0, 3, "Настройки генератора");
-            _generatorSettingsButton.Click += (sender, args) => OpenConfigureButtonClicked();
+            _generatorSettingsButton.Click += (sender, args) => OpenGeneratorSettingsButtonClicked();
             _generatorSettingsButton.Enabled = false;
 
             Controls.Add(_table);

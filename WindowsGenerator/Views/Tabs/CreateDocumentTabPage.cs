@@ -121,8 +121,17 @@ namespace WindowsGenerator.Views.Tabs
             return false;
         }
 
-        public string TitleFont => (string) _titleFontBox.SelectedItem;
-        public string TextFont => (string) _textFontBox.SelectedItem;
+        public string TitleFont
+        {
+            get => (string) _titleFontBox.SelectedItem;
+            set => _titleFontBox.SelectedItem = value;
+        }
+
+        public string TextFont
+        {
+            get => (string) _textFontBox.SelectedItem;
+            set => _textFontBox.SelectedItem = value;
+        }
 
         public int TitleFontSize
         {
@@ -136,7 +145,11 @@ namespace WindowsGenerator.Views.Tabs
             set => _textFontSizeNumeric.Value = value;
         }
 
-        public bool IsCreateDirectory => _isCreateDirectorySwitch.Checked;
+        public bool IsCreateDirectory
+        {
+            get => _isCreateDirectorySwitch.Checked;
+            set => _isCreateDirectorySwitch.Checked = value;
+        }
 
         private void AddFontSettings()
         {

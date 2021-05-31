@@ -14,10 +14,10 @@ namespace TaskEngine.Views
         void ShowMessage(string message);
         bool TryGetFolderPath(out string path);
         
-        string TitleFont { get; }
-        string TextFont { get; }
+        string TitleFont { get; set; }
+        string TextFont { get; set; }
         int TitleFontSize { get; set; }
         int TextFontSize { get; set; }
-        bool IsCreateDirectory { get; }
+        bool IsCreateDirectory { get; set; }
     }
 }
