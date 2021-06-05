@@ -33,9 +33,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
             var name = _random.GetRandomName();
             var answerSet = _setGenerator.Generate(name);
             var elements = answerSet.GetElements().ToList();
-            var subsetElements = elements.GetListWithRandomElements(_elementCount.Value - 2, _random);
-            subsetElements.Add(elements.Min());
-            subsetElements.Add(elements.Max());
+            var subsetElements = elements.GetListWithRandomElements(_elementCount.Value , _random);
 
             var subsetName = _random.GetRandomName();
             var subset = new MathSet<T>(subsetName, subsetElements);
