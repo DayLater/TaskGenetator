@@ -6,7 +6,5 @@ namespace TaskEngine.Models.Values
     {
         public TValue Get<TValue>(string id)
             where TValue : IValue;
-        
-        public IEnumerable<IValue> Values { get; }
     }
 }

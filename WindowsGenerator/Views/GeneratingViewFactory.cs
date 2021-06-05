@@ -13,7 +13,7 @@ namespace WindowsGenerator.Views
     {
         public IView Create(ITaskGenerator generator, int columnCount = 1)
         {
-            var values = generator.Values.ToList();
+            var values = generator.ToList();
             if (values.Count == 0)
                 return new EmptyView();
             
