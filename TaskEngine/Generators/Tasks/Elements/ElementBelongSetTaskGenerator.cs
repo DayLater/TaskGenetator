@@ -9,7 +9,8 @@ namespace TaskEngine.Generators.Tasks.Elements
         protected string GetCondition<T>(ICollection<T> answers, IMathSet<T> set)
         {
             var elementString = answers.Count == 1 ? "элемент" : "все элементы";
-            return $"Выберите {elementString}, принадлежащий множеству {WriteSet(set)}";
+            var belongs = answers.Count == 1 ? "принадлежащий" : "принадлежащие";
+            return $"Выберите {elementString}, {belongs} множеству {WriteSet(set)}";
         }
 
         protected ElementBelongSetTaskGenerator(string id, int answerCount, ISetWriter setWriter) : base(id, answerCount, setWriter)

@@ -56,8 +56,10 @@ namespace TaskEngine.Generators.Tasks.Elements
         private string GetCondition(ICollection<int> elements, ICollection<IMathSet<int>> sets)
         {
             var writtenSets = sets.Count == 1 ? "множество" : "множества";
+            var union = sets.Count == 1 ? "котором" : "которых";
+            
             var writtenElements = elements.Count == 1 ? "присутсвует элемент" : "присутствуют элементы";
-            return $"Выберите {writtenSets}, в котором {writtenElements} {elements.GetStringRepresentation()}";
+            return $"Выберите {writtenSets}, в {union} {writtenElements} {elements.GetStringRepresentation()}";
         }
     }
 }
