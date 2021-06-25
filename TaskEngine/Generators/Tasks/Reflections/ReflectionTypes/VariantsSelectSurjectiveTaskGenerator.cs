@@ -32,12 +32,12 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
         public override ITask Generate()
         {
             FirstLastMathSet = _firstSetGenerator.Generate( _random.GetRandomName());
-            var firstSetElements = FirstLastMathSet.GetElements().ToList();
-            
             SecondLastSet = _secondSetGenerator.Generate(_random.GetRandomName());
-            var secondSetElements = SecondLastSet.GetElements().ToList();
-
+            
             var condition = GetCondition(FirstLastMathSet, SecondLastSet);
+            
+            var firstSetElements = FirstLastMathSet.GetElements().ToList();
+            var secondSetElements = SecondLastSet.GetElements().ToList();
 
             var answer = _surjectiveGenerator.Generate(firstSetElements, secondSetElements);
             var variants = CreateVariants(firstSetElements, secondSetElements);
@@ -52,17 +52,16 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             while (variants.Count < VariantsCount - 1)
             {
                 var variant = new List<(T1, T2)>();
-                var missedElementIndex = _random.Next(1, secondElements.Count);
+                
+                var missedElement = secondElements[_random.Next(0, secondElements.Count)];
+                var seconds = new List<T2>(secondElements.Except(new [] {missedElement}));
 
-                T2 previousElement = default;
-                for (int i = 0; i < secondElements.Count; i++)
+                foreach (var firstElement in firstElements)
                 {
-                    var firstElement =  firstElements[_random.Next(0, firstElements.Count)];
-                    var secondElement = i == missedElementIndex? previousElement: secondElements[i];
+                    var secondElement = seconds[_random.Next(0, seconds.Count)];
                     variant.Add((firstElement, secondElement));
-
-                    previousElement = secondElement;
                 }
+                
                 variant.Shuffle(_random);
                 
                 if (!variants.IsContain(variant))

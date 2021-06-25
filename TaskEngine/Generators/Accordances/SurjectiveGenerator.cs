@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Models;
+using Xceed.Document.NET;
 
 namespace TaskEngine.Generators.Accordances
 {
@@ -17,12 +18,23 @@ namespace TaskEngine.Generators.Accordances
 
         public Accordance<T1, T2> Generate(IEnumerable<T1> firstElements, IEnumerable<T2> secondElements)
         {
-            var firstSetElements = firstElements.ToList();
+            var second = secondElements.ToList();
+            var freeSecondElements = new List<T2>(second);
+
             var answerElements = new List<(T1, T2)>();
-            foreach (var element in secondElements)
+            foreach (var element in firstElements)
             {
-                var firstSetElement = firstSetElements[_random.Next(0, firstSetElements.Count)];
-                answerElements.Add((firstSetElement, element));
+                T2 secondElement;
+                if (freeSecondElements.Count > 0)
+                    secondElement = freeSecondElements[_random.Next(0, freeSecondElements.Count)];
+                else
+                {
+                    secondElement = second.ToList()[_random.Next(0, second.Count)];
+                }
+
+                freeSecondElements.Remove(secondElement);
+                
+                answerElements.Add((element, secondElement));
             }
 
             return new Accordance<T1, T2>(answerElements, _random.GetRandomName());
