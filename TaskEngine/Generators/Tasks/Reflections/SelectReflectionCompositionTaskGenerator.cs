@@ -56,7 +56,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
         {
             var firstReflection = _reflectionWriter.CreateReflectionString(first);
             var secondReflection = _reflectionWriter.CreateReflectionString(second, "g");
-            return $"Дано множество {WriteSet(set)} и отображения {firstReflection} и {secondReflection}. " +
+            return $"Дано множество {WriteSet(set)} и отображения {firstReflection} и {secondReflection}, заданные на множестве целых чисел\n" +
                    $"Выберите из списка вариантов образ множества {set.Name}, полученное с помощью композиции f{Symbols.Composition}g";
         }
     }
