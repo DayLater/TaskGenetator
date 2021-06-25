@@ -50,12 +50,24 @@ namespace TaskEngine.Extensions
 
         private static string GetRandomItem(this Random random, IReadOnlyList<string> source, params string[] except)
         {
-            var i = random.Next(0,  source.Count);
-            var symbol =  source[i];
-            while (except.Contains(symbol))
-                    symbol += "'";
+            var allCount = source.Count;
 
-            return symbol;
+            if (except.Length < allCount)
+            {
+                var freeItems = source.Except(except).ToArray();
+                var index = random.Next(0,  freeItems.Length);
+                var symbol =  source[index];
+                return symbol;
+            }
+            else
+            {
+                var index = random.Next(0,  source.Count);
+                var symbol =  source[index];
+                while (except.Contains(symbol))
+                    symbol += "'";
+                
+                return symbol;
+            }
         }
 
         public static string GetRandomElementSymbol(this Random random)
