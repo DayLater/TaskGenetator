@@ -37,7 +37,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
 
         public string CreateCondition(IMathSet<int> endSet, Reflection reflection, bool isVariants)
         {
-            var action = isVariants ? "Выберите" : "Укажите";
+            var action = isVariants ? "Выберите из списка вариантов" : "Укажите";
             return action + $" полный прообраз множества {_setWriter.Write(endSet)} при отображении {_reflectionWriter.CreateReflectionString(reflection)}";
         }
     }

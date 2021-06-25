@@ -2,6 +2,7 @@
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Generators.Tasks.Reflections.ReflectionTypes;
 using TaskEngine.Models;
+using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
 using TaskEngine.Writers;
 
@@ -30,15 +31,35 @@ namespace TaskEngine.Generators.Tasks.Reflections
             VariantsTask<Accordance<T1, T2>> task = type switch
             {
                 ReflectionType.Injective => (VariantsTask<Accordance<T1, T2>>) _injectionTaskGenerator.Generate(),
-                ReflectionType.Surjective => (VariantsTask<Accordance<T1, T2>>)_surjectiveTaskGenerator.Generate(),
-                ReflectionType.Bijective => (VariantsTask<Accordance<T1, T2>>)_bijectiveTaskGenerator.Generate(),
+                ReflectionType.Surjective => (VariantsTask<Accordance<T1, T2>>) _surjectiveTaskGenerator.Generate(),
+                ReflectionType.Bijective => (VariantsTask<Accordance<T1, T2>>) _bijectiveTaskGenerator.Generate(),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            return new VariantsTask<Accordance<T1, T2>>(task.Answers, GetCondition(type), task.Variants);
+            IMathSet<T1> firstSet;
+            IMathSet<T2> secondSet;
+            switch (type)
+            {
+                case ReflectionType.Injective:
+                   firstSet = _injectionTaskGenerator.FirstLastMathSet;
+                    secondSet = _injectionTaskGenerator.SecondLastSet;
+                    break;
+                case ReflectionType.Surjective:
+                    firstSet = _surjectiveTaskGenerator.FirstLastMathSet;
+                    secondSet = _surjectiveTaskGenerator.SecondLastSet;
+                    break;
+                case ReflectionType.Bijective:
+                    firstSet = _bijectiveTaskGenerator.FirstLastMathSet;
+                    secondSet = _bijectiveTaskGenerator.SecondLastSet;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return new VariantsTask<Accordance<T1, T2>>(task.Answers, GetCondition(type, firstSet, secondSet), task.Variants);
         }
 
-        private string GetCondition(ReflectionType type)
+        private string GetCondition(ReflectionType type, IMathSet<T1> firstSet, IMathSet<T2> secondSet)
         {
             var writtenType = type switch
             {
@@ -47,7 +68,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
                 ReflectionType.Bijective => "биекцию",
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
-            return $"Выберите {writtenType} из предложенных соответствий";
+            return $"Даны множества {WriteSet(firstSet)} и {WriteSet(secondSet)}.\nВыберите {writtenType}, заданную на этих множествах, из предложенных соответствий";
         }
         
         private ReflectionType GetRandomReflectionType()

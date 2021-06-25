@@ -35,7 +35,7 @@ namespace TaskEngine.Generators.Tasks.CartesianProducts
             } while (_setComparer.IsEquals(set, secondSet));
 
             var product = new CartesianProduct<T>(set, secondSet);
-            var condition = $"Перечислите элементы декартова произведения множеств {WriteSet(set)} и {WriteSet(secondSet)}";
+            var condition = $"Перечислите все элементы декартова произведения множеств {WriteSet(set)} и {WriteSet(secondSet)}";
             return new AnswerTask<CartesianProduct<T>>(product, condition);
         }
     }

@@ -25,18 +25,19 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             _random = random;
             _surjectiveGenerator = new SurjectiveGenerator<T1, T2>(random);
         }
-
+        
+        public IMathSet<T1> FirstLastMathSet { get; set; }
+        public IMathSet<T2> SecondLastSet { get; set; }
+        
         public override ITask Generate()
         {
-            var firstName = _random.GetRandomName();
-            var firstSet = _firstSetGenerator.Generate(firstName);
-            var firstSetElements = firstSet.GetElements().ToList();
+            FirstLastMathSet = _firstSetGenerator.Generate( _random.GetRandomName());
+            var firstSetElements = FirstLastMathSet.GetElements().ToList();
+            
+            SecondLastSet = _secondSetGenerator.Generate(_random.GetRandomName());
+            var secondSetElements = SecondLastSet.GetElements().ToList();
 
-            var secondName = _random.GetRandomName();
-            var secondSet = _secondSetGenerator.Generate(secondName);
-            var secondSetElements = secondSet.GetElements().ToList();
-
-            var condition = GetCondition(firstSet, secondSet);
+            var condition = GetCondition(FirstLastMathSet, SecondLastSet);
 
             var answer = _surjectiveGenerator.Generate(firstSetElements, secondSetElements);
             var variants = CreateVariants(firstSetElements, secondSetElements);

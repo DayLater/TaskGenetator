@@ -75,8 +75,8 @@ namespace TaskEngine.Contexts
             Add(new CartesianProductElementsTaskGenerator<int>(TaskIds.IntCartesianProductElementsTask, setWriter, random, new IntMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
             Add(new CartesianProductElementsTaskGenerator<string>(TaskIds.SymbolCartesianProductElementsTask, setWriter, random, new SymbolMathSetGenerator(random) {MaxCount = 4, MinCount = 2}));
             
-            Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectSeveralNumbersReflectionFromAccordance, 2, setWriter, random, new IntMathSetGenerator(random)));
-            Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, 2, setWriter, random, new SymbolMathSetGenerator(random)));
+            Add(new VariantsSelectReflectionTaskGenerator<int>(TaskIds.SelectSeveralNumbersReflectionFromAccordance, setWriter, random, new IntMathSetGenerator(random) {Count = 5}));
+            Add(new VariantsSelectReflectionTaskGenerator<string>(TaskIds.SelectSeveralSymbolsReflectionFromAccordance, setWriter, random, new SymbolMathSetGenerator(random) {Count = 5}));
             
             Add(new VariantsSelectInjectionTaskGenerator<int, string>(TaskIds.SelectReflectionInjectionNumToSymbol, setWriter, random, new IntMathSetGenerator(random) {Count = 4, IsZeroNecessary = false}, new SymbolMathSetGenerator(random) {Count = 5}));
             Add(new VariantsSelectInjectionTaskGenerator<string, int>(TaskIds.SelectReflectionInjectionSymbolToNum, setWriter, random, new SymbolMathSetGenerator(random) {Count = 4}, new IntMathSetGenerator(random) {Count = 5, IsZeroNecessary = false}));

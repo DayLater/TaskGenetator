@@ -50,7 +50,7 @@ namespace TaskEngine.Generators.Tasks.SetOperations
             var firstSet = WriteSet(first);
             var secondSet = WriteSet(second);
             var operation = SetOperationHelper.GetString(setOperation);
-            return $"Найдите {operation} множеств {firstSet} и {secondSet}";
+            return $"Выберите из списка вариантов {operation} множеств {firstSet} и {secondSet}";
         }
     }
 }

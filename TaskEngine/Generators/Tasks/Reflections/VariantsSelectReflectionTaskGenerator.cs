@@ -4,6 +4,7 @@ using System.Linq;
 using TaskEngine.Extensions;
 using TaskEngine.Generators.SetGenerators;
 using TaskEngine.Models;
+using TaskEngine.Models.Sets;
 using TaskEngine.Models.Tasks;
 using TaskEngine.Models.Values;
 using TaskEngine.Writers;
@@ -14,9 +15,8 @@ namespace TaskEngine.Generators.Tasks.Reflections
     {
         private readonly ISetGenerator<T> _setGenerator;
         private readonly Random _random;
-        private readonly IntValue _elementCount = new IntValue(ValuesIds.ElementsCount) {Value = 4, MinValue = 2};
-        
-        public VariantsSelectReflectionTaskGenerator(string id, int answerCount, ISetWriter setWriter, Random random, ISetGenerator<T> setGenerator) : base(id, answerCount, setWriter)
+
+        public VariantsSelectReflectionTaskGenerator(string id, ISetWriter setWriter, Random random, ISetGenerator<T> setGenerator) : base(id, 1, setWriter)
         {
             _random = random;
             _setGenerator = setGenerator;
@@ -26,14 +26,15 @@ namespace TaskEngine.Generators.Tasks.Reflections
         {
             var firstSet = _setGenerator.Generate(_random.GetRandomName());
             var secondSet = _setGenerator.Generate(_random.GetRandomName());
-
+            var count = firstSet.GetElements().Count();
+            
             var product = new CartesianProduct<T>(firstSet, secondSet);
             var elements = product.GetElements().ToArray();
 
             var elementAnswers = new List<List<(T, T)>>();
             while (elementAnswers.Count < AnswersCount)
             {
-                var answer = GetAnswer(elements);
+                var answer = GetAnswer(elements, count);
                 if (!elementAnswers.Any(a => a.SetEquals(answer)))
                     elementAnswers.Add(answer);
             }
@@ -41,26 +42,24 @@ namespace TaskEngine.Generators.Tasks.Reflections
             var elementVariants = new List<List<(T, T)>>(elementAnswers);
             while (elementVariants.Count < VariantsCount)
             {
-                var variant = GetVariant(elements);
+                var variant = GetVariant(elements, count);
                 if (!elementVariants.Any(a => a.SetEquals(variant)))
                     elementVariants.Add(variant);
             }
 
             var variants = elementVariants.Select(e => new Accordance<T, T>(e, _random.GetRandomName())).ToList();
             var answers = elementAnswers.Select(a => elementVariants.IndexOf(a)).Select(index => variants[index]).ToList();
-            var condition = GetCondition(answers);
+            var condition = GetCondition(firstSet, secondSet);
 
             return new VariantsTask<Accordance<T, T>>(answers, condition, variants);
         }
 
-        private string GetCondition(ICollection<Accordance<T, T>> answers)
+        private string GetCondition(IMathSet<T> first, IMathSet<T> second)
         {
-            return answers.Count == 1
-                ? "Выберите соответствие, являющееся отображением"
-                : "Выберите соответствия, являющиеся отображнием";
+            return $"Выберите из списка вариантов соответствие из множества {WriteSet(first)} во множество {WriteSet(second)}, являющееся отображением";
         }
 
-        private List<(T, T)> GetVariant(IReadOnlyList<(T, T)> elements)
+        private List<(T, T)> GetVariant(IReadOnlyList<(T, T)> elements, int count)
         {
             var randomIndex = _random.Next(0, elements.Count);
             var firstElement = elements[randomIndex];
@@ -73,7 +72,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
             } while (!second.Item1.Equals(firstElement.Item1));
             
             var result = new List<(T, T)> {firstElement, second};
-            while (result.Count < _elementCount.Value)
+            while (result.Count < count)
             {
                 var index = _random.Next(0, elements.Count);
                 var element = elements[index];
@@ -85,13 +84,13 @@ namespace TaskEngine.Generators.Tasks.Reflections
             return result;
         }
 
-        private List<(T, T)> GetAnswer(IReadOnlyList<(T, T)> elements)
+        private List<(T, T)> GetAnswer(IReadOnlyList<(T, T)> elements, int count)
         {
             var randomIndex = _random.Next(0, elements.Count);
             var firstElement = elements[randomIndex];
             var result = new List<(T, T)> {firstElement};
             var suitableElements = elements.Where(e => !e.Item1.Equals(firstElement.Item1)).ToList();
-            while (result.Count < _elementCount.Value)
+            while (result.Count < count)
             {
                 var index = _random.Next(0, suitableElements.Count);
                 var element = suitableElements[index];

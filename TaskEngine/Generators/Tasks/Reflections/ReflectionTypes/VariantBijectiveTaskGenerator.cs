@@ -25,20 +25,24 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             _random = random;
             _bijectiveGenerator = new BijectiveGenerator<T1, T2>(random);
         }
+        
+        public IMathSet<T1> FirstLastMathSet { get; set; }
+        public IMathSet<T2> SecondLastSet { get; set; }
+
 
         public override ITask Generate()
         {
-            var firstSet = _firstSetGenerator.Generate(_random.GetRandomName());
-            var secondSet = _secondSetGenerator.Generate(_random.GetRandomName());
+            FirstLastMathSet = _firstSetGenerator.Generate(_random.GetRandomName());
+            SecondLastSet = _secondSetGenerator.Generate(_random.GetRandomName());
 
-            var firstElements = firstSet.GetElements().ToList();
-            var secondElements = secondSet.GetElements().ToList();
+            var firstElements = FirstLastMathSet.GetElements().ToList();
+            var secondElements = SecondLastSet.GetElements().ToList();
 
             var answer = _bijectiveGenerator.Generate(firstElements, secondElements);
             var variants = CreateVariants(firstElements, secondElements);
             variants.Add(answer);
 
-            var condition = CreateCondition(firstSet, secondSet);
+            var condition = CreateCondition(FirstLastMathSet, SecondLastSet);
             return new VariantsTask<Accordance<T1, T2>>(answer, condition, variants);
         }
 

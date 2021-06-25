@@ -27,19 +27,19 @@ namespace TaskEngine.Generators.Tasks.Reflections.ReflectionTypes
             _injectiveGenerator = new InjectiveGenerator<T1, T2>(random);
             _accordanceGenerator = new AccordanceGenerator<T1, T2>(random);
         }
-
+        
+        public IMathSet<T1> FirstLastMathSet { get; set; }
+        public IMathSet<T2> SecondLastSet { get; set; }
+        
         public override ITask Generate()
         {
-            var firstName = _random.GetRandomName();
-            var firstSet = _firstSetGenerator.Generate(firstName);
+            FirstLastMathSet = _firstSetGenerator.Generate(_random.GetRandomName());
+            SecondLastSet = _secondSetGenerator.Generate(_random.GetRandomName());
 
-            var secondName = _random.GetRandomName();
-            var secondSet = _secondSetGenerator.Generate(secondName);
-
-            var condition = GetCondition(firstSet, secondSet);
+            var condition = GetCondition(FirstLastMathSet, SecondLastSet);
             
-            var firstSetElements = firstSet.GetElements().ToList();
-            var secondSetElements = secondSet.GetElements().ToList();
+            var firstSetElements = FirstLastMathSet.GetElements().ToList();
+            var secondSetElements = SecondLastSet.GetElements().ToList();
             
             var answer = _injectiveGenerator.Generate(firstSetElements, secondSetElements);
             var variants = CreateVariants(firstSetElements, secondSetElements);
