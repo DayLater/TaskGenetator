@@ -56,7 +56,13 @@ namespace TaskEngine.Writers.DocWriters
         private void WriteVariantsTask(IVariantsTextTask textTask, int index, Document document)
         {
             WriteTask(textTask, index, document);
-            document.AddList(textTask.Variants);
+            int taskIndex = 1;
+            
+            foreach (var variant in textTask.Variants)
+            {
+                document.AddText($"{taskIndex}) {variant}");
+                taskIndex++;
+            }
         }
         
         private void WriteTask(ITextTask textTask, int index, Document document)
