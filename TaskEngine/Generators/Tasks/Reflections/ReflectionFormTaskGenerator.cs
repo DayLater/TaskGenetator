@@ -36,7 +36,7 @@ namespace TaskEngine.Generators.Tasks.Reflections
 
         public string GetCondition(bool isVariants, IMathSet<int> set, Reflection reflection)
         {
-            var condition = $"Дано множество {_setWriter.Write(set)} и отображение {_reflectionWriter.CreateReflectionString(reflection)}, заданное на множестве целых чисел";
+            var condition = $"Дано множество {_setWriter.Write(set)} и отображение {_reflectionWriter.CreateReflectionString(reflection)}, заданное на множестве целых чисел\n";
             var action = isVariants ? "Выберите из списка вариантов" : "Укажите";
             return condition + action + " образ данного множества при данном отображении";
         }

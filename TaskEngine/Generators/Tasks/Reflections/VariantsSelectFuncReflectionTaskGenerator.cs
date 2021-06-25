@@ -48,8 +48,8 @@ namespace TaskEngine.Generators.Tasks.Reflections
         private string CreateCondition(IMathSet<int> firstSet, IMathSet<int> secondSet)
         {
             var condition = $"Дано отображение f: {firstSet.Name} -> {secondSet.Name}, где {WriteSet(firstSet)} и {WriteSet(secondSet)}.\n"; 
-            return _isReversed? condition + "Выбрите из списка вариантов формульный вид отображения, обратного данному"
-                : condition + "Выбрите из списка вариантов формульный вид данного отображения.";
+            return _isReversed? condition + "Выберите из списка вариантов формульный вид отображения, обратного данному"
+                : condition + "Выберите из списка вариантов формульный вид данного отображения.";
         }
     }
 }
