@@ -43,7 +43,7 @@ namespace TaskEngine.Generators.Tasks.SetOperations
                     variants.Add(variantSet);
             }
             
-            var condition = $"Дано множество {WriteSet(set)}. Выберите равно ему множество";
+            var condition = $"Дано множество {WriteSet(set)}. Выберите из списка вариантов равное ему множество";
             return new VariantsTask<IMathSet<T>>(equalsSet, condition, variants);
         }
         

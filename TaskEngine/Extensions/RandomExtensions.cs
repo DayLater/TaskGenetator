@@ -56,7 +56,7 @@ namespace TaskEngine.Extensions
             {
                 var freeItems = source.Except(except).ToArray();
                 var index = random.Next(0,  freeItems.Length);
-                var symbol =  source[index];
+                var symbol =  freeItems[index];
                 return symbol;
             }
             else
