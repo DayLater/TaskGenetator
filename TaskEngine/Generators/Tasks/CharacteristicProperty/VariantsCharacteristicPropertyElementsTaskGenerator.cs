@@ -52,7 +52,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
                     variants.Add( variant.OrderBy(Math.Abs).ToList());
             }
             
-            var condition = $"Выберите первые {count} элементов по его характеристическому свойству {WriteProperty(set)}";
+            var condition = $"Выберите из списка вариантов первые {count} элементов множества по его записи через характеристическое свойство {WriteProperty(set)}";
             return new VariantsTask<List<int>>(elements, condition, variants);
         }
 

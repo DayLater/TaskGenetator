@@ -20,7 +20,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
         public override ITask Generate()
         {
             var set = _setGenerator.Generate(1).First();
-            var condition = $"Дано множество {WriteSet(set)}.\nУкажите его характеристическое свойство.";
+            var condition = $"Дано множество {WriteSet(set)}.\nУкажите его запись через характеристическое свойство.";
             return new AnswerTask<ExpressionSet>(set, condition);
         }
     }

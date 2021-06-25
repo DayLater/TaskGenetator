@@ -24,7 +24,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
             var variants = _expressionSetGenerator.Generate(VariantsCount);
             var rightAnswerIndex = _random.Next(0, variants.Count);
             var answer = variants[rightAnswerIndex];
-            var condition = $"Дано множество {WriteSet(answer)}.\nУкажите его характеристическое свойство.";
+            var condition = $"Дано множество {WriteSet(answer)}.\nВыберите из списка вариантов его запись через характеристическое свойство.";
             return new VariantsTask<ExpressionSet>(answer,  condition, variants); 
         }
     }

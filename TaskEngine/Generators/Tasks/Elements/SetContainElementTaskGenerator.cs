@@ -59,7 +59,7 @@ namespace TaskEngine.Generators.Tasks.Elements
             var union = sets.Count == 1 ? "котором" : "которых";
             
             var writtenElements = elements.Count == 1 ? "присутсвует элемент" : "присутствуют элементы";
-            return $"Выберите {writtenSets}, в {union} {writtenElements} {elements.GetStringRepresentation()}";
+            return $"Выберите из списка вариантов {writtenSets}, в {union} {writtenElements} {elements.GetStringRepresentation()}";
         }
     }
 }

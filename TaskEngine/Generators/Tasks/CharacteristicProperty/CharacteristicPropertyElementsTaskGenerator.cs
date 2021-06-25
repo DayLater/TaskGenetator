@@ -23,7 +23,7 @@ namespace TaskEngine.Generators.Tasks.CharacteristicProperty
         {
             var set = _setGenerator.Generate(1).First();
             var elements = set.GetElements().Take(_elementCount.Value).ToList();
-            var condition = $"Укажите первые {_elementCount.Value} элементов по его характеристическому свойству {WriteProperty(set)}";
+            var condition = $"Укажите первые {_elementCount.Value} элементов множества через его характеристическое свойство {WriteProperty(set)}";
             return new AnswerTask<int>(elements, condition);
         }
     }
