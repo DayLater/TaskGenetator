@@ -63,7 +63,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
         private string GetCondition(ICollection<IMathSet<T>> answers, IMathSet<T> subset)
         {
             var set = answers.Count == 1 ? "множество, включающее" : "множества, включающие";
-            return $"Выберите {set} данное подмножество {WriteSet(subset)}";
+            return $"Выберите из списка вариантов {set} данное подмножество {WriteSet(subset)}";
         }
         
         private bool IsContain(IEnumerable<IMathSet<T>> variants, IMathSet<T> variant)

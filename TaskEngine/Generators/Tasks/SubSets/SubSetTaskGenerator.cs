@@ -39,7 +39,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
         {
             var writeSet = WriteSet(set);
             var writeType = SubSetTypeHelper.GetNumbersType(setType);
-            return $"Дано множество {writeSet}.\nВыделите его подмножество, элементами которого являются {writeType} числа";
+            return $"Дано множество {writeSet}.\nУкажите его подмножество, элементами которого являются {writeType} числа множества {set.Name}";
         }
     }
 }

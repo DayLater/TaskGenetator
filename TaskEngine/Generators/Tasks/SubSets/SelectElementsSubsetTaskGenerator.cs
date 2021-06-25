@@ -62,7 +62,7 @@ namespace TaskEngine.Generators.Tasks.SubSets
         private string GetCondition(IMathSet<T> set, IReadOnlyCollection<IMathSet<T>> answers)
         {
             var subSet = answers.Count == 1 ? "подмножество" : "подмножества";
-            return $"Дано множество {WriteSet(set)}. Выберите его {subSet}.";
+            return $"Дано множество {WriteSet(set)}. Выберите его {subSet} из списка вариантов.";
         }
 
         private List<List<T>> CreateAnswers(IList<T> elements, int count, Random random)
