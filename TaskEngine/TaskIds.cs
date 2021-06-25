@@ -3,21 +3,18 @@
     public static class TaskIds
     {
         public const string NumbersBelongSetTask = "Принадлежность элементов множеству (числа)";
-        public const string NumbersBelongBorderedSetTask = "Принадлежность элементов ограниченному множеству";
+        public const string NumbersBelongBorderedSetTask = "Принадлежность элементов множеству (интервал)";
         public const string SymbolsBelongSetTask = "Принадлежность элементов множеству (буквы)";
         public const string SetContainsElements = "Множество, содержащее элементы (числа)";
-        
-        
+
         public const string CharacteristicPropertyTask = "Указать характеристическое свойство";
         public const string VariantsCharacteristicPropertyTask = "Выбрать характеристическое свойство";
-        public const string CharacteristicPropertyElementsTask = "Указать элементы множества по характерестическому свойству";
-        public const string VariantsCharacteristicPropertyElementsTask = "Выбрать элементы множества по характерестическому свойству";
+        public const string CharacteristicPropertyElementsTask = "Указать элементы множества по характеристическому свойству";
+        public const string VariantsCharacteristicPropertyElementsTask = "Выбрать элементы множества по характеристическому свойству";
 
-        
         public const string SelectSeveralNumbersSubSet = "Выбрать подмножества (числа)";
         public const string SelectSeveralSymbolsSubSet = "Выбрать подмножества (буквы)";
         public const string SelectSeveralNumberSetBySubset = "Выбрать множества по подмножеству (числа)";
-        public const string SelectSeveralBorderedSetBySubset = "Выбрать множества по подмножеству (ограниченное)";
         public const string SelectSeveralSymbolSetBySubset = "Выбрать множества по подмножеству (буквы)";
         public const string VariantsSelectSubsetByCharacterTask = "Выбрать подмножество по свойству";
         public const string SelectSubsetByCharacterTask = "Указать подмножество по свойству";
@@ -25,9 +22,9 @@
         public const string NumberSetsEquals = "Равенство множеств (числа)";
         public const string SymbolSetsEquals = "Равенство множеств (буквы)";
         
-        public const string VariantsBorderSetExceptOperationTask = "Выбрать разность ограниченных множеств";
-        public const string VariantsBorderSetIntersectOperationTask = "Выбрать пересечение ограниченных множеств";
-        public const string VariantsBorderSetUnionOperationTask = "Выбрать объединение ограниченных множеств";
+        public const string VariantsBorderSetExceptOperationTask = "Выбрать разность множеств (интервал)";
+        public const string VariantsBorderSetIntersectOperationTask = "Выбрать пересечение множеств (интервал)";
+        public const string VariantsBorderSetUnionOperationTask = "Выбрать объединение множеств (интервал)";
         public const string VariantsNumbersSetExceptOperationTask = "Выбрать разность множеств (числа)";
         public const string VariantsNumbersSetIntersectOperationTask = "Выбрать пересечение множеств (числа)";
         public const string VariantsNumbersSetUnionOperationTask = "Выбрать объединение множеств (числа)";
@@ -35,9 +32,9 @@
         public const string VariantsSymbolsSetIntersectOperationTask = "Выбрать пересечение множеств (буквы)";
         public const string VariantsSymbolsSetUnionOperationTask = "Выбрать объединение множеств (буквы)";
         
-        public const string BorderSetExceptOperationTask = "Указать разность ограниченных множеств";
-        public const string BorderSetIntersectOperationTask = "Указать пересечение ограниченных множеств";
-        public const string BorderSetUnionOperationTask = "Указать объединение ограниченных множеств";
+        public const string BorderSetExceptOperationTask = "Указать разность множеств (интервал)";
+        public const string BorderSetIntersectOperationTask = "Указать пересечение множеств (интервал)";
+        public const string BorderSetUnionOperationTask = "Указать объединение множеств (интервал)";
         public const string NumbersSetExceptOperationTask = "Указать разность множеств (числа)";
         public const string NumbersSetIntersectOperationTask = "Указать пересечение множеств (числа)";
         public const string NumbersSetUnionOperationTask = "Указать объединение множеств (числа)";
@@ -58,7 +55,6 @@
         public const string SelectReflectionBijectiveSymbolsToNum = "Выбрать биекцию (буквы -> числа)";
         public const string SelectReflectionTypeNumToSym = "Выбрать отображение по типу (числа -> буквы)";
         public const string SelectReflectionTypeSymToNum = "Выбрать отображение по типу (буквы -> числа)";
-
         
         public const string SelectFuncReflection = "Указать отображение";
         public const string VariantSelectFuncReflection = "Выбрать отображение";
